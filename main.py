@@ -21,12 +21,15 @@ def decompress_zstandard_to_folder(input_file):
 
 
 # Подключение к БД
-conn = psycopg2.connect(user="postgres", password="111", host="127.0.0.1", port="5432", database="ITMO_logs")
+conn = psycopg2.connect(user="postgres", password="s1n2e3i4p5", host="127.0.0.1", port="5432", database="ITMO_logs")
 cur = conn.cursor()
 
-cur.execute("DELETE FROM files;")
-cur.execute("DELETE FROM public.json_t;")
-cur.execute("DELETE FROM public.logs;")
+#cur.execute("DELETE FROM files;")
+#cur.execute("DELETE FROM public.json_t;")
+#cur.execute("DELETE FROM public.logs;")
+cur.execute("TRUNCATE TABLE public.files RESTART IDENTITY;")
+cur.execute("TRUNCATE TABLE public.json_t RESTART IDENTITY;")
+cur.execute("TRUNCATE TABLE public.logs RESTART IDENTITY;")
 conn.commit()
 
 
@@ -40,8 +43,10 @@ files = os.listdir(work_dir)
 files = list(filter(lambda x: x.endswith('.log'), files))
 for f in files:
     curr_file = open(work_dir + '/' + f, 'r')
-    sql = 'INSERT INTO public.files (file_name) VALUES (\'' + f + '\') returning id;'
-    cur.execute(sql)
+    sql = "INSERT INTO public.files (file_name) VALUES (%s) returning id;"
+    cur.execute(sql, (f,))
+    #sql = 'INSERT INTO public.files (file_name) VALUES (\'' + f + '\') returning id;'
+    #cur.execute(sql)
     file_id = cur.fetchone()[0]
     conn.commit()
     while True:
