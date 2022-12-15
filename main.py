@@ -21,7 +21,7 @@ def decompress_zstandard_to_folder(input_file):
 
 
 # Подключение к БД
-conn = psycopg2.connect(user="postgres", password="s1n2e3i4p5", host="127.0.0.1", port="5432", database="ITMO_logs")
+conn = psycopg2.connect(user="postgres", password="000", host="127.0.0.1", port="5432", database="ITMO_logs")
 cur = conn.cursor()
 
 #cur.execute("DELETE FROM files;")
