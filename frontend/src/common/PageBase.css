@@ -1,0 +1,17 @@
+.page-base {
+  background: #022240;
+  z-index: -50;
+}
+
+.app-name {
+  padding-left: 40px;
+}
+
+.content {
+  margin-top: 56px;
+}
+
+.fullscreen {
+  height: 100vh;
+  width: 100vw;
+}
