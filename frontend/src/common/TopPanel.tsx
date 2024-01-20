@@ -1,5 +1,3 @@
-//@flow
-
 import './TopPanel.css'
 
 export default function TopPanel() {

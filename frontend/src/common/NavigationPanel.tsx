@@ -1,5 +1,3 @@
-//@flow
-
 import NavigationButton from './NavigationButton'
 import './NavigationPanel.css'
 

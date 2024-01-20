@@ -1,12 +1,10 @@
-// @flow
-
-import React from 'react';
 import './PageBase.css'
 import TopPanel from './TopPanel'
 import NavigationPanel from './NavigationPanel'
+import {ReactNode} from "react";
 
 type PageBaseProps = {
-    content?: Node;
+    content?: ReactNode;
     showBackButton: boolean;
     showContinueButton: boolean;
 };
@@ -18,10 +16,10 @@ export default function PageBase(props: PageBaseProps) {
             <div className="content">
                 {props.content}
             </div>
-            <NavigationPanel
-                showBackButton={props.showBackButton}
-                showContinueButton={props.showContinueButton}
-            />
+            {/*<NavigationPanel*/}
+            {/*    showBackButton={props.showBackButton}*/}
+            {/*    showContinueButton={props.showContinueButton}*/}
+            {/*/>*/}
         </div>
     )
 }
