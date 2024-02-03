@@ -1,14 +1,12 @@
 .page-base {
-  background: #FFFFFF;
+  /*background: rgb(174, 201, 254, .5);*/
   z-index: -50;
 }
 
-.app-name {
-  padding-left: 40px;
-}
-
 .content {
-  margin-top: 60px;
+  padding-top: 60px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 
 .fullscreen {
