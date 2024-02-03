@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## LogAnalyzer
 Веб приложение, созданное для анализа лог-файлов платформы Open edX и визуализации результатов с помощью дашбордов.
 
@@ -19,3 +20,8 @@
 
 
    
+=======
+## OpenEdu Analyzer
+
+An application for analyzing the activity of online courses students on the Open Education platform
+>>>>>>> 949c0d6d6bfeb4aced43c0f5ee7a47e41265e7ca
