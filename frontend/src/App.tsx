@@ -1,6 +1,6 @@
-import PageBase from './common/PageBase';
-import MetricExtractor from "./metrics/MetricExtractor";
-import ChartComponent from "./metrics/ChartComponent";
+import PageBase from './common/PageBase/PageBase';
+import DonutsChart, {DonutsChartData, DonutsChartProps} from "./common/charts/DonutsChart";
+import SimpleBarChart from "./common/charts/BarChart";
 
 export default function App() {
     const csvData = `user_name,user_id
@@ -9,6 +9,12 @@ export default function App() {
         alenatresh,280
     `;
 
+    const chartDonut = [
+        { value: 10, label: 'Прошли курс' },
+        { value: 20, label: 'Начали, не прошли' },
+        { value: 15, label: 'Не начали' },
+    ]
+
     return (
         <div className="app">
             <PageBase
@@ -16,9 +22,15 @@ export default function App() {
                 showContinueButton={true}
                 content={
                 // todo pass here everything you want to see
-                ChartComponent(
-                    {csvData}
-                )
+                // ChartComponent(
+                //     {csvData}
+                // )
+
+                    <div>
+                        <DonutsChart data={chartDonut} />
+                        <SimpleBarChart />
+                    </div>
+
             }
             />
         </div>
