@@ -1,6 +1,5 @@
 import './PageBase.css'
-import TopPanel from './TopPanel'
-import NavigationPanel from './NavigationPanel'
+import NavigationPanel from '../NavigationPanel/NavigationPanel'
 import {ReactNode} from "react";
 
 type PageBaseProps = {
@@ -12,8 +11,8 @@ type PageBaseProps = {
 export default function PageBase(props: PageBaseProps) {
     return (
         <div className="page-base fullscreen">
-            <TopPanel />
-            <div className="content">
+            {/*<TopPanel />*/}
+            <div className={"content"}>
                 {props.content}
             </div>
             {/*<NavigationPanel*/}

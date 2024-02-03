@@ -1,4 +1,4 @@
-import NavigationButton from './NavigationButton'
+import NavigationButton from '../NavigationButton/NavigationButton'
 import './NavigationPanel.css'
 
 type NavigationPanelProps = {
