@@ -1,5 +1,5 @@
 import PageBase from './common/PageBase/PageBase';
-import DonutsChart, {DonutsChartData, DonutsChartProps} from "./common/charts/DonutsChart";
+import DonutsChart from "./common/charts/DonutsChart";
 import SimpleBarChart from "./common/charts/BarChart";
 
 export default function App() {

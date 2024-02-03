@@ -1,11 +1,11 @@
 import { PieChart } from '@mui/x-charts'
 
-export type DonutsChartData = {
+type DonutsChartData = {
     value: number;
     label: string;
 }
 
-export type DonutsChartProps = {
+type DonutsChartProps = {
     data: DonutsChartData[]
 }
 
