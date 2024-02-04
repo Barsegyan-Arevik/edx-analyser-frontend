@@ -1,3 +1,73 @@
+*{
+    margin: 0;
+    padding:0;
+    text-decoration: none;
+}
+
+.container{
+    display:flex;
+}
+
+main{
+    width: 100%;
+    padding: 20px;
+}
+
+.top_section{
+    display: flex;
+    align-items: center;
+    padding: 20px 15px;
+}
+
+.logo{
+    font-size: 30px;
+}
+
+.bars{
+    display: flex;
+    font-size: 20px;
+    margin-left: 30px;
+}
+
+.link{
+    display: flex;
+    color: #667B98;
+    padding: 10px 15px;
+    gap: 20px;
+    transition: all 0.5s;
+}
+
+.link:hover{
+    background: #5471E7;
+    color: #FFF;
+    transition: all 0.5s;
+}
+
+.active{
+    background: #5471E7;
+    color: #FFF;
+}
+
+.icon, .link_text{
+    font-size: 17px;
+}
+
 .app {
   text-align: center;
 }
+
+.sidebar{
+  box-shadow: 10px 0 20px rgba(55, 99, 221, 0.2);
+  background: #FFF;
+  color: #667B98;
+  height: 100%;
+  width: 270px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding-top: 5px;
+  transition: all 0.5s;
+}
+
