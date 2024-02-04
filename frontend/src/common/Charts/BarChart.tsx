@@ -23,7 +23,7 @@ export default function SimpleBarChart() {
       // Имитация задержки загрузки данных
       const timer = setTimeout(() => {
           setLoading(false);
-      }, 4000);
+      }, 2000);
 
       // Очистка таймера при размонтировании компонента
       return () => clearTimeout(timer);
