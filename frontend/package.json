@@ -4,12 +4,17 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "@mui/material": "^5.15.5",
+    "@mui/material": "^5.15.7",
+    "@mui/x-charts": "^6.19.3",
     "chart.js": "^4.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^5.0.1",
+    "react-loading-skeleton": "^3.4.0",
+    "react-markdown": "^6.0.0",
+    "react-router-dom": "^6.22.0",
     "react-scripts": "5.0.1",
-    "react-markdown": "^6.0.0"
+    "react-shimmer-effects": "^1.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -37,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-flow": "^7.21.4",
     "flow-bin": "^0.205.0"
   }

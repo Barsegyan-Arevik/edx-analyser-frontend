@@ -1,3 +1,27 @@
-## OpenEdu Analyzer
+## LogAnalyzer
+Веб приложение, созданное для анализа активности слушателей курсов на платформе Open edX и визуализации результатов с помощью дашбордов.
 
-An application for analyzing the activity of online courses students on the Open Education platform
+### Использование
+1) Склонируйте проект на свой компьютер
+   ```shell
+   git clone https://github.com/Barsegyan-Arevik/Log_Analyzer
+   ```
+2) Запустите бэкенд приложения
+   ```shell
+   cd backend
+   pip install -r requirements.txt
+   python manage.py runserver
+   ```
+3) Запустите фронтенд приложения
+   ```shell
+   cd frontend
+   npm install
+   npm start
+   ```
+
+
+### Информация
+[Подробнее о метриках](https://docs.google.com/document/d/10p5zKWXnF2LRT2V9M0zCFXjcEkOsdYNRg663pmJx4bI/edit?usp=sharing)
+
+
+[О библиотеках для визуализации графиков](https://docs.google.com/document/d/11FnVxswTE5iMa1XV_n40CLleLSPWVutV43c76xMdOX8/edit?usp=sharing)

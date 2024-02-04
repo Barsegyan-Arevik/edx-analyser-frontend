@@ -1,26 +1,37 @@
-import PageBase from './common/PageBase';
-import MetricExtractor from "./metrics/MetricExtractor";
-import ChartComponent from "./metrics/ChartComponent";
+import './App.css'
+import SideBar from "./components/SideBar/SideBar";
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import CourseInfoPage from "./pages/CourseInfoPage";
+import StudentSearchPage from "./pages/StudentSearchPage";
+import {MdOutlineAnalytics} from "react-icons/md";
+import {FaSearch} from "react-icons/fa";
+import * as React from "react";
+import StudentPage from "./pages/StudentPage";
+
+const menuItems = [
+    {
+        path: "/",
+        name: "Course Info",
+        icon: <MdOutlineAnalytics/>
+    },
+    {
+        path: "/students",
+        name: "Student Search",
+        icon: <FaSearch/>
+    },
+]
 
 export default function App() {
-    const csvData = `user_name,user_id
-        abrosimovaoe,328
-        akimovnv,328
-        alenatresh,280
-    `;
-
     return (
-        <div className="app">
-            <PageBase
-                showBackButton={true}
-                showContinueButton={true}
-                content={
-                // todo pass here everything you want to see
-                ChartComponent(
-                    {csvData}
-                )
-            }
-            />
-        </div>
+        <BrowserRouter>
+            <SideBar menuItems={menuItems}>
+                <Routes>
+                    <Route path={"/"} element={<CourseInfoPage/>}/>
+                    <Route path={"/students"} element={<StudentSearchPage/>}/>
+                    <Route path={"/students:id"} element={<StudentPage/>}/>
+                </Routes>
+            </SideBar>
+        </BrowserRouter>
+
     );
 }
