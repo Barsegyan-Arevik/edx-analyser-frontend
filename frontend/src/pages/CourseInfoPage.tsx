@@ -1,8 +1,8 @@
 import * as React from 'react';
-import PageBase from "../common/PageBase/PageBase";
-import DonutsChart from "../common/Charts/DonutsChart";
-import SimpleBarChart from "../common/Charts/BarChart";
-import BasicLineChart from "../common/Charts/LineChart";
+import PageBase from "../components/PageBase/PageBase";
+import DonutsChart from "../components/Charts/DonutsChart";
+import SimpleBarChart from "../components/Charts/BarChart";
+import BasicLineChart from "../components/Charts/LineChart";
 
 export default function CourseInfoPage() {
     const chartDonut = [

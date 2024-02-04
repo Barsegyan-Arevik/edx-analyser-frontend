@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PageBase from "../common/PageBase/PageBase";
+import PageBase from "../components/PageBase/PageBase";
 
 export default function StudentSearchPage() {
     return (

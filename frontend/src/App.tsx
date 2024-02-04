@@ -1,5 +1,5 @@
 import './App.css'
-import SideBar from "./common/SideBar/SideBar";
+import SideBar from "./components/SideBar/SideBar";
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import CourseInfoPage from "./pages/CourseInfoPage";
 import StudentSearchPage from "./pages/StudentSearchPage";

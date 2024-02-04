@@ -1,4 +1,4 @@
-import PageBase from "../common/PageBase/PageBase";
+import PageBase from "../components/PageBase/PageBase";
 import {useParams} from "react-router-dom";
 
 
