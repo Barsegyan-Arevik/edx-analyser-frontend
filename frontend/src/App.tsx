@@ -1,50 +1,34 @@
 import './App.css'
-import PageBase from './common/PageBase/PageBase';
-import DonutsChart, {DonutsChartData, DonutsChartProps} from "./common/Charts/DonutsChart";
-import SimpleBarChart from "./common/Charts/BarChart";
-import SideBar from "./components/SideBar";
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import CourseInfo from "./pages/CourseInfo";
-import StudentSearch from "./pages/StudentSearch";
+import SideBar from "./common/SideBar/SideBar";
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import CourseInfoPage from "./pages/CourseInfoPage";
+import StudentSearchPage from "./pages/StudentSearchPage";
+import {MdOutlineAnalytics} from "react-icons/md";
+import {FaSearch} from "react-icons/fa";
+import * as React from "react";
+import StudentPage from "./pages/StudentPage";
+
+const menuItems = [
+    {
+        path: "/",
+        name: "Course Info",
+        icon: <MdOutlineAnalytics/>
+    },
+    {
+        path: "/students",
+        name: "Student Search",
+        icon: <FaSearch/>
+    },
+]
 
 export default function App() {
-    // const csvData = `user_name,user_id
-    //     abrosimovaoe,328
-    //     akimovnv,328
-    //     alenatresh,280
-    // `;
-    //
-    // const chartDonut = [
-    //     { value: 10, label: 'Прошли курс' },
-    //     { value: 20, label: 'Начали, не прошли' },
-    //     { value: 15, label: 'Не начали' },
-    // ]
-
     return (
-        // <div className="app">
-        //     <PageBase
-        //         showBackButton={true}
-        //         showContinueButton={true}
-        //         content={
-        //         // todo pass here everything you want to see
-        //         // ChartComponent(
-        //         //     {csvData}
-        //         // )
-        //
-        //             <div>
-        //                 <DonutsChart data={chartDonut} />
-        //                 <SimpleBarChart />
-        //             </div>
-        //
-        //     }
-        //     />
-        // </div>
         <BrowserRouter>
-            <SideBar>
+            <SideBar menuItems={menuItems}>
                 <Routes>
-                    <Route path={"/"} element={<CourseInfo />} />
-                    <Route path={"/CourseInfo"} element={<CourseInfo />} />
-                    <Route path={"/StudentSearch"} element={<StudentSearch />} />
+                    <Route path={"/"} element={<CourseInfoPage/>}/>
+                    <Route path={"/students"} element={<StudentSearchPage/>}/>
+                    <Route path={"/students:id"} element={<StudentPage/>}/>
                 </Routes>
             </SideBar>
         </BrowserRouter>
