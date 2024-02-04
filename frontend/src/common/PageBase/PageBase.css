@@ -1,6 +1,6 @@
 .page-base {
-  background: #FFFFFF;
-  z-index: -50;
+  background: #F0F3FB;
+  z-index: 1;
 }
 
 .app-name {
@@ -9,6 +9,7 @@
 
 .content {
   margin-top: 60px;
+  margin-left: 50px;
 }
 
 .fullscreen {
