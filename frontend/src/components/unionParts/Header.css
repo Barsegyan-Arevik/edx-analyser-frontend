@@ -1,0 +1,15 @@
+.header{
+    color: #405479;
+    font-size: 26px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    grid-area: header;
+    /*background-color: #F0F3FB;*/
+    height: 45px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    margin-left: 5px;
+    z-index: 100;
+}

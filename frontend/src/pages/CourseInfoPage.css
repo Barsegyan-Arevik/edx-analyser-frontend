@@ -1,0 +1,102 @@
+/*.wrapper{*/
+/*    display: flex;*/
+/*    flex-flow: row wrap;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.wrapper > *{*/
+/*    padding: 10px;*/
+/*    margin: 10px;*/
+/*    flex: 1 100%;*/
+/*    border-radius: 10px;*/
+/*}*/
+
+/*.header{*/
+/*    background: tomato;*/
+/*    height: 120px;*/
+/*}*/
+
+/*.nav{*/
+/*    background: plum;*/
+/*    height: 80px;*/
+/*}*/
+
+/*.footer{*/
+/*    background: skyblue;*/
+/*    height: 80px;*/
+/*}*/
+
+/*.main{*/
+/*    background: greenyellow;*/
+/*    height: 300px;*/
+/*    padding: 40px;*/
+/*    font-size: 20px;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.aside1{*/
+/*    background: yellow;*/
+/*}*/
+
+/*!* Responsive *!*/
+
+/*@media all and (min-width: 800px){*/
+/*    .main{*/
+/*        flex: 2;*/
+/*    }*/
+/*    .aside1{*/
+/*        order: 2;*/
+/*    }*/
+/*    .main{*/
+/*        order: 1;*/
+/*    }*/
+/*    .footer{*/
+/*        order: 4;*/
+/*    }*/
+/*}*/
+
+/*@media all and (min-width: 600px){*/
+/*    .aside {*/
+/*        flex: 1;*/
+/*    }*/
+/*}*/
+
+.layout{
+    /*margin-bottom: 20px;*/
+    /*width: 100%;*/
+    /*height: 100%;*/
+    /*display: grid;*/
+    /*grid-template-columns: 100%;*/
+    /*grid-template-rows: auto;*/
+    /*grid-template-areas: 'header'*/
+    /*                     'top_analytics'*/
+    /*                     'video_interactions'*/
+    /*                     'document_interaction';*/
+}
+
+/*@media only screen and (min-width: 768px){*/
+/*    .layout{*/
+/*        width: 100%;*/
+/*        height: 100%;*/
+/*        display: grid;*/
+/*        grid-template-columns: repeat(3, 1fr);*/
+/*        grid-template-rows: auto;*/
+/*        grid-template-areas: 'header header header'*/
+/*                             'top_analytics top_analytics top_analytics'*/
+/*                             'video_interactions video_interactions video_interactions'*/
+/*                             'document_interaction document_interaction document_interaction';*/
+/*    }*/
+/*}*/
+
+
+
+/*.custom_container {*/
+/*    width: 100%;*/
+/*    !*margin: 0 auto;*!*/
+/*    !*padding: 20px;*!*/
+/*    background-image: url('../components/PageBase/Rectangle.svg'); !* путь к вашей картинке *!*/
+/*    !*background-size: cover;*!*/
+/*    !*background-position: center;*!*/
+/*    !*position: relative;*!*/
+/*    z-index: -200;*/
+/*}*/

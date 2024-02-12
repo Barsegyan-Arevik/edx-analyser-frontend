@@ -1,0 +1,32 @@
+.top_analytics{
+    color: #405479;
+    font-size: 26px;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    grid-area: top_analytics;
+    /*background-color: #F0F3FB;*/
+    /*background-color: #1A01CC;*/
+    height: 153px;
+    display: flex;
+    /*flex-wrap: wrap;*/
+    border-color: #667B98;
+    align-items: center;
+    /*justify-content: center;*/
+    /*align-items: flex-start;*/
+    z-index: 100;
+}
+
+.top_analytics > * {
+    margin-right: 20px; /* Отступ между элементами */
+}
+
+/*.top_analytics > div {*/
+
+/*.video_interactions > * {*/
+/*    flex: 1 1 50%; !* Две части в одной строке, каждый элемент занимает 50% ширины *!*/
+/*    margin: 5px; !* Отступы между графиками *!*/
+/*    max-width: calc(50% - 10px); !* Максимальная ширина элемента *!*/
+/*    min-width: 300px; !* Минимальная ширина элемента, чтобы избежать слишком сжатого контента *!*/
+/*    box-sizing: border-box; !* Учитывать padding и border в расчете ширины *!*/
+/*} !* Опциональный отступ между компонентами *!*/
+/*}*/

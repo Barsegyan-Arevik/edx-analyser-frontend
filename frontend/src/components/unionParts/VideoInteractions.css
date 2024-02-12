@@ -1,0 +1,53 @@
+.video_interactions{
+    color: #405479;
+    font-size: 15px;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    grid-area: video_interactions;
+    /*background-color: #F0F3FB;*/
+    border-radius: 3px;
+    /*text-align: center;*/
+    /*display: flex;*/
+    align-items: flex-start;
+    /*flex-wrap: wrap;*/
+    /*justify-content: space-between;*/
+    /*box-shadow: 0 4px 6px rgba(50, 50, 93, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);*/
+    /*border-color: #F5F5F5;*/
+    /*display: grid;*/
+    /*grid-template-columns: 1fr 1fr; !* Два столбца с одинаковой шириной *!*/
+    /*grid-gap: 30px;*/
+}
+
+/*.video_interactions > * {*/
+/*    flex-grow: 1; !* Растягивать на всю доступную ширину *!*/
+/*    !*margin-right: 20px; !* Отступ между элементами *!*!*/
+/*}*/
+
+.video_interactions > *:last-child {
+    margin-right: 0; /* Убираем отступ справа у последнего элемента */
+}
+
+/* Задаем минимальную ширину для каждого графика */
+.video_interactions > * {
+    min-width: 600px; /* Минимальная ширина каждого графика не менее 600px */
+}
+
+
+.date-text {
+    color: blue;
+}
+/*!* Перестраиваем структуру при сужении экрана *!*/
+/*@media only screen and (max-width: 1300px) {*/
+/*    .video_interactions {*/
+/*        flex-wrap: wrap;*/
+/*    }*/
+
+/*    .video_interactions > * {*/
+/*        flex: 1 1 calc(50% - 20px); !* Равномерно распределяем пространство, вычитая отступ *!*/
+/*        margin-right: 25px; !* Отступ между элементами *!*/
+/*        margin-bottom: 20px; !* Отступ снизу для создания промежутка между строками *!*/
+/*    }*/
+
+/*}*/
