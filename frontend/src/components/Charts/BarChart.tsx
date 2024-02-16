@@ -2,49 +2,64 @@ import * as React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { ShimmerThumbnail } from 'react-shimmer-effects'
 import {useEffect, useState} from "react";
+import { Box, ThemeProvider, createTheme } from '@mui/system';
+import { shadows } from '@mui/system';
+
+const theme = createTheme({
+  palette: {
+    background: {
+      paper: '#fff',
+    },
+  },
+});
 
 
-const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-const xLabels = [
-  'Глава 1',
-  'Глава 2',
-  'Глава 3',
-  'Глава 4',
-  'Глава 5',
-  'Глава 6',
-  'Глава 7',
-];
+export type BarChartProps = {
+    data: number[];
+    labels: string[];
+}
 
-export default function SimpleBarChart() {
+
+export default function SimpleBarChart(props: BarChartProps) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
       // Имитация задержки загрузки данных
       const timer = setTimeout(() => {
           setLoading(false);
-      }, 2000);
+      }, 4000);
 
       // Очистка таймера при размонтировании компонента
       return () => clearTimeout(timer);
   }, []);
 
   return (
-      <div style={{ position: 'relative' }}>
+      <div>
             {loading ? (
-                <ShimmerThumbnail height={250} width={550} rounded />
+                <ShimmerThumbnail height={300} width={633} rounded />
             ) : (
-                <BarChart
-                  width={500}
-                  height={300}
-                  colors={['#02CEA9']}
-                  series={[
-                    { data: pData, label: 'Количество уникальных просмотров', id: 'pvId' },
-                  ]}
-                  xAxis={[{ data: xLabels, scaleType: 'band'}]}
-
-
-                />
+                    <Box
+                        sx={{
+                          bgcolor: '#fff',
+                          // boxShadow: '0 4px 6px rgba(50, 50, 93, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)',
+                          borderRadius: 1,
+                          p: 2,
+                          paper: '#fff',
+                          minWidth: 600,
+                          border: 1,
+                          borderColor: '#F5F5F5',
+                        }}
+                      >
+                        <BarChart
+                          width={600}
+                          height={300}
+                          colors={['#02CEA9']}
+                          series={[
+                            { data: props.data, label: 'Количество уникальных просмотров', id: 'pvId' },
+                          ]}
+                          xAxis={[{ data: props.labels, scaleType: 'band'}]}
+                        />
+                    </Box>
             )}
       </div>
   );

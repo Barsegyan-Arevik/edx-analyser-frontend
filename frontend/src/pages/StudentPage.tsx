@@ -1,7 +1,6 @@
 import PageBase from "../components/PageBase/PageBase";
 import {useParams} from "react-router-dom";
 
-
 export default function StudentPage() {
     const {studentId} = useParams()
     return (

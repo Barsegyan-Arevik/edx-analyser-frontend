@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useState} from 'react';
-
+import { BsLayoutSidebarInsetReverse } from "react-icons/bs";
 import {FaBars} from "react-icons/fa"
 import {NavLink} from "react-router-dom";
 
@@ -26,11 +26,11 @@ export default function SideBar(props: SideBarProps) {
 
     return (
         <div className={"container"}>
-            <div style={{width: isOpen ? "270px" : "50px"}} className={"sidebar"}>
+            <div style={{width: isOpen ? "230px" : "50px"}} className={"sidebar"}>
                 <div className={"top_section"}>
-                    <h3 style={{display: isOpen ? "block" : "none"}} className={"logo"}>LogAnalyzer</h3>
-                    <div style={{marginLeft: isOpen ? "50px" : "0px"}} className={"bars"}>
-                        <FaBars onClick={toggle}/>
+                    <h3 style={{display: isOpen ? "block" : "none", fontSize: "23px"} } className={"logo"}>LogAnalyzer</h3>
+                    <div style={{marginLeft: isOpen ? "30px" : "0px"}} className={"bars"}>
+                        <BsLayoutSidebarInsetReverse onClick={toggle}/>
                     </div>
                 </div>
                 {
