@@ -10,9 +10,9 @@
     display: flex;
     /*flex-wrap: wrap;*/
     border-color: #667B98;
-    align-items: center;
-    /*justify-content: center;*/
-    /*align-items: flex-start;*/
+    /*align-items: center;*/
+    justify-content: center;
+    align-items: flex-start;
     z-index: 100;
 }
 
@@ -30,3 +30,37 @@
 /*    box-sizing: border-box; !* Учитывать padding и border в расчете ширины *!*/
 /*} !* Опциональный отступ между компонентами *!*/
 /*}*/
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.main-box {
+  width: 400px;
+  height: 200px;
+  /*background-color: blue;*/
+}
+
+.side-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 0px;
+}
+
+.side-box-up {
+  width: 200px; /* Учитывая 2px за border */
+  /*height: 94px; !* 100px - 6px (border) *!*/
+  /*background-color: blue;*/
+  /*border: 1px solid blue;*/
+  margin-bottom: 5px;
+}
+
+.side-box-down {
+  width: 200px; /* Учитывая 2px за border */
+  /*height: 94px; !* 100px - 6px (border) *!*/
+  /*background-color: blue;*/
+  /*border: 1px solid blue;*/
+  margin-top: 5px;
+}

@@ -14,9 +14,18 @@ export default function TopAnalytics(){
     const averageTimeToEnroll = {value: '10:54:44', label: 'Среднее время регистрации на курс:'}
     return (
         <div className={"top_analytics"} >
-            <CustomBox value={aboutCountOfStudents.value} label={aboutCountOfStudents.label}/>
-            <DonutsChart data={chartDonut}/>
-            <CustomBox value={averageTimeToEnroll.value} label={averageTimeToEnroll.label} />
+            <div className={"main-box"}>
+                <DonutsChart data={chartDonut}/>
+            </div>
+
+            <div className={"side-container"}>
+                <div className={"side-box-up"}>
+                    <CustomBox value={aboutCountOfStudents.value} label={aboutCountOfStudents.label}/>
+                </div>
+                <div className={"side-box-down"}>
+                    <CustomBox value={averageTimeToEnroll.value} label={averageTimeToEnroll.label} />
+                </div>
+            </div>
         </div>
     );
 };
