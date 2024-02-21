@@ -4,32 +4,37 @@
     font-weight: bold;
     font-family: Arial, sans-serif;
     grid-area: top_analytics;
-    /*background-color: #F0F3FB;*/
     /*background-color: #1A01CC;*/
-    height: 153px;
-    display: flex;
+    height: 914px;
+    /*height: 80vh;*/
+    /*display: flex;*/
     /*flex-wrap: wrap;*/
     border-color: #667B98;
     /*align-items: center;*/
-    justify-content: center;
-    align-items: flex-start;
+    /*justify-content: center;*/
+    /*align-items: flex-start;*/
     z-index: 100;
+    /*margin-top: 100px;*/
+    /*margin-bottom: 50px;*/
+    /*padding-left: 50px;*/
+    /*margin-left: 50px;*/
 }
 
 .top_analytics > * {
     margin-right: 20px; /* Отступ между элементами */
 }
 
-/*.top_analytics > div {*/
+.main_content {
+    justify-content: center;
+    align-items: flex-start;
+    display: flex;
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
 
-/*.video_interactions > * {*/
-/*    flex: 1 1 50%; !* Две части в одной строке, каждый элемент занимает 50% ширины *!*/
-/*    margin: 5px; !* Отступы между графиками *!*/
-/*    max-width: calc(50% - 10px); !* Максимальная ширина элемента *!*/
-/*    min-width: 300px; !* Минимальная ширина элемента, чтобы избежать слишком сжатого контента *!*/
-/*    box-sizing: border-box; !* Учитывать padding и border в расчете ширины *!*/
-/*} !* Опциональный отступ между компонентами *!*/
-/*}*/
+.main_content > * {
+    margin-right: 20px; /* Отступ между элементами */
+}
 
 .container {
   display: flex;
@@ -37,8 +42,8 @@
 }
 
 .main-box {
-  width: 400px;
-  height: 200px;
+  width: 579px;
+  height: 292px;
   /*background-color: blue;*/
 }
 
@@ -50,17 +55,22 @@
 }
 
 .side-box-up {
-  width: 200px; /* Учитывая 2px за border */
+  width: 249px; /* Учитывая 2px за border */
   /*height: 94px; !* 100px - 6px (border) *!*/
   /*background-color: blue;*/
   /*border: 1px solid blue;*/
-  margin-bottom: 5px;
+  height: 136px;
+  margin-bottom: 11px;
+  /*background-color: blue;*/
 }
 
 .side-box-down {
-  width: 200px; /* Учитывая 2px за border */
+  width: 249px; /* Учитывая 2px за border */
+  height: 135px;
   /*height: 94px; !* 100px - 6px (border) *!*/
   /*background-color: blue;*/
   /*border: 1px solid blue;*/
-  margin-top: 5px;
+  margin-top: 11px;
+  /*background-color: blue;*/
+
 }
