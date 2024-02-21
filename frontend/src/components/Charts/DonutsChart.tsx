@@ -38,7 +38,7 @@ export default function DonutsChart(props: DonutsChartProps) {
     return (
         <div style={{position:"relative"}}>
             {loading ? (
-                <ShimmerThumbnail width={450} height={155} />
+                <ShimmerThumbnail width={579} height={292} />
             ) : (
             <Box
                 sx={{
@@ -47,8 +47,8 @@ export default function DonutsChart(props: DonutsChartProps) {
                   borderRadius: 1,
                   p: 2,
                   paper: '#fff',
-                  maxWidth: 420,
-                  maxHeight: 120,
+                  // width: 579,
+                  // height: 292,
                   border: 1,
                   borderColor: '#F5F5F5',
                   color: '#405479',
@@ -62,27 +62,27 @@ export default function DonutsChart(props: DonutsChartProps) {
                     series={[
                     {
                       data: props.data,
-                      innerRadius: 50,
-                      outerRadius: 100,
+                      innerRadius: 70,
+                      outerRadius: 130,
                       paddingAngle: 1,
                       cornerRadius: 3,
-                      startAngle: -90,
-                      endAngle: 90,
-                      cx: 100,
-                      cy: 120,
+                      startAngle: -180,
+                      endAngle: 180,
+                      cx: 135,
+                      // cy: 120,
                     },
                   ]}
 
                   slotProps={{
                     legend: {
                       labelStyle: {
-                        fontSize: 14,
+                        fontSize: 20,
                         fill: "#667B98",
                       },
                     },
                   }}
-                  width={420}
-                  height={140}
+                  width={559}
+                  height={258}
                 />
             </Box>
         )}
