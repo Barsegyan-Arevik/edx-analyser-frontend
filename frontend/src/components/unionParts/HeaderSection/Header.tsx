@@ -1,11 +1,16 @@
 import * as React from 'react';
 import './Header.css'
 
-export default function Header(){
+export type HeaderProps = {
+    text: string;
+}
+
+export default function Header(props: HeaderProps){
     return (
         <div className={"header"}>
             {/*сюда нужно передавать с помощью пропса название курса*/}
-            Аналитика по курсу "Название курса"
+            {props.text}
+            {/*Аналитика по курсу "Название курса"*/}
         </div>
     );
 };
