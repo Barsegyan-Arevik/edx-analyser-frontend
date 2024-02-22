@@ -19,7 +19,7 @@ export default function TopAnalytics() {
         <div className={"top_analytics"}>
 
             <Header text={mainHeaderText}/>
-            <div className={"main_contentg"}>
+            <div className={"main_content"}>
                 <div className={"main-box"}>
                     <DonutsChart data={chartDonut}/>
                 </div>
