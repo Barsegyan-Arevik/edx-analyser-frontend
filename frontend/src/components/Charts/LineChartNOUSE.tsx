@@ -114,13 +114,23 @@ export default function DataLineChart() {
                 borderRadius: 1,
                 p: 1,
                 // paper: '#fff',
-                width: 550,
+                // width: 550,
                 border: 1,
                 borderColor: '#F5F5F5',
-                height: 350,
+                height: 540,
                 justifyContent: 'center'
             }}
         >
+            <Box
+                sx={{
+                    fontSize: 16,
+                    paddingLeft: 1,
+                    paddingTop: 1
+                }}
+            >
+                Количество воспроизведений видеоматериалов, распределённая по дням
+            </Box>
+
             <LineChart
                 xAxis={[{
                     data: filteredDates,
@@ -138,10 +148,10 @@ export default function DataLineChart() {
                         color: '#02CEA9',
                     },
                 ]}
-                width={550}
-                height={300}
+                width={850}
+                height={450}
             />
-            <Box sx={{ml: 3, width: 500}}>
+            <Box sx={{ml: 3, width: 800}}>
                 <Slider
                     value={dateRange.map(date => date.getTime())}
                     onChange={handleDateRangeChange}
