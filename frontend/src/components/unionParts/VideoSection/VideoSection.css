@@ -1,0 +1,41 @@
+.video_interactions{
+    color: #405479;
+    font-size: 15px;
+    font-weight: normal;
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    grid-area: video_interactions;
+    /*background-color: #F0F3FB;*/
+    border-radius: 3px;
+    /*text-align: center;*/
+    /*display: flex;*/
+    /*align-items: center;*/
+    vertical-align: top;
+    justify-content: center;
+    /*flex-wrap: wrap;*/
+    /*justify-content: space-between;*/
+    /*box-shadow: 0 4px 6px rgba(50, 50, 93, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);*/
+    /*border-color: #F5F5F5;*/
+    /*display: grid;*/
+    /*grid-template-columns: 1fr 1fr; !* Два столбца с одинаковой шириной *!*/
+    /*grid-gap: 30px;*/
+    /*margin: 100px;*/
+    /*padding-left: 50px;*/
+    z-index: 100;
+}
+
+.video_interactions_container{
+    display: flex;
+    justify-content: center;
+}
+
+/*}*/
+
+.item_video_1 {
+  margin-right: 20px;
+} 
+
+/* .item_video_2 {
+  margin-right: 20px;
+}  */
