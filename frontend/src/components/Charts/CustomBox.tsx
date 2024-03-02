@@ -3,7 +3,7 @@ import {Box, ThemeProvider, createTheme} from '@mui/system';
 
 export type CustomBoxProps = {
     value: string;
-    // value_additional_text: string;
+    value_additional_text: string;
     label: string;
 }
 
@@ -36,17 +36,17 @@ export default function CustomBox(props: CustomBoxProps) {
             >
                 {props.value}
 
-                {/*<Box*/}
-                {/*    sx={{*/}
-                {/*        color: '#5471E7',*/}
-                {/*        display: 'inline',*/}
-                {/*        fontWeight: 'bold',*/}
-                {/*        mx: 0.5,*/}
-                {/*        fontSize: 14,*/}
-                {/*    }}*/}
-                {/*>*/}
-                {/*    {props.value_additional_text}*/}
-                {/*</Box>*/}
+                <Box
+                    sx={{
+                        color: '#5471E7',
+                        display: 'inline',
+                        fontWeight: 'normal',
+                        mx: 0.5,
+                        fontSize: 20,
+                    }}
+                >
+                    {props.value_additional_text}
+                </Box>
             </Box>
             <Box
                 sx={{
