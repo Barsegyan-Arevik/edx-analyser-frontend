@@ -7,16 +7,26 @@ import {MdOutlineAnalytics} from "react-icons/md";
 import {FaSearch} from "react-icons/fa";
 import * as React from "react";
 import StudentPage from "./pages/StudentPage";
+import { courseAnalyticsProps, videoSectionProps } from './pages/CourseInfoPageData'
+import { CourseInfoPageProps } from './pages/CourseInfoPage';
+import { documentSectionProps } from './pages/CourseInfoPageData';
+
+
+const courseInfoPageProps: CourseInfoPageProps = {
+    courseAnalyticsProps: courseAnalyticsProps,
+    videoSectionProps: videoSectionProps,
+    documentSectionProps: documentSectionProps
+}
 
 const menuItems = [
     {
         path: "/",
-        name: "Course Info",
+        name: "О курсе",
         icon: <MdOutlineAnalytics/>
     },
     {
         path: "/students",
-        name: "Student Search",
+        name: "Поиск студента",
         icon: <FaSearch/>
     },
 ]
@@ -26,7 +36,7 @@ export default function App() {
         <BrowserRouter>
             <SideBar menuItems={menuItems}>
                 <Routes>
-                    <Route path={"/"} element={<CourseInfoPage/>}/>
+                    <Route path={"/"} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
                     <Route path={"/students"} element={<StudentSearchPage/>}/>
                     <Route path={"/students:id"} element={<StudentPage/>}/>
                 </Routes>
