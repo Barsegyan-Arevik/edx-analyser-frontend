@@ -118,6 +118,11 @@ const rows = [
     createData('Russia', 'RU', 146793744, 17098246),
     createData('Nigeria', 'NG', 200962417, 923768),
     createData('Brazil', 'BR', 210147125, 8515767),
+    createData('Brazil', 'BR', 810147125, 8515767),
+    createData('Brazil', 'BR', 710147125, 8515767),
+    createData('Brazil', 'BR', 610147125, 8515767),
+    createData('Brazil', 'BR', 510147125, 8515767),
+    createData('Brazil', 'BR', 410147125, 8515767),
 ];
 
 // Define the brightest color (#02ECA9)
@@ -128,17 +133,24 @@ const lighterColor = [2, 206, 169];
 function lerp(a, b, t) {
     return a + (b - a) * t;
 }
-// Define the color scale function
-function getColorScale(value: number) {
-    const ratio = value / 1403500365	; // Max population value
 
-    // Determine which color to use based on the value
-    const color = value < 1403500365 / 2 ?
-        brightestColor.map((channel, index) => Math.round(lerp(lighterColor[index], channel, ratio))) :
-        brightestColor.map((channel, index) => Math.round(lerp(channel, lighterColor[index], ratio)));
+function getColorScale(value: number) {
+    const ratio = value / 1403500365; // Max population value
+
+    // Define the brightest color (bright green)
+    const brightestColor = [2, 206, 169]; // R, G, B values of bright green
+
+    // Define the lightest color (pale green)
+    const paleColor = [240, 240, 240]; // R, G, B values of pale green
+
+    // Interpolate between pale and bright green based on the ratio
+    const color = brightestColor.map((channel, index) =>
+        Math.round(lerp(paleColor[index], channel, ratio))
+    );
 
     return `rgb(${color.join(',')})`;
 }
+
 
 export default function CustomTable() {
     const [page, setPage] = React.useState(0);
