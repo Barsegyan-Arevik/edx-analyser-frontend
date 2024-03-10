@@ -16,7 +16,6 @@
   /*outline: 2px solid black;*/
   /*margin-left: 50px;*/
   background-size: 100%;
-  /*background-image: url('../components/PageBase/Rectangle.svg');*/
   background-image: url('../components/PageBase/Rectangle.svg');
   /*background-color: #1b6d85;*/
   min-width: 1420px;
@@ -30,7 +29,7 @@
   background-position: center;
   background-size: cover; /* Это свойство позволит заполнить всю область заднего фона, сохраняя пропорции */
   width: 100%; /* Фиксированная ширина */
-  height: 100%; /* Фиксированная высота */
+  /* height: 100%; */
   top: 100;
   left: 0;
   z-index: -100;
@@ -44,12 +43,12 @@
 .wrapper {
     /* margin-left: 50px;
     margin-right: 50px; */
-    padding-block: 4rem;
+    padding-block: 6rem;
 }
 
 .spikes {
   --spike-width: 100%;
-  --spike-height: 60px;
+  --spike-height: 50px;
 
   --spike-color: var(--body-bg);
   position: relative;
