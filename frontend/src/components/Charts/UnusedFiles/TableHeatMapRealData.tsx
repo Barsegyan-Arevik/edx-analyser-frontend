@@ -12,6 +12,8 @@ import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import { Box, Modal, Button } from '@mui/material';
 import { SlMagnifier } from "react-icons/sl";
+import './TableHeatMap.css';
+import CustomBoxModalWindow from '../CustomBoxModalWindow';
 
 interface RowData {
     id: number;
@@ -33,7 +35,7 @@ function getColorScale(timeRange: number, value: number) {
     return `rgb(${color.join(',')})`;
 }
 
-interface CustomTableProps {
+export type TableHeatMapProps = {
     rows: RowData[];
     boxTitle: string;
     columnName: string;
@@ -41,7 +43,7 @@ interface CustomTableProps {
     labelText: string;
 }
 
-export default function CustomTableRealData({ rows, boxTitle, columnName, columnCount, labelText }: CustomTableProps) {
+export default function TableHeatMapRealData({ rows, boxTitle, columnName, columnCount, labelText }: TableHeatMapProps) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState('');
@@ -112,11 +114,11 @@ export default function CustomTableRealData({ rows, boxTitle, columnName, column
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 fullWidth
-                sx={{ 
+                sx={{
                     marginBottom: '10px',
                     '&:hover': {
                         borderColor: 'blue', // Цвет границы при наведении курсора
-                    }, 
+                    },
                 }} // Добавлено смещение для выравнивания с кнопкой модального окна
             />
             <Modal
@@ -125,81 +127,121 @@ export default function CustomTableRealData({ rows, boxTitle, columnName, column
                 aria-labelledby="search-modal"
                 aria-describedby="search-modal-description"
             >
-                <Box
-                    sx={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        bgcolor: 'white',
-                        boxShadow: 24,
-                        p: 3,
-                        width: '80%',
-                        height: '80%',
-                        overflowY: 'auto'
-                    }}
-                >
-                    {/* Statistics */}
-                    <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
-                        <div style={{ textAlign: 'center', border: '1px solid #ccc', padding: '5px', width: '120px', borderRadius: 4 }}>
-                            <div>Min</div>
-                            <div style={{ fontWeight: 'bold' }}>{minTime}</div>
-                        </div>
-                        <div style={{ textAlign: 'center', border: '1px solid #ccc', padding: '5px', width: '120px', borderRadius: 4 }}>
-                            <div>Max</div>
-                            <div style={{ fontWeight: 'bold' }}>{maxTime}</div>
-                        </div>
-                        <div style={{ textAlign: 'center', border: '1px solid #ccc', padding: '5px', width: '120px', borderRadius: 4 }}>
-                            <div>Mean</div>
-                            <div style={{ fontWeight: 'bold' }}>{meanTime}</div>
-                        </div>
-                        <div style={{ textAlign: 'center', border: '1px solid #ccc', padding: '5px', width: '120px', borderRadius: 4 }}>
-                            <div>Median</div>
-                            <div style={{ fontWeight: 'bold' }}>{medianTime}</div>
-                        </div>
-                    </div>
-                    <TextField
-                        size="small"
-                        label={labelText}
-                        variant="outlined"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        fullWidth
-                        sx={{ marginBottom: '16px' }}
-                    />
-                    <TableContainer>
-                        <Table stickyHeader size="small" aria-label="sticky table">
-                            
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>ID</TableCell>
-                                    <TableCell>{columnName}</TableCell>
-                                    <TableCell>{columnCount}</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                                {filteredRows.map((row, index) => (
-                                    <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                                        <TableCell component="th">
-                                            {row.id}
-                                        </TableCell>
-                                        <TableCell>
-                                            {row.user}
-                                        </TableCell>
-                                        <TableCell
-                                            style={{
-                                                backgroundColor: row.timeSec ? getColorScale(timeRange, row.timeSec) : 'white',
-                                                padding: '8px'
-                                            }}
-                                        >
-                                            {row.timeSec}
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Box>
+                <div className={'modal-window-content'}>
+                    <Box
+                        sx={{
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            bgcolor: '#F0F3FB',
+                            boxShadow: 24,
+                            p: 2,
+                            borderRadius: 2,
+                            // display: 'flex',
+                            justifyContent: 'space-between'
+                            // height: '80%',
+                            // overflowY: 'auto'
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                fontSize: 20,
+                                p: 1,
+                                color: '#405479',
+                                alignItems: 'center',
+                                fontWeight: 'normal'
+                            }}
+                        >
+                            {boxTitle}
+                        </Box>
+                        <Box
+                            sx={{
+                                display: 'flex',
+                            }}
+                        >
+                        <Box
+                            sx={{
+                                bgcolor: '#fff',
+                                borderRadius: 2,
+                                p: 2
+                            }}
+                        >
+                            <TextField
+                                size="small"
+                                label={labelText}
+                                variant="outlined"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                // fullWidth
+                                sx={{ marginBottom: '16px', width: 800 }}
+                            />
+                            <div style={{ backgroundColor: '#fff', overflowY: 'auto' }}>
+                                <TableContainer sx={{ height: 440, width: 800 }}>
+                                    <Table stickyHeader size="small" aria-label="sticky table">
+
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>ID</TableCell>
+                                                <TableCell>{columnName}</TableCell>
+                                                <TableCell>{columnCount}</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                            {filteredRows.map((row, index) => (
+                                                <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                                                    <TableCell component="th">
+                                                        {row.id}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        {row.user}
+                                                    </TableCell>
+                                                    <TableCell
+                                                        style={{
+                                                            backgroundColor: row.timeSec ? getColorScale(timeRange, row.timeSec) : 'white',
+                                                            padding: '8px'
+                                                        }}
+                                                    >
+                                                        {row.timeSec}
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                            </div>
+                        </Box>
+                        {/* </Box> */}
+                        <Box
+                            sx={{
+                                // p: 2,
+                                borderRadius: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                alignItems: 'flex-start',
+                                marginLeft: '20px',
+                                justifyContent: 'space-between'
+                            }}
+                        >
+                            <div className={'one-box'}>
+                                <CustomBoxModalWindow measure={'Минимум'} value={minTime} />
+                            </div>
+
+                            <div className={'one-box'}>
+                                <CustomBoxModalWindow measure={'Maксимум'} value={maxTime} />
+                            </div>
+
+                            <div className={'one-box'}>
+                                <CustomBoxModalWindow measure={'Среднее значение'} value={meanTime} />
+                            </div>
+
+                            <div className={'one-box'}>
+                                <CustomBoxModalWindow measure={'Медиана'} value={medianTime} />
+                            </div>
+                        </Box>
+                        </Box>
+                    </Box>
+                </div>
             </Modal>
             <TableContainer sx={{ height: 400 }}>
                 <Table stickyHeader size="small" aria-label="sticky table">
