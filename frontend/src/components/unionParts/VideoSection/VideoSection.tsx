@@ -1,17 +1,9 @@
 import * as React from 'react';
-import DateLineChart from "../../Charts/LineChart";
-import SimpleBarChart from "../../Charts/BarChart";
 import './VideoSection.css'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { Dayjs } from 'dayjs';
-import LineChartWithCustomDateRangePicker from "../../Charts/LineChart";
 import Header from "../HeaderSection/Header"
-import CustomTableRealData from "../../Charts/TableHeatMapRealData";
 import { useState, useEffect } from "react";
-import GraphWithModal from '../../Charts/LineChartWithModalWindow';
-import { TableHeatMapProps } from '../../Charts/TableHeatMapRealData';
-
+import TableHeatMap from '../../Charts/Table/TableHeatMap';
+import LineChartWithModalWindow from '../../Charts/LineChart/LineChartWithModalWindow';
 
 export type TableData = {
     boxTitle: string;
@@ -23,8 +15,8 @@ export type TableData = {
 
 export type VideoSectionProps = {
     tableData: TableData;
-    headerText: string;
-    // !!!graphData?  
+    lineChartData: string;
+    headerText: string;  
 }
 
 export default function VideoSection(props: VideoSectionProps) {
@@ -48,11 +40,11 @@ export default function VideoSection(props: VideoSectionProps) {
             </div>
             <div className={"video_interactions_container"}>
                 <div className={"item_video_1"}>
-                    <GraphWithModal />
+                    <LineChartWithModalWindow data={props.lineChartData}/>
                     {/* <DateLineChart /> */}
                 </div>
                 <div className={"item_video_2"}>
-                    <CustomTableRealData
+                    <TableHeatMap
                         rows={rows}
                         boxTitle={props.tableData.boxTitle}
                         columnName={props.tableData.columnName}
