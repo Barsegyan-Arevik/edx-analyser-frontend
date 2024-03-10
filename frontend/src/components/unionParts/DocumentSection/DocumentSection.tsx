@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import './DocumentSection.css'
 import Header from '../HeaderSection/Header';
-import CustomTableRealData from '../../Charts/TableHeatMapRealData';
+import ComplexTable from '../../Charts/Table/TableHeatMap';
 
 export type TableData = {
     boxTitle: string;
@@ -22,7 +22,7 @@ export type DocumentSectionProps = {
 
 
 export default function DocumentSection(props: DocumentSectionProps) {
-
+    
     function convertingStringToTableScrolling(str) {
         return str
             .trim()
@@ -36,18 +36,19 @@ export default function DocumentSection(props: DocumentSectionProps) {
             .map((data, index) => ({ ...data, id: index + 1 })); // Добавление идентификатора
     }
 
-     function convertingStringToTableSearchedTerms(data) {
-         return data
-             .trim()
-             .split('\n')
-             .slice(1) // Пропустить первую строку (заголовки столбцов)
-             .map((row, index) => {
-                 const [pdfName, scrollingAmount] = row.split(',');
-                 return { user: scrollingAmount, timeSec: parseInt(pdfName, 10) };
-             })
-             .sort((a, b) => b.timeSec - a.timeSec) // Сортировка по убыванию
-             .map((data, index) => ({ ...data, id: index + 1 })); // Добавление идентификатора
-     }
+    function convertingStringToTableSearchedTerms(data) {
+        return data
+            .trim()
+            .split('\n')
+            .slice(1) // Пропустить первую строку (заголовки столбцов)
+            .map((row, index) => {
+                const [pdfName, scrollingAmount] = row.split(',');
+                return { user: scrollingAmount, timeSec: parseInt(pdfName, 10) };
+            })
+            .sort((a, b) => b.timeSec - a.timeSec) // Сортировка по убыванию
+            .map((data, index) => ({ ...data, id: index + 1 })); // Добавление идентификатора
+    }
+
 
     // Пример использования:
     const initialScrollingData = convertingStringToTableScrolling(props.tableScrollingData.data);
@@ -60,33 +61,30 @@ export default function DocumentSection(props: DocumentSectionProps) {
 
     return (
         <div className={"document_interaction"}>
-            <div>
+            <div style={{ marginTop: '20px' }}>
                 <Header text={props.headerText} />
             </div>
             <div className='document_interaction_container'>
                 <div className='item_doc_1'>
-                    <CustomTableRealData
+                    <ComplexTable
                         rows={rowsScrolling}
                         boxTitle={props.tableScrollingData.boxTitle}
                         columnName={props.tableScrollingData.columnName}
                         columnCount={props.tableScrollingData.columnCount}
-                        labelText={props.tableScrollingData.labelText}
-                    />
+                        labelText={props.tableScrollingData.labelText} 
+                    /> 
                 </div>
                 <div className='item_doc_2'>
-                    <CustomTableRealData
+                    <ComplexTable
                         rows={rowsSearchedTerms}
                         boxTitle={props.tableSearchedTermsData.boxTitle}
                         columnName={props.tableSearchedTermsData.columnName}
                         columnCount={props.tableSearchedTermsData.columnCount}
                         labelText={props.tableSearchedTermsData.labelText}
                     />
-                    
+
                 </div>
             </div>
-
-            {/*<MinMaxExample/>*/}
-            {/* <VerticalBarChart/> */}
         </div>
     );
 };
