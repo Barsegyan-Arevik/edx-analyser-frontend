@@ -5,12 +5,12 @@
     font-family: Arial, sans-serif;
     grid-area: document_interaction;
     z-index: 100;
-
 }
 
 .document_interaction_container {
     display: flex;
     justify-content: center; /* Для автоматического распределения между таблицами */
+    z-index: 100;
 }
 
 .item_doc_1, .item_doc_2 {
