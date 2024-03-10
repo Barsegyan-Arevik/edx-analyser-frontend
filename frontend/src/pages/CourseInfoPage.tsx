@@ -30,6 +30,7 @@ export default function CourseInfoPage(props: CourseInfoPageProps) {
                         <div className='wrapper'>
                             <VideoSection {...props.videoSectionProps}/>
                         </div>
+
                     </div>
                     <div style={{ height: '85vh'}}>
                         <DocumentSection {...props.documentSectionProps}/>
