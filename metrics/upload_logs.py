@@ -1,6 +1,7 @@
-from db_operations import *
+from metrics.utils.db_operations import *
 import glob
 import os
+
 
 def create_logs_table(connection):
     create_table_query = '''
@@ -40,25 +41,11 @@ def ingest_logs(connection, logs_file):
 
 def main():
     print('Загрузка лог-файлов в базу данных')
-
-    openedu_log_file = '../log_file/'
-
-    '''
-    connection = open_db_connection(user_name="postgres", password="your_password", db="db_name")
-    # удаляем предыдущую таблицу 
-    drop_database(connection, 'db_name')
-    print('delete_database(connection)')
-    # создаём новую
-    create_database(connection, 'db_name')
-
-    # закрываем соединение
-    close_db_connection(connection)
-    '''
-    connection = open_db_connection(user_name="postgres", password="your_password", db="db_name")
+    connection = open_db_connection()
 
     create_logs_table(connection)
 
-    folder_path = '../log_file/'
+    folder_path = '../log_files/DATANTECH2035/DATANTECH2035_лето'
     file_extension = '*.log'
     file_list = glob.glob(os.path.join(folder_path, file_extension))
 
