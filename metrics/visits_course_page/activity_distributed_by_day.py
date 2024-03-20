@@ -92,7 +92,7 @@ def main():
     page_activity_per_day = calculate_page_activity_per_day(connection)
     clean_page_activity_per_day = process_urls(page_activity_per_day)
     urls_and_names_mapping = calculate_urls_and_names_mapping(connection)
-    result_file = "distributed_by_day_visits_course_page_activity.txt"
+    result_file = "distributed_by_day_visits_course_page_activity.csv"
     save_output_to_file(result_file, clean_page_activity_per_day, [''])
     generate_figure(clean_page_activity_per_day, urls_and_names_mapping)
     close_db_connection(connection)

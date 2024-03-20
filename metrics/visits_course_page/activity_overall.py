@@ -73,7 +73,7 @@ def main():
     connection = open_db_connection()
     pages_urls = calculate_pages(connection)
     unique_urls_without_parameters = process_urls(pages_urls)
-    save_output_to_file("overall_visits_course_page_activity.txt", unique_urls_without_parameters, [''])
+    save_output_to_file("overall_visits_course_page_activity.csv", unique_urls_without_parameters, [''])
     urls_and_names_mapping = calculate_urls_and_names_mapping(connection)
     close_db_connection(connection)
     generate_figure(unique_urls_without_parameters, urls_and_names_mapping)
