@@ -1,12 +1,10 @@
-import re
-from urllib.parse import unquote
-
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+from metrics.sql_queries_dictionary import *
 from metrics.utils.db_operations import *
 from metrics.utils.file_operations import find_alias, save_output_to_file
-from metrics.sql_queries_dictionary import *
+from metrics.utils.utils_operations import remove_parameters_from_url
 
 
 def calculate_page_activity_per_day(connection):
@@ -20,22 +18,7 @@ def calculate_urls_and_names_mapping(connection):
 def process_urls(result):
     page_activity_per_day_clean = dict()
     for item in result:
-        url = item[0]
-
-        if url.find('?') != -1:
-            url = url[:url.find('?')]
-        if url.find('#') != -1:
-            url = url[:url.find('#')]
-
-        url = unquote(url)
-
-        if url.endswith('/'):
-            url = url[:-1]
-
-        m = re.search(r'/\d$', url)
-        if m is not None:
-            url = url[:-2]
-
+        url = remove_parameters_from_url(item[0])
         dates = page_activity_per_day_clean.get(url)
         if not dates:
             dates = dict()

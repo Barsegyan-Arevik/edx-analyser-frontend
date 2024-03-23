@@ -6,7 +6,7 @@ from metrics.utils.db_operations import *
 import plotly.graph_objects as go
 
 from metrics.utils.file_operations import find_alias, save_output_to_file
-
+from metrics.utils.utils_operations import remove_parameters_from_url
 
 
 def calculate_user_way_of_moving(connection, user_id):
@@ -58,7 +58,7 @@ def generate_figure(user_way_on_course, urls_and_names_mapping, user_id):
     for user in user_way_on_course:
         if user[0]:
             x_axis.append(user[0])
-            cleaned_url = process_urls(user[1])
+            cleaned_url = remove_parameters_from_url(user[1])
             y_axis.append(cleaned_url)
 
             alias = find_alias(cleaned_url, urls_and_names_mapping)

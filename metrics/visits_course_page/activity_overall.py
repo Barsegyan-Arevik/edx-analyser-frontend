@@ -1,11 +1,11 @@
-import re
-from urllib.parse import unquote
+import time
 
 import plotly.graph_objects as go
 
 from metrics.sql_queries_dictionary import get_unique_pages_urls, sql_query_urls_and_names_mapping
 from metrics.utils.db_operations import *
 from metrics.utils.file_operations import find_alias, save_output_to_file
+from metrics.utils.utils_operations import remove_parameters_from_url
 
 
 def calculate_pages(connection):
@@ -19,22 +19,7 @@ def calculate_urls_and_names_mapping(connection):
 def process_urls(result):
     urls_without_parameters = dict()
     for item in result:
-        url = item[0]
-
-        if url.find('?') != -1:
-            url = url[:url.find('?')]
-        if url.find('#') != -1:
-            url = url[:url.find('#')]
-
-        url = unquote(url)
-
-        if url.endswith('/'):
-            url = url[:-1]
-
-        m = re.search(r'/\d$', url)
-        if m is not None:
-            url = url[:-2]
-
+        url = remove_parameters_from_url(item[0])
         interaction_count = urls_without_parameters.get(url)
         if not interaction_count:
             interaction_count = 0
@@ -71,7 +56,10 @@ def generate_figure(activity_distribution, urls_and_names_mapping):
 
 def main():
     connection = open_db_connection()
+    start_time = time.time()
     pages_urls = calculate_pages(connection)
+    end_time = time.time()
+    print(f"Execution time: {end_time - start_time} seconds")
     unique_urls_without_parameters = process_urls(pages_urls)
     save_output_to_file("overall_visits_course_page_activity.csv", unique_urls_without_parameters, [''])
     urls_and_names_mapping = calculate_urls_and_names_mapping(connection)
