@@ -142,11 +142,10 @@ sql_query_distinct_views_of_available_pdf = """
         GROUP BY tutorial_book
     """
 
-#get pdfs text search words
 sql_query_searched_pdf_terms = """
         SELECT 
-           count(*) AS count_number,
-           trim((log_line ->> 'event')::json ->> 'query') as search_word
+           trim((log_line ->> 'event')::json ->> 'query') as search_word,
+           count(*) AS count_number
         FROM logs
         WHERE log_line ->> 'event_type' = 'textbook.pdf.search.executed'
         GROUP BY search_word
@@ -346,30 +345,6 @@ sql_query_page_activity_per_day = '''select
         where log_line ->> 'page' != 'null'
         group by section_name, time_run
         order by interaction_count desc'''
-
-sql_query_urls_and_names_mapping = '''select uniqueUrls.target_url as target_url, urlsAndIDs.target_name as target_name from (
-            select 
-                url_decode((log_line ->> 'event')::json ->> 'target_url') as target_url
-            from logs
-			where 
-				log_line ->> 'event_type' LIKE '%link_clicked' or 
-				log_line ->> 'event_type' LIKE '%selected'
-            GROUP BY target_url 
-        ) uniqueUrls
-        LEFT JOIN (
-            select 
-				url_decode((log_line ->> 'event')::json ->> 'target_url') as target_url,
-				(log_line ->> 'event')::json ->> 'target_name' as target_name
-            from logs 
-            where 
-				(log_line ->> 'event_type' LIKE '%link_clicked' or 
-				log_line ->> 'event_type' LIKE '%selected')
-				and (log_line ->> 'event')::json ->> 'target_name' is not null
-            GROUP BY target_name, target_url
-        ) urlsAndIDs
-        ON uniqueUrls.target_url = urlsAndIDs.target_url
-		where uniqueUrls.target_url is not null
-        order by target_name'''
 
 all_pages_query = '''select target_names.target_name from 
     	(
