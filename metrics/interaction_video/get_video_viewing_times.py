@@ -1,4 +1,4 @@
-import datetime
+from datetime import timedelta
 
 import pandas as pd
 import plotly.express as px
@@ -31,26 +31,27 @@ def calculate_times_for_users(play_pause_events):
         cur_time = parser.parse(time)
 
         if username not in user_times:
-            user_times[username] = datetime.timedelta()
+            user_times[username] = timedelta()
             user_played_times[username] = cur_time
         elif event_type == "pause_video":
             user_times[username] += cur_time - user_played_times[username]
         else:
             user_played_times[username] = cur_time
 
-    return user_times
+    return map(lambda x: (x[0], x[1].seconds), list(user_times.items()))
 
 
-def get_play_pause_events(connection):
-    return execute_query_with_result(connection, sql_query_play_pause_events)
+def calc_play_time(connection):
+    play_pause_events = execute_query_with_result(connection, sql_query_play_pause_events)
+    return calculate_times_for_users(play_pause_events)
 
 
 def main():
     result_file = "fetch_video_viewing_times.csv"
     calc_metric(
-        get_play_pause_events,
+        calc_play_time,
         result_file,
-        ['event', 'username', 'time(sec)']
+        ['username', 'time(sec)']
     )
     generate_figure(result_path + result_file)
 
