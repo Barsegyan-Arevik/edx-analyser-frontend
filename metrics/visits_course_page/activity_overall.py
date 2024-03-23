@@ -1,5 +1,3 @@
-import time
-
 import plotly.graph_objects as go
 
 from metrics.sql_queries_dictionary import get_unique_pages_urls, sql_query_urls_and_names_mapping
@@ -9,7 +7,7 @@ from metrics.utils.utils_operations import remove_parameters_from_url
 
 
 def calculate_pages(connection):
-    return execute_query_with_result(connection, get_unique_pages_urls)
+    return process_urls(execute_query_with_result(connection, get_unique_pages_urls))
 
 
 def calculate_urls_and_names_mapping(connection):
@@ -26,13 +24,13 @@ def process_urls(result):
         interaction_count += item[1]
         urls_without_parameters[url] = interaction_count
 
-    return urls_without_parameters
+    return list(urls_without_parameters.items())
 
 
 def generate_figure(activity_distribution, urls_and_names_mapping):
     x_axis = []
     y_axis = []
-    for key, value in activity_distribution.items():
+    for key, value in activity_distribution:
         alias = find_alias(key, urls_and_names_mapping)
         if alias:
             x_axis.append(alias + " (" + key + ")")
@@ -56,15 +54,11 @@ def generate_figure(activity_distribution, urls_and_names_mapping):
 
 def main():
     connection = open_db_connection()
-    start_time = time.time()
     pages_urls = calculate_pages(connection)
-    end_time = time.time()
-    print(f"Execution time: {end_time - start_time} seconds")
-    unique_urls_without_parameters = process_urls(pages_urls)
-    save_output_to_file("overall_visits_course_page_activity.csv", unique_urls_without_parameters, [''])
+    save_output_to_file("overall_visits_course_page_activity.csv", pages_urls, ['page_link, count_of_visits'])
     urls_and_names_mapping = calculate_urls_and_names_mapping(connection)
     close_db_connection(connection)
-    generate_figure(unique_urls_without_parameters, urls_and_names_mapping)
+    generate_figure(pages_urls, urls_and_names_mapping)
 
 
 if __name__ == '__main__':
