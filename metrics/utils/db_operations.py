@@ -5,14 +5,14 @@ from psycopg2 import sql
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 
-def open_db_connection():
+def open_db_connection(database="ITMO_2"):
     try:
         connection = psycopg2.connect(
             user="postgres",
             password="s1n2e3i4p5",
             host="127.0.0.1",
             port="5432",
-            database="ITMO_2"
+            database=database
         )
         return connection
     except (Exception, psycopg2.Error) as error:
