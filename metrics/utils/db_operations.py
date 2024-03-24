@@ -67,12 +67,31 @@ def create_database(connection, database="db_name"):
     print("Создана база данных " + database)
 
 
-def drop_database(connection, database="db_name"):
-    execute_query(connection, sql.SQL(f"DROP DATABASE IF EXISTS {sql.Identifier(database)}"))
-    print("Удалена база данных " + database)
+def is_database_exists(cur, db_name):
+    cur.execute(
+        sql.SQL("SELECT 1 FROM pg_database WHERE datname = %s"),
+        [db_name]
+    )
+    return cur.fetchone()
 
 
-def drop_table(connection, table):
-    drop_table_query = f'''DROP TABLE IF EXISTS {table};'''
-    cursor = connection.cursor()
-    cursor.execute(drop_table_query)
+def create_database_if_not_exists(database):
+    try:
+        conn = open_db_connection(database="postgres")
+        conn.autocommit = True
+        cursor = conn.cursor()
+        exists = is_database_exists(cursor, database)
+
+        if not exists:
+            cursor.execute(
+                sql.SQL("CREATE DATABASE {}").format(sql.Identifier(database))
+            )
+            print(f"Database '{database}' created successfully.")
+        else:
+            print(f"Database '{database}' already exists.")
+
+        cursor.close()
+        conn.close()
+
+    except psycopg2.Error as e:
+        print("Error:", e)

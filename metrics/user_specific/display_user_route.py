@@ -4,7 +4,7 @@ from metrics.sql_queries import SQL_QUERY_USER_ROUTE, USER_PAGES_VISITED_AT_TIME
 from metrics.utils.db_operations import open_db_connection, close_db_connection, execute_user_query_with_result, \
     execute_query_with_result
 from metrics.utils.file_operations import find_alias, save_output_to_file
-from metrics.utils.utils_operations import remove_parameters_from_url
+from metrics.utils.url_operations import remove_parameters_from_url
 
 
 def calculate_user_way_of_moving(connection, user_id):

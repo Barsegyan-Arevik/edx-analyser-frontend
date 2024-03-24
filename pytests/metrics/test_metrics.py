@@ -8,7 +8,7 @@ from metrics.course_activity.started_but_not_completed_users import calculate_us
 from metrics.course_activity.time_on_course import calculate_total_user_time_on_course
 # from metrics.decompress_zst import decompress_log_archives
 from metrics.upload_logs_postgresql import upload_logs_postgres
-from metrics.utils.db_operations import open_db_connection, close_db_connection
+from metrics.utils.db_operations import open_db_connection, close_db_connection, create_database_if_not_exists
 from metrics.utils.file_operations import save_output_to_file
 
 EXPECTED_PATH = "result_files/expected/"
@@ -19,12 +19,13 @@ ACTUAL_PATH = "result_files/actual/"
 def setup_complete():
     # фиксируем состояние тестовой базы данных
     # decompress_log_archives()
+    create_database_if_not_exists(database="itmo_logs_testing")
     upload_logs_postgres(database="itmo_logs_testing", logs_dir='../../log_files/DATANTECH2035/')
     yield
 
 
 @pytest.fixture
-def fixture_metrics():
+def course_metrics():
     return [
         (calculate_users_who_finished_the_course, "completed_course_users.csv", ['user_id', 'username']),
         (calculate_users_who_enrolled_but_not_started, "enrolled_users_without_activity.csv",
@@ -32,6 +33,12 @@ def fixture_metrics():
         (calculate_users_who_started_but_not_completed, "started_but_not_completed_course.csv",
          ['user_id', 'username']),
         (calculate_total_user_time_on_course, "distinct_user_time_on_course.csv", ['user_id', 'time_on_course']),
+    ]
+
+@pytest.fixture
+def specific_student_metrics():
+    return [
+
     ]
 
 
@@ -49,14 +56,14 @@ def assert_csv_equality(expected, actual):
             assert row1 == row2, f"Rows not equal: {row1}, {row2}"
 
 
-def test_metrics(fixture_metrics):
+def test_metrics(course_metrics, specific_student_metrics):
     connection = open_db_connection(database="itmo_logs_testing")
-    for metric in fixture_metrics:
+    for metric in course_metrics:
         metric_func, result_file, fields = metric
         metric_result = metric_func(connection)
         save_output_to_file(result_file, metric_result, fields, result_path=ACTUAL_PATH)
     close_db_connection(connection)
 
-    result_files = map(lambda x: x[1], fixture_metrics)
+    result_files = map(lambda x: x[1], course_metrics)
     for file in result_files:
         assert_csv_equality(EXPECTED_PATH + file, ACTUAL_PATH + file)
