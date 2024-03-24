@@ -5,8 +5,8 @@ import plotly.express as px
 from dateutil import parser
 
 from metrics.sql_queries_dictionary import sql_query_play_pause_events
-from metrics.utils.db_operations import *
-from metrics.utils.file_operations import result_path
+from metrics.utils.db_operations import execute_query_with_result
+from metrics.utils.file_operations import RESULT_PATH
 from metrics.utils.metric_operations import calc_metric
 
 
@@ -17,15 +17,15 @@ def generate_figure(result_file):
 
 
 def calculate_times_for_users(play_pause_events):
-    user_times = dict()
-    user_played_times = dict()
+    user_times = {}
+    user_played_times = {}
 
     for event in play_pause_events:
         event_type = event[0]
         username = event[1]
         time = event[2]
 
-        if event_type != "play_video" and event_type != "pause_video":
+        if event_type not in ('play_video', 'pause_video'):
             continue
 
         cur_time = parser.parse(time)
@@ -53,7 +53,7 @@ def main():
         result_file,
         ['username', 'time(sec)']
     )
-    generate_figure(result_path + result_file)
+    generate_figure(RESULT_PATH + result_file)
 
 
 if __name__ == '__main__':

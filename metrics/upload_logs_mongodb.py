@@ -1,6 +1,7 @@
-import pymongo
 import json
 import os
+
+import pymongo
 
 from metrics.decompress_zst import LOGS_DIR, LOGS_FILES_DIR
 
@@ -13,7 +14,7 @@ if __name__ == '__main__':
     common_collection = db["all_logs"]
 
     for file_name in file_names:
-        with open(os.path.join(folder_path, file_name), "r") as file:
+        with open(os.path.join(folder_path, file_name), "r", encoding="utf-8") as file:
             print(file_name)
             for line in file:
                 try:

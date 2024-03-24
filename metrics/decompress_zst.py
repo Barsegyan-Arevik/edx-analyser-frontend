@@ -1,7 +1,7 @@
 import os
-import zstandard
 import pathlib
 
+import zstandard
 
 LOGS_DIR = '../log_files/DATANTECH2035/'
 LOGS_ARCHIES_DIR = "log_archives/"
@@ -19,8 +19,8 @@ def decompress_zstandard_to_folder(input_file, output_path):
 def decompress_log_archives(log_dir=LOGS_DIR):
     files = os.listdir(f"{log_dir}{LOGS_ARCHIES_DIR}")
     files = list(filter(lambda x: x.endswith('.zst'), files))
-    for f in files:
-        decompress_zstandard_to_folder(f"{log_dir}{LOGS_ARCHIES_DIR}{f}", f"{log_dir}{LOGS_FILES_DIR}")
+    for file in files:
+        decompress_zstandard_to_folder(f"{log_dir}{LOGS_ARCHIES_DIR}{file}", f"{log_dir}{LOGS_FILES_DIR}")
 
 
 if __name__ == '__main__':

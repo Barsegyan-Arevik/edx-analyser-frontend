@@ -262,16 +262,12 @@ sql_query_distinct_user_names_ids_events = '''select tbl.usr, tbl.evt, url_map.t
 	on tbl.mdl = url_map.target_url	
     order by usr'''
 
-
-
 sql_query_events_distribution = '''select 
             log_line ->> 'name' as event_name,
             TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS') as time_run,
             count (*) as count_of_start
         from logs
         where log_line ->> 'name' != \'\''''
-
-
 
 sql_query_average_time_of_the_day_to_enroll = ''' 
     SELECT uniqueCourseIds.identifier as course_identifier, AVG(uniqueCourseIds.target_time) as course_time from (
@@ -281,8 +277,6 @@ sql_query_average_time_of_the_day_to_enroll = '''
         WHERE log_line ->> 'event_type' LIKE '%enrollment.activated' 
     ) uniqueCourseIds GROUP BY course_identifier
     '''
-
-
 
 sql_query_total_user_time_on_course = '''select total_time_per_day.user_id, SUM(total_time_per_day.time_at_session_per_day) as duration from (
             select durationTable.session_user_id as user_id, durationTable.session_date, SUM(durationTable.session_duration) as time_at_session_per_day from (
@@ -314,7 +308,6 @@ sql_query_user_time_on_course_per_day = '''select durationTable.session_user_id,
         ) durationTable
         group by durationTable.session_user_id, durationTable.session_date
         order by durationTable.session_date desc'''
-
 
 sql_query_page_activity_per_day = '''select   
             log_line -> 'page' as section_name, 

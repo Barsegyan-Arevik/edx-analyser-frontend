@@ -63,20 +63,16 @@ def execute_user_query_with_result(connection, query_text, user_id, isolation_le
 
 
 def create_database(connection, database="db_name"):
-    execute_query(connection, sql.SQL("CREATE DATABASE IF NOT EXISTS {} WITH ENCODING 'UTF8'").format(
-        sql.Identifier(database))
-                  )
+    execute_query(connection, sql.SQL(f"CREATE DATABASE IF NOT EXISTS {sql.Identifier(database)} WITH ENCODING 'UTF8'"))
     print("Создана база данных " + database)
 
 
 def drop_database(connection, database="db_name"):
-    execute_query(connection, sql.SQL("DROP DATABASE IF EXISTS {}").format(
-        sql.Identifier(database))
-                  )
+    execute_query(connection, sql.SQL(f"DROP DATABASE IF EXISTS {sql.Identifier(database)}"))
     print("Удалена база данных " + database)
 
 
 def drop_table(connection, table):
-    drop_table_query = '''DROP TABLE IF EXISTS {0};'''.format(table)
+    drop_table_query = f'''DROP TABLE IF EXISTS {table};'''
     cursor = connection.cursor()
     cursor.execute(drop_table_query)

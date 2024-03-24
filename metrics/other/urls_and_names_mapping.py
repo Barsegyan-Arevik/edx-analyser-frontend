@@ -1,5 +1,5 @@
 from metrics.sql_queries_dictionary import sql_query_urls_and_names_mapping
-from metrics.utils.db_operations import *
+from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.metric_operations import calc_metric
 
 

@@ -1,7 +1,8 @@
 import plotly.graph_objects as go
+from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 from metrics.sql_queries_dictionary import sql_query_user_time_on_course_per_day
-from metrics.utils.db_operations import *
+from metrics.utils.db_operations import open_db_connection, close_db_connection, execute_user_query_with_result
 from metrics.utils.file_operations import save_output_to_file
 
 
@@ -14,13 +15,13 @@ def calculate_user_session_activity_per_day_on_course(connection, user_id):
     )
 
 
-def generate_user_time_distribution_per_day_figure(calculate_user_session_activity_per_day_on_course):
+def generate_user_time_distribution_per_day_figure(user_time_on_course_per_day):
     total_time = 0
     user_id = ''
     x_axis = []
     y_axis = []
 
-    for duration in calculate_user_session_activity_per_day_on_course:
+    for duration in user_time_on_course_per_day:
         user_id = duration[0]
         x_axis.append(duration[1])
         y_axis.append(duration[2].total_seconds() / (60 * 60))

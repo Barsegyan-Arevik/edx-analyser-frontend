@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 
 from metrics.sql_queries_dictionary import sql_query_enrolled_users_without_activity
-from metrics.utils.db_operations import *
+from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.metric_operations import calc_metric
 
 
@@ -11,7 +11,7 @@ def calculate_users_who_enrolled_but_not_started(connection):
 
 def generate_figure(users):
     # for every date calculate count
-    date_count = dict()
+    date_count = {}
     for user in users:
         if user[1]:
             count_for_date = date_count.get(user[2])

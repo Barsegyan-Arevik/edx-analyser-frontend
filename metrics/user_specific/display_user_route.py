@@ -1,10 +1,8 @@
-import re
-from urllib.parse import unquote
-
-from metrics.sql_queries_dictionary import sql_query_user_route, user_pages_visited_at_timedate
-from metrics.utils.db_operations import *
 import plotly.graph_objects as go
 
+from metrics.sql_queries_dictionary import sql_query_user_route, user_pages_visited_at_timedate
+from metrics.utils.db_operations import open_db_connection, close_db_connection, execute_user_query_with_result, \
+    execute_query_with_result
 from metrics.utils.file_operations import find_alias, save_output_to_file
 from metrics.utils.utils_operations import remove_parameters_from_url
 
@@ -15,24 +13,6 @@ def calculate_user_way_of_moving(connection, user_id):
 
 def calculate_urls_and_names_mapping(connection):
     return execute_query_with_result(connection, sql_query_user_route)
-
-
-def process_urls(url):
-    if url.find('?') != -1:
-        url = url[:url.find('?')]
-    if url.find('#') != -1:
-        url = url[:url.find('#')]
-
-    url = unquote(url)
-
-    if url.endswith('/'):
-        url = url[:-1]
-
-    m = re.search(r'/\d$', url)
-    if m is not None:
-        url = url[:-2]
-
-    return url
 
 
 def generate_figure(user_way_on_course, urls_and_names_mapping, user_id):

@@ -1,11 +1,12 @@
+from datetime import datetime
 
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 from metrics.sql_queries_dictionary import sql_query_events_distribution
-from metrics.utils.db_operations import *
+from metrics.utils.db_operations import close_db_connection, open_db_connection
 from metrics.utils.file_operations import save_output_to_file
-
 
 
 def calculate_events_distribution_per_day(connection, user_id):
@@ -32,7 +33,7 @@ def calculate_events_distribution_per_day(connection, user_id):
 
 
 def generate_figure(event_distribution, user_id):
-    events_dict = dict()
+    events_dict = {}
     for event in event_distribution:
         event_name = event[0]
         dates = events_dict.get(event_name)
@@ -64,7 +65,6 @@ def generate_figure(event_distribution, user_id):
         title = "User '" + user_id + "' activity types on course depending on day"
 
     fig.update_layout(height=count * 250, width=1500, title_text=title)
-    
     fig.show()
 
 

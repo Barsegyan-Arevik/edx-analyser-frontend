@@ -1,7 +1,7 @@
 import os
 
 from metrics.decompress_zst import LOGS_DIR, LOGS_FILES_DIR
-from metrics.utils.db_operations import *
+from metrics.utils.db_operations import close_db_connection, open_db_connection, execute_query
 
 
 def create_logs_table(connection):
@@ -15,18 +15,18 @@ def create_logs_table(connection):
 
 def insert_lines(cur, lines_array):
     records_list_template = ','.join(['(%s)'] * len(lines_array))
-    insert_query = 'INSERT INTO logs(log_line) VALUES {}'.format(records_list_template)
+    insert_query = f'INSERT INTO logs(log_line) VALUES {records_list_template}'
     cur.execute(insert_query, lines_array)
 
 
-def insest_logs(connection, logs_file):
+def insert_logs(connection, logs_file):
     print('Начинаем загрузку файлов ')
     lines_in_batch = 100
     lines_array = []
     count = 0
     cur = connection.cursor()
-    with open(logs_file, encoding="utf-8") as logs_file:
-        for line in logs_file:
+    with open(logs_file, encoding="utf-8") as logs:
+        for line in logs:
             lines_array.append(line)
             count += 1
             if len(lines_array) >= lines_in_batch:
@@ -49,7 +49,7 @@ def upload_logs_postgres(database="ITMO_2"):
 
     print(file_list)
     for file_path in file_list:
-        insest_logs(connection, file_path)
+        insert_logs(connection, file_path)
     close_db_connection(connection)
 
 
