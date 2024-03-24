@@ -2,8 +2,8 @@ import plotly.graph_objects as go
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 from metrics.sql_queries import SQL_QUERY_USER_TIME_ON_COURSE_PER_DAY
-from metrics.utils.db_operations import open_db_connection, close_db_connection, execute_user_query_with_result
-from metrics.utils.file_operations import save_output_to_file
+from metrics.utils.db_operations import execute_user_query_with_result
+from metrics.utils.metric_operations import calc_user_metric
 
 
 def calculate_user_session_activity_per_day_on_course(connection, user_id):
@@ -60,13 +60,12 @@ def generate_user_time_distribution_per_day_figure(user_time_on_course_per_day):
 
 def main():
     user_id = input("User id: ")
-    connection = open_db_connection()
-    user_time_on_course_per_day = calculate_user_session_activity_per_day_on_course(connection, user_id)
-    close_db_connection(connection)
-
-    result_file = user_id + '_user_time_on_course.csv'
-    save_output_to_file(result_file, user_time_on_course_per_day,
-                        ['user_id', 'session_date', 'time_at_session_per_day'])
+    user_time_on_course_per_day = calc_user_metric(
+        calculate_user_session_activity_per_day_on_course,
+        "user_time_on_course.csv",
+        ['user_id', 'session_date', 'time_at_session_per_day'],
+        user_id
+    )
     generate_user_time_distribution_per_day_figure(user_time_on_course_per_day)
 
 

@@ -1,6 +1,6 @@
 from metrics.sql_queries import SQL_QUERY_URLS_AND_NAMES_MAPPING
 from metrics.utils.db_operations import execute_query_with_result
-from metrics.utils.metric_operations import calc_metric
+from metrics.utils.metric_operations import calc_course_metric
 
 
 def calculate_urls_and_names_mapping(connection):
@@ -8,7 +8,7 @@ def calculate_urls_and_names_mapping(connection):
 
 
 if __name__ == '__main__':
-    calc_metric(
+    calc_course_metric(
         calculate_urls_and_names_mapping,
         "urls_and_names_mapping.csv",
         ['target_name', 'target_url']

@@ -2,7 +2,7 @@ import plotly.graph_objects as go
 
 from metrics.sql_queries import SQL_QUERY_ENROLLED_USERS_WITHOUT_ACTIVITY
 from metrics.utils.db_operations import execute_query_with_result
-from metrics.utils.metric_operations import calc_metric
+from metrics.utils.metric_operations import calc_course_metric
 
 
 def calculate_users_who_enrolled_but_not_started(connection):
@@ -62,7 +62,7 @@ def generate_figure(users):
 
 
 if __name__ == '__main__':
-    enrolled_but_not_started_users = calc_metric(
+    enrolled_but_not_started_users = calc_course_metric(
         calculate_users_who_enrolled_but_not_started,
         "enrolled_users_without_activity.csv",
         ['user_id', 'username', 'enrollment_date']

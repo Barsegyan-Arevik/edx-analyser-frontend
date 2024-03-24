@@ -5,7 +5,7 @@ from dateutil import parser
 from metrics.sql_queries import SQL_QUERY_PLAY_PAUSE_EVENTS
 from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.file_operations import RESULT_PATH, generate_bar_figure
-from metrics.utils.metric_operations import calc_metric
+from metrics.utils.metric_operations import calc_course_metric
 
 
 def calculate_times_for_users(play_pause_events):
@@ -40,7 +40,7 @@ def calc_play_time(connection):
 
 def main():
     result_file = "fetch_video_viewing_times.csv"
-    calc_metric(
+    calc_course_metric(
         calc_play_time,
         result_file,
         ['username', 'time(sec)']

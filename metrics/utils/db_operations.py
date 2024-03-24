@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 
 import psycopg2
@@ -5,11 +6,11 @@ from psycopg2 import sql
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 
-def open_db_connection(database="itmo_logs"):
+def open_db_connection(database=os.getenv("POSTGRES_DATABASE")):
     try:
         connection = psycopg2.connect(
-            user="postgres",
-            password="s1n2e3i4p5",
+            user=os.getenv("POSTGRES_USER"),
+            password=os.getenv("POSTGRES_PASSWORD"),
             host="127.0.0.1",
             port="5432",
             database=database
@@ -62,36 +63,13 @@ def execute_user_query_with_result(connection, query_text, user_id, isolation_le
     return query_result
 
 
-def create_database(connection, database="db_name"):
-    execute_query(connection, sql.SQL(f"CREATE DATABASE IF NOT EXISTS {sql.Identifier(database)} WITH ENCODING 'UTF8'"))
-    print("Создана база данных " + database)
-
-
-def is_database_exists(cur, db_name):
-    cur.execute(
-        sql.SQL("SELECT 1 FROM pg_database WHERE datname = %s"),
-        [db_name]
-    )
-    return cur.fetchone()
-
-
 def create_database_if_not_exists(database):
     try:
-        conn = open_db_connection(database="postgres")
-        conn.autocommit = True
-        cursor = conn.cursor()
-        exists = is_database_exists(cursor, database)
-
-        if not exists:
-            cursor.execute(
-                sql.SQL("CREATE DATABASE {}").format(sql.Identifier(database))
-            )
-            print(f"Database '{database}' created successfully.")
-        else:
-            print(f"Database '{database}' already exists.")
-
-        cursor.close()
-        conn.close()
+        connection = open_db_connection(database="postgres")
+        execute_query(connection,
+                      sql.SQL(f"CREATE DATABASE IF NOT EXISTS {sql.Identifier(database)} WITH ENCODING 'UTF8'"))
+        connection.close()
+        print("Создана база данных " + database)
 
     except psycopg2.Error as e:
         print("Error:", e)

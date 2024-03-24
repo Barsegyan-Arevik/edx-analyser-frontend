@@ -2,7 +2,7 @@ import plotly.graph_objects as go
 
 from metrics.sql_queries import SQL_QUERY_TOTAL_USER_TIME_ON_COURSE
 from metrics.utils.db_operations import execute_query_with_result
-from metrics.utils.metric_operations import calc_metric
+from metrics.utils.metric_operations import calc_course_metric
 
 
 def calculate_total_user_time_on_course(connection):
@@ -50,7 +50,7 @@ def generate_total_time_distribution_figure(user_time_on_course):
 
 
 def main():
-    total_users_time_on_course = calc_metric(
+    total_users_time_on_course = calc_course_metric(
         calculate_total_user_time_on_course,
         "distinct_user_time_on_course.csv",
         ['user_id', 'time_on_course']
