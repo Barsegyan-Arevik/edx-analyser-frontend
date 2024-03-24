@@ -332,3 +332,13 @@ get_unique_pages_urls = '''select
         where log_line ->> 'page' != 'null'
         group by section_name
         order by interaction_count desc'''
+
+user_pages_visited_at_timedate = '''select 
+            TO_TIMESTAMP(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::TIMESTAMP as time_access,
+            log_line ->>'page' as page_visited
+        from logs
+        where 
+        log_line #>> '{context, user_id}' = %s
+        and log_line ->>'page' is not null 
+            and log_line ->>'page' != 'x_module'
+            order by time_access'''

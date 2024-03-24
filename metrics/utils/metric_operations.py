@@ -17,4 +17,3 @@ def calc_metrics(metrics):
         metric_result = metric_func(connection)
         save_output_to_file(result_file, metric_result, fields)
     close_db_connection(connection)
-
