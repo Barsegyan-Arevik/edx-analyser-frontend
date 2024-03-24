@@ -1,7 +1,7 @@
 import re
 from urllib.parse import unquote
 
-from metrics.sql_queries_dictionary import sql_query_user_route
+from metrics.sql_queries_dictionary import sql_query_user_route, user_pages_visited_at_timedate
 from metrics.utils.db_operations import *
 import plotly.graph_objects as go
 
@@ -10,22 +10,7 @@ from metrics.utils.utils_operations import remove_parameters_from_url
 
 
 def calculate_user_way_of_moving(connection, user_id):
-    user_pages_visited_at_timedate = '''select 
-            TO_TIMESTAMP(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::TIMESTAMP as time_access,
-            log_line ->>'page' as page_visited
-        from logs
-        where 
-        log_line #>> '{context, user_id}' = \'''' + user_id + '''\'
-        and log_line ->>'page' is not null 
-            and log_line ->>'page' != 'x_module'
-            order by time_access'''
-
-    cursor = connection.cursor()
-    cursor.execute(user_pages_visited_at_timedate)
-    user_way_on_course = cursor.fetchall()
-    cursor.close()
-    connection.commit()
-    return user_way_on_course
+    return execute_user_query_with_result(connection, user_pages_visited_at_timedate, user_id)
 
 
 def calculate_urls_and_names_mapping(connection):
@@ -111,7 +96,7 @@ def main():
     connection = open_db_connection()
     user_way_on_course = calculate_user_way_of_moving(connection, user_id)
     urls_and_names_mapping = calculate_urls_and_names_mapping(connection)
-    result_file = "display_user_route.csv"
+    result_file = f"{user_id}_display_user_route.csv"
     save_output_to_file(result_file, user_way_on_course, ['time_access', 'page_url'])
     generate_figure(user_way_on_course, urls_and_names_mapping, user_id)
     close_db_connection(connection)

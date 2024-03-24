@@ -3,22 +3,25 @@ import zstandard
 import pathlib
 
 
-def decompress_zstandard_to_folder(input_file):
+LOGS_DIR = '../log_files/DATANTECH2035/'
+LOGS_ARCHIES_DIR = "log_archives/"
+LOGS_FILES_DIR = "log_decompressed/"
+
+
+def decompress_zstandard_to_folder(input_file, output_path):
     input_file = pathlib.Path(input_file)
     with open(input_file, 'rb') as compressed:
-        decomp = zstandard.ZstdDecompressor()
-        output_path = pathlib.Path(work_dir) / input_file.stem
-        with open(output_path, 'wb') as destination:
-            decomp.copy_stream(compressed, destination)
+        decompressor = zstandard.ZstdDecompressor()
+        with open(pathlib.Path(output_path) / input_file.stem, 'wb') as destination:
+            decompressor.copy_stream(compressed, destination)
+
+
+def decompress_log_archives(log_dir=LOGS_DIR):
+    files = os.listdir(f"{log_dir}{LOGS_ARCHIES_DIR}")
+    files = list(filter(lambda x: x.endswith('.zst'), files))
+    for f in files:
+        decompress_zstandard_to_folder(f"{log_dir}{LOGS_ARCHIES_DIR}{f}", f"{log_dir}{LOGS_FILES_DIR}")
 
 
 if __name__ == '__main__':
-
-    work_dir = r'../log_files/DATANTECH2035/DATANTECH2035_лето'
-    files = os.listdir(work_dir)
-    files = list(filter(lambda x: x.endswith('.zst'), files))
-    for f in files:
-        decompress_zstandard_to_folder(work_dir + '/' + f)
-        pass
-    files = os.listdir(work_dir)
-    files = list(filter(lambda x: x.endswith('.log'), files))
+    decompress_log_archives()

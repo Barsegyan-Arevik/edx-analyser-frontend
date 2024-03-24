@@ -2,12 +2,14 @@ import pymongo
 import json
 import os
 
+from metrics.decompress_zst import LOGS_DIR, LOGS_FILES_DIR
+
 if __name__ == '__main__':
     client = pymongo.MongoClient("mongodb://localhost:27017/")
     db = client["itmo_logs"]
 
-    folder_path = r'../log_files/DATANTECH2035/DATANTECH2035_лето'
-    file_names = [file for file in os.listdir(folder_path) if file.endswith(".log")]
+    folder_path = LOGS_DIR + LOGS_FILES_DIR
+    file_names = os.listdir(folder_path)
     common_collection = db["all_logs"]
 
     for file_name in file_names:

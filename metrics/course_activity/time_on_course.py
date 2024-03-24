@@ -50,10 +50,9 @@ def generate_total_time_distribution_figure(user_time_on_course):
 
 
 def main():
-    result_file = "distinct_user_time_on_course.csv"
     total_users_time_on_course = calc_metric(
         calculate_total_user_time_on_course,
-        result_file,
+        "distinct_user_time_on_course.csv",
         ['user_id', 'time_on_course']
     )
     generate_total_time_distribution_figure(total_users_time_on_course)
