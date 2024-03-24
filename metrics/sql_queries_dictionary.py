@@ -218,27 +218,6 @@ sql_query_user_route = '''select uniqueUrls.target_url as target_url, urlsAndIDs
 # Get unique event types
 sql_query_distinct_event_types = '''select DISTINCT log_line -> 'name' AS edx_event from logs order by edx_event'''
 
-# Get unique user names
-sql_query_distinct_user_names = '''select DISTINCT log_line -> 'username' AS user from logs'''
-
-# Get unique user names and their ids
-sql_query_distinct_user_names_ids = '''select userAndIDs.user_name as user_name, uniqueUserIds.user_id as user_id from (
-            select 
-                log_line #>> '{context, user_id}' AS user_id 
-            from logs 
-            GROUP BY user_id 
-        ) uniqueUserIds
-        LEFT JOIN (
-            select 
-                log_line -> 'username' as user_name,
-                log_line #>> '{context, user_id}' AS user_id 
-            from logs 
-            where log_line -> 'username' != 'null' and log_line -> 'username' != '""' and log_line -> 'username' is not null
-            GROUP BY user_id, user_name
-        ) userAndIDs
-        ON uniqueUserIds.user_id = userAndIDs.user_id
-        order by user_name'''
-
 sql_query_distinct_user_names_ids_events = '''select tbl.usr, tbl.evt, url_map.target_name, tbl.cnt from (
     with events (name) as (values ('play_video'), ('pause_video'), ('load_video'), ('edx.special_exam.proctored.attempt.started'), ('edx.ui.lms.outline.selected')),
     modules (url) as (	
@@ -346,62 +325,6 @@ sql_query_page_activity_per_day = '''select
         group by section_name, time_run
         order by interaction_count desc'''
 
-all_pages_query = '''select target_names.target_name from 
-    	(
-    		select url_decode((log_line ->> 'event')::json ->> 'target_name') as target_name 
-    		from logs
-    		where 
-    			(log_line ->> 'event_type' LIKE '%link_clicked' or 
-    				log_line ->> 'event_type' LIKE '%selected')
-    				and (log_line ->> 'event')::json ->> 'target_name' is not null
-    				and (log_line ->> 'event')::json ->> 'target_name' not LIKE '%текущий раздел%'
-    		group by target_name
-    	) target_names;'''
-
-get_users_events_by_pages_query = '''select tbl.usr, tbl.evt, url_map.target_name, tbl.cnt from (
-    with events (name) as (values ('play_video'), ('pause_video'), ('load_video'), ('edx.special_exam.proctored.attempt.started'), ('edx.ui.lms.outline.selected')),
-    modules (url) as (	
-	with pages (page) as (select distinct (log_line ->> 'page') from logs)
-	select distinct
-		case
-    		when POSITION('?' in page) > 0 THEN SUBSTRING(page, 0, POSITION('?' in page))
-    		when POSITION('#' in page) > 0 THEN SUBSTRING(page, 0, POSITION('#' in page))
-    		else page
-  		end as url
-		from pages
-		where page is not null
-    ),
-    mod_event (usr, mdl, evt) as (
-	select
-		coalesce (l.log_line ->> 'username', '<<' || (l.log_line #>> '{context, user_id}') || '>>'),
-		case
-    		when POSITION('?' in l.log_line ->> 'page') > 0 THEN SUBSTRING(l.log_line ->> 'page', 0, POSITION('?' in l.log_line ->> 'page'))
-    		when POSITION('#' in l.log_line ->> 'page') > 0 THEN SUBSTRING(l.log_line ->> 'page', 0, POSITION('#' in l.log_line ->> 'page'))
-    		else l.log_line ->> 'page'
-  		end as url,
-		l.log_line ->> 'event_type'
-	from logs as l
-    )
-    select usr, mdl, evt, count(*) as cnt from mod_event
-    where mdl in (select url from modules)
-    	and evt in (select name from events)
-    group by usr, mdl, evt
-	) tbl	
-	join (
-		select 
-				url_decode((log_line ->> 'event')::json ->> 'target_url') as target_url,
-				(log_line ->> 'event')::json ->> 'target_name' as target_name
-            from logs 
-            where 
-				(log_line ->> 'event_type' LIKE '%link_clicked' or 
-				log_line ->> 'event_type' LIKE '%selected')
-				and (log_line ->> 'event')::json ->> 'target_name' is not null
-				and (log_line ->> 'event')::json ->> 'target_name' not LIKE '%текущий раздел%'
-            GROUP BY target_name, target_url	
-	) url_map
-	on tbl.mdl = url_map.target_url	
-    order by usr'''
-
 get_unique_pages_urls = '''select  
             log_line -> 'page' as section_name, 
             count(*) as interaction_count
@@ -409,5 +332,3 @@ get_unique_pages_urls = '''select
         where log_line ->> 'page' != 'null'
         group by section_name
         order by interaction_count desc'''
-
-all_users_query = '''select distinct log_line ->> 'username' as username from logs order by username;'''

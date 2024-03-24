@@ -11,5 +11,5 @@ if __name__ == '__main__':
     calc_metric(
         calculate_users_who_finished_the_course,
         "completed_course_users.csv",
-        ['user_id', 'user_name']
+        ['user_id', 'username']
     )

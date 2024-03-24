@@ -65,6 +65,6 @@ if __name__ == '__main__':
     enrolled_but_not_started_users = calc_metric(
         calculate_users_who_enrolled_but_not_started,
         "enrolled_users_without_activity.csv",
-        ['user_id', 'user_name', 'enrollment_date']
+        ['user_id', 'username', 'enrollment_date']
     )
     generate_figure(enrolled_but_not_started_users)
