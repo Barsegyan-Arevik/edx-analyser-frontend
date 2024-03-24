@@ -1,6 +1,6 @@
 import plotly.graph_objects as go
 
-from metrics.sql_queries_dictionary import sql_query_user_route, user_pages_visited_at_timedate
+from metrics.sql_queries import sql_query_user_route, user_pages_visited_at_timedate
 from metrics.utils.db_operations import open_db_connection, close_db_connection, execute_user_query_with_result, \
     execute_query_with_result
 from metrics.utils.file_operations import find_alias, save_output_to_file

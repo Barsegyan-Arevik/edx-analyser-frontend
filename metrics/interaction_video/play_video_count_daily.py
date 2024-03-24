@@ -1,7 +1,7 @@
 import pandas as pd
 import plotly.express as px
 
-from metrics.sql_queries_dictionary import sql_query_play_video_times
+from metrics.sql_queries import sql_query_play_video_times
 from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.file_operations import RESULT_PATH
 from metrics.utils.metric_operations import calc_metric

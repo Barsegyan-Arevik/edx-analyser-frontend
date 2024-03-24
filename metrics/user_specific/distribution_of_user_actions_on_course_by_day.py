@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-from metrics.sql_queries_dictionary import sql_query_events_distribution
+from metrics.sql_queries import sql_query_events_distribution
 from metrics.utils.db_operations import close_db_connection, open_db_connection
 from metrics.utils.file_operations import save_output_to_file
 

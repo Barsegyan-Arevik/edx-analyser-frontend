@@ -1,6 +1,6 @@
 from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.metric_operations import calc_metric
-from metrics.sql_queries_dictionary import sql_query_average_time_of_the_day_to_enroll
+from metrics.sql_queries import sql_query_average_time_of_the_day_to_enroll
 
 
 def get_enrollment_distribution(connection):

@@ -40,16 +40,16 @@ def insert_logs(connection, logs_file):
     print('Количество загруженных записей: ', count)
 
 
-def upload_logs_postgres(database="ITMO_2"):
+def upload_logs_postgres(database="ITMO_2", logs_dir=LOGS_DIR):
     print('Загрузка лог-файлов в базу данных')
     connection = open_db_connection(database=database)
     create_logs_table(connection)
-    folder_path = LOGS_DIR + LOGS_FILES_DIR
+    folder_path = logs_dir + LOGS_FILES_DIR
     file_list = os.listdir(folder_path)
 
     print(file_list)
     for file_path in file_list:
-        insert_logs(connection, file_path)
+        insert_logs(connection, folder_path + file_path)
     close_db_connection(connection)
 
 

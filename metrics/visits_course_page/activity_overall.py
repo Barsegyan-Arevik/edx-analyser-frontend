@@ -1,6 +1,6 @@
 import plotly.graph_objects as go
 
-from metrics.sql_queries_dictionary import get_unique_pages_urls, sql_query_urls_and_names_mapping
+from metrics.sql_queries import get_unique_pages_urls, sql_query_urls_and_names_mapping
 from metrics.utils.db_operations import execute_query_with_result, open_db_connection, close_db_connection
 from metrics.utils.file_operations import find_alias, save_output_to_file
 from metrics.utils.utils_operations import remove_parameters_from_url

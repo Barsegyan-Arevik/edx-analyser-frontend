@@ -1,6 +1,6 @@
 import plotly.graph_objects as go
 
-from metrics.sql_queries_dictionary import sql_query_enrolled_users_without_activity
+from metrics.sql_queries import sql_query_enrolled_users_without_activity
 from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.metric_operations import calc_metric
 

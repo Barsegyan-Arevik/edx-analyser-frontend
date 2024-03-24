@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from metrics.sql_queries_dictionary import sql_query_page_activity_per_day, sql_query_urls_and_names_mapping
+from metrics.sql_queries import sql_query_page_activity_per_day, sql_query_urls_and_names_mapping
 from metrics.utils.db_operations import close_db_connection, open_db_connection, execute_query_with_result
 from metrics.utils.file_operations import find_alias, save_output_to_file
 from metrics.utils.utils_operations import remove_parameters_from_url

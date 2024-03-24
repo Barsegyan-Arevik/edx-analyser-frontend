@@ -11,8 +11,8 @@ from metrics.upload_logs_postgresql import upload_logs_postgres
 from metrics.utils.db_operations import open_db_connection, close_db_connection
 from metrics.utils.file_operations import save_output_to_file
 
-EXPECTED_PATH = "expected/"
-ACTUAL_PATH = "actual/"
+EXPECTED_PATH = "result_files/expected/"
+ACTUAL_PATH = "result_files/actual/"
 
 
 @pytest.fixture(scope="session", autouse=True)

@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-from metrics.sql_queries_dictionary import sql_query_user_time_on_course_per_day
+from metrics.sql_queries import sql_query_user_time_on_course_per_day
 from metrics.utils.db_operations import open_db_connection, close_db_connection, execute_user_query_with_result
 from metrics.utils.file_operations import save_output_to_file
 
