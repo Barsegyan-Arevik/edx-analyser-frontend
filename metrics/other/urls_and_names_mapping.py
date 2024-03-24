@@ -1,10 +1,10 @@
-from metrics.sql_queries import sql_query_urls_and_names_mapping
+from metrics.sql_queries import SQL_QUERY_URLS_AND_NAMES_MAPPING
 from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.metric_operations import calc_metric
 
 
 def calculate_urls_and_names_mapping(connection):
-    return execute_query_with_result(connection, sql_query_urls_and_names_mapping)
+    return execute_query_with_result(connection, SQL_QUERY_URLS_AND_NAMES_MAPPING)
 
 
 if __name__ == '__main__':

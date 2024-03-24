@@ -1,4 +1,4 @@
-sql_query_completed_course_users = '''select allUsers.user_id as user_id, allUsers.user_name as user_name from (
+SQL_QUERY_COMPLETED_COURSE_USERS = '''select allUsers.user_id as user_id, allUsers.user_name as user_name from (
             
             select uniqueUserIds.user_id as user_id, userAndIDs.user_name as user_name from (
                 select 
@@ -30,7 +30,7 @@ sql_query_completed_course_users = '''select allUsers.user_id as user_id, allUse
         group by allUsers.user_id, user_name
         order by user_name desc'''
 
-sql_query_enrolled_users_without_activity = '''select notStartedUsers.enrolled_but_not_started as user_id, userNames.user_name as user_name, notStartedUsers.enrollment_date as enrollment_date from (
+SQL_QUERY_ENROLLED_USERS_WITHOUT_ACTIVITY = '''select notStartedUsers.enrolled_but_not_started as user_id, userNames.user_name as user_name, notStartedUsers.enrollment_date as enrollment_date from (
             select enrolledUsers.user_id as enrolled_but_not_started, enrolledUsers.enrollment_date as enrollment_date from (
                 select   
                     log_line #>> '{event, user_id}' as user_id,
@@ -78,7 +78,7 @@ sql_query_enrolled_users_without_activity = '''select notStartedUsers.enrolled_b
         group by user_name, notStartedUsers.enrolled_but_not_started, enrollment_date       
         order by user_name desc NULLS LAST'''
 
-sql_query_started_but_not_completed_users = '''
+SQL_QUERY_STARTED_BUT_NOT_COMPLETED_USERS = '''
         select allUsers.user_id as user_id, allUsers.user_name as user_name from (
             select uniqueUserIds.user_id as user_id, userAndIDs.user_name as user_name from (
                 select 
@@ -126,7 +126,7 @@ sql_query_started_but_not_completed_users = '''
         group by allUsers.user_id, user_name
         order by user_name desc NULLS last'''
 
-sql_query_distinct_scrolling = """
+SQL_QUERY_DISTINCT_SCROLLING = """
         SELECT url_decode(split_part((log_line ->> 'event')::json ->> 'chapter','/', 7)) AS tutorial_book, 
         COUNT(url_decode(split_part((log_line ->> 'event')::json ->> 'chapter','/', 7)))
         FROM logs 
@@ -135,14 +135,14 @@ sql_query_distinct_scrolling = """
         GROUP BY tutorial_book;
     """
 
-sql_query_distinct_views_of_available_pdf = """
+SQL_QUERY_DISTINCT_VIEWS_OF_AVAILABLE_PDF = """
         SELECT url_decode(split_part((log_line ->> 'event')::json ->> 'chapter','/', 7)) AS tutorial_book,
          COUNT(url_decode(split_part((log_line ->> 'event')::json ->> 'chapter','/', 7)))
         FROM logs WHERE log_line ->> 'event_type' = 'textbook.pdf.page.scrolled' 
         GROUP BY tutorial_book
     """
 
-sql_query_searched_pdf_terms = """
+SQL_QUERY_SEARCHED_PDF_TERMS = """
         SELECT 
            trim((log_line ->> 'event')::json ->> 'query') as search_word,
            count(*) AS count_number
@@ -152,14 +152,14 @@ sql_query_searched_pdf_terms = """
         ORDER BY count_number desc;
     """
 
-sql_query_play_pause_events = ''' SELECT log_line ->> 'event_type' as event_t, 
+SQL_QUERY_PLAY_PAUSE_EVENTS = ''' SELECT log_line ->> 'event_type' as event_t, 
 	                                         log_line -> 'username' as username,
 											 log_line -> 'time' as time 
 	    							  FROM logs 
 									  WHERE log_line ->> 'event_type' = 'pause_video' OR 
 		    						        log_line ->> 'event_type' = 'play_video' '''
 
-sql_query_play_video_times = '''select 
+SQL_QUERY_PLAY_VIDEO_TIMES = '''select 
             TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS') as time_run, 
             count (*) as count_of_start
         from logs
@@ -167,7 +167,7 @@ sql_query_play_video_times = '''select
         group by time_run
         order by time_run'''
 
-sql_query_urls_and_names_mapping = '''select urlsAndIDs.target_name as target_name, uniqueUrls.target_url as target_url from (
+SQL_QUERY_URLS_AND_NAMES_MAPPING = '''select urlsAndIDs.target_name as target_name, uniqueUrls.target_url as target_url from (
             select 
                 url_decode((log_line ->> 'event')::json ->> 'target_url') as target_url
             from logs
@@ -191,7 +191,7 @@ sql_query_urls_and_names_mapping = '''select urlsAndIDs.target_name as target_na
 		where uniqueUrls.target_url is not null
         order by target_name'''
 
-sql_query_user_route = '''select uniqueUrls.target_url as target_url, urlsAndIDs.target_name as target_name from (
+SQL_QUERY_USER_ROUTE = '''select uniqueUrls.target_url as target_url, urlsAndIDs.target_name as target_name from (
             select 
                 url_decode((log_line ->> 'event')::json ->> 'target_url') as target_url
             from logs
@@ -215,10 +215,9 @@ sql_query_user_route = '''select uniqueUrls.target_url as target_url, urlsAndIDs
 		where uniqueUrls.target_url is not null
         order by target_name'''
 
-# Get unique event types
-sql_query_distinct_event_types = '''select DISTINCT log_line -> 'name' AS edx_event from logs order by edx_event'''
+SQL_QUERY_DISTINCT_EVENT_TYPES = '''select DISTINCT log_line -> 'name' AS edx_event from logs order by edx_event'''
 
-sql_query_distinct_user_names_ids_events = '''select tbl.usr, tbl.evt, url_map.target_name, tbl.cnt from (
+SQL_QUERY_DISTINCT_USER_NAMES_IDS_EVENTS = '''select tbl.usr, tbl.evt, url_map.target_name, tbl.cnt from (
     with events (name) as (values ('play_video'), ('pause_video'), ('load_video'), ('edx.special_exam.proctored.attempt.started'), ('edx.ui.lms.outline.selected')),
     modules (url) as (	
 	with pages (page) as (select distinct (log_line ->> 'page') from logs)
@@ -262,14 +261,14 @@ sql_query_distinct_user_names_ids_events = '''select tbl.usr, tbl.evt, url_map.t
 	on tbl.mdl = url_map.target_url	
     order by usr'''
 
-sql_query_events_distribution = '''select 
+SQL_QUERY_EVENTS_DISTRIBUTION = '''select 
             log_line ->> 'name' as event_name,
             TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS') as time_run,
             count (*) as count_of_start
         from logs
         where log_line ->> 'name' != \'\''''
 
-sql_query_average_time_of_the_day_to_enroll = ''' 
+SQL_QUERY_AVERAGE_TIME_OF_THE_DAY_TO_ENROLL = ''' 
     SELECT uniqueCourseIds.identifier as course_identifier, AVG(uniqueCourseIds.target_time) as course_time from (
         SELECT (log_line ->> 'context')::json ->> 'course_id' AS identifier,
         to_timestamp(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::TIME AS target_time
@@ -278,7 +277,7 @@ sql_query_average_time_of_the_day_to_enroll = '''
     ) uniqueCourseIds GROUP BY course_identifier
     '''
 
-sql_query_total_user_time_on_course = '''select total_time_per_day.user_id, SUM(total_time_per_day.time_at_session_per_day) as duration from (
+SQL_QUERY_TOTAL_USER_TIME_ON_COURSE = '''select total_time_per_day.user_id, SUM(total_time_per_day.time_at_session_per_day) as duration from (
             select durationTable.session_user_id as user_id, durationTable.session_date, SUM(durationTable.session_duration) as time_at_session_per_day from (
                     select
                         log_line #>> '{context, user_id}' as session_user_id,
@@ -295,7 +294,7 @@ sql_query_total_user_time_on_course = '''select total_time_per_day.user_id, SUM(
         group by total_time_per_day.user_id
         order by duration desc'''
 
-sql_query_user_time_on_course_per_day = '''select durationTable.session_user_id, durationTable.session_date, SUM(durationTable.session_duration) as time_at_session_per_day from (
+SQL_QUERY_USER_TIME_ON_COURSE_PER_DAY = '''select durationTable.session_user_id, durationTable.session_date, SUM(durationTable.session_duration) as time_at_session_per_day from (
             select
                 log_line #>> '{context, user_id}' as session_user_id,
                 TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::DATE as session_date,
@@ -309,7 +308,7 @@ sql_query_user_time_on_course_per_day = '''select durationTable.session_user_id,
         group by durationTable.session_user_id, durationTable.session_date
         order by durationTable.session_date desc'''
 
-sql_query_page_activity_per_day = '''select   
+SQL_QUERY_PAGE_ACTIVITY_PER_DAY = '''select   
             log_line -> 'page' as section_name, 
             TO_DATE(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS') as time_run,
             count(*) as interaction_count
@@ -318,7 +317,7 @@ sql_query_page_activity_per_day = '''select
         group by section_name, time_run
         order by interaction_count desc'''
 
-get_unique_pages_urls = '''select  
+GET_UNIQUE_PAGES_URLS = '''select  
             log_line -> 'page' as section_name, 
             count(*) as interaction_count
         from logs
@@ -326,7 +325,7 @@ get_unique_pages_urls = '''select
         group by section_name
         order by interaction_count desc'''
 
-user_pages_visited_at_timedate = '''select 
+USER_PAGES_VISITED_AT_TIMEDATE = '''select 
             TO_TIMESTAMP(log_line ->> 'time', 'YYYY-MM-DD"T"HH24:MI:SS')::TIMESTAMP as time_access,
             log_line ->>'page' as page_visited
         from logs

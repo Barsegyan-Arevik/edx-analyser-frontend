@@ -1,6 +1,6 @@
 import plotly.graph_objects as go
 
-from metrics.sql_queries import sql_query_user_route, user_pages_visited_at_timedate
+from metrics.sql_queries import SQL_QUERY_USER_ROUTE, USER_PAGES_VISITED_AT_TIMEDATE
 from metrics.utils.db_operations import open_db_connection, close_db_connection, execute_user_query_with_result, \
     execute_query_with_result
 from metrics.utils.file_operations import find_alias, save_output_to_file
@@ -8,11 +8,11 @@ from metrics.utils.utils_operations import remove_parameters_from_url
 
 
 def calculate_user_way_of_moving(connection, user_id):
-    return execute_user_query_with_result(connection, user_pages_visited_at_timedate, user_id)
+    return execute_user_query_with_result(connection, USER_PAGES_VISITED_AT_TIMEDATE, user_id)
 
 
 def calculate_urls_and_names_mapping(connection):
-    return execute_query_with_result(connection, sql_query_user_route)
+    return execute_query_with_result(connection, SQL_QUERY_USER_ROUTE)
 
 
 def generate_figure(user_way_on_course, urls_and_names_mapping, user_id):

@@ -4,7 +4,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-from metrics.sql_queries import sql_query_events_distribution
+from metrics.sql_queries import SQL_QUERY_EVENTS_DISTRIBUTION
 from metrics.utils.db_operations import close_db_connection, open_db_connection
 from metrics.utils.file_operations import save_output_to_file
 
@@ -12,7 +12,7 @@ from metrics.utils.file_operations import save_output_to_file
 def calculate_events_distribution_per_day(connection, user_id):
     print('Start query execution at ', datetime.now())
 
-    get_distribution_events = sql_query_events_distribution
+    get_distribution_events = SQL_QUERY_EVENTS_DISTRIBUTION
 
     if user_id:
         get_distribution_events += ''' and log_line #>> '{context, user_id}' = \'''' + user_id + '\''

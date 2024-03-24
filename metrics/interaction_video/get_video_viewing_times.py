@@ -1,19 +1,11 @@
 from datetime import timedelta
 
-import pandas as pd
-import plotly.express as px
 from dateutil import parser
 
-from metrics.sql_queries import sql_query_play_pause_events
+from metrics.sql_queries import SQL_QUERY_PLAY_PAUSE_EVENTS
 from metrics.utils.db_operations import execute_query_with_result
-from metrics.utils.file_operations import RESULT_PATH
+from metrics.utils.file_operations import RESULT_PATH, generate_bar_figure
 from metrics.utils.metric_operations import calc_metric
-
-
-def generate_figure(result_file):
-    df = pd.read_csv(result_file)
-    fig = px.bar(df, x='username', y='time(sec)')
-    fig.show()
 
 
 def calculate_times_for_users(play_pause_events):
@@ -42,7 +34,7 @@ def calculate_times_for_users(play_pause_events):
 
 
 def calc_play_time(connection):
-    play_pause_events = execute_query_with_result(connection, sql_query_play_pause_events)
+    play_pause_events = execute_query_with_result(connection, SQL_QUERY_PLAY_PAUSE_EVENTS)
     return calculate_times_for_users(play_pause_events)
 
 
@@ -53,7 +45,7 @@ def main():
         result_file,
         ['username', 'time(sec)']
     )
-    generate_figure(RESULT_PATH + result_file)
+    generate_bar_figure(RESULT_PATH + result_file, ['username', 'time(sec)'])
 
 
 if __name__ == '__main__':

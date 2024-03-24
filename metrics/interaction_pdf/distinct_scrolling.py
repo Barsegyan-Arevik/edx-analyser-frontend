@@ -1,11 +1,11 @@
-from metrics.sql_queries import sql_query_distinct_scrolling
+from metrics.sql_queries import SQL_QUERY_DISTINCT_SCROLLING
 from metrics.utils.db_operations import execute_query_with_result
 from metrics.utils.file_operations import generate_bar_figure
 from metrics.utils.metric_operations import calc_metric
 
 
 def unique_views_of_available_pdf(connection):
-    return execute_query_with_result(connection, sql_query_distinct_scrolling)
+    return execute_query_with_result(connection, SQL_QUERY_DISTINCT_SCROLLING)
 
 
 def main():

@@ -1,7 +1,7 @@
 import plotly.graph_objects as go
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-from metrics.sql_queries import sql_query_user_time_on_course_per_day
+from metrics.sql_queries import SQL_QUERY_USER_TIME_ON_COURSE_PER_DAY
 from metrics.utils.db_operations import open_db_connection, close_db_connection, execute_user_query_with_result
 from metrics.utils.file_operations import save_output_to_file
 
@@ -9,7 +9,7 @@ from metrics.utils.file_operations import save_output_to_file
 def calculate_user_session_activity_per_day_on_course(connection, user_id):
     return execute_user_query_with_result(
         connection,
-        sql_query_user_time_on_course_per_day,
+        SQL_QUERY_USER_TIME_ON_COURSE_PER_DAY,
         user_id,
         ISOLATION_LEVEL_AUTOCOMMIT
     )

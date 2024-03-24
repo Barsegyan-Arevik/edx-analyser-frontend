@@ -1,17 +1,17 @@
 import plotly.graph_objects as go
 
-from metrics.sql_queries import get_unique_pages_urls, sql_query_urls_and_names_mapping
+from metrics.sql_queries import GET_UNIQUE_PAGES_URLS, SQL_QUERY_URLS_AND_NAMES_MAPPING
 from metrics.utils.db_operations import execute_query_with_result, open_db_connection, close_db_connection
 from metrics.utils.file_operations import find_alias, save_output_to_file
 from metrics.utils.utils_operations import remove_parameters_from_url
 
 
 def calculate_pages(connection):
-    return process_urls(execute_query_with_result(connection, get_unique_pages_urls))
+    return process_urls(execute_query_with_result(connection, GET_UNIQUE_PAGES_URLS))
 
 
 def calculate_urls_and_names_mapping(connection):
-    return execute_query_with_result(connection, sql_query_urls_and_names_mapping)
+    return execute_query_with_result(connection, SQL_QUERY_URLS_AND_NAMES_MAPPING)
 
 
 def process_urls(result):

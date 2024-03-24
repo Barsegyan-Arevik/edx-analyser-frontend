@@ -1,20 +1,11 @@
-import pandas as pd
-import plotly.express as px
-
-from metrics.sql_queries import sql_query_play_video_times
+from metrics.sql_queries import SQL_QUERY_PLAY_VIDEO_TIMES
 from metrics.utils.db_operations import execute_query_with_result
-from metrics.utils.file_operations import RESULT_PATH
+from metrics.utils.file_operations import RESULT_PATH, generate_line_figure
 from metrics.utils.metric_operations import calc_metric
 
 
 def calculate_video_start_times(connection):
-    return execute_query_with_result(connection, sql_query_play_video_times)
-
-
-def generate_figure(result_file):
-    df = pd.read_csv(result_file)
-    fig = px.line(df, x='time', y='count')
-    fig.show()
+    return execute_query_with_result(connection, SQL_QUERY_PLAY_VIDEO_TIMES)
 
 
 def main():
@@ -24,7 +15,7 @@ def main():
         result_file,
         ['time', 'count']
     )
-    generate_figure(RESULT_PATH + result_file)
+    generate_line_figure(RESULT_PATH + result_file, ['time', 'count'])
 
 
 if __name__ == '__main__':

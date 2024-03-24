@@ -25,8 +25,14 @@ def find_alias(url, urls_and_names_mapping):
 
 
 def generate_bar_figure(result_file, fields, xaxis_title=None, yaxis_title=None):
-    df = pd.read_csv(RESULT_PATH + result_file)
-    fig = px.bar(df, x=fields[0], y=fields[1])
+    data = pd.read_csv(RESULT_PATH + result_file)
+    fig = px.bar(data, x=fields[0], y=fields[1])
     if xaxis_title and yaxis_title:
         fig.update_layout(xaxis_title=xaxis_title, yaxis_title=yaxis_title)
+    fig.show()
+
+
+def generate_line_figure(result_file, fields):
+    data = pd.read_csv(result_file)
+    fig = px.line(data, x=fields[0], y=fields[1])
     fig.show()
