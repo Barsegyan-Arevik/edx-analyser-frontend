@@ -5,7 +5,7 @@ import os
 
 def create_logs_table(connection):
     create_table_query = '''
-        CREATE UNLOGGED TABLE logs
+        CREATE UNLOGGED TABLE IF NOT EXISTS logs
         (log_line jsonb NOT NULL)'''
 
     execute_query(connection, create_table_query)
@@ -39,20 +39,19 @@ def ingest_logs(connection, logs_file):
     print('Количество загруженных записей: ', count)
 
 
-def main():
+def upload_logs_postgres(database="ITMO_2"):
     print('Загрузка лог-файлов в базу данных')
-    connection = open_db_connection()
-
+    connection = open_db_connection(database=database)
     create_logs_table(connection)
-
-    folder_path = '../log_files/DATANTECH2035/DATANTECH2035_лето'
+    folder_path = '../log_files/DATANTECH2035/DATANTECH2035_лето/'
     file_extension = '*.log'
-    file_list = glob.glob(os.path.join(folder_path, file_extension))
+    file_list = glob.glob(folder_path + file_extension)
 
+    print(file_list)
     for file_path in file_list:
         ingest_logs(connection, file_path)
     close_db_connection(connection)
 
 
 if __name__ == '__main__':
-    main()
+    upload_logs_postgres()

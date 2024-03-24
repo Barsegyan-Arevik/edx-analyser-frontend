@@ -5,7 +5,7 @@ from psycopg2 import sql
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 
-def open_db_connection(database="ITMO_2"):
+def open_db_connection(database="itmo_logs"):
     try:
         connection = psycopg2.connect(
             user="postgres",
@@ -63,7 +63,7 @@ def execute_user_query_with_result(connection, query_text, user_id, isolation_le
 
 
 def create_database(connection, database="db_name"):
-    execute_query(connection, sql.SQL("CREATE DATABASE {} WITH ENCODING 'UTF8'").format(
+    execute_query(connection, sql.SQL("CREATE DATABASE IF NOT EXISTS {} WITH ENCODING 'UTF8'").format(
         sql.Identifier(database))
                   )
     print("Создана база данных " + database)
