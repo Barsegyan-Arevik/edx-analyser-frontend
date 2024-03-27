@@ -6,6 +6,8 @@ type PageBaseProps = {
 };
 
 export default function PageBase(props: PageBaseProps) {
+
+    const windowHeight = window.innerHeight;
     return (
         <div className="page-base fullscreen">
             <div className="content">
