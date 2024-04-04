@@ -1,5 +1,6 @@
 import './PageBase.css'
 import {ReactNode} from "react";
+import * as React from 'react';
 
 type PageBaseProps = {
     children?: ReactNode;
