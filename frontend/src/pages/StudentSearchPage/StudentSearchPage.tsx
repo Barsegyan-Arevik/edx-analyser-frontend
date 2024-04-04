@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PageBase from "../../components/PageBase/PageBase";
-import CustomTable from "../../components/Charts/Table/SimpleTable";
 import './StudentSearchPage.css';
-import { studentSearchPageProps } from './StudentSearchPageData';
+import {studentSearchPageProps} from './StudentSearchPageData';
 import BigTable from "../../components/Charts/Table/BigTableForStudents";
 
 export default function StudentSearchPage() {

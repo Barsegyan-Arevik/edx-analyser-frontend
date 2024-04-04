@@ -1,42 +1,42 @@
-*{
+* {
     margin: 0;
-    padding:0;
+    padding: 0;
     text-decoration: none;
 }
 
-.container{
-    display:flex;
+.container {
+    display: flex;
 }
 
-main{
+main {
     /*width: 100%;*/
     padding: 20px;
 }
 
 
 .activeMenu {
-  background-color: #F0F3FB; /* Цвет фона при активном состоянии */
+    background-color: #F0F3FB; /* Цвет фона при активном состоянии */
 }
 
 
-.top_section{
+.top_section {
     display: flex;
     align-items: center;
     padding: 20px 15px;
 }
 
-.logo{
+.logo {
     font-size: 30px;
 
 }
 
-.bars{
+.bars {
     display: flex;
     font-size: 20px;
     margin-left: 30px;
 }
 
-.link{
+.link {
     display: flex;
     color: #667B98;
     padding: 10px 15px;
@@ -51,32 +51,32 @@ main{
 /*    transition: all 0.5s;*/
 /*}*/
 
-.active{
+.active {
     background: #5471E7;
     color: #FFF;
 }
 
-.icon, .link_text{
+.icon, .link_text {
     font-size: 25px;
 }
 
 .app {
-  text-align: center;
+    text-align: center;
 }
 
 .sidebar {
-  box-shadow: 10px 0 20px rgba(55, 99, 221, 0.2);
-  background: #FFF;
-  color: #667B98;
-  height: 100%;
-  width: 300px;
-  position: fixed;
-  z-index: 100;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  padding-top: 5px;
-  transition: all 0.5s ease;
+    box-shadow: 10px 0 20px rgba(55, 99, 221, 0.2);
+    background: #FFF;
+    color: #667B98;
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    padding-top: 5px;
+    transition: all 0.5s ease;
 }
 
 .submenu {
@@ -84,7 +84,7 @@ main{
 }
 
 
-.submenu_link{
+.submenu_link {
     display: flex;
     color: #667B98;
     padding: 7px 15px;
@@ -99,13 +99,13 @@ main{
 /*    transition: all 0.5s;*/
 /*}*/
 
-.submenu_link_active{
+.submenu_link_active {
     background: #5471E7;
     color: #FFF;
 
 }
 
-.submenu_icon, .submenu_link_text{
+.submenu_icon, .submenu_link_text {
     font-size: 20px;
 }
 

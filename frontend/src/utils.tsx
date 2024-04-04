@@ -18,7 +18,7 @@ function parseCSV(csvString) {
     const rows = csvString.trim().split('\n');
     const data = rows.slice(1).map(row => {
         const [username, time] = row.split(',');
-        return { username, time: parseFloat(time) / 3600}; // преобразование времени в число
+        return {username, time: parseFloat(time) / 3600}; // преобразование времени в число
     });
     return data;
 }

@@ -1,18 +1,15 @@
 import './App.css'
 import SideBar from "./components/SideBar/SideBar";
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
+import CourseInfoPage, {CourseInfoPageProps} from "./pages/CourseInfoPage/CourseInfoPage";
 import StudentSearchPage from "./pages/StudentSearchPage/StudentSearchPage";
 import {MdOutlineAnalytics, MdOutlineForum} from "react-icons/md";
 import * as React from "react";
 import StudentPage from "./pages/StudentPage";
-import {courseAnalyticsProps, videoSectionProps} from './pages/CourseInfoPage/CourseInfoPageData'
-import {CourseInfoPageProps} from './pages/CourseInfoPage/CourseInfoPage';
-import {documentSectionProps} from './pages/CourseInfoPage/CourseInfoPageData';
-import {IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOffOutline} from "react-icons/io5";
+import {courseAnalyticsProps, documentSectionProps, videoSectionProps} from './pages/CourseInfoPage/CourseInfoPageData'
+import {IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline} from "react-icons/io5";
 import {FiMousePointer} from "react-icons/fi";
 import {RiTeamLine} from "react-icons/ri";
-import {IoVideocamOutline} from "react-icons/io5";
 import PagesSectionPage from "./pages/PagesSectionPage/PagesSectionPage";
 
 const courseInfoPageProps: CourseInfoPageProps = {

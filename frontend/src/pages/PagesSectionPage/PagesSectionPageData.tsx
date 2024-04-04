@@ -1,5 +1,3 @@
-
-
 const pageData = `
 page, count
 x_module,21013
@@ -289,4 +287,10 @@ const columnNamePages = 'Слова';
 const columnCountPages = 'Количество поисков';
 const labelTextPages = 'Поиск слова...';
 
-const tablePages = { boxTitle: boxTitlePages, columnName: columnNamePages, columnCount: columnCountPages, labelText: labelTextPages, data: pageData }
+const tablePages = {
+    boxTitle: boxTitlePages,
+    columnName: columnNamePages,
+    columnCount: columnCountPages,
+    labelText: labelTextPages,
+    data: pageData
+}

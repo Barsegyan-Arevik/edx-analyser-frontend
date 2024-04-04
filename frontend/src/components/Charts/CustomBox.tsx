@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Box, ThemeProvider, createTheme} from '@mui/system';
+import {Box} from '@mui/system';
 
 export type CustomBoxProps = {
     value: string;

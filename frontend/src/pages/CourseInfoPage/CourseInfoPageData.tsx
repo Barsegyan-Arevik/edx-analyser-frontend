@@ -1,24 +1,28 @@
-import { getStudentEnding } from "../../utils";
-import { CourseAnalyticsProps } from "../../components/unionParts/CourseAnalytics/CourseAnalytics";
-import { VideoSectionProps } from "../../components/unionParts/VideoSection/VideoSection";
-import { DocumentSectionProps } from "../../components/unionParts/DocumentSection/DocumentSection";
+import {getStudentEnding} from "../../utils";
+import {CourseAnalyticsProps} from "../../components/unionParts/CourseAnalytics/CourseAnalytics";
+import {VideoSectionProps} from "../../components/unionParts/VideoSection/VideoSection";
+import {DocumentSectionProps} from "../../components/unionParts/DocumentSection/DocumentSection";
 
 ////это данные CourseAnalytics
 const chartDonut = [
-    { value: 10, label: 'Прошли курс' },
-    { value: 20, label: 'Начали, не прошли' },
-    { value: 15, label: 'Не начали' },
+    {value: 10, label: 'Прошли курс'},
+    {value: 20, label: 'Начали, не прошли'},
+    {value: 15, label: 'Не начали'},
 ]
 
-const aboutCountOfStudents = { value: '864', value_additional_text: getStudentEnding(parseInt('864', 10)), label: 'Количество студентов, записавшихся на курс' }
-const averageTimeToEnroll = { value: '10:54', value_additional_text: 'минут', label: 'Среднее время регистрации на курс' }
+const aboutCountOfStudents = {
+    value: '864',
+    value_additional_text: getStudentEnding(parseInt('864', 10)),
+    label: 'Количество студентов, записавшихся на курс'
+}
+const averageTimeToEnroll = {value: '10:54', value_additional_text: 'минут', label: 'Среднее время регистрации на курс'}
 const headerData = {courseId: 123, courseName: 'Название курса'}
 
 
 const chartDonutProblems = [
-    { value: 70, label: '70% задач решены с \n первой попытки' },
-    { value: 16, label: '16% задач решены со \n второй попытки' },
-    { value: 14, label: '14% задач решены с \n третьей и более попыток' },
+    {value: 70, label: '70% задач решены с \n первой попытки'},
+    {value: 16, label: '16% задач решены со \n второй попытки'},
+    {value: 14, label: '14% задач решены с \n третьей и более попыток'},
 ]
 
 
@@ -29,7 +33,6 @@ export const courseAnalyticsProps: CourseAnalyticsProps = {
     headerData: headerData
 };
 ///здесь заканчиваются данные CourseAnalytics
-
 
 
 ///это данные VideoSection
@@ -201,7 +204,13 @@ time,count
 2022-09-11,378
 `;
 
-const tableData = {boxTitle: boxTitle, columnName: columnName, columnCount: columnCount, labelText: labelText, data: csvData}
+const tableData = {
+    boxTitle: boxTitle,
+    columnName: columnName,
+    columnCount: columnCount,
+    labelText: labelText,
+    data: csvData
+}
 
 
 export const videoSectionProps: VideoSectionProps = {
@@ -210,7 +219,6 @@ export const videoSectionProps: VideoSectionProps = {
     headerText: videoHeaderText
 };
 ///здесь заканчиваются данные VideoSection
-
 
 
 ///это данные DocumentSection
@@ -393,10 +401,21 @@ const columnNameSearchedTerms = 'Слова';
 const columnCountSearchedTerms = 'Количество поисков';
 const labelTextSearchedTerms = 'Поиск слова...';
 
-const tableScrollingData = { boxTitle: boxTitleScrolling, columnName: columnNameScrolling, columnCount: columnCountScrolling, columnMedian, labelText: labelTextScrolling, data: distinctScrollingData }
-const tableSearchedTermsData = { boxTitle: boxTitleSearchedTerms, columnName: columnNameSearchedTerms, columnCount: columnCountSearchedTerms, labelText: labelTextSearchedTerms, data: searchedPDFTearms }
-
-
+const tableScrollingData = {
+    boxTitle: boxTitleScrolling,
+    columnName: columnNameScrolling,
+    columnCount: columnCountScrolling,
+    columnMedian,
+    labelText: labelTextScrolling,
+    data: distinctScrollingData
+}
+const tableSearchedTermsData = {
+    boxTitle: boxTitleSearchedTerms,
+    columnName: columnNameSearchedTerms,
+    columnCount: columnCountSearchedTerms,
+    labelText: labelTextSearchedTerms,
+    data: searchedPDFTearms
+}
 
 
 const pageData = `
@@ -688,7 +707,13 @@ const columnNamePages = 'Ссылка';
 const columnCountPages = 'Количество поисков';
 const labelTextPages = 'Поиск ссылки...';
 
-const tablePages = { boxTitle: boxTitlePages, columnName: columnNamePages, columnCount: columnCountPages, labelText: labelTextPages, data: pageData }
+const tablePages = {
+    boxTitle: boxTitlePages,
+    columnName: columnNamePages,
+    columnCount: columnCountPages,
+    labelText: labelTextPages,
+    data: pageData
+}
 
 const videoLink = `
 https://courses.openedu.ru/courses/course-v1:ITMOUniversity+DATANTECH2035+summer_2022_1/courseware/123bf1103a954d9ea145f4bb17acb6f8/e21a44f250d247b0b84006f4a81a1b16,399,50
@@ -779,8 +804,14 @@ const columnCountVideos = 'Количество поисков';
 const columnPercent = 'Процент просмотра (медиана)';
 const labelTextVideos = 'Поиск ссылки...';
 
-const tableVideos = { boxTitle: boxTitleVideos, columnName: columnNameVideos, columnCount: columnCountVideos, additionalColumn: columnPercent, labelText: labelTextVideos, data: videoLink }
-
+const tableVideos = {
+    boxTitle: boxTitleVideos,
+    columnName: columnNameVideos,
+    columnCount: columnCountVideos,
+    additionalColumn: columnPercent,
+    labelText: labelTextVideos,
+    data: videoLink
+}
 
 
 const problems = `
@@ -825,8 +856,13 @@ const columnNameProblems = 'Задача';
 const columnCountProblems = 'Процент успешных решений (медиана)';
 const labelTextProblems = 'Поиск задачи...';
 
-const tableProblems = { boxTitle: boxTitleProblems, columnName: columnNameProblems, columnCount: columnCountProblems, labelText: labelTextProblems, data: problems }
-
+const tableProblems = {
+    boxTitle: boxTitleProblems,
+    columnName: columnNameProblems,
+    columnCount: columnCountProblems,
+    labelText: labelTextProblems,
+    data: problems
+}
 
 
 export const documentSectionProps: DocumentSectionProps = {

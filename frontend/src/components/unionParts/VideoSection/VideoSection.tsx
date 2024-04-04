@@ -1,7 +1,7 @@
 import * as React from 'react';
+import {useState} from 'react';
 import './VideoSection.css'
 import Header from "../HeaderSection/Header"
-import { useState, useEffect } from "react";
 import TableHeatMap from '../../Charts/Table/TableHeatMap';
 import LineChartWithModalWindow from '../../Charts/LineChart/LineChartWithModalWindow';
 
@@ -16,7 +16,7 @@ export type TableData = {
 export type VideoSectionProps = {
     tableData: TableData;
     lineChartData: string;
-    headerText: string;  
+    headerText: string;
 }
 
 export default function VideoSection(props: VideoSectionProps) {
@@ -26,17 +26,17 @@ export default function VideoSection(props: VideoSectionProps) {
         .split('\n')
         .map((row, index) => {
             const [user, time] = row.split(',');
-            return { user, timeSec: Math.round(parseFloat(time)) };
+            return {user, timeSec: Math.round(parseFloat(time))};
         })
         .sort((a, b) => b.timeSec - a.timeSec) // Сортировка по убыванию времени
-        .map((data, index) => ({ ...data, id: index + 1 })); // Добавление идентификатора
+        .map((data, index) => ({...data, id: index + 1})); // Добавление идентификатора
     const [rows, setRows] = useState(initialRowsData);
 
 
     return (
         <div className={"video_interactions"}>
-            <div style={{ color: '#fff' }}>
-                <Header text={props.headerText} />
+            <div style={{color: '#fff'}}>
+                <Header text={props.headerText}/>
             </div>
             <div className={"video_interactions_container"}>
                 <div className={"item_video_1"}>

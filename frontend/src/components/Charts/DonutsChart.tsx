@@ -1,6 +1,6 @@
 import {PieChart} from '@mui/x-charts'
 import * as React from 'react';
-import {useState, useEffect} from 'react'
+import {useEffect, useState} from 'react';
 import {ShimmerThumbnail} from 'react-shimmer-effects'
 import Box from '@mui/system/Box';
 

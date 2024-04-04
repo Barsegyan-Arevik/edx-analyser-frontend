@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {useState} from 'react';
 import {BsLayoutSidebarInsetReverse} from "react-icons/bs";
-import {FaBars} from "react-icons/fa"
 import {NavLink} from "react-router-dom";
 import '../../App.css'
 
@@ -72,15 +71,15 @@ export default function SideBar(props: SideBarProps) {
                                              }>
                                         <div
                                             style={{
-                                                    paddingLeft: isOpen ? "20px" : "0px",
-                                                    display: "flex"
-                                                }}
+                                                paddingLeft: isOpen ? "20px" : "0px",
+                                                display: "flex"
+                                            }}
                                         >
                                             <div className="submenu_icon">{subItem.icon}</div>
                                             <div className="submenu_link_text"
                                                  style={{
                                                      display: isOpen ? "block" : "none",
-                                                     paddingLeft: isOpen ? "5px": "0px"
+                                                     paddingLeft: isOpen ? "5px" : "0px"
                                                  }}>
                                                 {subItem.name}
                                             </div>

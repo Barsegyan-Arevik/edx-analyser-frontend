@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useState, useMemo } from 'react';
-import { useEffect } from 'react';
+import {useEffect, useMemo, useState} from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,10 +8,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
-import { Box } from '@mui/material';
+import {Box} from '@mui/material';
 import './TableHeatMap.css';
 import CustomBoxModalWindow from '../CustomBoxModalWindow';
-import { getGreenColorScale } from "../../../utils";
+import {getGreenColorScale} from "../../../utils";
 
 interface RowData {
     id: number;
@@ -29,7 +28,13 @@ export type TableHeatMapProps = {
     labelText: string;
 }
 
-export default function TableHeatMapInsideWindow({ rows, boxTitle, columnName, columnCount, labelText }: TableHeatMapProps) {
+export default function TableHeatMapInsideWindow({
+                                                     rows,
+                                                     boxTitle,
+                                                     columnName,
+                                                     columnCount,
+                                                     labelText
+                                                 }: TableHeatMapProps) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState('');
@@ -60,7 +65,7 @@ export default function TableHeatMapInsideWindow({ rows, boxTitle, columnName, c
     }, [timeSecArray]);
 
     return (
-        <Paper sx={{ overflow: 'hidden', padding: '10px', width: '600px' }}>
+        <Paper sx={{overflow: 'hidden', padding: '10px', width: '600px'}}>
 
             <div className={'modal-window-content'}>
                 <Box
@@ -109,10 +114,10 @@ export default function TableHeatMapInsideWindow({ rows, boxTitle, columnName, c
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
                                 // fullWidth
-                                sx={{ marginBottom: '16px', width: 800 }}
+                                sx={{marginBottom: '16px', width: 800}}
                             />
-                            <div style={{ backgroundColor: '#fff', overflowY: 'auto' }}>
-                                <TableContainer sx={{ height: 440, width: 800 }}>
+                            <div style={{backgroundColor: '#fff', overflowY: 'auto'}}>
+                                <TableContainer sx={{height: 440, width: 800}}>
                                     <Table stickyHeader size="small" aria-label="sticky table">
 
                                         <TableHead>
@@ -122,7 +127,7 @@ export default function TableHeatMapInsideWindow({ rows, boxTitle, columnName, c
                                                 <TableCell>{columnCount}</TableCell>
                                             </TableRow>
                                         </TableHead>
-                                        <TableBody sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                                        <TableBody sx={{'&:last-child td, &:last-child th': {border: 0}}}>
                                             {filteredRows.map((row, index) => (
                                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                                                     <TableCell component="th">
@@ -159,19 +164,19 @@ export default function TableHeatMapInsideWindow({ rows, boxTitle, columnName, c
                             }}
                         >
                             <div className={'one-box'}>
-                                <CustomBoxModalWindow measure={'Минимум'} value={minTime} />
+                                <CustomBoxModalWindow measure={'Минимум'} value={minTime}/>
                             </div>
 
                             <div className={'one-box'}>
-                                <CustomBoxModalWindow measure={'Maксимум'} value={maxTime} />
+                                <CustomBoxModalWindow measure={'Maксимум'} value={maxTime}/>
                             </div>
 
                             <div className={'one-box'}>
-                                <CustomBoxModalWindow measure={'Среднее значение'} value={meanTime} />
+                                <CustomBoxModalWindow measure={'Среднее значение'} value={meanTime}/>
                             </div>
 
                             <div className={'one-box'}>
-                                <CustomBoxModalWindow measure={'Медиана'} value={medianTime} />
+                                <CustomBoxModalWindow measure={'Медиана'} value={medianTime}/>
                             </div>
                         </Box>
                     </Box>

@@ -1,4 +1,4 @@
-.video_interactions{
+.video_interactions {
     color: #405479;
     font-size: 20px;
     font-weight: normal;
@@ -13,7 +13,7 @@
     z-index: 100;
 }
 
-.video_interactions_container{
+.video_interactions_container {
     display: flex;
     justify-content: center;
 }
@@ -21,8 +21,8 @@
 /*}*/
 
 .item_video_1 {
-  margin-right: 20px;
-} 
+    margin-right: 20px;
+}
 
 /* .item_video_2 {
   margin-right: 20px;

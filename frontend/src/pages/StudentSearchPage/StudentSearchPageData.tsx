@@ -1,5 +1,3 @@
-import { SimpleTableProps } from "../../components/Charts/Table/SimpleTable";
-import {TableWithLinkProps} from "../../components/Charts/Table/TableWithLink";
 import {BigTableProps} from "../../components/Charts/Table/BigTableForStudents";
 
 const boxTitle = 'Студенты курса "Название курса"';
@@ -152,7 +150,6 @@ zyryanovamo             3282368
 `;
 
 
-
 const students = `
 username,completion_status,days_online,time_on_course,video_watching,text_book_scrolling,promblems_solving,forum_activity
 abrosimovaoe,Прошел курс,25,56,30,15,50,10
@@ -241,827 +238,827 @@ popovaverval,Не начал,30,70,40,20,65,15
 `
 
 
-const rowsStudents= [
-  {
-    "username": "abrosimovaoe",
-    "completion_status": "Прошел курс",
-    "days_online": 25,
-    "time_on_course": 56,
-    "video_watching": 30,
-    "text_book_scrolling": 15,
-    "promblems_solving": 50,
-    "forum_activity": 10
-  },
-  {
-    "username": "akimovnv",
-    "completion_status": "Не начал",
-    "days_online": 20,
-    "time_on_course": 45,
-    "video_watching": 20,
-    "text_book_scrolling": 10,
-    "promblems_solving": 30,
-    "forum_activity": 5
-  },
-  {
-    "username": "alenatresh",
-    "completion_status": "Начал, но не завершил",
-    "days_online": 30,
-    "time_on_course": 70,
-    "video_watching": 40,
-    "text_book_scrolling": 20,
-    "promblems_solving": 60,
-    "forum_activity": 15
-  },
-  {
-    "username": "anastasiiashadchneva",
-    "completion_status": "Прошла курс",
-    "days_online": 28,
-    "time_on_course": 60,
-    "video_watching": 35,
-    "text_book_scrolling": 18,
-    "promblems_solving": 55,
-    "forum_activity": 12
-  },
-  {
-    "username": "andrey_andreew",
-    "completion_status": "Не начал",
-    "days_online": 23,
-    "time_on_course": 52,
-    "video_watching": 29,
-    "text_book_scrolling": 14,
-    "promblems_solving": 48,
-    "forum_activity": 9
-  },
-  {
-    "username": "antondnn",
-    "completion_status": "Прошел курс",
-    "days_online": 27,
-    "time_on_course": 62,
-    "video_watching": 38,
-    "text_book_scrolling": 20,
-    "promblems_solving": 60,
-    "forum_activity": 13
-  },
-  {
-    "username": "antoni_chupis",
-    "completion_status": "Не начал",
-    "days_online": 22,
-    "time_on_course": 48,
-    "video_watching": 25,
-    "text_book_scrolling": 13,
-    "promblems_solving": 35,
-    "forum_activity": 7
-  },
-  {
-    "username": "antonkireew",
-    "completion_status": "Начал, но не завершил",
-    "days_online": 29,
-    "time_on_course": 65,
-    "video_watching": 42,
-    "text_book_scrolling": 22,
-    "promblems_solving": 65,
-    "forum_activity": 14
-  },
-  {
-    "username": "balashovasa",
-    "completion_status": "Прошел курс",
-    "days_online": 26,
-    "time_on_course": 58,
-    "video_watching": 35,
-    "text_book_scrolling": 18,
-    "promblems_solving": 55,
-    "forum_activity": 12
-  },
-  {
-    "username": "bazhutinaov",
-    "completion_status": "Не начал",
-    "days_online": 23,
-    "time_on_course": 52,
-    "video_watching": 28,
-    "text_book_scrolling": 12,
-    "promblems_solving": 45,
-    "forum_activity": 8
-  },
-  {
-    "username": "boitsev",
-    "completion_status": "Прошел курс",
-    "days_online": 30,
-    "time_on_course": 70,
-    "video_watching": 40,
-    "text_book_scrolling": 20,
-    "promblems_solving": 65,
-    "forum_activity": 15
-  },
-  {
-    "username": "bondarevskijmn",
-    "completion_status": "Не начал",
-    "days_online": 24,
-    "time_on_course": 54,
-    "video_watching": 29,
-    "text_book_scrolling": 14,
-    "promblems_solving": 48,
-    "forum_activity": 9
-  },
-  {
-    "username": "braunve",
-    "completion_status": "Прошел курс",
-    "days_online": 25,
-    "time_on_course": 56,
-    "video_watching": 30,
-    "text_book_scrolling": 15,
-    "promblems_solving": 50,
-    "forum_activity": 10
-  },
-  {
-    "username": "burbelaas",
-    "completion_status": "Не начал",
-    "days_online": 20,
-    "time_on_course": 45,
-    "video_watching": 20,
-    "text_book_scrolling": 10,
-    "promblems_solving": 30,
-    "forum_activity": 5
-  },
-  {
-    "username": "cherepanovaev",
-    "completion_status": "Прошел курс",
-    "days_online": 28,
-    "time_on_course": 60,
-    "video_watching": 35,
-    "text_book_scrolling": 18,
-    "promblems_solving": 55,
-    "forum_activity": 12
-  },
-  {
-    "username": "chursinovys",
-    "completion_status": "Начал, но не завершил",
-    "days_online": 29,
-    "time_on_course": 65,
-    "video_watching": 42,
-    "text_book_scrolling": 22,
-    "promblems_solving": 65,
-    "forum_activity": 14
-  },
-  {
-    "username": "dajbageds",
-    "completion_status": "Прошел курс",
-    "days_online": 27,
-    "time_on_course": 62,
-    "video_watching": 38,
-    "text_book_scrolling": 20,
-    "promblems_solving": 60,
-    "forum_activity": 13
-  },
-  {
-    "username": "demidovaee",
-    "completion_status": "Не начал",
-    "days_online": 22,
-    "time_on_course": 48,
-    "video_watching": 25,
-    "text_book_scrolling": 13,
-    "promblems_solving": 35,
-    "forum_activity": 7
-  },
-  {
-    "username": "dgluschenko",
-    "completion_status": "Прошел курс",
-    "days_online": 26,
-    "time_on_course": 58,
-    "video_watching": 35,
-    "text_book_scrolling": 18,
-    "promblems_solving": 55,
-    "forum_activity": 12
-  },
-  {
-    "username": "dubravinna",
-    "completion_status": "Не начал",
-    "days_online": 21,
-    "time_on_course": 50,
-    "video_watching": 30,
-    "text_book_scrolling": 15,
-    "promblems_solving": 40,
-    "forum_activity": 8
-  },
-  {
-    "username": "dvolchek",
-    "completion_status": "Прошел курс",
-    "days_online": 30,
-    "time_on_course": 70,
-    "video_watching": 40,
-    "text_book_scrolling": 20,
-    "promblems_solving": 65,
-    "forum_activity": 15
-  },
-  {
-    "username": "dyachenkoov",
-    "completion_status": "Не начал",
-    "days_online": 23,
-    "time_on_course": 52,
-    "video_watching": 28,
-    "text_book_scrolling": 12,
-    "promblems_solving": 45,
-    "forum_activity": 8
-  },
-  {
-    "username": "dyakonovasg",
-    "completion_status": "Прошел курс",
-    "days_online": 29,
-    "time_on_course": 65,
-    "video_watching": 42,
-    "text_book_scrolling": 22,
-    "promblems_solving": 65,
-    "forum_activity": 14
-  },
-  {
-    "username": "egmichailova",
-    "completion_status": "Не начал",
-    "days_online": 24,
-    "time_on_course": 54,
-    "video_watching": 29,
-    "text_book_scrolling": 14,
-    "promblems_solving": 48,
-    "forum_activity": 9
-  },
-  {
-    "username": "evsikovks",
-    "completion_status": "Прошел курс",
-    "days_online": 25,
-    "time_on_course": 56,
-    "video_watching": 30,
-    "text_book_scrolling": 15,
-    "promblems_solving": 50,
-    "forum_activity": 10
-  },
-  {
-    "username": "ezhovaga",
-    "completion_status": "Не начал",
-    "days_online": 20,
-    "time_on_course": 45,
-    "video_watching": 20,
-    "text_book_scrolling": 10,
-    "promblems_solving": 30,
-    "forum_activity": 5
-  },
-  {
-    "username": "fadeevrv",
-    "completion_status": "Прошел курс",
-    "days_online": 28,
-    "time_on_course": 60,
-    "video_watching": 35,
-    "text_book_scrolling": 18,
-    "promblems_solving": 55,
-    "forum_activity": 12
-  },
-  {
-    "username": "fastmotor",
-    "completion_status": "Не начал",
-    "days_online": 26,
-    "time_on_course": 58,
-    "video_watching": 32,
-    "text_book_scrolling": 16,
-    "promblems_solving": 50,
-    "forum_activity": 10
-  },
-  {
-    "username": "gadzhieva_elvira",
-    "completion_status": "Прошла курс",
-    "days_online": 27,
-    "time_on_course": 62,
-    "video_watching": 38,
-    "text_book_scrolling": 20,
-    "promblems_solving": 60,
-    "forum_activity": 13
-  },
-  {
-    "username": "gorbunovaa",
-    "completion_status": "Не начал",
-    "days_online": 22,
-    "time_on_course": 48,
-    "video_watching": 25,
-    "text_book_scrolling": 13,
-    "promblems_solving": 35,
-    "forum_activity": 7
-  },
-  {
-    "username": "gorumo",
-    "completion_status": "Прошел курс",
-    "days_online": 30,
-    "time_on_course": 70,
-    "video_watching": 40,
-    "text_book_scrolling": 20,
-    "promblems_solving": 65,
-    "forum_activity": 15
-  },
-  {
-    "username": "grafeeva",
-    "completion_status": "Не начал",
-    "days_online": 23,
-    "time_on_course": 52,
-    "video_watching": 28,
-    "text_book_scrolling": 12,
-    "promblems_solving": 45,
-    "forum_activity": 8
-  },
-  {
-    "username": "gudisea",
-    "completion_status": "Прошел курс",
-    "days_online": 29,
-    "time_on_course": 65,
-    "video_watching": 42,
-    "text_book_scrolling": 22,
-    "promblems_solving": 65,
-    "forum_activity": 14
-  },
-  {
-    "username": "hodyrevan",
-    "completion_status": "Не начал",
-    "days_online": 24,
-    "time_on_course": 54,
-    "video_watching": 29,
-    "text_book_scrolling": 14,
-    "promblems_solving": 48,
-    "forum_activity": 9
-  },
-  {
-    "username": "holodnayaev",
-    "completion_status": "Прошел курс",
-    "days_online": 25,
-    "time_on_course": 56,
-    "video_watching": 30,
-    "text_book_scrolling": 15,
-    "promblems_solving": 50,
-    "forum_activity": 10
-  },
-  {
-    "username": "ibatullinaav",
-    "completion_status": "Не начал",
-    "days_online": 20,
-    "time_on_course": 45,
-    "video_watching": 20,
-    "text_book_scrolling": 10,
-    "promblems_solving": 30,
-    "forum_activity": 5
-  },
-  {
-    "username": "id_brunetochka",
-    "completion_status": "Прошла курс",
-    "days_online": 28,
-    "time_on_course": 60,
-    "video_watching": 35,
-    "text_book_scrolling": 18,
-    "promblems_solving": 55,
-    "forum_activity": 12
-  },
-  {
-    "username": "id160430089",
-    "completion_status": "Не начал",
-    "days_online": 29,
-    "time_on_course": 65,
-    "video_watching": 42,
-    "text_book_scrolling": 22,
-    "promblems_solving": 65,
-    "forum_activity": 14
-  },
-  {
-    "username": "kazymovaya",
-    "completion_status": "Прошла курс",
-    "days_online": 30,
-    "time_on_course": 70,
-    "video_watching": 40,
-    "text_book_scrolling": 20,
-    "promblems_solving": 65,
-    "forum_activity": 15
-  },
-  {
-    "username": "komarovdi",
-    "completion_status": "Не начал",
-    "days_online": 25,
-    "time_on_course": 56,
-    "video_watching": 30,
-    "text_book_scrolling": 15,
-    "promblems_solving": 50,
-    "forum_activity": 10
-  },
-  {
-    "username": "konyaev-alexsandr",
-    "completion_status": "Прошел курс",
-    "days_online": 26,
-    "time_on_course": 58,
-    "video_watching": 32,
-    "text_book_scrolling": 16,
-    "promblems_solving": 50,
-    "forum_activity": 10
-  },
-  {
-    "username": "kotovaly",
-    "completion_status": "Не начал",
-    "days_online": 27,
-    "time_on_course": 62,
-    "video_watching": 38,
-    "text_book_scrolling": 20,
-    "promblems_solving": 60,
-    "forum_activity": 13
-  },
-  {
-    "username": "kozminyhms",
-    "completion_status": "Прошел курс",
-    "days_online": 23,
-    "time_on_course": 52,
-    "video_watching": 29,
-    "text_book_scrolling": 14,
-    "promblems_solving": 48,
-    "forum_activity": 9
-  },
-  {
-    "username": "kozyrevaes",
-    "completion_status": "Не начал",
-    "days_online": 22,
-    "time_on_course": 48,
-    "video_watching": 25,
-    "text_book_scrolling": 13,
-    "promblems_solving": 35,
-    "forum_activity": 7
-  },
-  {
-    "username": "krapivinasa",
-    "completion_status": "Прошла курс",
-    "days_online": 29,
-    "time_on_course": 65,
-    "video_watching": 42,
-    "text_book_scrolling": 22,
-    "promblems_solving": 65,
-    "forum_activity": 14
-  },
-  {
-    "username": "krylovaos",
-    "completion_status": "Не начал",
-    "days_online": 30,
-    "time_on_course": 70,
-    "video_watching": 40,
-    "text_book_scrolling": 20,
-    "promblems_solving": 65,
-    "forum_activity": 15
-  },
-  {
-    "username": "kucheruksv",
-    "completion_status": "Прошел курс",
-    "days_online": 24,
-    "time_on_course": 54,
-    "video_watching": 29,
-    "text_book_scrolling": 14,
-    "promblems_solving": 48,
-    "forum_activity": 9
-  },
-  {
-    "username": "kushmanovati",
-    "completion_status": "Не начал",
-    "days_online": 21,
-    "time_on_course": 50,
-    "video_watching": 30,
-    "text_book_scrolling": 15,
-    "promblems_solving": 40,
-    "forum_activity": 8
-  },
-  {
-    "username": "kuznecovaem",
-    "completion_status": "Прошла курс",
-    "days_online": 26,
-    "time_on_course": 58,
-    "video_watching": 32,
-    "text_book_scrolling": 16,
-    "promblems_solving": 50,
-    "forum_activity": 10
-  },
-  {
-    "username": "lactea",
-    "completion_status": "Не начал",
-    "days_online": 27,
-    "time_on_course": 62,
-    "video_watching": 38,
-    "text_book_scrolling": 20,
-    "promblems_solving": 60,
-    "forum_activity": 13
-  },
-  {
-    "username": "larkk31",
-    "completion_status": "Прошел курс",
-    "days_online": 28,
-    "time_on_course": 60,
-    "video_watching": 35,
-    "text_book_scrolling": 18,
-    "promblems_solving": 55,
-    "forum_activity": 12
-  },
-  {
-    "username": "lazutkinn",
-    "completion_status": "Не начал",
-    "days_online": 23,
-    "time_on_course": 52,
-    "video_watching": 28,
-    "text_book_scrolling": 12,
-    "promblems_solving": 45,
-    "forum_activity": 8
-  },
-  {
-    "username": "lazyrinms",
-    "completion_status": "Прошел курс",
-    "days_online": 24,
-    "time_on_course": 54,
-    "video_watching": 29,
-    "text_book_scrolling": 14,
-    "promblems_solving": 48,
-    "forum_activity": 9
-  },
-  {
-    "username": "lohnevaei",
-    "completion_status": "Не начал",
-    "days_online": 25,
-    "time_on_course": 56,
-    "video_watching": 30,
-    "text_book_scrolling": 15,
-    "promblems_solving": 40,
-    "forum_activity": 8
-  },
-  {
-    "username": "lyalikovavg",
-    "completion_status": "Прошел курс",
-    "days_online": 30,
-    "time_on_course": 70,
-    "video_watching": 40,
-    "text_book_scrolling": 20,
-    "promblems_solving": 65,
-    "forum_activity": 15
-  },
-  {
-    "username": "mariia_i",
-    "completion_status": "Не начал",
-    "days_online": 20,
-    "time_on_course": 45,
-    "video_watching": 20,
-    "text_book_scrolling": 10,
-    "promblems_solving": 30,
-    "forum_activity": 5
-  },
-  {
-    "username": "markinaekal",
-    "completion_status": "Прошла курс",
-    "days_online": 29,
-    "time_on_course": 65,
-    "video_watching": 42,
-    "text_book_scrolling": 22,
-    "promblems_solving": 65,
-    "forum_activity": 14
-  },
-  {
-    "username": "martyshevdv",
-    "completion_status": "Не начал",
-    "days_online": 22,
-    "time_on_course": 48,
-    "video_watching": 25,
-    "text_book_scrolling": 13,
-    "promblems_solving": 35,
-    "forum_activity": 7
-  },
-  {
-    "username": "matveevamn",
-    "completion_status": "Прошел курс",
-    "days_online": 26,
-    "time_on_course": 58,
-    "video_watching": 32,
-    "text_book_scrolling": 16,
-    "promblems_solving": 50,
-    "forum_activity": 10
-  },
-  {
-    "username": "matveyukov",
-    "completion_status": "Не начал",
-    "days_online": 27,
-    "time_on_course": 62,
-    "video_watching": 38,
-    "text_book_scrolling": 20,
-    "promblems_solving": 60,
-    "forum_activity": 13
-  },
-  {
-    "username": "mdobrobaba",
-    "completion_status": "Прошел курс",
-    "days_online": 23,
-    "time_on_course": 52,
-    "video_watching": 29,
-    "text_book_scrolling": 14,
-    "promblems_solving": 48,
-    "forum_activity": 9
-  },
-  {
-    "username": "mengyas",
-    "completion_status": "Не начал",
-    "days_online": 28,
-    "time_on_course": 60,
-    "video_watching": 35,
-    "text_book_scrolling": 18,
-    "promblems_solving": 55,
-    "forum_activity": 12
-  },
-  {
-    "username": "mezan",
-    "completion_status": "Прошел курс",
-    "days_online": 25,
-    "time_on_course": 56,
-    "video_watching": 30,
-    "text_book_scrolling": 15,
-    "promblems_solving": 50,
-    "forum_activity": 10
-  },
-  {
-    "username": "mihajlovaev",
-    "completion_status": "Не начал",
-    "days_online": 24,
-    "time_on_course": 54,
-    "video_watching": 29,
-    "text_book_scrolling": 14,
-    "promblems_solving": 48,
-    "forum_activity": 9
-  },
-  {
-    "username": "mileniniv",
-    "completion_status": "Прошел курс",
-    "days_online": 30,
-    "time_on_course": 70,
-    "video_watching": 40,
-    "text_book_scrolling": 20,
-    "promblems_solving": 65,
-    "forum_activity": 15
-  },
-  {
-    "username": "mironovaekal",
-    "completion_status": "Не начал",
-    "days_online": 23,
-    "time_on_course": 52,
-    "video_watching": 28,
-    "text_book_scrolling": 12,
-    "promblems_solving": 45,
-    "forum_activity": 8
-  },
-  {
-    "username": "mishchenkoma",
-    "completion_status": "Прошел курс",
-    "days_online": 26,
-    "time_on_course": 58,
-    "video_watching": 35,
-    "text_book_scrolling": 18,
-    "promblems_solving": 55,
-    "forum_activity": 12
-  },
-  {
-    "username": "muravevalv",
-    "completion_status": "Не начал",
-    "days_online": 27,
-    "time_on_course": 62,
-    "video_watching": 38,
-    "text_book_scrolling": 20,
-    "promblems_solving": 60,
-    "forum_activity": 13
-  },
-  {
-    "username": "novikovaea",
-    "completion_status": "Прошла курс",
-    "days_online": 29,
-    "time_on_course": 65,
-    "video_watching": 42,
-    "text_book_scrolling": 22,
-    "promblems_solving": 65,
-    "forum_activity": 14
-  },
-  {
-    "username": "obedkovaav",
-    "completion_status": "Не начал",
-    "days_online": 22,
-    "time_on_course": 48,
-    "video_watching": 25,
-    "text_book_scrolling": 13,
-    "promblems_solving": 35,
-    "forum_activity": 7
-  },
-  {
-    "username": "oegorova",
-    "completion_status": "Прошла курс",
-    "days_online": 30,
-    "time_on_course": 70,
-    "video_watching": 40,
-    "text_book_scrolling": 20,
-    "promblems_solving": 65,
-    "forum_activity": 15
-  },
-  {
-    "username": "olga_strelnikova",
-    "completion_status": "Не начал",
-    "days_online": 25,
-    "time_on_course": 56,
-    "video_watching": 30,
-    "text_book_scrolling": 15,
-    "promblems_solving": 40,
-    "forum_activity": 8
-  },
-  {
-    "username": "parnovaim",
-    "completion_status": "Прошел курс",
-    "days_online": 26,
-    "time_on_course": 58,
-    "video_watching": 32,
-    "text_book_scrolling": 16,
-    "promblems_solving": 50,
-    "forum_activity": 10
-  },
-  {
-    "username": "pavlovatv",
-    "completion_status": "Не начал",
-    "days_online": 27,
-    "time_on_course": 62,
-    "video_watching": 38,
-    "text_book_scrolling": 20,
-    "promblems_solving": 60,
-    "forum_activity": 13
-  },
-  {
-    "username": "petrik",
-    "completion_status": "Прошел курс",
-    "days_online": 28,
-    "time_on_course": 60,
-    "video_watching": 35,
-    "text_book_scrolling": 18,
-    "promblems_solving": 55,
-    "forum_activity": 12
-  },
-  {
-    "username": "petrovake",
-    "completion_status": "Не начал",
-    "days_online": 29,
-    "time_on_course": 65,
-    "video_watching": 42,
-    "text_book_scrolling": 22,
-    "promblems_solving": 65,
-    "forum_activity": 14
-  },
-  {
-    "username": "petrovarts",
-    "completion_status": "Прошел курс",
-    "days_online": 23,
-    "time_on_course": 52,
-    "video_watching": 29,
-    "text_book_scrolling": 14,
-    "promblems_solving": 48,
-    "forum_activity": 9
-  },
-  {
-    "username": "plotnikoviv",
-    "completion_status": "Не начал",
-    "days_online": 24,
-    "time_on_course": 54,
-    "video_watching": 29,
-    "text_book_scrolling": 14,
-    "promblems_solving": 48,
-    "forum_activity": 9
-  },
-  {
-    "username": "polikarpovoa",
-    "completion_status": "Прошел курс",
-    "days_online": 30,
-    "time_on_course": 70,
-    "video_watching": 40,
-    "text_book_scrolling": 20,
-    "promblems_solving": 65,
-    "forum_activity": 15
-  },
-  {
-    "username": "ponkratovaaa",
-    "completion_status": "Не начал",
-    "days_online": 23,
-    "time_on_course": 52,
-    "video_watching": 28,
-    "text_book_scrolling": 12,
-    "promblems_solving": 45,
-    "forum_activity": 8
-  },
-  {
-    "username": "popovaanvl",
-    "completion_status": "Прошла курс",
-    "days_online": 29,
-    "time_on_course": 65,
-    "video_watching": 42,
-    "text_book_scrolling": 22,
-    "promblems_solving": 65,
-    "forum_activity": 14
-  },
-  {
-    "username": "popovaverval",
-    "completion_status": "Не начал",
-    "days_online": 30,
-    "time_on_course": 70,
-    "video_watching": 40,
-    "text_book_scrolling": 20,
-    "promblems_solving": 65,
-    "forum_activity": 15
-  }
+const rowsStudents = [
+    {
+        "username": "abrosimovaoe",
+        "completion_status": "Прошел курс",
+        "days_online": 25,
+        "time_on_course": 56,
+        "video_watching": 30,
+        "text_book_scrolling": 15,
+        "promblems_solving": 50,
+        "forum_activity": 10
+    },
+    {
+        "username": "akimovnv",
+        "completion_status": "Не начал",
+        "days_online": 20,
+        "time_on_course": 45,
+        "video_watching": 20,
+        "text_book_scrolling": 10,
+        "promblems_solving": 30,
+        "forum_activity": 5
+    },
+    {
+        "username": "alenatresh",
+        "completion_status": "Начал, но не завершил",
+        "days_online": 30,
+        "time_on_course": 70,
+        "video_watching": 40,
+        "text_book_scrolling": 20,
+        "promblems_solving": 60,
+        "forum_activity": 15
+    },
+    {
+        "username": "anastasiiashadchneva",
+        "completion_status": "Прошла курс",
+        "days_online": 28,
+        "time_on_course": 60,
+        "video_watching": 35,
+        "text_book_scrolling": 18,
+        "promblems_solving": 55,
+        "forum_activity": 12
+    },
+    {
+        "username": "andrey_andreew",
+        "completion_status": "Не начал",
+        "days_online": 23,
+        "time_on_course": 52,
+        "video_watching": 29,
+        "text_book_scrolling": 14,
+        "promblems_solving": 48,
+        "forum_activity": 9
+    },
+    {
+        "username": "antondnn",
+        "completion_status": "Прошел курс",
+        "days_online": 27,
+        "time_on_course": 62,
+        "video_watching": 38,
+        "text_book_scrolling": 20,
+        "promblems_solving": 60,
+        "forum_activity": 13
+    },
+    {
+        "username": "antoni_chupis",
+        "completion_status": "Не начал",
+        "days_online": 22,
+        "time_on_course": 48,
+        "video_watching": 25,
+        "text_book_scrolling": 13,
+        "promblems_solving": 35,
+        "forum_activity": 7
+    },
+    {
+        "username": "antonkireew",
+        "completion_status": "Начал, но не завершил",
+        "days_online": 29,
+        "time_on_course": 65,
+        "video_watching": 42,
+        "text_book_scrolling": 22,
+        "promblems_solving": 65,
+        "forum_activity": 14
+    },
+    {
+        "username": "balashovasa",
+        "completion_status": "Прошел курс",
+        "days_online": 26,
+        "time_on_course": 58,
+        "video_watching": 35,
+        "text_book_scrolling": 18,
+        "promblems_solving": 55,
+        "forum_activity": 12
+    },
+    {
+        "username": "bazhutinaov",
+        "completion_status": "Не начал",
+        "days_online": 23,
+        "time_on_course": 52,
+        "video_watching": 28,
+        "text_book_scrolling": 12,
+        "promblems_solving": 45,
+        "forum_activity": 8
+    },
+    {
+        "username": "boitsev",
+        "completion_status": "Прошел курс",
+        "days_online": 30,
+        "time_on_course": 70,
+        "video_watching": 40,
+        "text_book_scrolling": 20,
+        "promblems_solving": 65,
+        "forum_activity": 15
+    },
+    {
+        "username": "bondarevskijmn",
+        "completion_status": "Не начал",
+        "days_online": 24,
+        "time_on_course": 54,
+        "video_watching": 29,
+        "text_book_scrolling": 14,
+        "promblems_solving": 48,
+        "forum_activity": 9
+    },
+    {
+        "username": "braunve",
+        "completion_status": "Прошел курс",
+        "days_online": 25,
+        "time_on_course": 56,
+        "video_watching": 30,
+        "text_book_scrolling": 15,
+        "promblems_solving": 50,
+        "forum_activity": 10
+    },
+    {
+        "username": "burbelaas",
+        "completion_status": "Не начал",
+        "days_online": 20,
+        "time_on_course": 45,
+        "video_watching": 20,
+        "text_book_scrolling": 10,
+        "promblems_solving": 30,
+        "forum_activity": 5
+    },
+    {
+        "username": "cherepanovaev",
+        "completion_status": "Прошел курс",
+        "days_online": 28,
+        "time_on_course": 60,
+        "video_watching": 35,
+        "text_book_scrolling": 18,
+        "promblems_solving": 55,
+        "forum_activity": 12
+    },
+    {
+        "username": "chursinovys",
+        "completion_status": "Начал, но не завершил",
+        "days_online": 29,
+        "time_on_course": 65,
+        "video_watching": 42,
+        "text_book_scrolling": 22,
+        "promblems_solving": 65,
+        "forum_activity": 14
+    },
+    {
+        "username": "dajbageds",
+        "completion_status": "Прошел курс",
+        "days_online": 27,
+        "time_on_course": 62,
+        "video_watching": 38,
+        "text_book_scrolling": 20,
+        "promblems_solving": 60,
+        "forum_activity": 13
+    },
+    {
+        "username": "demidovaee",
+        "completion_status": "Не начал",
+        "days_online": 22,
+        "time_on_course": 48,
+        "video_watching": 25,
+        "text_book_scrolling": 13,
+        "promblems_solving": 35,
+        "forum_activity": 7
+    },
+    {
+        "username": "dgluschenko",
+        "completion_status": "Прошел курс",
+        "days_online": 26,
+        "time_on_course": 58,
+        "video_watching": 35,
+        "text_book_scrolling": 18,
+        "promblems_solving": 55,
+        "forum_activity": 12
+    },
+    {
+        "username": "dubravinna",
+        "completion_status": "Не начал",
+        "days_online": 21,
+        "time_on_course": 50,
+        "video_watching": 30,
+        "text_book_scrolling": 15,
+        "promblems_solving": 40,
+        "forum_activity": 8
+    },
+    {
+        "username": "dvolchek",
+        "completion_status": "Прошел курс",
+        "days_online": 30,
+        "time_on_course": 70,
+        "video_watching": 40,
+        "text_book_scrolling": 20,
+        "promblems_solving": 65,
+        "forum_activity": 15
+    },
+    {
+        "username": "dyachenkoov",
+        "completion_status": "Не начал",
+        "days_online": 23,
+        "time_on_course": 52,
+        "video_watching": 28,
+        "text_book_scrolling": 12,
+        "promblems_solving": 45,
+        "forum_activity": 8
+    },
+    {
+        "username": "dyakonovasg",
+        "completion_status": "Прошел курс",
+        "days_online": 29,
+        "time_on_course": 65,
+        "video_watching": 42,
+        "text_book_scrolling": 22,
+        "promblems_solving": 65,
+        "forum_activity": 14
+    },
+    {
+        "username": "egmichailova",
+        "completion_status": "Не начал",
+        "days_online": 24,
+        "time_on_course": 54,
+        "video_watching": 29,
+        "text_book_scrolling": 14,
+        "promblems_solving": 48,
+        "forum_activity": 9
+    },
+    {
+        "username": "evsikovks",
+        "completion_status": "Прошел курс",
+        "days_online": 25,
+        "time_on_course": 56,
+        "video_watching": 30,
+        "text_book_scrolling": 15,
+        "promblems_solving": 50,
+        "forum_activity": 10
+    },
+    {
+        "username": "ezhovaga",
+        "completion_status": "Не начал",
+        "days_online": 20,
+        "time_on_course": 45,
+        "video_watching": 20,
+        "text_book_scrolling": 10,
+        "promblems_solving": 30,
+        "forum_activity": 5
+    },
+    {
+        "username": "fadeevrv",
+        "completion_status": "Прошел курс",
+        "days_online": 28,
+        "time_on_course": 60,
+        "video_watching": 35,
+        "text_book_scrolling": 18,
+        "promblems_solving": 55,
+        "forum_activity": 12
+    },
+    {
+        "username": "fastmotor",
+        "completion_status": "Не начал",
+        "days_online": 26,
+        "time_on_course": 58,
+        "video_watching": 32,
+        "text_book_scrolling": 16,
+        "promblems_solving": 50,
+        "forum_activity": 10
+    },
+    {
+        "username": "gadzhieva_elvira",
+        "completion_status": "Прошла курс",
+        "days_online": 27,
+        "time_on_course": 62,
+        "video_watching": 38,
+        "text_book_scrolling": 20,
+        "promblems_solving": 60,
+        "forum_activity": 13
+    },
+    {
+        "username": "gorbunovaa",
+        "completion_status": "Не начал",
+        "days_online": 22,
+        "time_on_course": 48,
+        "video_watching": 25,
+        "text_book_scrolling": 13,
+        "promblems_solving": 35,
+        "forum_activity": 7
+    },
+    {
+        "username": "gorumo",
+        "completion_status": "Прошел курс",
+        "days_online": 30,
+        "time_on_course": 70,
+        "video_watching": 40,
+        "text_book_scrolling": 20,
+        "promblems_solving": 65,
+        "forum_activity": 15
+    },
+    {
+        "username": "grafeeva",
+        "completion_status": "Не начал",
+        "days_online": 23,
+        "time_on_course": 52,
+        "video_watching": 28,
+        "text_book_scrolling": 12,
+        "promblems_solving": 45,
+        "forum_activity": 8
+    },
+    {
+        "username": "gudisea",
+        "completion_status": "Прошел курс",
+        "days_online": 29,
+        "time_on_course": 65,
+        "video_watching": 42,
+        "text_book_scrolling": 22,
+        "promblems_solving": 65,
+        "forum_activity": 14
+    },
+    {
+        "username": "hodyrevan",
+        "completion_status": "Не начал",
+        "days_online": 24,
+        "time_on_course": 54,
+        "video_watching": 29,
+        "text_book_scrolling": 14,
+        "promblems_solving": 48,
+        "forum_activity": 9
+    },
+    {
+        "username": "holodnayaev",
+        "completion_status": "Прошел курс",
+        "days_online": 25,
+        "time_on_course": 56,
+        "video_watching": 30,
+        "text_book_scrolling": 15,
+        "promblems_solving": 50,
+        "forum_activity": 10
+    },
+    {
+        "username": "ibatullinaav",
+        "completion_status": "Не начал",
+        "days_online": 20,
+        "time_on_course": 45,
+        "video_watching": 20,
+        "text_book_scrolling": 10,
+        "promblems_solving": 30,
+        "forum_activity": 5
+    },
+    {
+        "username": "id_brunetochka",
+        "completion_status": "Прошла курс",
+        "days_online": 28,
+        "time_on_course": 60,
+        "video_watching": 35,
+        "text_book_scrolling": 18,
+        "promblems_solving": 55,
+        "forum_activity": 12
+    },
+    {
+        "username": "id160430089",
+        "completion_status": "Не начал",
+        "days_online": 29,
+        "time_on_course": 65,
+        "video_watching": 42,
+        "text_book_scrolling": 22,
+        "promblems_solving": 65,
+        "forum_activity": 14
+    },
+    {
+        "username": "kazymovaya",
+        "completion_status": "Прошла курс",
+        "days_online": 30,
+        "time_on_course": 70,
+        "video_watching": 40,
+        "text_book_scrolling": 20,
+        "promblems_solving": 65,
+        "forum_activity": 15
+    },
+    {
+        "username": "komarovdi",
+        "completion_status": "Не начал",
+        "days_online": 25,
+        "time_on_course": 56,
+        "video_watching": 30,
+        "text_book_scrolling": 15,
+        "promblems_solving": 50,
+        "forum_activity": 10
+    },
+    {
+        "username": "konyaev-alexsandr",
+        "completion_status": "Прошел курс",
+        "days_online": 26,
+        "time_on_course": 58,
+        "video_watching": 32,
+        "text_book_scrolling": 16,
+        "promblems_solving": 50,
+        "forum_activity": 10
+    },
+    {
+        "username": "kotovaly",
+        "completion_status": "Не начал",
+        "days_online": 27,
+        "time_on_course": 62,
+        "video_watching": 38,
+        "text_book_scrolling": 20,
+        "promblems_solving": 60,
+        "forum_activity": 13
+    },
+    {
+        "username": "kozminyhms",
+        "completion_status": "Прошел курс",
+        "days_online": 23,
+        "time_on_course": 52,
+        "video_watching": 29,
+        "text_book_scrolling": 14,
+        "promblems_solving": 48,
+        "forum_activity": 9
+    },
+    {
+        "username": "kozyrevaes",
+        "completion_status": "Не начал",
+        "days_online": 22,
+        "time_on_course": 48,
+        "video_watching": 25,
+        "text_book_scrolling": 13,
+        "promblems_solving": 35,
+        "forum_activity": 7
+    },
+    {
+        "username": "krapivinasa",
+        "completion_status": "Прошла курс",
+        "days_online": 29,
+        "time_on_course": 65,
+        "video_watching": 42,
+        "text_book_scrolling": 22,
+        "promblems_solving": 65,
+        "forum_activity": 14
+    },
+    {
+        "username": "krylovaos",
+        "completion_status": "Не начал",
+        "days_online": 30,
+        "time_on_course": 70,
+        "video_watching": 40,
+        "text_book_scrolling": 20,
+        "promblems_solving": 65,
+        "forum_activity": 15
+    },
+    {
+        "username": "kucheruksv",
+        "completion_status": "Прошел курс",
+        "days_online": 24,
+        "time_on_course": 54,
+        "video_watching": 29,
+        "text_book_scrolling": 14,
+        "promblems_solving": 48,
+        "forum_activity": 9
+    },
+    {
+        "username": "kushmanovati",
+        "completion_status": "Не начал",
+        "days_online": 21,
+        "time_on_course": 50,
+        "video_watching": 30,
+        "text_book_scrolling": 15,
+        "promblems_solving": 40,
+        "forum_activity": 8
+    },
+    {
+        "username": "kuznecovaem",
+        "completion_status": "Прошла курс",
+        "days_online": 26,
+        "time_on_course": 58,
+        "video_watching": 32,
+        "text_book_scrolling": 16,
+        "promblems_solving": 50,
+        "forum_activity": 10
+    },
+    {
+        "username": "lactea",
+        "completion_status": "Не начал",
+        "days_online": 27,
+        "time_on_course": 62,
+        "video_watching": 38,
+        "text_book_scrolling": 20,
+        "promblems_solving": 60,
+        "forum_activity": 13
+    },
+    {
+        "username": "larkk31",
+        "completion_status": "Прошел курс",
+        "days_online": 28,
+        "time_on_course": 60,
+        "video_watching": 35,
+        "text_book_scrolling": 18,
+        "promblems_solving": 55,
+        "forum_activity": 12
+    },
+    {
+        "username": "lazutkinn",
+        "completion_status": "Не начал",
+        "days_online": 23,
+        "time_on_course": 52,
+        "video_watching": 28,
+        "text_book_scrolling": 12,
+        "promblems_solving": 45,
+        "forum_activity": 8
+    },
+    {
+        "username": "lazyrinms",
+        "completion_status": "Прошел курс",
+        "days_online": 24,
+        "time_on_course": 54,
+        "video_watching": 29,
+        "text_book_scrolling": 14,
+        "promblems_solving": 48,
+        "forum_activity": 9
+    },
+    {
+        "username": "lohnevaei",
+        "completion_status": "Не начал",
+        "days_online": 25,
+        "time_on_course": 56,
+        "video_watching": 30,
+        "text_book_scrolling": 15,
+        "promblems_solving": 40,
+        "forum_activity": 8
+    },
+    {
+        "username": "lyalikovavg",
+        "completion_status": "Прошел курс",
+        "days_online": 30,
+        "time_on_course": 70,
+        "video_watching": 40,
+        "text_book_scrolling": 20,
+        "promblems_solving": 65,
+        "forum_activity": 15
+    },
+    {
+        "username": "mariia_i",
+        "completion_status": "Не начал",
+        "days_online": 20,
+        "time_on_course": 45,
+        "video_watching": 20,
+        "text_book_scrolling": 10,
+        "promblems_solving": 30,
+        "forum_activity": 5
+    },
+    {
+        "username": "markinaekal",
+        "completion_status": "Прошла курс",
+        "days_online": 29,
+        "time_on_course": 65,
+        "video_watching": 42,
+        "text_book_scrolling": 22,
+        "promblems_solving": 65,
+        "forum_activity": 14
+    },
+    {
+        "username": "martyshevdv",
+        "completion_status": "Не начал",
+        "days_online": 22,
+        "time_on_course": 48,
+        "video_watching": 25,
+        "text_book_scrolling": 13,
+        "promblems_solving": 35,
+        "forum_activity": 7
+    },
+    {
+        "username": "matveevamn",
+        "completion_status": "Прошел курс",
+        "days_online": 26,
+        "time_on_course": 58,
+        "video_watching": 32,
+        "text_book_scrolling": 16,
+        "promblems_solving": 50,
+        "forum_activity": 10
+    },
+    {
+        "username": "matveyukov",
+        "completion_status": "Не начал",
+        "days_online": 27,
+        "time_on_course": 62,
+        "video_watching": 38,
+        "text_book_scrolling": 20,
+        "promblems_solving": 60,
+        "forum_activity": 13
+    },
+    {
+        "username": "mdobrobaba",
+        "completion_status": "Прошел курс",
+        "days_online": 23,
+        "time_on_course": 52,
+        "video_watching": 29,
+        "text_book_scrolling": 14,
+        "promblems_solving": 48,
+        "forum_activity": 9
+    },
+    {
+        "username": "mengyas",
+        "completion_status": "Не начал",
+        "days_online": 28,
+        "time_on_course": 60,
+        "video_watching": 35,
+        "text_book_scrolling": 18,
+        "promblems_solving": 55,
+        "forum_activity": 12
+    },
+    {
+        "username": "mezan",
+        "completion_status": "Прошел курс",
+        "days_online": 25,
+        "time_on_course": 56,
+        "video_watching": 30,
+        "text_book_scrolling": 15,
+        "promblems_solving": 50,
+        "forum_activity": 10
+    },
+    {
+        "username": "mihajlovaev",
+        "completion_status": "Не начал",
+        "days_online": 24,
+        "time_on_course": 54,
+        "video_watching": 29,
+        "text_book_scrolling": 14,
+        "promblems_solving": 48,
+        "forum_activity": 9
+    },
+    {
+        "username": "mileniniv",
+        "completion_status": "Прошел курс",
+        "days_online": 30,
+        "time_on_course": 70,
+        "video_watching": 40,
+        "text_book_scrolling": 20,
+        "promblems_solving": 65,
+        "forum_activity": 15
+    },
+    {
+        "username": "mironovaekal",
+        "completion_status": "Не начал",
+        "days_online": 23,
+        "time_on_course": 52,
+        "video_watching": 28,
+        "text_book_scrolling": 12,
+        "promblems_solving": 45,
+        "forum_activity": 8
+    },
+    {
+        "username": "mishchenkoma",
+        "completion_status": "Прошел курс",
+        "days_online": 26,
+        "time_on_course": 58,
+        "video_watching": 35,
+        "text_book_scrolling": 18,
+        "promblems_solving": 55,
+        "forum_activity": 12
+    },
+    {
+        "username": "muravevalv",
+        "completion_status": "Не начал",
+        "days_online": 27,
+        "time_on_course": 62,
+        "video_watching": 38,
+        "text_book_scrolling": 20,
+        "promblems_solving": 60,
+        "forum_activity": 13
+    },
+    {
+        "username": "novikovaea",
+        "completion_status": "Прошла курс",
+        "days_online": 29,
+        "time_on_course": 65,
+        "video_watching": 42,
+        "text_book_scrolling": 22,
+        "promblems_solving": 65,
+        "forum_activity": 14
+    },
+    {
+        "username": "obedkovaav",
+        "completion_status": "Не начал",
+        "days_online": 22,
+        "time_on_course": 48,
+        "video_watching": 25,
+        "text_book_scrolling": 13,
+        "promblems_solving": 35,
+        "forum_activity": 7
+    },
+    {
+        "username": "oegorova",
+        "completion_status": "Прошла курс",
+        "days_online": 30,
+        "time_on_course": 70,
+        "video_watching": 40,
+        "text_book_scrolling": 20,
+        "promblems_solving": 65,
+        "forum_activity": 15
+    },
+    {
+        "username": "olga_strelnikova",
+        "completion_status": "Не начал",
+        "days_online": 25,
+        "time_on_course": 56,
+        "video_watching": 30,
+        "text_book_scrolling": 15,
+        "promblems_solving": 40,
+        "forum_activity": 8
+    },
+    {
+        "username": "parnovaim",
+        "completion_status": "Прошел курс",
+        "days_online": 26,
+        "time_on_course": 58,
+        "video_watching": 32,
+        "text_book_scrolling": 16,
+        "promblems_solving": 50,
+        "forum_activity": 10
+    },
+    {
+        "username": "pavlovatv",
+        "completion_status": "Не начал",
+        "days_online": 27,
+        "time_on_course": 62,
+        "video_watching": 38,
+        "text_book_scrolling": 20,
+        "promblems_solving": 60,
+        "forum_activity": 13
+    },
+    {
+        "username": "petrik",
+        "completion_status": "Прошел курс",
+        "days_online": 28,
+        "time_on_course": 60,
+        "video_watching": 35,
+        "text_book_scrolling": 18,
+        "promblems_solving": 55,
+        "forum_activity": 12
+    },
+    {
+        "username": "petrovake",
+        "completion_status": "Не начал",
+        "days_online": 29,
+        "time_on_course": 65,
+        "video_watching": 42,
+        "text_book_scrolling": 22,
+        "promblems_solving": 65,
+        "forum_activity": 14
+    },
+    {
+        "username": "petrovarts",
+        "completion_status": "Прошел курс",
+        "days_online": 23,
+        "time_on_course": 52,
+        "video_watching": 29,
+        "text_book_scrolling": 14,
+        "promblems_solving": 48,
+        "forum_activity": 9
+    },
+    {
+        "username": "plotnikoviv",
+        "completion_status": "Не начал",
+        "days_online": 24,
+        "time_on_course": 54,
+        "video_watching": 29,
+        "text_book_scrolling": 14,
+        "promblems_solving": 48,
+        "forum_activity": 9
+    },
+    {
+        "username": "polikarpovoa",
+        "completion_status": "Прошел курс",
+        "days_online": 30,
+        "time_on_course": 70,
+        "video_watching": 40,
+        "text_book_scrolling": 20,
+        "promblems_solving": 65,
+        "forum_activity": 15
+    },
+    {
+        "username": "ponkratovaaa",
+        "completion_status": "Не начал",
+        "days_online": 23,
+        "time_on_course": 52,
+        "video_watching": 28,
+        "text_book_scrolling": 12,
+        "promblems_solving": 45,
+        "forum_activity": 8
+    },
+    {
+        "username": "popovaanvl",
+        "completion_status": "Прошла курс",
+        "days_online": 29,
+        "time_on_course": 65,
+        "video_watching": 42,
+        "text_book_scrolling": 22,
+        "promblems_solving": 65,
+        "forum_activity": 14
+    },
+    {
+        "username": "popovaverval",
+        "completion_status": "Не начал",
+        "days_online": 30,
+        "time_on_course": 70,
+        "video_watching": 40,
+        "text_book_scrolling": 20,
+        "promblems_solving": 65,
+        "forum_activity": 15
+    }
 ];
 
 const boxTitleStudents = 'Студенты курса "Название курса"';

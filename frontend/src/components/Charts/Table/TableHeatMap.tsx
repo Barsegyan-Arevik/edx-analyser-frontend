@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,13 +9,12 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
-import { Box, Modal, Button } from '@mui/material';
-import { SlMagnifier } from "react-icons/sl";
+import {Box, Button} from '@mui/material';
+import {SlMagnifier} from "react-icons/sl";
 import './TableHeatMap.css';
-import CustomBoxModalWindow from '../CustomBoxModalWindow';
 import ModalWindow from '../ModalWindow';
 import TableHeatMapInsideWindow from './TableHeatMapInsideModalWindow';
-import { getGreenColorScale } from "../../../utils";
+import {getGreenColorScale} from "../../../utils";
 
 interface RowData {
     id: number;
@@ -36,7 +34,15 @@ export type TableHeatMapProps = {
 }
 
 
-export default function TableHeatMap({ rows, boxTitle, columnName, columnMedian,columnCount, labelText, paperSize }: TableHeatMapProps) {
+export default function TableHeatMap({
+                                         rows,
+                                         boxTitle,
+                                         columnName,
+                                         columnMedian,
+                                         columnCount,
+                                         labelText,
+                                         paperSize
+                                     }: TableHeatMapProps) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState('');
@@ -77,9 +83,9 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnMedian,
     const minMedianTime = Math.min(...timeMedianArray);
     const maxMedianTime = Math.max(...timeMedianArray);
     const medianTimeRange = maxMedianTime - minMedianTime;
-    
+
     return (
-        <Paper sx={{ overflow: 'hidden', padding: '10px', width: paperSize }}>
+        <Paper sx={{overflow: 'hidden', padding: '10px', width: paperSize}}>
             <Box
                 sx={{
                     fontSize: 16,
@@ -96,7 +102,7 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnMedian,
                 >
                     {boxTitle}
                     <Button onClick={handleModalOpen}>
-                        <SlMagnifier />
+                        <SlMagnifier/>
                     </Button>
                 </Box>
             </Box>
@@ -124,7 +130,7 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnMedian,
                     labelText={labelText}
                 />
             </ModalWindow>
-            <TableContainer sx={{ height: 400 }}>
+            <TableContainer sx={{height: 400}}>
                 <Table stickyHeader size="small" aria-label="sticky table">
                     <TableHead>
                         <TableRow>
@@ -134,7 +140,7 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnMedian,
                             <TableCell>{columnMedian}</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableBody sx={{'&:last-child td, &:last-child th': {border: 0}}}>
                         {filteredRows
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row, index) => (
