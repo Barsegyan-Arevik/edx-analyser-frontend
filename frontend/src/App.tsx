@@ -13,7 +13,7 @@ import {IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOffOutline} from "rea
 import {FiMousePointer} from "react-icons/fi";
 import {RiTeamLine} from "react-icons/ri";
 import {IoVideocamOutline} from "react-icons/io5";
-import CoursePages from "./pages/CoursePages/CoursePages";
+import PagesSectionPage from "./pages/PagesSectionPage/PagesSectionPage";
 
 const courseInfoPageProps: CourseInfoPageProps = {
     courseAnalyticsProps: courseAnalyticsProps,
@@ -74,7 +74,7 @@ export default function App() {
                 <Routes>
                     <Route path={"/"} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
                     <Route path={"/courses/:courseId/common"} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
-                    <Route path={"/courses/:courseId/pages"} element={<CoursePages/>}/>
+                    <Route path={"/courses/:courseId/pages"} element={<PagesSectionPage/>}/>
 
                     <Route path={"/courses/:courseId/students"} element={<StudentSearchPage/>}/>
                     <Route path={"/courses/:courseId/students/:id"} element={<StudentPage/>}/>
