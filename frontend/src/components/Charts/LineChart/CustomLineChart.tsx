@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useState } from 'react';
 import { Slider, Box } from '@mui/material';
 import { LineChart } from '@mui/x-charts/LineChart';
-
 
 function parseCSV(csvData: string): { dates: Date[], values: number[] } {
     const csvRows = csvData.split('\n');
