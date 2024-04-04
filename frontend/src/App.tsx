@@ -12,7 +12,7 @@ import {documentSectionProps} from './pages/CourseInfoPage/CourseInfoPageData';
 import {IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOffOutline} from "react-icons/io5";
 import {FiMousePointer} from "react-icons/fi";
 import {RiTeamLine} from "react-icons/ri";
-import { IoVideocamOutline } from "react-icons/io5";
+import {IoVideocamOutline} from "react-icons/io5";
 import CoursePages from "./pages/CoursePages/CoursePages";
 
 const courseInfoPageProps: CourseInfoPageProps = {
@@ -30,44 +30,41 @@ const menuItems = [
             {
                 path: "/common",
                 name: "Общая информация",
-                icon:<MdOutlineAnalytics/>
+                icon: <MdOutlineAnalytics/>
             },
             {
                 path: "/pages",
                 name: "Популярность страниц",
-                icon: <FiMousePointer />
+                icon: <FiMousePointer/>
             },
             {
                 path: "/textbook",
                 name: "Работа с учебником",
-                icon: <IoBookOutline />
+                icon: <IoBookOutline/>
             },
             {
                 path: "/video",
                 name: "Просмотры видео",
-                icon: <IoVideocamOutline />
+                icon: <IoVideocamOutline/>
             },
             {
                 path: "/problems",
                 name: "Решение задач",
-                icon: <IoExtensionPuzzleOutline />
+                icon: <IoExtensionPuzzleOutline/>
             },
             {
                 path: "/forum",
                 name: "Активность на форуме",
-                icon: <MdOutlineForum />
+                icon: <MdOutlineForum/>
             },
         ]
 
     },
     {
         path: "/students",
-        name:
-            "Студенты",
-        icon:
-            <RiTeamLine/>
-    }
-    ,
+        name: "Студенты",
+        icon: <RiTeamLine/>
+    },
 ]
 
 export default function App() {
@@ -75,12 +72,12 @@ export default function App() {
         <BrowserRouter>
             <SideBar menuItems={menuItems}>
                 <Routes>
-                    <Route path={"/"} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
-                    <Route path={"/common"} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
-                    <Route path={"/pages"} element={<CoursePages />}/>
+                    <Route path={"/courses/:courseId/"} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
+                    <Route path={"/courses/:courseId/common"} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
+                    <Route path={"/courses/:courseId/pages"} element={<CoursePages/>}/>
 
-                    <Route path={"/students"} element={<StudentSearchPage/>}/>
-                    <Route path={"/students:id"} element={<StudentPage/>}/>
+                    <Route path={"/courses/:courseId/students"} element={<StudentSearchPage/>}/>
+                    <Route path={"/courses/:courseId/students/:id"} element={<StudentPage/>}/>
                 </Routes>
             </SideBar>
         </BrowserRouter>
