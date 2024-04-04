@@ -6,7 +6,6 @@
   "dependencies": {
     "@mui/lab": "^5.0.0-alpha.165",
     "@mui/material": "^5.15.7",
-    "@mui/styles": "^5.15.10",
     "@mui/x-charts": "^6.19.3",
     "@mui/x-data-grid": "^6.19.3",
     "@mui/x-date-pickers": "^6.19.3",
