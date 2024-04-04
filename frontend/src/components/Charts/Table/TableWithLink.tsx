@@ -11,7 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
 import { Box, Button } from '@mui/material';
-import { SlMagnifier } from "react-icons/sl";
+import { getGreenColorScale } from "../../../utils";
 
 export type RowData = {
   id: number;
@@ -27,20 +27,6 @@ export type TableWithLinkProps = {
   columnCount: string;
   additionalColumn?: string;
   labelText: string;
-}
-
-function lerp(a: number, b: number, t: number) {
-    return a + (b - a) * t;
-}
-
-function getColorScale(timeRange: number, value: number) {
-    const ratio = value / timeRange; // Max population value
-    const brightestColor = [2, 206, 169]; // R, G, B values of bright green
-    const paleColor = [240, 240, 240]; // R, G, B values of pale green
-    const color = brightestColor.map((channel, index) =>
-        Math.round(lerp(paleColor[index], channel, ratio))
-    );
-    return `rgb(${color.join(',')})`;
 }
 
 export default function TableWithLink(props: TableWithLinkProps) {
@@ -162,22 +148,12 @@ export default function TableWithLink(props: TableWithLinkProps) {
                   </TableCell>
                     <TableCell
                         style={{
-                              backgroundColor: row.timeSec ? getColorScale(timeRange, row.timeSec) : 'white',
+                              backgroundColor: row.timeSec ? getGreenColorScale(timeRange, row.timeSec) : 'white',
                               padding: '8px'
                       }}
                   >
                         {row.timeSec}
-                        {/*{row.timeSec +'%'}*/}
                   </TableCell>
-
-                  {/* <TableCell*/}
-                  {/*      style={{*/}
-                  {/*            backgroundColor: row.percent ? getColorScale(timeRangePercents, row.percent) : 'white',*/}
-                  {/*            padding: '8px'*/}
-                  {/*      }}*/}
-                  {/* >*/}
-                  {/*    {row.percent + '%'}*/}
-                  {/*</TableCell>*/}
 
                 </TableRow>
               ))}

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Slider, Box, Modal, Button } from '@mui/material';
-import { LineChart } from '@mui/x-charts/LineChart';
+import * as React from 'react';
+import { useState } from 'react';
+import { Box, Button } from '@mui/material';
 import { SlMagnifier } from "react-icons/sl";
 import Paper from '@mui/material/Paper';
 import ModalWindow from '../ModalWindow';

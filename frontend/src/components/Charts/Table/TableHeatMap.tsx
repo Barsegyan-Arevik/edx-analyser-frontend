@@ -16,6 +16,7 @@ import './TableHeatMap.css';
 import CustomBoxModalWindow from '../CustomBoxModalWindow';
 import ModalWindow from '../ModalWindow';
 import TableHeatMapInsideWindow from './TableHeatMapInsideModalWindow';
+import { getGreenColorScale } from "../../../utils";
 
 interface RowData {
     id: number;
@@ -32,20 +33,6 @@ export type TableHeatMapProps = {
     columnMedian?: string;
     labelText: string;
     paperSize: string;
-}
-
-function lerp(a: number, b: number, t: number) {
-    return a + (b - a) * t;
-}
-
-function getColorScale(timeRange: number, value: number) {
-    const ratio = value / timeRange; // Max population value
-    const brightestColor = [2, 206, 169]; // R, G, B values of bright green
-    const paleColor = [240, 240, 240]; // R, G, B values of pale green
-    const color = brightestColor.map((channel, index) =>
-        Math.round(lerp(paleColor[index], channel, ratio))
-    );
-    return `rgb(${color.join(',')})`;
 }
 
 
@@ -160,7 +147,7 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnMedian,
                                     </TableCell>
                                     <TableCell
                                         style={{
-                                            backgroundColor: row.timeSec ? getColorScale(timeRange, row.timeSec) : 'white',
+                                            backgroundColor: row.timeSec ? getGreenColorScale(timeRange, row.timeSec) : 'white',
                                             padding: '8px'
                                         }}
                                     >
@@ -168,7 +155,7 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnMedian,
                                     </TableCell>
                                     <TableCell
                                         style={{
-                                            backgroundColor: row.medianTime ? getColorScale(medianTimeRange, row.medianTime) : 'white',
+                                            backgroundColor: row.medianTime ? getGreenColorScale(medianTimeRange, row.medianTime) : 'white',
                                             padding: '8px'
                                         }}
                                     >

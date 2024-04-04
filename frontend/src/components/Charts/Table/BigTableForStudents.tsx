@@ -12,6 +12,7 @@ import TextField from '@mui/material/TextField';
 import { Box, Button } from '@mui/material';
 import { PiStudentBold } from "react-icons/pi";
 import { getColorCompletionStatus } from "../../../utils";
+import { getBlueColorScale } from "../../../utils";
 
 export type RowData = {
   id: number;
@@ -38,37 +39,8 @@ export type BigTableProps = {
     forumActivity: string,
 }
 
-
-function lerp(a, b, t) {
-    return a + (b - a) * t;
-}
-
 const colors_triplet_1 = ['#93E4D6', '#FFFBBE', '#FAD8DB']
 const colors_triplet_2 = ['#d9f0ff', '#a3d5ff', '#83c9f4']
-
-
-function getColorScale(timeRange: number, minValue: number, value: number) {
-    value = value - minValue;
-    const ratio = value / (timeRange); // Max population value
-
-    const purpleColor = [163, 213, 255];
-    const mediumBlueColor = [204, 232, 255];
-    const paleBlueColor = [217, 240, 255];
-
-    let color: number[];
-
-    if (value <= 0.5) {
-        color = paleBlueColor.map((channel, index) =>
-            Math.round(lerp(channel, mediumBlueColor[index], ratio))
-        );
-    } else {
-        color = mediumBlueColor.map((channel, index) =>
-            Math.round(lerp(channel, purpleColor[index], ratio))
-        );
-    }
-    return `rgb(${color.join(',')})`;
-}
-
 
 function getColumnRange(columnName, rows) {
     const columnArray = rows.map(row => row[columnName]);
@@ -79,7 +51,6 @@ function getColumnRange(columnName, rows) {
 
     return { range, minVal };
 }
-
 
 
 export default function BigTable(props: BigTableProps) {
@@ -168,7 +139,7 @@ export default function BigTable(props: BigTableProps) {
                     <TableCell
                         style={{
                             fontSize: '16px', color: '#405479',
-                            backgroundColor: row.daysOnline ? getColorScale(daysOnlineRange.range, daysOnlineRange.minVal, row.daysOnline) : 'white'
+                            backgroundColor: row.daysOnline ? getBlueColorScale(daysOnlineRange.range, daysOnlineRange.minVal, row.daysOnline) : 'white'
                         }}
                     >
                             {row.daysOnline}
@@ -178,7 +149,7 @@ export default function BigTable(props: BigTableProps) {
                             style={{
                                 fontSize: '16px',
                                 color: '#405479',
-                                backgroundColor: row.timeOnCourse ? getColorScale(timeOnCourseRange.range, timeOnCourseRange.minVal, row.timeOnCourse) : 'white'
+                                backgroundColor: row.timeOnCourse ? getBlueColorScale(timeOnCourseRange.range, timeOnCourseRange.minVal, row.timeOnCourse) : 'white'
                             }}
                     >
                             {row.timeOnCourse}
@@ -187,7 +158,7 @@ export default function BigTable(props: BigTableProps) {
                     <TableCell
                         style={{
                             fontSize: '16px', color: '#405479',
-                            backgroundColor: row.videoWatching ? getColorScale(videoWatching.range, videoWatching.minVal, row.videoWatching) : 'white',
+                            backgroundColor: row.videoWatching ? getBlueColorScale(videoWatching.range, videoWatching.minVal, row.videoWatching) : 'white',
                             padding: '8px',
                         }}
                     >
@@ -197,7 +168,7 @@ export default function BigTable(props: BigTableProps) {
                     <TableCell
                         style={{
                             fontSize: '16px', color: '#405479',
-                            backgroundColor: row.textbookScrolling ? getColorScale(textbookScrolling.range, textbookScrolling.minVal, row.textbookScrolling) : 'white',
+                            backgroundColor: row.textbookScrolling ? getBlueColorScale(textbookScrolling.range, textbookScrolling.minVal, row.textbookScrolling) : 'white',
                                 padding: '8px'
                         }}
                   >
@@ -206,7 +177,7 @@ export default function BigTable(props: BigTableProps) {
                   <TableCell
                         style={{
                                 fontSize: '16px', color: '#405479',
-                                backgroundColor: row.problemsSolving ? getColorScale(problemsSolving.range, problemsSolving.minVal, row.problemsSolving) : 'white',
+                                backgroundColor: row.problemsSolving ? getBlueColorScale(problemsSolving.range, problemsSolving.minVal, row.problemsSolving) : 'white',
                                 padding: '8px'
                         }}
                   >
@@ -215,7 +186,7 @@ export default function BigTable(props: BigTableProps) {
                   <TableCell
                         style={{
                                 fontSize: '16px', color: '#405479',
-                                backgroundColor: row.forumActivity ? getColorScale(forumActivity.range, forumActivity.minVal, row.forumActivity) : 'white',
+                                backgroundColor: row.forumActivity ? getBlueColorScale(forumActivity.range, forumActivity.minVal, row.forumActivity) : 'white',
                                 padding: '8px'
                         }}
                   >

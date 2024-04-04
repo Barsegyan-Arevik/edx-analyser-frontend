@@ -12,6 +12,7 @@ import TextField from '@mui/material/TextField';
 import { Box } from '@mui/material';
 import './TableHeatMap.css';
 import CustomBoxModalWindow from '../CustomBoxModalWindow';
+import { getGreenColorScale } from "../../../utils";
 
 interface RowData {
     id: number;
@@ -19,19 +20,6 @@ interface RowData {
     timeSec: number;
 }
 
-function lerp(a: number, b: number, t: number) {
-    return a + (b - a) * t;
-}
-
-function getColorScale(timeRange: number, value: number) {
-    const ratio = value / timeRange; // Max population value
-    const brightestColor = [2, 206, 169]; // R, G, B values of bright green
-    const paleColor = [240, 240, 240]; // R, G, B values of pale green
-    const color = brightestColor.map((channel, index) =>
-        Math.round(lerp(paleColor[index], channel, ratio))
-    );
-    return `rgb(${color.join(',')})`;
-}
 
 export type TableHeatMapProps = {
     rows: RowData[];
@@ -145,7 +133,7 @@ export default function TableHeatMapInsideWindow({ rows, boxTitle, columnName, c
                                                     </TableCell>
                                                     <TableCell
                                                         style={{
-                                                            backgroundColor: row.timeSec ? getColorScale(timeRange, row.timeSec) : 'white',
+                                                            backgroundColor: row.timeSec ? getGreenColorScale(timeRange, row.timeSec) : 'white',
                                                             padding: '8px'
                                                         }}
                                                     >
