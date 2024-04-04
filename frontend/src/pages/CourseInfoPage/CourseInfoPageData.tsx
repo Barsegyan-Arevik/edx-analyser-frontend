@@ -1,4 +1,4 @@
-import getStudentEnding from "../../utils";
+import { getStudentEnding } from "../../utils";
 import { CourseAnalyticsProps } from "../../components/unionParts/CourseAnalytics/CourseAnalytics";
 import { VideoSectionProps } from "../../components/unionParts/VideoSection/VideoSection";
 import { DocumentSectionProps } from "../../components/unionParts/DocumentSection/DocumentSection";
