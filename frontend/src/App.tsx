@@ -28,32 +28,32 @@ const menuItems = [
         icon: <MdOutlineAnalytics/>,
         submenu: [
             {
-                path: "/common",
+                path: "/courses/:courseId/common",
                 name: "Общая информация",
                 icon: <MdOutlineAnalytics/>
             },
             {
-                path: "/pages",
+                path: "/courses/:courseId/pages",
                 name: "Популярность страниц",
                 icon: <FiMousePointer/>
             },
             {
-                path: "/textbook",
+                path: "/courses/:courseId/textbook",
                 name: "Работа с учебником",
                 icon: <IoBookOutline/>
             },
             {
-                path: "/video",
+                path: "/courses/:courseId/video",
                 name: "Просмотры видео",
                 icon: <IoVideocamOutline/>
             },
             {
-                path: "/problems",
+                path: "/courses/:courseId/problems",
                 name: "Решение задач",
                 icon: <IoExtensionPuzzleOutline/>
             },
             {
-                path: "/forum",
+                path: "/courses/:courseId/forum",
                 name: "Активность на форуме",
                 icon: <MdOutlineForum/>
             },
@@ -61,7 +61,7 @@ const menuItems = [
 
     },
     {
-        path: "/students",
+        path: "/courses/:courseId/students",
         name: "Студенты",
         icon: <RiTeamLine/>
     },
@@ -72,7 +72,7 @@ export default function App() {
         <BrowserRouter>
             <SideBar menuItems={menuItems}>
                 <Routes>
-                    <Route path={"/courses/:courseId/"} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
+                    <Route path={"/"} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
                     <Route path={"/courses/:courseId/common"} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
                     <Route path={"/courses/:courseId/pages"} element={<CoursePages/>}/>
 
