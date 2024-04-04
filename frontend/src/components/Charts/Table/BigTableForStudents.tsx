@@ -10,7 +10,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import {Box} from '@mui/material';
 import {PiStudentBold} from "react-icons/pi";
-import {getBlueColorScale, getColorCompletionStatus} from "../../../utils/utils";
+import {CompletionStatus, getBlueColorScale, getColorCompletionStatus} from "../../../utils/utils";
 
 export type RowData = {
     id: number;
