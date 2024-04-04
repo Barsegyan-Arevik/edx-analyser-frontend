@@ -16,7 +16,7 @@
   /*outline: 2px solid black;*/
   /*margin-left: 50px;*/
   background-size: 100%;
-  background-image: url('../components/PageBase/Rectangle.svg');
+  background-image: url('../../components/PageBase/Rectangle.svg');
   /*background-color: #1b6d85;*/
   min-width: 1420px;
   background-repeat: no-repeat;
@@ -24,7 +24,7 @@
 }
 
 .bg_image {
-  background-image: url('../components/PageBase/Rectangle.svg');
+  background-image: url('../../components/PageBase/Rectangle.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover; /* Это свойство позволит заполнить всю область заднего фона, сохраняя пропорции */
@@ -64,7 +64,7 @@
   height: var(--spike-height);
   mask-size: var(--spike-width) var(--spike-height);
   background: var(--spike-color);
-  mask-image: url('../components/PageBase/svg-path.svg');
+  mask-image: url('../../components/PageBase/svg-path.svg');
 }
 
 .spikes::before {
