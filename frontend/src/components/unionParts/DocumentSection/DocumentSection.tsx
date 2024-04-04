@@ -88,28 +88,14 @@ export default function DocumentSection(props: DocumentSectionProps) {
             <div className='document_interaction_container'>
                 {/*<div className='item_doc_1'>*/}
                 {/*    <ComplexTable*/}
-                {/*        rows={rowsScrolling}*/}
-                {/*        boxTitle={props.tableScrollingData.boxTitle}*/}
-                {/*        columnName={props.tableScrollingData.columnName}*/}
-                {/*        columnCount={props.tableScrollingData.columnCount}*/}
-                {/*        columnMedian={props.tableScrollingData.columnMedian}*/}
-                {/*        labelText={props.tableScrollingData.labelText}*/}
-                {/*        paperSize={paperSizeScrolling}*/}
-                {/*    /> */}
+                {/*        {...props.tableScrollingData}*/}
+                {/*    />*/}
                 {/*</div>*/}
                 <div className='item_doc_2'>
                     <TableWithLink
-                        data={props.tableSearchedTermsData.data}
-                        boxTitle={props.tableSearchedTermsData.boxTitle}
-                        columnName={props.tableSearchedTermsData.columnName}
-                        columnCount={props.tableSearchedTermsData.columnCount}
-                        labelText={props.tableSearchedTermsData.labelText}
+                        {...props.tableSearchedTermsData}
                     />
                 </div>
-                {/*<MyShimmer />*/}
-                {/* <div>
-                    <DoubleLineChart />
-                </div> */}
             </div>
         </div>
     );
