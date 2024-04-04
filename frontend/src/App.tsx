@@ -1,16 +1,19 @@
 import './App.css'
 import SideBar from "./components/SideBar/SideBar";
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import CourseInfoPage from "./pages/CourseInfoPage";
-import StudentSearchPage from "./pages/StudentSearchPage";
-import {MdOutlineAnalytics} from "react-icons/md";
-import {FaSearch} from "react-icons/fa";
+import CourseInfoPage from "./pages/CourseInfoPage/CourseInfoPage";
+import StudentSearchPage from "./pages/StudentSearchPage/StudentSearchPage";
+import {MdOutlineAnalytics, MdOutlineForum} from "react-icons/md";
 import * as React from "react";
 import StudentPage from "./pages/StudentPage";
-import { courseAnalyticsProps, videoSectionProps } from './pages/CourseInfoPageData'
-import { CourseInfoPageProps } from './pages/CourseInfoPage';
-import { documentSectionProps } from './pages/CourseInfoPageData';
-
+import {courseAnalyticsProps, videoSectionProps} from './pages/CourseInfoPage/CourseInfoPageData'
+import {CourseInfoPageProps} from './pages/CourseInfoPage/CourseInfoPage';
+import {documentSectionProps} from './pages/CourseInfoPage/CourseInfoPageData';
+import {IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOffOutline} from "react-icons/io5";
+import {FiMousePointer} from "react-icons/fi";
+import {RiTeamLine} from "react-icons/ri";
+import { IoVideocamOutline } from "react-icons/io5";
+import CoursePages from "./pages/CoursePages/CoursePages";
 
 const courseInfoPageProps: CourseInfoPageProps = {
     courseAnalyticsProps: courseAnalyticsProps,
@@ -21,14 +24,50 @@ const courseInfoPageProps: CourseInfoPageProps = {
 const menuItems = [
     {
         path: "/",
-        name: "О курсе",
-        icon: <MdOutlineAnalytics/>
+        name: "Курс",
+        icon: <MdOutlineAnalytics/>,
+        submenu: [
+            {
+                path: "/common",
+                name: "Общая информация",
+                icon:<MdOutlineAnalytics/>
+            },
+            {
+                path: "/pages",
+                name: "Популярность страниц",
+                icon: <FiMousePointer />
+            },
+            {
+                path: "/textbook",
+                name: "Работа с учебником",
+                icon: <IoBookOutline />
+            },
+            {
+                path: "/video",
+                name: "Просмотры видео",
+                icon: <IoVideocamOutline />
+            },
+            {
+                path: "/problems",
+                name: "Решение задач",
+                icon: <IoExtensionPuzzleOutline />
+            },
+            {
+                path: "/forum",
+                name: "Активность на форуме",
+                icon: <MdOutlineForum />
+            },
+        ]
+
     },
     {
         path: "/students",
-        name: "Поиск студента",
-        icon: <FaSearch/>
-    },
+        name:
+            "Студенты",
+        icon:
+            <RiTeamLine/>
+    }
+    ,
 ]
 
 export default function App() {
@@ -37,6 +76,9 @@ export default function App() {
             <SideBar menuItems={menuItems}>
                 <Routes>
                     <Route path={"/"} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
+                    <Route path={"/common"} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
+                    <Route path={"/pages"} element={<CoursePages />}/>
+
                     <Route path={"/students"} element={<StudentSearchPage/>}/>
                     <Route path={"/students:id"} element={<StudentPage/>}/>
                 </Routes>
