@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PageBase from "../../components/PageBase/PageBase";
 import CustomTable from "../../components/Charts/Table/SimpleTable";
-import './CoursePages.css'
-export default function CoursePages() {
+import './PagesSectionPage.css'
+export default function PagesSectionPage() {
 
     return (
         <PageBase>
