@@ -1,7 +1,7 @@
-import {getStudentEnding} from "../../utils/utils";
-import {CourseAnalyticsProps} from "../../components/unionParts/CourseAnalytics/CourseAnalytics";
-import {VideoSectionProps} from "../../components/unionParts/VideoSection/VideoSection";
-import {DocumentSectionProps} from "../../components/unionParts/DocumentSection/DocumentSection";
+import {getStudentEnding} from '../../utils/utils';
+import {CourseAnalyticsProps} from '../../components/Sections/CommonSection/CommonSection';
+import {VideoSectionProps} from '../../components/Sections/VideoSection/VideoSection';
+import {DocumentSectionProps} from '../../components/Sections/DocumentSection/DocumentSection';
 
 ////это данные CourseAnalytics
 const chartDonut = [
@@ -40,7 +40,7 @@ const boxTitle = 'Общее время просмотра видео для к�
 const columnName = 'Студенты';
 const columnCount = 'Время (сек.)';
 const labelText = 'Поиск студента...';
-const videoHeaderText = "Просмотр видео материалов"
+const videoHeaderText = 'Просмотр видео материалов'
 
 // CSV-строка с данными
 const csvData = `
@@ -389,7 +389,7 @@ count_number,word
 1,de
 `;
 
-const documentHeaderText = "Просмотр pdf документов"
+const documentHeaderText = 'Просмотр pdf документов'
 const boxTitleScrolling = 'Количество уникальных просмотров pdf документов';
 const columnNameScrolling = 'pdf документ';
 const columnMedian = 'Медиана (мин.)'

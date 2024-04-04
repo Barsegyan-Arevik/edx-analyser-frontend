@@ -10,11 +10,11 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import {Box, Button} from '@mui/material';
-import {SlMagnifier} from "react-icons/sl";
+import {SlMagnifier} from 'react-icons/sl';
 import './TableHeatMap.css';
 import ModalWindow from '../ModalWindow';
 import TableHeatMapInsideWindow from './TableHeatMapInsideModalWindow';
-import {getGreenColorScale} from "../../../utils/utils";
+import {getGreenColorScale} from '../../../utils/utils';
 
 interface RowData {
     id: number;
@@ -34,15 +34,7 @@ export type TableHeatMapProps = {
 }
 
 
-export default function TableHeatMap({
-                                         rows,
-                                         boxTitle,
-                                         columnName,
-                                         columnMedian,
-                                         columnCount,
-                                         labelText,
-                                         paperSize
-                                     }: TableHeatMapProps) {
+export default function TableHeatMap(props: TableHeatMapProps) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState('');
@@ -61,7 +53,7 @@ export default function TableHeatMap({
         setPage(0);
     };
 
-    const filteredRows = rows.filter(row =>
+    const filteredRows = props.rows.filter(row =>
         row.user.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
@@ -74,18 +66,18 @@ export default function TableHeatMap({
     };
 
     // Calculate statistics
-    const timeSecArray = rows.map(row => row.timeSec);
+    const timeSecArray = props.rows.map(row => row.timeSec);
     const minTime = Math.min(...timeSecArray);
     const maxTime = Math.max(...timeSecArray);
     const timeRange = maxTime - minTime;
 
-    const timeMedianArray = rows.map(row => row.medianTime);
+    const timeMedianArray = props.rows.map(row => row.medianTime);
     const minMedianTime = Math.min(...timeMedianArray);
     const maxMedianTime = Math.max(...timeMedianArray);
     const medianTimeRange = maxMedianTime - minMedianTime;
 
     return (
-        <Paper sx={{overflow: 'hidden', padding: '10px', width: paperSize}}>
+        <Paper sx={{overflow: 'hidden', padding: '10px', width: props.paperSize}}>
             <Box
                 sx={{
                     fontSize: 16,
@@ -100,7 +92,7 @@ export default function TableHeatMap({
                         justifyContent: 'space-between'
                     }}
                 >
-                    {boxTitle}
+                    {props.boxTitle}
                     <Button onClick={handleModalOpen}>
                         <SlMagnifier/>
                     </Button>
@@ -108,7 +100,7 @@ export default function TableHeatMap({
             </Box>
             <TextField
                 size="small"
-                label={labelText}
+                label={props.labelText}
                 variant="outlined"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -121,29 +113,22 @@ export default function TableHeatMap({
                 }} // Добавлено смещение для выравнивания с кнопкой модального окна
             />
             <ModalWindow open={modalOpen} handleClose={handleModalClose}>
-                <TableHeatMapInsideWindow
-                    rows={rows}
-                    boxTitle={boxTitle}
-                    columnName={columnName}
-                    columnCount={columnCount}
-                    // columnMedian={columnMedian}
-                    labelText={labelText}
-                />
+                <TableHeatMapInsideWindow{...props}/>
             </ModalWindow>
             <TableContainer sx={{height: 400}}>
                 <Table stickyHeader size="small" aria-label="sticky table">
                     <TableHead>
                         <TableRow>
                             <TableCell>ID</TableCell>
-                            <TableCell>{columnName}</TableCell>
-                            <TableCell>{columnCount}</TableCell>
-                            <TableCell>{columnMedian}</TableCell>
+                            <TableCell>{props.columnName}</TableCell>
+                            <TableCell>{props.columnCount}</TableCell>
+                            <TableCell>{props.columnMedian}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody sx={{'&:last-child td, &:last-child th': {border: 0}}}>
                         {filteredRows
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((row, index) => (
+                            .map((row, _) => (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                                     <TableCell component="th">
                                         {row.id}

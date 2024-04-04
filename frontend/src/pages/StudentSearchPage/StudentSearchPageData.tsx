@@ -1,4 +1,4 @@
-import {BigTableProps} from "../../components/Charts/Table/BigTableForStudents";
+import {BigTableProps} from '../../components/Charts/Table/BigTableForStudents';
 
 const students = `
 username,completion_status,days_online,time_on_course,video_watching,text_book_scrolling,promblems_solving,forum_activity

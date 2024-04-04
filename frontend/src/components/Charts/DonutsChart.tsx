@@ -28,7 +28,7 @@ export default function DonutsChart(props: DonutsChartProps) {
     }, []);
 
     return (
-        <div style={{position: "relative"}}>
+        <div style={{position: 'relative'}}>
             {loading ? (
                 <ShimmerThumbnail width={579} height={292}/>
             ) : (
@@ -75,7 +75,7 @@ export default function DonutsChart(props: DonutsChartProps) {
                             legend: {
                                 labelStyle: {
                                     fontSize: 20,
-                                    fill: "#667B98",
+                                    fill: '#667B98',
                                     height: 20
                                 },
                                 itemMarkWidth: 10,
@@ -90,4 +90,4 @@ export default function DonutsChart(props: DonutsChartProps) {
             )}
         </div>
     );
-};
+}

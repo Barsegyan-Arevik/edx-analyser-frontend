@@ -7,10 +7,10 @@ export type HeaderProps = {
 
 export default function Header(props: HeaderProps) {
     return (
-        <div className={"header"}>
+        <div className={'header'}>
             {/*сюда нужно передавать с помощью пропса название курса*/}
             {props.text}
             {/*Аналитика по курсу "Название курса"*/}
         </div>
     );
-};
+}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PageBase from "../../components/PageBase/PageBase";
+import PageBase from '../../components/PageBase/PageBase';
 import './PagesSectionPage.css'
 
 export default function PagesSectionPage() {
@@ -13,4 +13,4 @@ export default function PagesSectionPage() {
             </footer>
         </PageBase>
     );
-};
+}

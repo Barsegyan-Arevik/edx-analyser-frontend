@@ -11,7 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
 import {Box} from '@mui/material';
-import {getGreenColorScale} from "../../../utils/utils";
+import {getGreenColorScale} from '../../../utils/utils';
 
 export type RowData = {
     id: number;
@@ -126,11 +126,11 @@ export default function TableWithLink(props: TableWithLinkProps) {
                                     <TableCell component="th">{row.id}</TableCell>
                                     <TableCell>
                                         <Tooltip title={row.pdfName} enterDelay={500}
-                                                 PopperProps={{
-                                                     style: {
-                                                         width: '500px', // Задайте желаемую ширину
-                                                     },
-                                                 }}>
+                                            PopperProps={{
+                                                style: {
+                                                    width: '500px', // Задайте желаемую ширину
+                                                },
+                                            }}>
                                             <div
                                                 style={{
                                                     overflow: 'hidden',

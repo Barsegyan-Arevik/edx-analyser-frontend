@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useState} from 'react';
 import './VideoSection.css'
-import Header from "../HeaderSection/Header"
+import Header from '../HeaderSection/Header'
 import TableHeatMap from '../../Charts/Table/TableHeatMap';
 import LineChartWithModalWindow from '../../Charts/LineChart/LineChartWithModalWindow';
 
@@ -34,25 +34,26 @@ export default function VideoSection(props: VideoSectionProps) {
 
 
     return (
-        <div className={"video_interactions"}>
+        <div className={'video_interactions'}>
             <div style={{color: '#fff'}}>
                 <Header text={props.headerText}/>
             </div>
-            <div className={"video_interactions_container"}>
-                <div className={"item_video_1"}>
+            <div className={'video_interactions_container'}>
+                <div className={'item_video_1'}>
                     <LineChartWithModalWindow data={props.lineChartData}/>
                     {/* <DateLineChart /> */}
                 </div>
-                <div className={"item_video_2"}>
+                <div className={'item_video_2'}>
                     <TableHeatMap
                         rows={rows}
                         boxTitle={props.tableData.boxTitle}
                         columnName={props.tableData.columnName}
                         columnCount={props.tableData.columnCount}
                         labelText={props.tableData.labelText}
+                        // paperSize={}
                     />
                 </div>
             </div>
         </div>
     );
-};
+}

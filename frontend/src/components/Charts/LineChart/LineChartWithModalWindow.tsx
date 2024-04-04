@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useState} from 'react';
 import {Box, Button} from '@mui/material';
-import {SlMagnifier} from "react-icons/sl";
+import {SlMagnifier} from 'react-icons/sl';
 import Paper from '@mui/material/Paper';
 import ModalWindow from '../ModalWindow';
 import CustomLineChart from './CustomLineChart';
@@ -21,13 +21,8 @@ const modalSize: LineChartSize = {
     height: 400
 };
 
-export type LineChartProps = {
+type LineChartProps = {
     data: string;
-}
-
-export type LineChartExtendedProps = {
-    data: string;
-    lineChartSize: LineChartSize;
 }
 
 export default function LineChartWithModalWindow(props: LineChartProps) {

@@ -3,13 +3,13 @@ export function getStudentEnding(amount: number) {
     const lastDigit = amount % 10;
 
     if (lastTwoDigits >= 11 && lastTwoDigits <= 19) {
-        return "студентов";
+        return 'студентов';
     } else if (lastDigit === 1) {
-        return "студент";
+        return 'студент';
     } else if (lastDigit >= 2 && lastDigit <= 4) {
-        return "студента";
+        return 'студента';
     } else {
-        return "студентов";
+        return 'студентов';
     }
 }
 
@@ -38,14 +38,14 @@ export enum CompletionStatus {
     COMPLETED = 'Прошел курс'
 }
 
-export function getColorCompletionStatus(status: CompletionStatus) {
+export function getColorByCompletionStatus(status: CompletionStatus) {
     switch (status) {
-        case CompletionStatus.COMPLETED:
-            return '#02CEA9';
-        case CompletionStatus.IN_PROGRESS:
-            return '#FEF045';
-        case CompletionStatus.NOT_STARTED:
-            return '#F06C79';
+    case CompletionStatus.COMPLETED:
+        return '#02CEA9';
+    case CompletionStatus.IN_PROGRESS:
+        return '#FEF045';
+    case CompletionStatus.NOT_STARTED:
+        return '#F06C79';
     }
 }
 

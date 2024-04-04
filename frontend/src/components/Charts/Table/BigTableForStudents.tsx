@@ -9,8 +9,8 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import {Box} from '@mui/material';
-import {PiStudentBold} from "react-icons/pi";
-import {CompletionStatus, getBlueColorScale, getColorCompletionStatus} from "../../../utils/utils";
+import {PiStudentBold} from 'react-icons/pi';
+import {getBlueColorScale, getColorByCompletionStatus} from '../../../utils/utils';
 
 export type RowData = {
     id: number;
@@ -106,7 +106,7 @@ export default function BigTable(props: BigTableProps) {
             </Box>
             <TableContainer sx={{height: 530}}>
                 <Table stickyHeader size="small" aria-label="sticky table"
-                       sx={{borderSpacing: '8px 0', borderCollapse: 'separate', color: '#405479'}}>
+                    sx={{borderSpacing: '8px 0', borderCollapse: 'separate', color: '#405479'}}>
                     <TableHead style={{color: '#405479'}}>
                         <TableRow>
                             <TableCell style={{fontSize: '16px', color: '#405479'}}>ID</TableCell>
@@ -115,7 +115,7 @@ export default function BigTable(props: BigTableProps) {
                             <TableCell style={{fontSize: '16px', color: '#405479'}}>{props.timeOnCourse}</TableCell>
                             <TableCell style={{fontSize: '16px', color: '#405479'}}>{props.videoWatching}</TableCell>
                             <TableCell style={{fontSize: '16px', color: '#405479'}}
-                                       sx={{marginRight: '8px'}}>{props.textbookScrolling}</TableCell>
+                                sx={{marginRight: '8px'}}>{props.textbookScrolling}</TableCell>
                             <TableCell style={{fontSize: '16px', color: '#405479'}}>{props.promblemsSolving}</TableCell>
                             <TableCell style={{fontSize: '16px', color: '#405479'}}>{props.forumActivity}</TableCell>
                         </TableRow>
@@ -126,12 +126,12 @@ export default function BigTable(props: BigTableProps) {
                             .map((row, index) => (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                                     <TableCell style={{fontSize: '16px', color: '#405479'}}
-                                               component="th">{row.id}</TableCell>
+                                        component="th">{row.id}</TableCell>
                                     <TableCell
                                         style={{fontSize: '16px', color: '#405479'}}
                                     >
                                         <PiStudentBold size={24}
-                                                       color={getColorCompletionStatus(row.completionStatus)}/>
+                                            color={getColorByCompletionStatus(row.completionStatus)}/>
                                         {row.username}
                                     </TableCell>
 

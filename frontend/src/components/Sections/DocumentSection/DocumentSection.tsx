@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useState} from 'react';
 import './DocumentSection.css'
 import Header from '../HeaderSection/Header';
-import TableWithLink from "../../Charts/Table/TableWithLink";
+import TableWithLink from '../../Charts/Table/TableWithLink';
 
 export type TableData = {
     boxTitle: string;
@@ -78,7 +78,7 @@ export default function DocumentSection(props: DocumentSectionProps) {
     const paperSizeSearchedTerms = '600px'
 
     return (
-        <div className={"document_interaction"}>
+        <div className={'document_interaction'}>
             <div style={{marginTop: '20px'}}>
                 <Header text={props.headerText}/>
             </div>
@@ -96,5 +96,5 @@ export default function DocumentSection(props: DocumentSectionProps) {
             </div>
         </div>
     );
-};
+}
 

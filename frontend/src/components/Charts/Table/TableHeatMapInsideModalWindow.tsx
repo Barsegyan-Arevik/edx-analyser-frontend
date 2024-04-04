@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import {Box} from '@mui/material';
 import './TableHeatMap.css';
 import CustomBoxModalWindow from '../CustomBoxModalWindow';
-import {getGreenColorScale} from "../../../utils/utils";
+import {getGreenColorScale} from '../../../utils/utils';
 
 interface RowData {
     id: number;
@@ -28,13 +28,7 @@ export type TableHeatMapProps = {
     labelText: string;
 }
 
-export default function TableHeatMapInsideWindow({
-                                                     rows,
-                                                     boxTitle,
-                                                     columnName,
-                                                     columnCount,
-                                                     labelText
-                                                 }: TableHeatMapProps) {
+export default function TableHeatMapInsideWindow(props: TableHeatMapProps) {
     const [_, setPage] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -44,13 +38,13 @@ export default function TableHeatMapInsideWindow({
 
 
     const filteredRows = useMemo(() => {
-        return rows.filter(row =>
+        return props.rows.filter(row =>
             row.user.toLowerCase().includes(searchTerm.toLowerCase())
         );
-    }, [rows, searchTerm]);
+    }, [props.rows, searchTerm]);
 
     // Calculate statistics
-    const timeSecArray = rows.map(row => row.timeSec);
+    const timeSecArray = props.rows.map(row => row.timeSec);
     const minTime = useMemo(() => Math.min(...timeSecArray), [timeSecArray]);
     const maxTime = useMemo(() => Math.max(...timeSecArray), [timeSecArray]);
     const timeRange = useMemo(() => maxTime - minTime, [maxTime, minTime]);
@@ -91,7 +85,7 @@ export default function TableHeatMapInsideWindow({
                             fontWeight: 'normal'
                         }}
                     >
-                        {boxTitle}
+                        {props.boxTitle}
                     </Box>
                     <Box
                         sx={{
@@ -107,7 +101,7 @@ export default function TableHeatMapInsideWindow({
                         >
                             <TextField
                                 size="small"
-                                label={labelText}
+                                label={props.labelText}
                                 variant="outlined"
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
@@ -121,8 +115,8 @@ export default function TableHeatMapInsideWindow({
                                         <TableHead>
                                             <TableRow>
                                                 <TableCell>ID</TableCell>
-                                                <TableCell>{columnName}</TableCell>
-                                                <TableCell>{columnCount}</TableCell>
+                                                <TableCell>{props.columnName}</TableCell>
+                                                <TableCell>{props.columnCount}</TableCell>
                                             </TableRow>
                                         </TableHead>
                                         <TableBody sx={{'&:last-child td, &:last-child th': {border: 0}}}>
