@@ -1,11 +1,11 @@
 import React from 'react';
-import { Paper, Modal } from '@mui/material';
+import {Modal, Paper} from '@mui/material';
 
 
-export default function ModalWindow({ open, handleClose, children }) {
+export default function ModalWindow({open, handleClose, children}) {
 
     return (
-        <Paper sx={{ overflow: 'hidden' }}>
+        <Paper sx={{overflow: 'hidden'}}>
             <Modal
                 aria-labelledby="modal-title"
                 aria-describedby="modal-description"

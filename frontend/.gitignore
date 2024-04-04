@@ -3,6 +3,9 @@
 /.pnp
 .pnp.js
 
+# unused charts
+/src/components/Charts/UnusedFiles
+
 # testing
 /coverage
 

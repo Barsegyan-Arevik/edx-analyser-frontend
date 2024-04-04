@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,17 +9,18 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
-import { Box, Modal, Button } from '@mui/material';
-import { SlMagnifier } from "react-icons/sl";
+import {Box, Button} from '@mui/material';
+import {SlMagnifier} from "react-icons/sl";
 import './TableHeatMap.css';
-import CustomBoxModalWindow from '../CustomBoxModalWindow';
 import ModalWindow from '../ModalWindow';
 import TableHeatMapInsideWindow from './TableHeatMapInsideModalWindow';
+import {getGreenColorScale} from "../../../utils/utils";
 
 interface RowData {
     id: number;
     user: string;
     timeSec: number;
+    medianTime?: number;
 }
 
 export type TableHeatMapProps = {
@@ -28,25 +28,21 @@ export type TableHeatMapProps = {
     boxTitle: string;
     columnName: string;
     columnCount: string;
+    columnMedian?: string;
     labelText: string;
-}
-
-function lerp(a: number, b: number, t: number) {
-    return a + (b - a) * t;
-}
-
-function getColorScale(timeRange: number, value: number) {
-    const ratio = value / timeRange; // Max population value
-    const brightestColor = [2, 206, 169]; // R, G, B values of bright green
-    const paleColor = [240, 240, 240]; // R, G, B values of pale green
-    const color = brightestColor.map((channel, index) =>
-        Math.round(lerp(paleColor[index], channel, ratio))
-    );
-    return `rgb(${color.join(',')})`;
+    paperSize: string;
 }
 
 
-export default function TableHeatMap({ rows, boxTitle, columnName, columnCount, labelText }: TableHeatMapProps) {
+export default function TableHeatMap({
+                                         rows,
+                                         boxTitle,
+                                         columnName,
+                                         columnMedian,
+                                         columnCount,
+                                         labelText,
+                                         paperSize
+                                     }: TableHeatMapProps) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState('');
@@ -82,9 +78,14 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnCount, 
     const minTime = Math.min(...timeSecArray);
     const maxTime = Math.max(...timeSecArray);
     const timeRange = maxTime - minTime;
-    
+
+    const timeMedianArray = rows.map(row => row.medianTime);
+    const minMedianTime = Math.min(...timeMedianArray);
+    const maxMedianTime = Math.max(...timeMedianArray);
+    const medianTimeRange = maxMedianTime - minMedianTime;
+
     return (
-        <Paper sx={{ overflow: 'hidden', padding: '10px', width: '600px' }}>
+        <Paper sx={{overflow: 'hidden', padding: '10px', width: paperSize}}>
             <Box
                 sx={{
                     fontSize: 16,
@@ -101,7 +102,7 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnCount, 
                 >
                     {boxTitle}
                     <Button onClick={handleModalOpen}>
-                        <SlMagnifier />
+                        <SlMagnifier/>
                     </Button>
                 </Box>
             </Box>
@@ -125,19 +126,21 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnCount, 
                     boxTitle={boxTitle}
                     columnName={columnName}
                     columnCount={columnCount}
+                    // columnMedian={columnMedian}
                     labelText={labelText}
                 />
             </ModalWindow>
-            <TableContainer sx={{ height: 400 }}>
+            <TableContainer sx={{height: 400}}>
                 <Table stickyHeader size="small" aria-label="sticky table">
                     <TableHead>
                         <TableRow>
                             <TableCell>ID</TableCell>
                             <TableCell>{columnName}</TableCell>
                             <TableCell>{columnCount}</TableCell>
+                            <TableCell>{columnMedian}</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableBody sx={{'&:last-child td, &:last-child th': {border: 0}}}>
                         {filteredRows
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row, index) => (
@@ -150,11 +153,19 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnCount, 
                                     </TableCell>
                                     <TableCell
                                         style={{
-                                            backgroundColor: row.timeSec ? getColorScale(timeRange, row.timeSec) : 'white',
+                                            backgroundColor: row.timeSec ? getGreenColorScale(timeRange, row.timeSec) : 'white',
                                             padding: '8px'
                                         }}
                                     >
                                         {row.timeSec}
+                                    </TableCell>
+                                    <TableCell
+                                        style={{
+                                            backgroundColor: row.medianTime ? getGreenColorScale(medianTimeRange, row.medianTime) : 'white',
+                                            padding: '8px'
+                                        }}
+                                    >
+                                        {row.medianTime}
                                     </TableCell>
                                 </TableRow>
                             ))}

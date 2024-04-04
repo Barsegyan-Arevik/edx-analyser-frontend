@@ -1,9 +1,8 @@
 import * as React from 'react';
-import DonutsChart from "../../Charts/DonutsChart";
+import DonutsChart, {DonutsChartData} from "../../Charts/DonutsChart";
 import CustomBox from "../../Charts/CustomBox";
 import './CourseAnalytics.css'
 import Header from "../HeaderSection/Header"
-import { DonutsChartData } from '../../Charts/DonutsChart';
 
 export type CourseInfo = {
     courseId: number;
@@ -30,13 +29,13 @@ export default function CourseAnalytics(props: CourseAnalyticsProps) {
 
     return (
         <div className={"top_analytics"}>
-            <div style={{ paddingTop: '30px' }}>
+            <div style={{paddingTop: '30px'}}>
                 <Header text={headerText}/>
             </div>
 
             <div className={"main_content"}>
                 <div className={"main-box"}>
-                    <DonutsChart data={props.donut} />
+                    <DonutsChart data={props.donut}/>
                 </div>
 
                 <div className={"side-container"}>
