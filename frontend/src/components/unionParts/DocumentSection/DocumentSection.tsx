@@ -1,11 +1,8 @@
 import * as React from 'react';
-import { useState } from 'react';
+import {useState} from 'react';
 import './DocumentSection.css'
 import Header from '../HeaderSection/Header';
-import ComplexTable from '../../Charts/Table/TableHeatMap';
-import DoubleLineChart from '../../Charts/UnusedFiles/DoubleLineChart';
 import TableWithLink from "../../Charts/Table/TableWithLink";
-import MyShimmer from "../../Shimmer/ShimmerComponent";
 
 export type TableData = {
     boxTitle: string;

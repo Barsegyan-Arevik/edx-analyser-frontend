@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useState } from 'react';
-import { Box, Button } from '@mui/material';
-import { SlMagnifier } from "react-icons/sl";
+import {useState} from 'react';
+import {Box, Button} from '@mui/material';
+import {SlMagnifier} from "react-icons/sl";
 import Paper from '@mui/material/Paper';
 import ModalWindow from '../ModalWindow';
 import CustomLineChart from './CustomLineChart';
@@ -53,7 +53,7 @@ export default function LineChartWithModalWindow(props: LineChartProps) {
     };
 
     return (
-        <Paper sx={{ overflow: 'hidden', padding: '10px', bgcolor: '#fff', borderRadius: 1 }}>
+        <Paper sx={{overflow: 'hidden', padding: '10px', bgcolor: '#fff', borderRadius: 1}}>
             <Box
                 sx={{
                     bgcolor: '#fff',
@@ -77,10 +77,10 @@ export default function LineChartWithModalWindow(props: LineChartProps) {
                 >
                     Количество воспроизведений видеоматериалов, распределённая по дням
                     <Button onClick={handleOpenModal}>
-                        <SlMagnifier />
+                        <SlMagnifier/>
                     </Button>
                 </Box>
-                <CustomLineChart data={props.data} lineChartSize={baseSize} />
+                <CustomLineChart data={props.data} lineChartSize={baseSize}/>
                 <ModalWindow open={open} handleClose={handleCloseModal}>
                     <Box
                         sx={{
@@ -94,7 +94,7 @@ export default function LineChartWithModalWindow(props: LineChartProps) {
                             borderRadius: 2
                         }}
                     >
-                        <CustomLineChart data={props.data} lineChartSize={modalSize} />
+                        <CustomLineChart data={props.data} lineChartSize={modalSize}/>
                     </Box>
                 </ModalWindow>
             </Box>
