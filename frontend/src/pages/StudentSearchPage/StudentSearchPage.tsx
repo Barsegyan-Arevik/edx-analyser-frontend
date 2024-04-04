@@ -1,11 +1,9 @@
 import * as React from 'react';
-import PageBase from "../components/PageBase/PageBase";
-import CustomTable from "../components/Charts/Table/SimpleTable";
-import CustomBox from "../components/Charts/CustomBox";
-import CustomTableRealData from '../components/Charts/UnusedFiles/TableHeatMapRealData';
+import PageBase from "../../components/PageBase/PageBase";
+import CustomTable from "../../components/Charts/Table/SimpleTable";
 import './StudentSearchPage.css';
 import { studentSearchPageProps } from './StudentSearchPageData';
-
+import BigTable from "../../components/Charts/Table/BigTableForStudents";
 
 export default function StudentSearchPage() {
 
@@ -13,7 +11,7 @@ export default function StudentSearchPage() {
         <PageBase>
             <div className={"student_page"}>
                 <div className={"content_inside"}>
-                    <CustomTable {...studentSearchPageProps} />
+                    <BigTable {...studentSearchPageProps} />
                 </div>
             </div>
             {/*<CustomBox />*/}

@@ -22,6 +22,6 @@
     bottom: 0; /* Выравнивание внизу */
     width: 100%; /* Ширина футера на всю ширину страницы */
     height: 50px;
-    mask-image: url('../components/PageBase/svg-path.svg');
+    mask-image: url('../../components/PageBase/svg-path.svg');
     transform: rotate(.5turn);
 }
