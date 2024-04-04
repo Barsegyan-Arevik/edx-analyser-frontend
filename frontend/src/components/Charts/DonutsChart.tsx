@@ -15,7 +15,6 @@ export type DonutsChartProps = {
 }
 
 export default function DonutsChart(props: DonutsChartProps) {
-    const {data} = props;
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {

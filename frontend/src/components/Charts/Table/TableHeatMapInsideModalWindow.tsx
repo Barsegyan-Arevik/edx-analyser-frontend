@@ -35,10 +35,8 @@ export default function TableHeatMapInsideWindow({
                                                      columnCount,
                                                      labelText
                                                  }: TableHeatMapProps) {
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [_, setPage] = useState(0);
     const [searchTerm, setSearchTerm] = useState('');
-    const [modalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
         setPage(0); // Переход на первую страницу при изменении поискового запроса

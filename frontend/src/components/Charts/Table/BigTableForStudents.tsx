@@ -37,9 +37,6 @@ export type BigTableProps = {
     forumActivity: string,
 }
 
-const colors_triplet_1 = ['#93E4D6', '#FFFBBE', '#FAD8DB']
-const colors_triplet_2 = ['#d9f0ff', '#a3d5ff', '#83c9f4']
-
 function getColumnRange(columnName, rows) {
     const columnArray = rows.map(row => row[columnName]);
 
@@ -72,7 +69,7 @@ export default function BigTable(props: BigTableProps) {
         });
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, _] = useState('');
 
     useEffect(() => {
         setPage(0); // Переход на первую страницу при изменении поискового запроса

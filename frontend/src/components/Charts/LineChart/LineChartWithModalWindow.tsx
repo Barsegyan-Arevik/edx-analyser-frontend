@@ -31,17 +31,6 @@ export type LineChartExtendedProps = {
 }
 
 export default function LineChartWithModalWindow(props: LineChartProps) {
-
-    const lineChartBaseProps: LineChartExtendedProps = {
-        data: props.data,
-        lineChartSize: baseSize
-    };
-
-    const lineChartModalProps: LineChartExtendedProps = {
-        data: props.data,
-        lineChartSize: modalSize
-    };
-
     const [open, setOpen] = useState(false);
 
     const handleOpenModal = () => {
