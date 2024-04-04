@@ -21,6 +21,7 @@ interface RowData {
     id: number;
     user: string;
     timeSec: number;
+    medianTime?: number;
 }
 
 export type TableHeatMapProps = {
@@ -28,7 +29,9 @@ export type TableHeatMapProps = {
     boxTitle: string;
     columnName: string;
     columnCount: string;
+    columnMedian?: string;
     labelText: string;
+    paperSize: string;
 }
 
 function lerp(a: number, b: number, t: number) {
@@ -46,7 +49,7 @@ function getColorScale(timeRange: number, value: number) {
 }
 
 
-export default function TableHeatMap({ rows, boxTitle, columnName, columnCount, labelText }: TableHeatMapProps) {
+export default function TableHeatMap({ rows, boxTitle, columnName, columnMedian,columnCount, labelText, paperSize }: TableHeatMapProps) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState('');
@@ -82,9 +85,14 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnCount, 
     const minTime = Math.min(...timeSecArray);
     const maxTime = Math.max(...timeSecArray);
     const timeRange = maxTime - minTime;
+
+    const timeMedianArray = rows.map(row => row.medianTime);
+    const minMedianTime = Math.min(...timeMedianArray);
+    const maxMedianTime = Math.max(...timeMedianArray);
+    const medianTimeRange = maxMedianTime - minMedianTime;
     
     return (
-        <Paper sx={{ overflow: 'hidden', padding: '10px', width: '600px' }}>
+        <Paper sx={{ overflow: 'hidden', padding: '10px', width: paperSize }}>
             <Box
                 sx={{
                     fontSize: 16,
@@ -125,6 +133,7 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnCount, 
                     boxTitle={boxTitle}
                     columnName={columnName}
                     columnCount={columnCount}
+                    // columnMedian={columnMedian}
                     labelText={labelText}
                 />
             </ModalWindow>
@@ -135,6 +144,7 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnCount, 
                             <TableCell>ID</TableCell>
                             <TableCell>{columnName}</TableCell>
                             <TableCell>{columnCount}</TableCell>
+                            <TableCell>{columnMedian}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -155,6 +165,14 @@ export default function TableHeatMap({ rows, boxTitle, columnName, columnCount, 
                                         }}
                                     >
                                         {row.timeSec}
+                                    </TableCell>
+                                    <TableCell
+                                        style={{
+                                            backgroundColor: row.medianTime ? getColorScale(medianTimeRange, row.medianTime) : 'white',
+                                            padding: '8px'
+                                        }}
+                                    >
+                                        {row.medianTime}
                                     </TableCell>
                                 </TableRow>
                             ))}
