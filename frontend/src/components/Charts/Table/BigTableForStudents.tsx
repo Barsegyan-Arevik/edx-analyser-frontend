@@ -11,17 +11,18 @@ import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import { Box, Button } from '@mui/material';
 import { PiStudentBold } from "react-icons/pi";
+import { getColorCompletionStatus } from "../../../utils";
 
 export type RowData = {
   id: number;
   username: string;
-  completion_status: string;
-  days_online: string;
-  time_on_course: string;
-  video_watching: string;
-  text_book_scrolling: string;
-  promblems_solving: string;
-  forum_activity: string;
+  completionStatus: string;
+  daysOnline: string;
+  timeOnCourse: string;
+  videoWatching: string;
+  textbookScrolling: string;
+  promblemsSolving: string;
+  forumActivity: string;
 }
 
 export type BigTableProps = {
@@ -79,18 +80,6 @@ function getColumnRange(columnName, rows) {
     return { range, minVal };
 }
 
-function getColor(status) {
-    switch (status) {
-        case 'Прошел курс':
-            return '#02CEA9';
-        case 'Начал но не завершил':
-            return '#FEF045';
-        case 'Не начал':
-            return '#F06C79';
-        default:
-            return '#FFFFFF'; // Белый цвет по умолчанию или другой по вашему усмотрению
-    }
-}
 
 
 export default function BigTable(props: BigTableProps) {
@@ -99,17 +88,17 @@ export default function BigTable(props: BigTableProps) {
     .split('\n')
     .slice(1) // Пропускаем строку с заголовками
     .map((row, index) => {
-      const [username, completion_status, days_online,time_on_course, video_watching, text_book_scrolling, problems_solving, forum_activity] = row.split(',');
+      const [username, completionStatus, daysOnline,timeOnCourse, videoWatching, textbookScrolling, problemsSolving, forumActivity] = row.split(',');
       return {
             id: index + 1,
             username,
-            completion_status,
-            days_online: parseInt(days_online, 10),
-            time_on_course: parseInt(time_on_course, 10),
-            video_watching: parseInt(video_watching, 10),
-            text_book_scrolling: parseInt(text_book_scrolling, 10),
-            problems_solving: parseInt(problems_solving, 10),
-            forum_activity: parseInt(forum_activity, 10)
+            completionStatus,
+            daysOnline: parseInt(daysOnline, 10),
+            timeOnCourse: parseInt(timeOnCourse, 10),
+            videoWatching: parseInt(videoWatching, 10),
+            textbookScrolling: parseInt(textbookScrolling, 10),
+            problemsSolving: parseInt(problemsSolving, 10),
+            forumActivity: parseInt(forumActivity, 10)
       };
     });
   const [page, setPage] = useState(0);
@@ -129,12 +118,12 @@ export default function BigTable(props: BigTableProps) {
     setPage(0);
   };
 
-   const daysOnlineRange = getColumnRange('days_online', rows);
-   const timeOnCourseRange = getColumnRange('time_on_course', rows);
-   const videoWatching = getColumnRange('video_watching', rows);
-   const textbookScrolling =  getColumnRange('text_book_scrolling', rows);
-   const problemsSolving = getColumnRange('problems_solving', rows);
-   const forumActivity = getColumnRange('forum_activity', rows);
+   const daysOnlineRange = getColumnRange('daysOnline', rows);
+   const timeOnCourseRange = getColumnRange('timeOnCourse', rows);
+   const videoWatching = getColumnRange('videoWatching', rows);
+   const textbookScrolling =  getColumnRange('textbookScrolling', rows);
+   const problemsSolving = getColumnRange('problemsSolving', rows);
+   const forumActivity = getColumnRange('forumActivity', rows);
 
    return (
     <Paper sx={{ overflow: 'hidden', padding: '10px', width: '1400px' }}>
@@ -172,65 +161,65 @@ export default function BigTable(props: BigTableProps) {
                   <TableCell
                       style={{fontSize: '16px',color: '#405479'}}
                   >
-                        <PiStudentBold size={24} color={getColor(row.completion_status)} />
+                        <PiStudentBold size={24} color={getColorCompletionStatus(row.completionStatus)} />
                         {row.username}
                   </TableCell>
 
                     <TableCell
                         style={{
                             fontSize: '16px', color: '#405479',
-                            backgroundColor: row.days_online ? getColorScale(daysOnlineRange.range, daysOnlineRange.minVal, row.days_online) : 'white'
+                            backgroundColor: row.daysOnline ? getColorScale(daysOnlineRange.range, daysOnlineRange.minVal, row.daysOnline) : 'white'
                         }}
                     >
-                            {row.days_online}
+                            {row.daysOnline}
                     </TableCell>
 
                     <TableCell
                             style={{
                                 fontSize: '16px',
                                 color: '#405479',
-                                backgroundColor: row.time_on_course ? getColorScale(timeOnCourseRange.range, timeOnCourseRange.minVal, row.time_on_course) : 'white'
+                                backgroundColor: row.timeOnCourse ? getColorScale(timeOnCourseRange.range, timeOnCourseRange.minVal, row.timeOnCourse) : 'white'
                             }}
                     >
-                            {row.time_on_course}
+                            {row.timeOnCourse}
                     </TableCell>
 
                     <TableCell
                         style={{
                             fontSize: '16px', color: '#405479',
-                            backgroundColor: row.video_watching ? getColorScale(videoWatching.range, videoWatching.minVal, row.video_watching) : 'white',
+                            backgroundColor: row.videoWatching ? getColorScale(videoWatching.range, videoWatching.minVal, row.videoWatching) : 'white',
                             padding: '8px',
                         }}
                     >
-                        {row.video_watching}
+                        {row.videoWatching}
                     </TableCell>
 
                     <TableCell
                         style={{
                             fontSize: '16px', color: '#405479',
-                            backgroundColor: row.text_book_scrolling ? getColorScale(textbookScrolling.range, textbookScrolling.minVal, row.text_book_scrolling) : 'white',
+                            backgroundColor: row.textbookScrolling ? getColorScale(textbookScrolling.range, textbookScrolling.minVal, row.textbookScrolling) : 'white',
                                 padding: '8px'
                         }}
                   >
-                      {row.text_book_scrolling}
+                      {row.textbookScrolling}
                   </TableCell>
                   <TableCell
                         style={{
                                 fontSize: '16px', color: '#405479',
-                                backgroundColor: row.problems_solving ? getColorScale(problemsSolving.range, problemsSolving.minVal, row.problems_solving) : 'white',
+                                backgroundColor: row.problemsSolving ? getColorScale(problemsSolving.range, problemsSolving.minVal, row.problemsSolving) : 'white',
                                 padding: '8px'
                         }}
                   >
-                      {row.problems_solving}
+                      {row.problemsSolving}
                   </TableCell>
                   <TableCell
                         style={{
                                 fontSize: '16px', color: '#405479',
-                                backgroundColor: row.forum_activity ? getColorScale(forumActivity.range, forumActivity.minVal, row.forum_activity) : 'white',
+                                backgroundColor: row.forumActivity ? getColorScale(forumActivity.range, forumActivity.minVal, row.forumActivity) : 'white',
                                 padding: '8px'
                         }}
                   >
-                      {row.forum_activity}
+                      {row.forumActivity}
                   </TableCell>
                 </TableRow>
               ))}
