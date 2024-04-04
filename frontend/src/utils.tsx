@@ -1,4 +1,4 @@
-export default function getStudentEnding(number) {
+export function getStudentEnding(number) {
     const lastTwoDigits = number % 100;
     const lastDigit = number % 10;
 
@@ -22,3 +22,23 @@ function parseCSV(csvString) {
     });
     return data;
 }
+
+
+export const CompletionStatus = {
+    NOT_STARTED: 'Не начал',
+    IN_PROGRESS: 'Начал но не завершил',
+    COMPLETED: 'Прошел курс'
+};
+
+export function getColorCompletionStatus(status) {
+    switch (status) {
+        case CompletionStatus.COMPLETED:
+            return '#02CEA9';
+        case CompletionStatus.IN_PROGRESS:
+            return '#FEF045';
+        case CompletionStatus.NOT_STARTED:
+            return '#F06C79';
+    }
+}
+
+
