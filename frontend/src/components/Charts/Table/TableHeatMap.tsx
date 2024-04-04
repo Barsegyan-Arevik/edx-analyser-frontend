@@ -14,7 +14,7 @@ import {SlMagnifier} from "react-icons/sl";
 import './TableHeatMap.css';
 import ModalWindow from '../ModalWindow';
 import TableHeatMapInsideWindow from './TableHeatMapInsideModalWindow';
-import {getGreenColorScale} from "../../../utils";
+import {getGreenColorScale} from "../../../utils/utils";
 
 interface RowData {
     id: number;

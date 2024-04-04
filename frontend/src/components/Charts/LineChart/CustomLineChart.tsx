@@ -2,25 +2,7 @@ import * as React from 'react';
 import {useState} from 'react';
 import {Box, Slider} from '@mui/material';
 import {LineChart} from '@mui/x-charts/LineChart';
-
-function parseCSV(csvData: string): { dates: Date[], values: number[] } {
-    const csvRows = csvData.split('\n');
-    const dates: Date[] = [];
-    const values: number[] = [];
-
-    csvRows.forEach(row => {
-        const [dateString, valueString] = row.split(',');
-        const date = new Date(dateString);
-        const value = parseInt(valueString, 10);
-
-        if (!isNaN(date.getTime()) && !isNaN(value)) {
-            dates.push(date);
-            values.push(value);
-        }
-    });
-
-    return {dates, values};
-}
+import {parseCSV} from '../../../utils/utils'
 
 export type LineChartSize = {
     width: number;

@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import {Box} from '@mui/material';
 import './TableHeatMap.css';
 import CustomBoxModalWindow from '../CustomBoxModalWindow';
-import {getGreenColorScale} from "../../../utils";
+import {getGreenColorScale} from "../../../utils/utils";
 
 interface RowData {
     id: number;

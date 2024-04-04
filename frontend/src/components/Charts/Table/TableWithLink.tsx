@@ -11,7 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
 import {Box} from '@mui/material';
-import {getGreenColorScale} from "../../../utils";
+import {getGreenColorScale} from "../../../utils/utils";
 
 export type RowData = {
     id: number;

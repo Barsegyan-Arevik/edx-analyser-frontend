@@ -1,6 +1,6 @@
-export function getStudentEnding(number) {
-    const lastTwoDigits = number % 100;
-    const lastDigit = number % 10;
+export function getStudentEnding(amount: number) {
+    const lastTwoDigits = amount % 100;
+    const lastDigit = amount % 10;
 
     if (lastTwoDigits >= 11 && lastTwoDigits <= 19) {
         return "студентов";
@@ -13,24 +13,32 @@ export function getStudentEnding(number) {
     }
 }
 
+export function parseCSV(csvData: string): { dates: Date[], values: number[] } {
+    const csvRows = csvData.split('\n');
+    const dates: Date[] = [];
+    const values: number[] = [];
 
-function parseCSV(csvString) {
-    const rows = csvString.trim().split('\n');
-    const data = rows.slice(1).map(row => {
-        const [username, time] = row.split(',');
-        return {username, time: parseFloat(time) / 3600}; // преобразование времени в число
+    csvRows.forEach(row => {
+        const [dateString, valueString] = row.split(',');
+        const date = new Date(dateString);
+        const value = parseInt(valueString, 10);
+
+        if (!isNaN(date.getTime()) && !isNaN(value)) {
+            dates.push(date);
+            values.push(value);
+        }
     });
-    return data;
+
+    return {dates, values};
 }
 
+export enum CompletionStatus {
+    NOT_STARTED = 'Не начал',
+    IN_PROGRESS = 'Начал но не завершил',
+    COMPLETED = 'Прошел курс'
+}
 
-export const CompletionStatus = {
-    NOT_STARTED: 'Не начал',
-    IN_PROGRESS: 'Начал но не завершил',
-    COMPLETED: 'Прошел курс'
-};
-
-export function getColorCompletionStatus(status) {
+export function getColorCompletionStatus(status: CompletionStatus) {
     switch (status) {
         case CompletionStatus.COMPLETED:
             return '#02CEA9';
