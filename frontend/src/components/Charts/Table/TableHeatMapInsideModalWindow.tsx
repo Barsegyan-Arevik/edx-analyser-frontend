@@ -10,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import {Box} from '@mui/material';
 import './TableHeatMap.css';
-import CustomBoxModalWindow from '../CustomBoxModalWindow';
+import CustomBoxModalWindow from '../Box/CustomBoxModalWindow';
 import {getGreenColorScale} from '../../../utils/utils';
 
 interface RowData {

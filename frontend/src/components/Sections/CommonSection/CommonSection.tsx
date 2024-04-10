@@ -1,6 +1,6 @@
 import * as React from 'react';
 import DonutsChart, {DonutsChartData} from '../../Charts/DonutsChart';
-import CustomBox from '../../Charts/CustomBox';
+import CustomBox from '../../Charts/Box/CustomBox';
 import './CommonSection.css'
 import Header from '../SectionHeader/SectionHeader'
 
