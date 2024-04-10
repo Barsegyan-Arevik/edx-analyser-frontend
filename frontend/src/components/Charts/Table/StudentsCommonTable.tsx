@@ -24,7 +24,7 @@ export type RowData = {
     forumActivity: string;
 }
 
-export type BigTableProps = {
+export type StudentsCommonTableProps = {
     data: string;
     boxTitle: string;
     username: string,
@@ -48,7 +48,7 @@ function getColumnRange(columnName, rows) {
 }
 
 
-export default function BigTable(props: BigTableProps) {
+export default function StudentsCommonTable(props: StudentsCommonTableProps) {
     const rows = props.data
         .trim()
         .split('\n')
@@ -56,7 +56,7 @@ export default function BigTable(props: BigTableProps) {
         .map((row, index) => {
             const [username, completionStatus, daysOnline, timeOnCourse, videoWatching, textbookScrolling, problemsSolving, forumActivity] = row.split(',');
             return {
-                id: index + 1,
+                // id: index + 1,
                 username,
                 completionStatus,
                 daysOnline: parseInt(daysOnline, 10),
@@ -91,12 +91,13 @@ export default function BigTable(props: BigTableProps) {
     const problemsSolving = getColumnRange('problemsSolving', rows);
     const forumActivity = getColumnRange('forumActivity', rows);
 
+    const cellStyle = {fontSize: '16px', color: '#405479'}
+
     return (
-        <Paper sx={{overflow: 'hidden', padding: '10px', width: '1400px'}}>
+        <Paper sx={{overflow: 'hidden', padding: '10px', width: '88%'}}>
             <Box
                 sx={{
                     fontSize: 16,
-
                     p: 1,
                     color: '#405479',
                     alignItems: 'center',
@@ -104,20 +105,19 @@ export default function BigTable(props: BigTableProps) {
             >
 
             </Box>
-            <TableContainer sx={{height: 530}}>
+            <TableContainer>
                 <Table stickyHeader size="small" aria-label="sticky table"
-                    sx={{borderSpacing: '8px 0', borderCollapse: 'separate', color: '#405479'}}>
+                       sx={{borderSpacing: '8px 0', borderCollapse: 'separate', color: '#405479'}}>
                     <TableHead style={{color: '#405479'}}>
                         <TableRow>
-                            <TableCell style={{fontSize: '16px', color: '#405479'}}>ID</TableCell>
-                            <TableCell style={{fontSize: '16px', color: '#405479'}}>{props.username}</TableCell>
-                            <TableCell style={{fontSize: '16px', color: '#405479'}}>{props.daysOnline}</TableCell>
-                            <TableCell style={{fontSize: '16px', color: '#405479'}}>{props.timeOnCourse}</TableCell>
-                            <TableCell style={{fontSize: '16px', color: '#405479'}}>{props.videoWatching}</TableCell>
-                            <TableCell style={{fontSize: '16px', color: '#405479'}}
-                                sx={{marginRight: '8px'}}>{props.textbookScrolling}</TableCell>
-                            <TableCell style={{fontSize: '16px', color: '#405479'}}>{props.promblemsSolving}</TableCell>
-                            <TableCell style={{fontSize: '16px', color: '#405479'}}>{props.forumActivity}</TableCell>
+                            <TableCell style={cellStyle}>{props.username}</TableCell>
+                            <TableCell style={cellStyle}>{props.daysOnline}</TableCell>
+                            <TableCell style={cellStyle}>{props.timeOnCourse}</TableCell>
+                            <TableCell style={cellStyle}>{props.videoWatching}</TableCell>
+                            <TableCell style={cellStyle}
+                                       sx={{marginRight: '8px'}}>{props.textbookScrolling}</TableCell>
+                            <TableCell style={cellStyle}>{props.promblemsSolving}</TableCell>
+                            <TableCell style={cellStyle}>{props.forumActivity}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody sx={{'&:last-child td, &:last-child th': {border: 0}}}>
@@ -125,13 +125,11 @@ export default function BigTable(props: BigTableProps) {
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row, index) => (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                                    <TableCell style={{fontSize: '16px', color: '#405479'}}
-                                        component="th">{row.id}</TableCell>
                                     <TableCell
                                         style={{fontSize: '16px', color: '#405479'}}
                                     >
                                         <PiStudentBold size={24}
-                                            color={getColorByCompletionStatus(row.completionStatus)}/>
+                                                       color={getColorByCompletionStatus(row.completionStatus)}/>
                                         {row.username}
                                     </TableCell>
 
