@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PageBase from '../../components/PageBase/PageBase';
-import './StudentSearchPage.css';
-import {studentSearchPageProps} from './StudentSearchPageData';
+import './StudentsPage.css';
+import {studentSearchPageProps} from './StudentsPageData';
 import StudentsCommonTable from '../../components/Charts/Table/StudentsCommonTable';
 
-export default function StudentSearchPage() {
+export default function StudentsPage() {
 
     return (
         <PageBase>

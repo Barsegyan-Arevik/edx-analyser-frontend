@@ -2,25 +2,30 @@ import * as React from 'react';
 import {useState} from 'react';
 import {Box, Slider} from '@mui/material';
 import {LineChart} from '@mui/x-charts/LineChart';
-import {parseCSV} from '../../../utils/utils'
 
 export type LineChartSize = {
     width: number;
     height: number;
 };
 
+export type LineChartDate = {
+    date: Date;
+    value: number;
+}
+
 export type LineChartExtendedProps = {
-    data: string;
+    points: Array<LineChartDate>;
     lineChartSize: LineChartSize;
 }
 
 export default function CustomLineChart(props: LineChartExtendedProps) {
-    const {dates, values} = parseCSV(props.data);
+    const dates = props.points.map(v => v.date)
+    const values = props.points.map(v => v.value)
 
     const [dateRange, setDateRange] = useState([dates[0], dates[dates.length - 1]]);
 
 
-    const handleDateRangeChange = (event, newDateRange) => {
+    const handleDateRangeChange = (event: Event, newDateRange: number[]) => {
         setDateRange(newDateRange.map(timestamp => new Date(timestamp)));
     };
 

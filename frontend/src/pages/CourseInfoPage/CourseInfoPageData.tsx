@@ -1,10 +1,10 @@
-import {getStudentEnding} from '../../utils/utils';
-import {CourseAnalyticsProps} from '../../components/Sections/CommonSection/CommonSection';
+import {getStudentEnding, csvToPoints} from '../../utils/utils';
+import {CommonSectionProps} from '../../components/Sections/CommonSection/CommonSection';
 import {VideoSectionProps} from '../../components/Sections/VideoSection/VideoSection';
-import {DocumentSectionProps} from '../../components/Sections/DocumentSection/DocumentSection';
+import {TextbookSectionProps} from '../../components/Sections/TextbookSection/TextbookSection';
 
-////это данные CourseAnalytics
-const chartDonut = [
+////это данные CommonSection
+const completionDegree = [
     {value: 10, label: 'Прошли курс'},
     {value: 20, label: 'Начали, не прошли'},
     {value: 15, label: 'Не начали'},
@@ -16,7 +16,7 @@ const aboutCountOfStudents = {
     label: 'Количество студентов, записавшихся на курс'
 }
 const averageTimeToEnroll = {value: '10:54', value_additional_text: 'минут', label: 'Среднее время регистрации на курс'}
-const headerData = {courseId: 123, courseName: 'Название курса'}
+const courseInfo = {courseId: 123, courseName: 'Название курса'}
 
 
 const chartDonutProblems = [
@@ -25,18 +25,17 @@ const chartDonutProblems = [
     {value: 14, label: '14% задач решены с \n третьей и более попыток'},
 ]
 
-
-export const courseAnalyticsProps: CourseAnalyticsProps = {
-    donut: chartDonutProblems,
+export const commonSectionProps: CommonSectionProps = {
+    completionDegreeData: completionDegree,
     aboutCountOfStudents: aboutCountOfStudents,
     aboutAverageTimeToEnroll: averageTimeToEnroll,
-    headerData: headerData
+    courseInfo: courseInfo
 };
-///здесь заканчиваются данные CourseAnalytics
+///здесь заканчиваются данные CommonSection
 
 
 ///это данные VideoSection
-const boxTitle = 'Общее время просмотра видео для каждого пользователя';
+const boxTitle = 'Общее время просмотра видео для каждого студента';
 const columnName = 'Студенты';
 const columnCount = 'Время (сек.)';
 const labelText = 'Поиск студента...';
@@ -204,6 +203,8 @@ time,count
 2022-09-11,378
 `;
 
+const dailyVideoAmount = csvToPoints(lineChartData)
+
 const tableData = {
     boxTitle: boxTitle,
     columnName: columnName,
@@ -214,8 +215,8 @@ const tableData = {
 
 
 export const videoSectionProps: VideoSectionProps = {
-    tableData: tableData,
-    lineChartData: lineChartData,
+    studentsVideoViews: tableData,
+    dailyVideoAmount: dailyVideoAmount,
     headerText: videoHeaderText
 };
 ///здесь заканчиваются данные VideoSection
@@ -389,7 +390,7 @@ count_number,word
 1,de
 `;
 
-const documentHeaderText = 'Просмотр pdf документов'
+const documentHeaderText = 'Работа с учебником'
 const boxTitleScrolling = 'Количество уникальных просмотров pdf документов';
 const columnNameScrolling = 'pdf документ';
 const columnMedian = 'Медиана (мин.)'
@@ -865,7 +866,7 @@ const tableProblems = {
 }
 
 
-export const documentSectionProps: DocumentSectionProps = {
+export const textbookSectionProps: TextbookSectionProps = {
     tableScrollingData: tableScrollingData,
     // tableSearchedTermsData: tableSearchedTermsData,
     tableSearchedTermsData: tablePages,

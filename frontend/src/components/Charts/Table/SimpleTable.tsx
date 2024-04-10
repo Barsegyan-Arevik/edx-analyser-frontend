@@ -87,7 +87,6 @@ export default function SimpleTable(props: SimpleTableProps) {
                 <Table stickyHeader size="small" aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>ID</TableCell>
                             <TableCell>{props.columnName}</TableCell>
                             <TableCell>{props.columnCount}</TableCell>
                         </TableRow>
@@ -97,7 +96,6 @@ export default function SimpleTable(props: SimpleTableProps) {
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row, index) => (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                                    <TableCell component="th">{row.id}</TableCell>
                                     <TableCell>{row.user}</TableCell>
                                     <TableCell>{row.timeSec}</TableCell>
                                 </TableRow>

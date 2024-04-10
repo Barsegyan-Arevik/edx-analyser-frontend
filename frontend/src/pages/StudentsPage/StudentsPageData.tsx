@@ -1,5 +1,6 @@
-import {StudentData, StudentsCommonTableProps} from '../../components/Charts/Table/StudentsCommonTable';
-import {CompletionStatus, getEnumValueFromString} from '../../utils/utils'
+import {StudentData, CompletionStatus} from '../../models/students';
+import {getEnumValueFromString} from '../../utils/utils'
+import {StudentsCommonTableProps} from '../../components/Charts/Table/StudentsCommonTable'
 
 const studentsRowData = `
 username,completion_status,days_online,time_on_course,video_watching,text_book_scrolling,promblems_solving,forum_activity

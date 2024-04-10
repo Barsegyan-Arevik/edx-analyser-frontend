@@ -9,12 +9,12 @@ type MenuItem = {
     icon: React.JSX.Element
 }
 
-type SideBarProps = {
+type CourseSideBarProps = {
     children: React.JSX.Element,
     menuItems: Array<MenuItem>
 }
 
-export default function SideBar(props: SideBarProps) {
+export default function CourseSideBar(props: CourseSideBarProps) {
     const [isOpen, setIsOpen] = useState(false)
     const toggle = () => setIsOpen(!isOpen)
 

@@ -1,3 +1,6 @@
+import {LineChartDate} from '../components/Charts/LineChart/CustomLineChart'
+import {CompletionStatus} from '../models/students'
+
 export function getStudentEnding(amount: number) {
     const lastTwoDigits = amount % 100;
     const lastDigit = amount % 10;
@@ -13,10 +16,10 @@ export function getStudentEnding(amount: number) {
     }
 }
 
-export function parseCSV(csvData: string): { dates: Date[], values: number[] } {
+export function csvToPoints(csvData: string): Array<LineChartDate> {
     const csvRows = csvData.split('\n');
-    const dates: Date[] = [];
-    const values: number[] = [];
+
+    const points = []
 
     csvRows.forEach(row => {
         const [dateString, valueString] = row.split(',');
@@ -24,18 +27,11 @@ export function parseCSV(csvData: string): { dates: Date[], values: number[] } {
         const value = parseInt(valueString, 10);
 
         if (!isNaN(date.getTime()) && !isNaN(value)) {
-            dates.push(date);
-            values.push(value);
+            points.push({date, value});
         }
     });
 
-    return {dates, values};
-}
-
-export enum CompletionStatus {
-    NOT_STARTED = 'Не начал',
-    IN_PROGRESS = 'Начал но не завершил',
-    COMPLETED = 'Прошел курс'
+    return points;
 }
 
 export function getColorByCompletionStatus(status: CompletionStatus) {
@@ -83,4 +79,22 @@ export function getBlueColorScale(timeRange: number, minValue: number, value: nu
         );
     }
     return `rgb(${color.join(',')})`;
+}
+
+export function getEnumValueFromString<T extends {
+    [index: string]: string
+}>(enumObject: T, value: string): T[keyof T] | undefined {
+    const enumValues = Object.values(enumObject);
+    const enumKey = enumValues.find(key => enumObject[key] === value);
+    return enumKey as T[keyof T] | undefined;
+}
+
+export function getColumnRange(columnName: string, rows) {
+    const columnArray = rows.map(row => row[columnName]);
+
+    const minVal = Math.min(...columnArray);
+    const maxVal = Math.max(...columnArray);
+    const range = maxVal - minVal;
+
+    return {range, minVal};
 }

@@ -1,8 +1,8 @@
 import PageBase from '../components/PageBase/PageBase'
-import * as React from 'react'
+import * as React from 'react';
 
 
-export default function ProblemSectionPage() {
+export default function ReportPageBase() {
     return (
         <PageBase>
 

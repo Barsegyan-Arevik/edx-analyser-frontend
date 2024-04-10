@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {useState} from 'react';
-import './DocumentSection.css'
-import Header from '../HeaderSection/Header';
+import './TextbookSection.css'
+import Header from '../SectionHeader/SectionHeader';
 import TableWithLink from '../../Charts/Table/TableWithLink';
 
 export type TableData = {
@@ -13,14 +13,14 @@ export type TableData = {
     data: string;
 }
 
-export type DocumentSectionProps = {
+export type TextbookSectionProps = {
     tableScrollingData: TableData;
     tableSearchedTermsData: TableData;
     headerText: string;
     // !!!graphData?  
 }
 
-export default function DocumentSection(props: DocumentSectionProps) {
+export default function TextbookSection(props: TextbookSectionProps) {
 
     function convertingStringToTableScrolling(str) {
         return str
@@ -70,18 +70,9 @@ export default function DocumentSection(props: DocumentSectionProps) {
     const initialScrollingData = convertingStringToTableScrolling(props.tableScrollingData.data);
     const initialSearchedTermsData = convertingStringToTableSearchedTerms(props.tableSearchedTermsData.data)
 
-
-    const [rowsScrolling, setRowsScrolling] = useState(initialScrollingData);
-    const [rowsSearchedTerms, setRowsSearchedTerms] = useState(initialSearchedTermsData);
-
-    const paperSizeScrolling = '900px'
-    const paperSizeSearchedTerms = '600px'
-
     return (
         <div className={'document_interaction'}>
-            <div style={{marginTop: '20px'}}>
-                <Header text={props.headerText}/>
-            </div>
+            <Header text={props.headerText} style={{marginTop: '20px'}}/>
             <div className='document_interaction_container'>
                 {/*<div className='item_doc_1'>*/}
                 {/*    <ComplexTable*/}

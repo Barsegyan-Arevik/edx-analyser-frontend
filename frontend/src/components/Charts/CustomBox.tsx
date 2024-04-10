@@ -61,7 +61,3 @@ export default function CustomBox(props: CustomBoxProps) {
         </Box>
     );
 }
-
-
-
-

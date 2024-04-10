@@ -12,6 +12,7 @@ export default function PageBase(props: PageBaseProps) {
             <div className="content">
                 {props.children}
             </div>
+            <footer className="footer"/>
         </div>
     )
 }

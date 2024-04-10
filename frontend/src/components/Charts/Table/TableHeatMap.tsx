@@ -30,7 +30,6 @@ export type TableHeatMapProps = {
     columnCount: string;
     columnMedian?: string;
     labelText: string;
-    paperSize: string;
 }
 
 
@@ -77,7 +76,7 @@ export default function TableHeatMap(props: TableHeatMapProps) {
     const medianTimeRange = maxMedianTime - minMedianTime;
 
     return (
-        <Paper sx={{overflow: 'hidden', padding: '10px', width: props.paperSize}}>
+        <Paper sx={{overflow: 'hidden', padding: '10px'}}>
             <Box
                 sx={{
                     fontSize: 16,
@@ -119,7 +118,6 @@ export default function TableHeatMap(props: TableHeatMapProps) {
                 <Table stickyHeader size="small" aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>ID</TableCell>
                             <TableCell>{props.columnName}</TableCell>
                             <TableCell>{props.columnCount}</TableCell>
                             <TableCell>{props.columnMedian}</TableCell>
@@ -130,9 +128,6 @@ export default function TableHeatMap(props: TableHeatMapProps) {
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map((row, _) => (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                                    <TableCell component="th">
-                                        {row.id}
-                                    </TableCell>
                                     <TableCell>
                                         {row.user}
                                     </TableCell>

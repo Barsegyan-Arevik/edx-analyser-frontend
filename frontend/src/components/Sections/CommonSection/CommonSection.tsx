@@ -2,7 +2,7 @@ import * as React from 'react';
 import DonutsChart, {DonutsChartData} from '../../Charts/DonutsChart';
 import CustomBox from '../../Charts/CustomBox';
 import './CommonSection.css'
-import Header from '../HeaderSection/Header'
+import Header from '../SectionHeader/SectionHeader'
 
 export type CourseInfo = {
     courseId: number;
@@ -15,27 +15,24 @@ export type BoxInsideProps = {
     label: string;
 }
 
-export type CourseAnalyticsProps = {
-    donut: DonutsChartData[];
+export type CommonSectionProps = {
+    completionDegreeData: DonutsChartData[];
     aboutCountOfStudents: BoxInsideProps;
     aboutAverageTimeToEnroll: BoxInsideProps;
-    headerData: CourseInfo;
+    courseInfo: CourseInfo;
 }
 
 
-export default function CommonSection(props: CourseAnalyticsProps) {
+export default function CommonSection(props: CommonSectionProps) {
 
-    const headerText = `Аналитика по курсу "${props.headerData.courseId}" "${props.headerData.courseName}"`;
+    const headerText = `Аналитика по курсу "${props.courseInfo.courseName}"`;
 
     return (
         <div className={'top_analytics'}>
-            <div style={{paddingTop: '30px'}}>
-                <Header text={headerText}/>
-            </div>
-
+            <Header text={headerText} style={{paddingTop: '30px'}}/>
             <div className={'main_content'}>
                 <div className={'main-box'}>
-                    <DonutsChart data={props.donut}/>
+                    <DonutsChart data={props.completionDegreeData}/>
                 </div>
 
                 <div className={'side-container'}>

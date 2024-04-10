@@ -7,10 +7,6 @@ export default function PagesSectionPage() {
     return (
         <PageBase>
             Популярность страниц курса
-            {/*<CustomBox />*/}
-            <footer className="footer">
-                {/* Содержимое вашего футера */}
-            </footer>
         </PageBase>
     );
 }

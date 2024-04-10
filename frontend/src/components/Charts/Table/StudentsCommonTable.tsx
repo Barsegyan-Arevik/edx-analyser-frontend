@@ -10,22 +10,11 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import {Box} from '@mui/material';
 import {PiStudentBold} from 'react-icons/pi';
-import {getBlueColorScale, getColorByCompletionStatus} from '../../../utils/utils';
-
-export type RowData = {
-    id: number;
-    username: string;
-    completionStatus: string;
-    daysOnline: string;
-    timeOnCourse: string;
-    videoWatching: string;
-    textbookScrolling: string;
-    promblemsSolving: string;
-    forumActivity: string;
-}
+import {getBlueColorScale, getColorByCompletionStatus, getColumnRange} from '../../../utils/utils';
+import {StudentData} from '../../../models/students'
 
 export type StudentsCommonTableProps = {
-    data: string;
+    students: Array<StudentData>;
     boxTitle: string;
     username: string,
     completionStatus: string,
@@ -37,36 +26,7 @@ export type StudentsCommonTableProps = {
     forumActivity: string,
 }
 
-function getColumnRange(columnName, rows) {
-    const columnArray = rows.map(row => row[columnName]);
-
-    const minVal = Math.min(...columnArray);
-    const maxVal = Math.max(...columnArray);
-    const range = maxVal - minVal;
-
-    return {range, minVal};
-}
-
-
 export default function StudentsCommonTable(props: StudentsCommonTableProps) {
-    const rows = props.data
-        .trim()
-        .split('\n')
-        .slice(1) // Пропускаем строку с заголовками
-        .map((row, index) => {
-            const [username, completionStatus, daysOnline, timeOnCourse, videoWatching, textbookScrolling, problemsSolving, forumActivity] = row.split(',');
-            return {
-                // id: index + 1,
-                username,
-                completionStatus,
-                daysOnline: parseInt(daysOnline, 10),
-                timeOnCourse: parseInt(timeOnCourse, 10),
-                videoWatching: parseInt(videoWatching, 10),
-                textbookScrolling: parseInt(textbookScrolling, 10),
-                problemsSolving: parseInt(problemsSolving, 10),
-                forumActivity: parseInt(forumActivity, 10)
-            };
-        });
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [searchTerm, _] = useState('');
@@ -84,12 +44,12 @@ export default function StudentsCommonTable(props: StudentsCommonTableProps) {
         setPage(0);
     };
 
-    const daysOnlineRange = getColumnRange('daysOnline', rows);
-    const timeOnCourseRange = getColumnRange('timeOnCourse', rows);
-    const videoWatching = getColumnRange('videoWatching', rows);
-    const textbookScrolling = getColumnRange('textbookScrolling', rows);
-    const problemsSolving = getColumnRange('problemsSolving', rows);
-    const forumActivity = getColumnRange('forumActivity', rows);
+    const daysOnlineRange = getColumnRange('daysOnline', props.students);
+    const timeOnCourseRange = getColumnRange('timeOnCourse', props.students);
+    const videoWatching = getColumnRange('videoWatching', props.students);
+    const textbookScrolling = getColumnRange('textbookScrolling', props.students);
+    const problemsSolving = getColumnRange('problemsSolved', props.students);
+    const forumActivity = getColumnRange('forumActivity', props.students);
 
     const cellStyle = {fontSize: '16px', color: '#405479'}
 
@@ -106,88 +66,85 @@ export default function StudentsCommonTable(props: StudentsCommonTableProps) {
 
             </Box>
             <TableContainer>
-                <Table stickyHeader size="small" aria-label="sticky table"
-                       sx={{borderSpacing: '8px 0', borderCollapse: 'separate', color: '#405479'}}>
+                <Table stickyHeader size="small" aria-label="sticky table" sx={{borderSpacing: '8px 0', borderCollapse: 'separate', color: '#405479'}}>
                     <TableHead style={{color: '#405479'}}>
                         <TableRow>
                             <TableCell style={cellStyle}>{props.username}</TableCell>
                             <TableCell style={cellStyle}>{props.daysOnline}</TableCell>
                             <TableCell style={cellStyle}>{props.timeOnCourse}</TableCell>
                             <TableCell style={cellStyle}>{props.videoWatching}</TableCell>
-                            <TableCell style={cellStyle}
-                                       sx={{marginRight: '8px'}}>{props.textbookScrolling}</TableCell>
+                            <TableCell style={cellStyle} sx={{marginRight: '8px'}}>{props.textbookScrolling}</TableCell>
                             <TableCell style={cellStyle}>{props.promblemsSolving}</TableCell>
                             <TableCell style={cellStyle}>{props.forumActivity}</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody sx={{'&:last-child td, &:last-child th': {border: 0}}}>
-                        {rows
+                        {props.students
                             .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((row, index) => (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                            .map((studentData, index) => (
+                                <TableRow hover role="checkbox" tabIndex={-1} key={studentData.id}>
                                     <TableCell
                                         style={{fontSize: '16px', color: '#405479'}}
                                     >
-                                        <PiStudentBold size={24}
-                                                       color={getColorByCompletionStatus(row.completionStatus)}/>
-                                        {row.username}
+                                        <PiStudentBold size={24} color={getColorByCompletionStatus(studentData.completionStatus)}/>
+                                        {studentData.username}
                                     </TableCell>
 
                                     <TableCell
                                         style={{
                                             fontSize: '16px', color: '#405479',
-                                            backgroundColor: row.daysOnline ? getBlueColorScale(daysOnlineRange.range, daysOnlineRange.minVal, row.daysOnline) : 'white'
+                                            backgroundColor: studentData.daysOnline ? getBlueColorScale(daysOnlineRange.range, daysOnlineRange.minVal, studentData.daysOnline) : 'white'
                                         }}
                                     >
-                                        {row.daysOnline}
+                                        {studentData.daysOnline}
                                     </TableCell>
 
                                     <TableCell
                                         style={{
                                             fontSize: '16px',
                                             color: '#405479',
-                                            backgroundColor: row.timeOnCourse ? getBlueColorScale(timeOnCourseRange.range, timeOnCourseRange.minVal, row.timeOnCourse) : 'white'
+                                            backgroundColor: studentData.timeOnCourse ? getBlueColorScale(timeOnCourseRange.range, timeOnCourseRange.minVal, studentData.timeOnCourse) : 'white'
                                         }}
                                     >
-                                        {row.timeOnCourse}
+                                        {studentData.timeOnCourse}
                                     </TableCell>
 
                                     <TableCell
                                         style={{
                                             fontSize: '16px', color: '#405479',
-                                            backgroundColor: row.videoWatching ? getBlueColorScale(videoWatching.range, videoWatching.minVal, row.videoWatching) : 'white',
+                                            backgroundColor: studentData.videoWatching ? getBlueColorScale(videoWatching.range, videoWatching.minVal, studentData.videoWatching) : 'white',
                                             padding: '8px',
                                         }}
                                     >
-                                        {row.videoWatching}
+                                        {studentData.videoWatching}
                                     </TableCell>
 
                                     <TableCell
                                         style={{
                                             fontSize: '16px', color: '#405479',
-                                            backgroundColor: row.textbookScrolling ? getBlueColorScale(textbookScrolling.range, textbookScrolling.minVal, row.textbookScrolling) : 'white',
+                                            backgroundColor: studentData.textbookScrolling ? getBlueColorScale(textbookScrolling.range, textbookScrolling.minVal, studentData.textbookScrolling) : 'white',
                                             padding: '8px'
                                         }}
                                     >
-                                        {row.textbookScrolling}
+                                        {studentData.textbookScrolling}
                                     </TableCell>
                                     <TableCell
                                         style={{
                                             fontSize: '16px', color: '#405479',
-                                            backgroundColor: row.problemsSolving ? getBlueColorScale(problemsSolving.range, problemsSolving.minVal, row.problemsSolving) : 'white',
+                                            backgroundColor: studentData.problemsSolved ? getBlueColorScale(problemsSolving.range, problemsSolving.minVal, studentData.problemsSolved) : 'white',
                                             padding: '8px'
                                         }}
                                     >
-                                        {row.problemsSolving}
+                                        {studentData.problemsSolved}
                                     </TableCell>
                                     <TableCell
                                         style={{
                                             fontSize: '16px', color: '#405479',
-                                            backgroundColor: row.forumActivity ? getBlueColorScale(forumActivity.range, forumActivity.minVal, row.forumActivity) : 'white',
+                                            backgroundColor: studentData.forumActivity ? getBlueColorScale(forumActivity.range, forumActivity.minVal, studentData.forumActivity) : 'white',
                                             padding: '8px'
                                         }}
                                     >
-                                        {row.forumActivity}
+                                        {studentData.forumActivity}
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -197,7 +154,7 @@ export default function StudentsCommonTable(props: StudentsCommonTableProps) {
             <TablePagination
                 rowsPerPageOptions={[10, 50, 100]}
                 component="div"
-                count={rows.length}
+                count={props.students.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

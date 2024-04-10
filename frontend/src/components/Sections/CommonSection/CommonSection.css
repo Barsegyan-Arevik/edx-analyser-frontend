@@ -1,22 +1,11 @@
 .top_analytics {
     color: #405479;
     font-size: 26px;
-    font-weight: bold;
-    font-family: Arial, sans-serif;
+    font-weight: 700;
+    font-family: "Arial", sans-serif;
     grid-area: top_analytics;
-    /*background-color: #1A01CC;*/
-    /*height: 80vh;*/
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
     border-color: #667B98;
-    /*align-items: center;*/
-    /*justify-content: center;*/
-    /*align-items: flex-start;*/
     z-index: 100;
-    /*margin-top: 100px;*/
-    /*margin-bottom: 50px;*/
-    /*padding-left: 50px;*/
-    /*margin-left: 50px;*/
     height: 90%;
 }
 
@@ -43,8 +32,10 @@
 }
 
 .main-box {
-    /*width: 579px;*/
-    /*background-color: blue;*/
+
+    /* width: 579px; */
+
+    /* background-color: blue; */
 }
 
 .side-container {
@@ -56,19 +47,27 @@
 
 .side-box-up {
     width: 249px; /* Учитывая 2px за border */
-    /*height: 94px; !* 100px - 6px (border) *!*/
-    /*background-color: blue;*/
-    /*border: 1px solid blue;*/
+
+    /* height: 94px; !* 100px - 6px (border) *! */
+
+    /* background-color: blue; */
+
+    /* border: 1px solid blue; */
     margin-bottom: 11px;
-    /*background-color: blue;*/
+
+    /* background-color: blue; */
 }
 
 .side-box-down {
     width: 249px; /* Учитывая 2px за border */
-    /*height: 94px; !* 100px - 6px (border) *!*/
-    /*background-color: blue;*/
-    /*border: 1px solid blue;*/
+
+    /* height: 94px; !* 100px - 6px (border) *! */
+
+    /* background-color: blue; */
+
+    /* border: 1px solid blue; */
     margin-top: 11px;
-    /*background-color: blue;*/
+
+    /* background-color: blue; */
 
 }

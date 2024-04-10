@@ -1,34 +1,29 @@
 import * as React from 'react';
 import PageBase from '../../components/PageBase/PageBase';
-import CourseAnalytics, {CourseAnalyticsProps} from '../../components/Sections/CommonSection/CommonSection';
-import DocumentSection, {DocumentSectionProps} from '../../components/Sections/DocumentSection/DocumentSection';
+import CommonSection , {CommonSectionProps} from '../../components/Sections/CommonSection/CommonSection';
+import TextbookSection, {TextbookSectionProps} from '../../components/Sections/TextbookSection/TextbookSection';
 import VideoSection, {VideoSectionProps} from '../../components/Sections/VideoSection/VideoSection';
 import './CourseInfoPage.css'
 
 
 export type CourseInfoPageProps = {
-    courseAnalyticsProps: CourseAnalyticsProps;
+    courseAnalyticsProps: CommonSectionProps;
     videoSectionProps: VideoSectionProps;
-    documentSectionProps: DocumentSectionProps;
+    documentSectionProps: TextbookSectionProps;
 }
 
 export default function CourseInfoPage(props: CourseInfoPageProps) {
     return (
         <PageBase>
-            <div className={'layout'}>
-                {/* <div className={"content"} style={{height: '77vh', color: '#405479'}}> */}
-                <div style={{justifyContent: 'center'}}>
-                    <div style={{height: '85vh', color: '#405479'}}>
-                        <CourseAnalytics {...props.courseAnalyticsProps} />
-                    </div>
-                    <div className={'spikes'}>
-                        <div className='wrapper'>
-                            <VideoSection {...props.videoSectionProps} />
-                        </div>
-                    </div>
-                    <div style={{height: '85vh'}}>
-                        <DocumentSection {...props.documentSectionProps} />
-                    </div>
+            <div style={{justifyContent: 'center'}}>
+                <div style={{height: '85vh', color: '#405479'}}>
+                    <CommonSection {...props.courseAnalyticsProps} />
+                </div>
+                <div className='wrapper'>
+                    <VideoSection {...props.videoSectionProps} />
+                </div>
+                <div className='wrapper' style={{height: '85vh'}}>
+                    <TextbookSection {...props.documentSectionProps} />
                 </div>
             </div>
         </PageBase>

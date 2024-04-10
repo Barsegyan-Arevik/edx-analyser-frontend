@@ -74,7 +74,7 @@ export default function TableWithLink(props: TableWithLinkProps) {
     const timeRangePercents = maxPercent - minPercent;
 
     return (
-        <Paper sx={{overflow: 'hidden', padding: '10px', width: '1300px'}}>
+        <Paper sx={{overflow: 'hidden', padding: '10px', width: '88%'}}>
             <Box
                 sx={{
                     fontSize: 16,
@@ -105,7 +105,6 @@ export default function TableWithLink(props: TableWithLinkProps) {
                 <Table stickyHeader size="small" aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>ID</TableCell>
                             <TableCell>{props.columnName}</TableCell>
                             <TableCell>{props.columnCount}</TableCell>
                             {/*<TableCell>{props.additionalColumn}</TableCell>*/}
@@ -123,7 +122,6 @@ export default function TableWithLink(props: TableWithLinkProps) {
                                     onMouseEnter={() => setHoveredRowIndex(index)}
                                     onMouseLeave={() => setHoveredRowIndex(null)}
                                 >
-                                    <TableCell component="th">{row.id}</TableCell>
                                     <TableCell>
                                         <Tooltip title={row.pdfName} enterDelay={500}
                                             PopperProps={{
@@ -136,7 +134,7 @@ export default function TableWithLink(props: TableWithLinkProps) {
                                                     overflow: 'hidden',
                                                     textOverflow: 'ellipsis',
                                                     whiteSpace: 'nowrap',
-                                                    maxWidth: '1000px'
+                                                    maxWidth: '700px'
                                                 }}
                                             >
                                                 {hoveredRowIndex === index ?
