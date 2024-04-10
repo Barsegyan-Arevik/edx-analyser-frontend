@@ -9,8 +9,6 @@
 }
 
 main {
-
-    /* width: 100%; */
     padding: 20px;
 }
 
@@ -45,16 +43,6 @@ main {
     transition: all 0.5s;
     width: 300px;
 }
-
-/* .link:hover{ */
-
-/*    background: #CED6F7; */
-
-/*    !*color: #FFF;*! */
-
-/*    transition: all 0.5s; */
-
-/* } */
 
 .active {
     background: #5471E7;
