@@ -1,17 +1,15 @@
-import * as React from 'react';
-import {useEffect, useState} from 'react';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
-import {Box} from '@mui/material';
-import {getGreenColorScale} from '../../../utils/utils';
+import * as React from 'react'
+import { useEffect, useState } from 'react'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TablePagination from '@mui/material/TablePagination'
+import TableRow from '@mui/material/TableRow'
+import TextField from '@mui/material/TextField'
+import Tooltip from '@mui/material/Tooltip'
+import { calcColumnRange, getGreenColorScale } from '../../../utils/utils'
 
 export type RowData = {
     id: number;
@@ -22,7 +20,6 @@ export type RowData = {
 
 export type TableWithLinkProps = {
     data: string;
-    boxTitle: string;
     columnName: string;
     columnCount: string;
     additionalColumn?: string;
@@ -64,29 +61,10 @@ export default function TableWithLink(props: TableWithLinkProps) {
     };
 
     const timeSecArray = rows.map(row => row.timeSec);
-    const minTime = Math.min(...timeSecArray);
-    const maxTime = Math.max(...timeSecArray);
-    const timeRange = maxTime - minTime;
-
-    const percentArray = rows.map(row => row.percent);
-    const minPercent = Math.min(...percentArray);
-    const maxPercent = Math.max(...percentArray);
-    const timeRangePercents = maxPercent - minPercent;
+    const timeRange = calcColumnRange(timeSecArray)
 
     return (
-        <Paper sx={{overflow: 'hidden', padding: '10px', width: '88%'}}>
-            <Box
-                sx={{
-                    fontSize: 16,
-                    p: 1,
-                    color: '#405479',
-                    alignItems: 'center',
-                }}
-            >
-                {props.boxTitle}
-
-            </Box>
-
+        <div style={{overflow: 'hidden', padding: '10px'}}>
             <TextField
                 size="small"
                 label={props.labelText}
@@ -176,6 +154,6 @@ export default function TableWithLink(props: TableWithLinkProps) {
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
-        </Paper>
+        </div>
     );
 }

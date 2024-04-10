@@ -702,14 +702,11 @@ https://apps.openedu.ru/learning/course/course-v1:ITMOUniversity+DATANTECH2035+s
 https://courses.openedu.ru/courses/course-v1:ITMOUniversity+DATANTECH2035+summer_2022_1/courseware/1f04e176f3ab4e57aa8279610f03fc06/080cb770c2974b679b8b326e0bc0d0fa/10,1
 `
 
-
-const boxTitlePages = 'Популярность страниц курса';
 const columnNamePages = 'Ссылка';
 const columnCountPages = 'Количество поисков';
 const labelTextPages = 'Поиск ссылки...';
 
 const tablePages = {
-    boxTitle: boxTitlePages,
     columnName: columnNamePages,
     columnCount: columnCountPages,
     labelText: labelTextPages,

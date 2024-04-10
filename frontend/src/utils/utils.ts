@@ -98,3 +98,9 @@ export function getColumnRange(columnName: string, rows) {
 
     return {range, minVal};
 }
+
+export function calcColumnRange(column: Array<number>) {
+    const minTime = Math.min(...column);
+    const maxTime = Math.max(...column);
+    return  maxTime - minTime;
+}

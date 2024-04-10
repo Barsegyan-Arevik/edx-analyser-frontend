@@ -21,9 +21,7 @@ export type DatesLineChartExtendedProps = {
 export default function DatesLineChart(props: DatesLineChartExtendedProps) {
     const dates = props.points.map(v => v.date)
     const values = props.points.map(v => v.value)
-
     const [dateRange, setDateRange] = useState([dates[0], dates[dates.length - 1]]);
-
 
     const handleDateRangeChange = (event: Event, newDateRange: number[]) => {
         setDateRange(newDateRange.map(timestamp => new Date(timestamp)));

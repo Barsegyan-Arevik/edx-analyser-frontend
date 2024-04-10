@@ -1,20 +1,15 @@
-import * as React from 'react';
-import {useEffect, useState} from 'react';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import TextField from '@mui/material/TextField';
-import {Box, Button} from '@mui/material';
-import {SlMagnifier} from 'react-icons/sl';
-import './TableHeatMap.css';
-import ModalWindow from '../ModalWindow';
-import TableHeatMapInsideWindow from './TableHeatMapInsideModalWindow';
-import {getGreenColorScale} from '../../../utils/utils';
+import * as React from 'react'
+import { useEffect, useState } from 'react'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TablePagination from '@mui/material/TablePagination'
+import TableRow from '@mui/material/TableRow'
+import TextField from '@mui/material/TextField'
+import './TableHeatMap.css'
+import { getGreenColorScale } from '../../../utils/utils'
 
 interface RowData {
     id: number;
@@ -25,7 +20,6 @@ interface RowData {
 
 export type TableHeatMapProps = {
     rows: RowData[];
-    boxTitle: string;
     columnName: string;
     columnCount: string;
     columnMedian?: string;
@@ -37,7 +31,6 @@ export default function TableHeatMap(props: TableHeatMapProps) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState('');
-    const [modalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
         setPage(0); // Переход на первую страницу при изменении поискового запроса
@@ -56,15 +49,6 @@ export default function TableHeatMap(props: TableHeatMapProps) {
         row.user.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const handleModalOpen = () => {
-        setModalOpen(true);
-    };
-
-    const handleModalClose = () => {
-        setModalOpen(false);
-    };
-
-    // Calculate statistics
     const timeSecArray = props.rows.map(row => row.timeSec);
     const minTime = Math.min(...timeSecArray);
     const maxTime = Math.max(...timeSecArray);
@@ -76,27 +60,7 @@ export default function TableHeatMap(props: TableHeatMapProps) {
     const medianTimeRange = maxMedianTime - minMedianTime;
 
     return (
-        <Paper sx={{overflow: 'hidden', padding: '10px'}}>
-            <Box
-                sx={{
-                    fontSize: 16,
-                    p: 1,
-                    color: '#405479',
-                    alignItems: 'center',
-                }}
-            >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'space-between'
-                    }}
-                >
-                    {props.boxTitle}
-                    <Button onClick={handleModalOpen}>
-                        <SlMagnifier/>
-                    </Button>
-                </Box>
-            </Box>
+        <div style={{overflow: 'hidden', padding: '10px'}}>
             <TextField
                 size="small"
                 label={props.labelText}
@@ -111,9 +75,6 @@ export default function TableHeatMap(props: TableHeatMapProps) {
                     },
                 }} // Добавлено смещение для выравнивания с кнопкой модального окна
             />
-            <ModalWindow open={modalOpen} handleClose={handleModalClose}>
-                <TableHeatMapInsideWindow{...props}/>
-            </ModalWindow>
             <TableContainer sx={{height: 400}}>
                 <Table stickyHeader size="small" aria-label="sticky table">
                     <TableHead>
@@ -161,6 +122,6 @@ export default function TableHeatMap(props: TableHeatMapProps) {
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
-        </Paper>
+        </div>
     );
 }
