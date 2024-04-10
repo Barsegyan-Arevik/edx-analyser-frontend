@@ -1,4 +1,4 @@
-import {LineChartDate} from '../components/Charts/LineChart/CustomLineChart'
+import {LineChartDate} from '../components/Charts/LineChart/DatesLineChart'
 import {CompletionStatus} from '../models/students'
 
 export function getStudentEnding(amount: number) {

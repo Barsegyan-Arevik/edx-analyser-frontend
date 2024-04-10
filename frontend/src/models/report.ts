@@ -22,6 +22,9 @@ export interface CommonReport extends Report {
     section_activity_chart: {
         items: { section_type: string; students_percent: number }[];
     };
+    weekly_activity_chart: {
+        items: {date: Date; value: number }[];
+    }
 }
 
 export interface VideoReport extends Report {

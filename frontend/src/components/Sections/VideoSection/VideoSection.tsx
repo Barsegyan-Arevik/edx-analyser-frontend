@@ -4,7 +4,7 @@ import './VideoSection.css'
 import Header from '../SectionHeader/SectionHeader'
 import TableHeatMap from '../../Charts/Table/TableHeatMap';
 import LineChartWithModalWindow from '../../Charts/LineChart/LineChartWithModalWindow';
-import {LineChartDate} from '../../Charts/LineChart/CustomLineChart'
+import {LineChartDate} from '../../Charts/LineChart/DatesLineChart'
 
 export type TableData = {
     boxTitle: string;

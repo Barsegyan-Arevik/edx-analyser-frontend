@@ -13,12 +13,12 @@ export type LineChartDate = {
     value: number;
 }
 
-export type LineChartExtendedProps = {
+export type DatesLineChartExtendedProps = {
     points: Array<LineChartDate>;
     lineChartSize: LineChartSize;
 }
 
-export default function CustomLineChart(props: LineChartExtendedProps) {
+export default function DatesLineChart(props: DatesLineChartExtendedProps) {
     const dates = props.points.map(v => v.date)
     const values = props.points.map(v => v.value)
 

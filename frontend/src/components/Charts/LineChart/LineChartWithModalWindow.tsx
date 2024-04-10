@@ -4,7 +4,7 @@ import {Box, Button} from '@mui/material';
 import {SlMagnifier} from 'react-icons/sl';
 import Paper from '@mui/material/Paper';
 import ModalWindow from '../ModalWindow';
-import CustomLineChart, {LineChartDate} from './CustomLineChart';
+import DatesLineChart, {LineChartDate} from './DatesLineChart';
 
 export type LineChartSize = {
     width: number;
@@ -64,7 +64,7 @@ export default function LineChartWithModalWindow(props: LineChartProps) {
                         <SlMagnifier/>
                     </Button>
                 </Box>
-                <CustomLineChart points={props.points} lineChartSize={baseSize}/>
+                <DatesLineChart points={props.points} lineChartSize={baseSize}/>
                 <ModalWindow open={open} handleClose={handleCloseModal}>
                     <Box
                         sx={{
@@ -78,7 +78,7 @@ export default function LineChartWithModalWindow(props: LineChartProps) {
                             borderRadius: 2
                         }}
                     >
-                        <CustomLineChart points={props.points} lineChartSize={modalSize}/>
+                        <DatesLineChart points={props.points} lineChartSize={modalSize}/>
                     </Box>
                 </ModalWindow>
             </Box>

@@ -1,12 +1,12 @@
-import * as React from 'react';
-import {Box} from '@mui/system';
+import * as React from 'react'
+import { Box } from '@mui/system'
 
-export type CustomBoxModalWindowProps = {
+export type AggregateMeasureBoxProps = {
     measure: string;
     value: number;
 }
 
-export default function CustomBoxModalWindow({measure, value}: CustomBoxModalWindowProps) {
+export default function AggregateMeasureBox(props: AggregateMeasureBoxProps) {
     return (
         <Box
             sx={{
@@ -24,10 +24,9 @@ export default function CustomBoxModalWindow({measure, value}: CustomBoxModalWin
                 sx={{
                     textAlign: 'left',
                     fontSize: 32,
-                    // fontWeight: 'bold'
                 }}
             >
-                {value}
+                {props.value}
 
             </Box>
             <Box
@@ -37,7 +36,7 @@ export default function CustomBoxModalWindow({measure, value}: CustomBoxModalWin
                     fontWeight: 'normal',
                 }}
             >
-                {measure}
+                {props.measure}
             </Box>
         </Box>
     );
