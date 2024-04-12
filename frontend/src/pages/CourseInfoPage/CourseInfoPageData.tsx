@@ -1,35 +1,30 @@
 import {getStudentEnding, csvToPoints} from '../../utils/utils';
-import {CommonSectionProps} from '../../components/Sections/CommonSection/CommonSection';
 import {VideoSectionProps} from '../../components/Sections/VideoSection/VideoSection';
-import {TextbookSectionProps} from '../../components/Sections/TextbookSection/TextbookSection';
+import { TableData, TextbookSectionProps } from '../../components/Sections/TextbookSection/TextbookSection'
 
 ////это данные CommonSection
-const completionDegree = [
-    {value: 10, label: 'Прошли курс'},
-    {value: 20, label: 'Начали, не прошли'},
-    {value: 15, label: 'Не начали'},
-]
 
-const aboutCountOfStudents = {
+export const numberOfStudents = {
     value: '864',
     value_additional_text: getStudentEnding(parseInt('864', 10)),
-    label: 'Количество студентов, записавшихся на курс'
+    label: 'Всего на курсе'
 }
-const averageTimeToEnroll = {value: '10:54', value_additional_text: 'минут', label: 'Среднее время регистрации на курс'}
-const courseInfo = {courseId: 123, courseName: 'Название курса'}
+export const activeNumberOfStudents = {
+    value: '827',
+    value_additional_text: 'студентов',
+    label: 'Из них активных'
+}
 
-
-const chartDonutProblems = [
+export const chartDonutProblems = [
     {value: 70, label: '70% задач решены с \n первой попытки'},
     {value: 16, label: '16% задач решены со \n второй попытки'},
     {value: 14, label: '14% задач решены с \n третьей и более попыток'},
 ]
 
-export const commonSectionProps: CommonSectionProps = {
-    completionDegreeData: completionDegree,
-    aboutCountOfStudents: aboutCountOfStudents,
-    aboutAverageTimeToEnroll: averageTimeToEnroll,
-    courseInfo: courseInfo
+export const commonSectionProps = {
+    courseId: '123',
+    numberOfStudents: numberOfStudents,
+    activeNumberOfStudents: activeNumberOfStudents,
 };
 ///здесь заканчиваются данные CommonSection
 
@@ -39,7 +34,7 @@ const boxTitle = 'Общее время просмотра видео для к�
 const columnName = 'Студенты';
 const columnCount = 'Время (сек.)';
 const labelText = 'Поиск студента...';
-const videoHeaderText = 'Просмотр видео материалов'
+const videoHeaderText = 'Просмотр видеоматериалов'
 
 // CSV-строка с данными
 const csvData = `
@@ -203,7 +198,7 @@ time,count
 2022-09-11,378
 `;
 
-const dailyVideoAmount = csvToPoints(lineChartData)
+export const dailyVideoAmount = csvToPoints(lineChartData)
 
 const tableData = {
     boxTitle: boxTitle,
@@ -397,9 +392,9 @@ const columnMedian = 'Медиана (мин.)'
 const columnCountScrolling = 'Число просмотров';
 const labelTextScrolling = 'Поиск названия pdf документа...';
 
-const boxTitleSearchedTerms = 'Поиск по слову в pdf документах';
-const columnNameSearchedTerms = 'Слова';
-const columnCountSearchedTerms = 'Количество поисков';
+const boxTitleSearchedTerms = 'Поиск по слову в учебнике';
+const columnNameSearchedTerms = 'Слово';
+const columnCountSearchedTerms = 'Число поисков';
 const labelTextSearchedTerms = 'Поиск слова...';
 
 const tableScrollingData = {
@@ -702,11 +697,11 @@ https://apps.openedu.ru/learning/course/course-v1:ITMOUniversity+DATANTECH2035+s
 https://courses.openedu.ru/courses/course-v1:ITMOUniversity+DATANTECH2035+summer_2022_1/courseware/1f04e176f3ab4e57aa8279610f03fc06/080cb770c2974b679b8b326e0bc0d0fa/10,1
 `
 
-const columnNamePages = 'Ссылка';
+const columnNamePages = 'Ссылка на страницу';
 const columnCountPages = 'Количество поисков';
 const labelTextPages = 'Поиск ссылки...';
 
-const tablePages = {
+export const tablePages: TableData = {
     columnName: columnNamePages,
     columnCount: columnCountPages,
     labelText: labelTextPages,

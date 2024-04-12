@@ -1,7 +1,7 @@
-import * as React from 'react';
-import {useState} from 'react';
-import {BsLayoutSidebarInsetReverse} from 'react-icons/bs';
-import {NavLink} from 'react-router-dom';
+import * as React from 'react'
+import { useState } from 'react'
+import { BsLayoutSidebarInsetReverse } from 'react-icons/bs'
+import { NavLink } from 'react-router-dom'
 
 type MenuItem = {
     path: string,

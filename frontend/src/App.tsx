@@ -19,7 +19,7 @@ import TextbookSectionPage from './pages/TextbookSectionPage'
 import CommonSectionPage from './pages/CommonSectionPage'
 
 const courseInfoPageProps: CourseInfoPageProps = {
-    courseAnalyticsProps: commonSectionProps,
+    commonSectionProps: commonSectionProps,
     videoSectionProps: videoSectionProps,
     documentSectionProps: textbookSectionProps
 }

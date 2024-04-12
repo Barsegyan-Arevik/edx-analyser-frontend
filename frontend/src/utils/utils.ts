@@ -81,14 +81,6 @@ export function getBlueColorScale(timeRange: number, minValue: number, value: nu
     return `rgb(${color.join(',')})`;
 }
 
-export function getEnumValueFromString<T extends {
-    [index: string]: string
-}>(enumObject: T, value: string): T[keyof T] | undefined {
-    const enumValues = Object.values(enumObject);
-    const enumKey = enumValues.find(key => enumObject[key] === value);
-    return enumKey as T[keyof T] | undefined;
-}
-
 export function getColumnRange(columnName: string, rows) {
     const columnArray = rows.map(row => row[columnName]);
 

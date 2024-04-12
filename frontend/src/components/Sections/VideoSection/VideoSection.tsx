@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useState } from 'react'
 import './VideoSection.css'
-import Header from '../SectionHeader/SectionHeader'
+import SectionHeader from '../SectionHeader/SectionHeader'
 import TableHeatMap from '../../Charts/Table/TableHeatMap'
 import TableHeatMapInsideWindow from '../../Charts/Table/TableHeatMapInsideModalWindow'
 import DatesLineChart, { LineChartDate, LineChartSize } from '../../Charts/LineChart/DatesLineChart'
@@ -49,12 +49,12 @@ export default function VideoSection(props: VideoSectionProps) {
 
     return (
         <div className={'video_interactions'}>
-            <Header text={props.headerText} />
+            <SectionHeader text={props.headerText} />
             <div className={'video_interactions_container'}>
                 <div className={'item_video_1'}>
                     <ChartWrapper
                         chartTitle={'Количество воспроизведений видеоматериалов, распределённая по дням'}
-                        chart={<DatesLineChart points={props.dailyVideoAmount} lineChartSize={baseSize} />}
+                        chart={<DatesLineChart points={props.dailyVideoAmount} size={baseSize} />}
                         popupChart={<Box
                             sx={{
                                 position: 'absolute',
@@ -67,7 +67,7 @@ export default function VideoSection(props: VideoSectionProps) {
                                 borderRadius: 2
                             }}
                         >
-                            <DatesLineChart points={props.dailyVideoAmount} lineChartSize={modalSize} />
+                            <DatesLineChart points={props.dailyVideoAmount} size={modalSize} />
                         </Box>}
                         additionalInfo='Какое-нибудь длинное описание, зачем нужен этот график'
                     />

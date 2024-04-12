@@ -1,8 +1,10 @@
+import { SectionActivity, SectionType, SessionType } from './common'
+
 
 export enum ReportState {
-  Loading = 'loading',
-  Done = 'done',
-  Failed = 'failed',
+  IN_PROGRESS = 'in_progress',
+  DONE = 'done',
+  FAILED = 'failed',
 }
 
 interface Report {
@@ -13,14 +15,11 @@ interface Report {
 }
 
 export interface CommonReport extends Report {
-    // completion_degree_chart: {
-    //     items: { completion_degree: string; students_count: number }[];
-    // };
     session_time_chart: {
-        items: { session_type: string; average_time: number }[];
+        items: { session_type: SessionType; average_time: number }[];
     };
     section_activity_chart: {
-        items: { section_type: string; students_percent: number }[];
+        items: SectionActivity[];
     };
     weekly_activity_chart: {
         items: {date: Date; value: number }[];
@@ -29,7 +28,7 @@ export interface CommonReport extends Report {
 
 export interface VideoReport extends Report {
     video_interaction_chart: {
-        items: { video_link: string; students_visits_count: number; viewing_percent_median: number }[];
+        items: { video_link: string; views_count: number; unique_students_count: number }[];
     };
     video_play_count_chart: {
         items: { date: Date; count: number }[];

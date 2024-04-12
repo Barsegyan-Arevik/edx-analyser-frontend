@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {List, ListItem, ListItemText} from '@mui/material'
-import Header from '../../components/Sections/SectionHeader/SectionHeader'
+import SectionHeader from '../../components/Sections/SectionHeader/SectionHeader'
 import {NavLink} from 'react-router-dom'
 import PageBase from '../../components/PageBase/PageBase'
 
@@ -16,7 +16,7 @@ export default function CoursesPage() {
 
     return (
         <PageBase>
-            <Header text='Доступные курсы'/>
+            <SectionHeader text='Доступные курсы'/>
             <List>
                 {courses.map(course => (
                     <ListItem key={course.id}>

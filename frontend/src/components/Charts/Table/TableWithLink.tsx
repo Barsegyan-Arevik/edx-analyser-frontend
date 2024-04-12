@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -7,7 +7,6 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
-import TextField from '@mui/material/TextField'
 import Tooltip from '@mui/material/Tooltip'
 import { calcColumnRange, getGreenColorScale } from '../../../utils/utils'
 
@@ -45,11 +44,6 @@ export default function TableWithLink(props: TableWithLinkProps) {
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(15);
-    const [searchTerm, setSearchTerm] = useState('');
-
-    useEffect(() => {
-        setPage(0); // Переход на первую страницу при изменении поискового запроса
-    }, [searchTerm]);
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
@@ -65,20 +59,6 @@ export default function TableWithLink(props: TableWithLinkProps) {
 
     return (
         <div style={{overflow: 'hidden', padding: '10px'}}>
-            <TextField
-                size="small"
-                label={props.labelText}
-                variant="outlined"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                fullWidth
-                sx={{
-                    marginBottom: '10px',
-                    '&:hover': {
-                        borderColor: 'blue', // Цвет границы при наведении курсора
-                    },
-                }}
-            />
             <TableContainer sx={{height: 500}}>
                 <Table stickyHeader size="small" aria-label="sticky table">
                     <TableHead>

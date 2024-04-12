@@ -1,5 +1,4 @@
 import {StudentData, CompletionStatus} from '../../models/students';
-import {getEnumValueFromString} from '../../utils/utils'
 import {StudentsCommonTableProps} from '../../components/Charts/Table/StudentsCommonTable'
 
 const studentsRowData = `
@@ -95,11 +94,11 @@ const students: Array<StudentData> = studentsRowData
     .slice(1) // Пропускаем строку с заголовками
     .map((row, index) => {
         const [username, completionStatus, daysOnline, timeOnCourse, videoWatching, textbookScrolling, problemsSolving, forumActivity] = row.split(',');
-        const enumCompletionStatus = getEnumValueFromString(CompletionStatus, completionStatus)
+        console.log(completionStatus)
         return {
             id: index + 1,
             username: username,
-            completionStatus: enumCompletionStatus,
+            completionStatus: CompletionStatus[completionStatus.toUpperCase()],
             daysOnline: parseInt(daysOnline, 10),
             timeOnCourse: parseInt(timeOnCourse, 10),
             videoWatching: parseInt(videoWatching, 10),

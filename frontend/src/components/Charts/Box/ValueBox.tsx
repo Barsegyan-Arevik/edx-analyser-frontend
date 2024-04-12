@@ -7,7 +7,7 @@ export type CustomBoxProps = {
     label: string;
 }
 
-export default function CustomBox(props: CustomBoxProps) {
+export default function ValueBox(props: CustomBoxProps) {
     return (
         <Box
             sx={{
@@ -23,8 +23,17 @@ export default function CustomBox(props: CustomBoxProps) {
             <Box
                 sx={{
                     textAlign: 'left',
-                    color: '#5471E7',
-                    fontSize: 48,
+                    fontSize: 20,
+                    fontWeight: 'normal',
+                }}
+            >
+                {props.label}
+            </Box>
+            <Box
+                sx={{
+                    textAlign: 'left',
+                    color: '#405479',
+                    fontSize: 36,
                     fontWeight: 'medium'
                 }}
             >
@@ -32,7 +41,7 @@ export default function CustomBox(props: CustomBoxProps) {
 
                 <Box
                     sx={{
-                        color: '#5471E7',
+                        color: '#405479',
                         display: 'inline',
                         fontWeight: 'normal',
                         mx: 0.5,
@@ -41,15 +50,6 @@ export default function CustomBox(props: CustomBoxProps) {
                 >
                     {props.value_additional_text}
                 </Box>
-            </Box>
-            <Box
-                sx={{
-                    textAlign: 'left',
-                    fontSize: 20,
-                    fontWeight: 'normal',
-                }}
-            >
-                {props.label}
             </Box>
         </Box>
     );

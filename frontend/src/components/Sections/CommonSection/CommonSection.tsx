@@ -1,13 +1,10 @@
-import * as React from 'react';
-import DonutsChart, {DonutsChartData} from '../../Charts/DonutsChart';
-import CustomBox from '../../Charts/Box/CustomBox';
+import * as React from 'react'
+import ValueBox from '../../Charts/Box/ValueBox'
 import './CommonSection.css'
-import Header from '../SectionHeader/SectionHeader'
-
-export type CourseInfo = {
-    courseId: number;
-    courseName: string;
-}
+import SectionHeader from '../SectionHeader/SectionHeader'
+import { SectionActivity } from '../../../models/common'
+import { LineChartDate } from '../../Charts/LineChart/DatesLineChart'
+import SectionActivityChart from '../../Charts/SectionActivityChart'
 
 export type BoxInsideProps = {
     value: string;
@@ -16,43 +13,37 @@ export type BoxInsideProps = {
 }
 
 export type CommonSectionProps = {
-    completionDegreeData: DonutsChartData[];
-    aboutCountOfStudents: BoxInsideProps;
-    aboutAverageTimeToEnroll: BoxInsideProps;
-    courseInfo: CourseInfo;
+    courseId: string;
+    numberOfStudents: BoxInsideProps;
+    activeNumberOfStudents: BoxInsideProps;
+    sectionActivityChart: Array<SectionActivity>;
+    weeklyActivityChart: Array<LineChartDate>;
 }
 
 
 export default function CommonSection(props: CommonSectionProps) {
 
-    const headerText = `Аналитика по курсу "${props.courseInfo.courseName}"`;
+    const headerText = `Аналитика по курсу "${props.courseId}"`
 
     return (
         <div className={'top_analytics'}>
-            <Header text={headerText} style={{paddingTop: '30px'}}/>
+            <SectionHeader text={headerText} style={{ paddingTop: '30px' }} />
             <div className={'main_content'}>
-                <div className={'main-box'}>
-                    <DonutsChart data={props.completionDegreeData}/>
-                </div>
-
                 <div className={'side-container'}>
                     <div className={'side-box-up'}>
-                        <CustomBox
-                            value={props.aboutCountOfStudents.value}
-                            value_additional_text={props.aboutCountOfStudents.value_additional_text}
-                            label={props.aboutCountOfStudents.label}
+                        <ValueBox
+                            {...props.numberOfStudents}
                         />
                     </div>
                     <div className={'side-box-down'}>
-                        <CustomBox
-                            value={props.aboutAverageTimeToEnroll.value}
-                            value_additional_text={props.aboutAverageTimeToEnroll.value_additional_text}
-                            label={props.aboutAverageTimeToEnroll.label}
+                        <ValueBox
+                            {...props.activeNumberOfStudents}
                         />
                     </div>
                 </div>
+                <SectionActivityChart items={props.sectionActivityChart} />
             </div>
         </div>
-    );
+    )
 }
 

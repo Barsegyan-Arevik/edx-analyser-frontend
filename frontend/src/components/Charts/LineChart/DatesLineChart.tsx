@@ -8,19 +8,19 @@ export type LineChartSize = {
     height: number;
 };
 
-export type LineChartDate = {
+export interface LineChartDate {
     date: Date;
-    value: number;
+    count: number;
 }
 
 export type DatesLineChartExtendedProps = {
     points: Array<LineChartDate>;
-    lineChartSize: LineChartSize;
+    size: LineChartSize;
 }
 
 export default function DatesLineChart(props: DatesLineChartExtendedProps) {
     const dates = props.points.map(v => v.date)
-    const values = props.points.map(v => v.value)
+    const values = props.points.map(v => v.count)
     const [dateRange, setDateRange] = useState([dates[0], dates[dates.length - 1]]);
 
     const handleDateRangeChange = (event: Event, newDateRange: number[]) => {
@@ -57,10 +57,10 @@ export default function DatesLineChart(props: DatesLineChartExtendedProps) {
                         color: '#02CEA9',
                     },
                 ]}
-                width={props.lineChartSize.width}
-                height={props.lineChartSize.height}
+                width={props.size.width}
+                height={props.size.height}
             />
-            <Box sx={{ml: 3, width: props.lineChartSize.width - 50}}>
+            <Box sx={{ml: 3, width: props.size.width - 50}}>
                 <Slider
                     value={dateRange.map(date => date.getTime())}
                     onChange={handleDateRangeChange}

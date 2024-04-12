@@ -31,13 +31,6 @@
     align-items: center;
 }
 
-.main-box {
-
-    /* width: 579px; */
-
-    /* background-color: blue; */
-}
-
 .side-container {
     display: flex;
     flex-direction: column;
@@ -46,28 +39,10 @@
 }
 
 .side-box-up {
-    width: 249px; /* Учитывая 2px за border */
-
-    /* height: 94px; !* 100px - 6px (border) *! */
-
-    /* background-color: blue; */
-
-    /* border: 1px solid blue; */
-    margin-bottom: 11px;
-
-    /* background-color: blue; */
+    width: 220px;
+    margin-bottom: 16px;
 }
 
 .side-box-down {
-    width: 249px; /* Учитывая 2px за border */
-
-    /* height: 94px; !* 100px - 6px (border) *! */
-
-    /* background-color: blue; */
-
-    /* border: 1px solid blue; */
-    margin-top: 11px;
-
-    /* background-color: blue; */
-
+    width: 220px;
 }

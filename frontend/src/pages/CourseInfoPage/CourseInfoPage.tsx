@@ -7,7 +7,7 @@ import './CourseInfoPage.css'
 
 
 export type CourseInfoPageProps = {
-    courseAnalyticsProps: CommonSectionProps;
+    commonSectionProps: CommonSectionProps;
     videoSectionProps: VideoSectionProps;
     documentSectionProps: TextbookSectionProps;
 }
@@ -17,7 +17,7 @@ export default function CourseInfoPage(props: CourseInfoPageProps) {
         <PageBase>
             <div style={{justifyContent: 'center'}}>
                 <div style={{height: '85vh', color: '#405479'}}>
-                    <CommonSection {...props.courseAnalyticsProps} />
+                    <CommonSection {...props.commonSectionProps} />
                 </div>
                 <div className='wrapper'>
                     <VideoSection {...props.videoSectionProps} />
