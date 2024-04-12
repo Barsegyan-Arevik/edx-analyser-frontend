@@ -2,7 +2,6 @@ import SectionHeader from '../SectionHeader/SectionHeader'
 import ChartWrapper from '../../Charts/ChartWrapper'
 import TableWithLink from '../../Charts/Table/TableWithLink'
 import * as React from 'react'
-import { tablePages } from '../../../pages/CourseInfoPage/CourseInfoPageData'
 import { TableData } from '../TextbookSection/TextbookSection'
 
 export type PagesSectionProps = {
@@ -23,7 +22,7 @@ export default function PagesSection(
                         chartTitle={'Популярность страниц курса'}
                         chart={
                             <TableWithLink
-                                {...tablePages}
+                                {...props.tableSearchedTermsData}
                             />
                         }
                     />

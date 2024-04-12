@@ -2,6 +2,7 @@ import * as React from 'react';
 import PageBase from '../../components/PageBase/PageBase';
 import './PagesSectionPage.css'
 import PagesSection from '../../components/Sections/PagesSection/PagesSection'
+import { tablePages } from '../CourseInfoPage/CourseInfoPageData'
 
 export default function PagesSectionPage() {
 
@@ -9,6 +10,7 @@ export default function PagesSectionPage() {
         <PageBase>
             <PagesSection
                 headerText={'Взаимодействие со страницами курса'}
+                tableSearchedTermsData={tablePages}
             />
         </PageBase>
     );
