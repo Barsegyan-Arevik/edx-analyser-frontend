@@ -1,5 +1,4 @@
 import {LineChartDate} from '../components/Charts/LineChart/DatesLineChart'
-import {CompletionStatus} from '../models/students'
 
 export function getStudentEnding(amount: number) {
     const lastTwoDigits = amount % 100;
@@ -32,17 +31,6 @@ export function csvToPoints(csvData: string): Array<LineChartDate> {
     });
 
     return points;
-}
-
-export function getColorByCompletionStatus(status: CompletionStatus) {
-    switch (status) {
-    case CompletionStatus.COMPLETED:
-        return '#02CEA9';
-    case CompletionStatus.IN_PROGRESS:
-        return '#FEF045';
-    case CompletionStatus.NOT_STARTED:
-        return '#F06C79';
-    }
 }
 
 export function lerp(a: number, b: number, t: number) {
@@ -79,20 +67,4 @@ export function getBlueColorScale(timeRange: number, minValue: number, value: nu
         );
     }
     return `rgb(${color.join(',')})`;
-}
-
-export function getColumnRange(columnName: string, rows) {
-    const columnArray = rows.map(row => row[columnName]);
-
-    const minVal = Math.min(...columnArray);
-    const maxVal = Math.max(...columnArray);
-    const range = maxVal - minVal;
-
-    return {range, minVal};
-}
-
-export function calcColumnRange(column: Array<number>) {
-    const minTime = Math.min(...column);
-    const maxTime = Math.max(...column);
-    return  maxTime - minTime;
 }

@@ -8,7 +8,13 @@ import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import Tooltip from '@mui/material/Tooltip'
-import { calcColumnRange, getGreenColorScale } from '../../../utils/utils'
+import { getGreenColorScale } from '../../../utils/utils'
+
+export function calcColumnRange(column: Array<number>) {
+    const minTime = Math.min(...column);
+    const maxTime = Math.max(...column);
+    return  maxTime - minTime;
+}
 
 export type RowData = {
     id: number;

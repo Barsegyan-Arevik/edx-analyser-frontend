@@ -10,8 +10,29 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import {Box} from '@mui/material';
 import {PiStudentBold} from 'react-icons/pi';
-import {getBlueColorScale, getColorByCompletionStatus, getColumnRange} from '../../../utils/utils';
-import {StudentData} from '../../../models/students'
+import {getBlueColorScale} from '../../../utils/utils';
+import { CompletionStatus, StudentData } from '../../../models/students'
+
+export function getColumnRange(columnName: string, rows) {
+    const columnArray = rows.map(row => row[columnName]);
+
+    const minVal = Math.min(...columnArray);
+    const maxVal = Math.max(...columnArray);
+    const range = maxVal - minVal;
+
+    return {range, minVal};
+}
+
+export function getColorByCompletionStatus(status: CompletionStatus) {
+    switch (status) {
+    case CompletionStatus.COMPLETED:
+        return '#02CEA9';
+    case CompletionStatus.IN_PROGRESS:
+        return '#FEF045';
+    case CompletionStatus.NOT_STARTED:
+        return '#F06C79';
+    }
+}
 
 export type StudentsCommonTableProps = {
     students: Array<StudentData>;
