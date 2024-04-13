@@ -1,6 +1,6 @@
-import {getStudentEnding, csvToPoints} from '../../utils/utils';
-import {VideoSectionProps} from '../../components/Sections/VideoSection/VideoSection';
-import { TableData, TextbookSectionProps } from '../../components/Sections/TextbookSection/TextbookSection'
+import {getStudentEnding, csvToPoints} from '../utils/utils';
+import {VideoSectionProps} from '../components/Sections/VideoSection/VideoSection';
+import { TableData, TextbookSectionProps } from '../components/Sections/TextbookSection/TextbookSection'
 
 ////это данные CommonSection
 
@@ -212,7 +212,6 @@ const tableData = {
 export const videoSectionProps: VideoSectionProps = {
     studentsVideoViews: tableData,
     dailyVideoAmount: dailyVideoAmount,
-    headerText: videoHeaderText
 };
 ///здесь заканчиваются данные VideoSection
 

@@ -1,6 +1,7 @@
 import { SectionActivity, SessionType } from './common'
-import { AttemptCount } from './problems'
+import { ProblemComplexity, ProblemSummary } from './problems'
 import { QuestionType } from './forum'
+import { TextbookViewsCount, WordSearchCount } from './textbook'
 
 
 export enum ReportState {
@@ -39,19 +40,19 @@ export interface VideoReport extends Report {
 
 export interface TextbookReport extends Report {
     textbook_views_chart: {
-        items: { pdf_name: string; views_count: number; unique_students_count: number }[];
+        items: TextbookViewsCount[];
     }
     word_search_chart: {
-        items: { word: string; search_count: number }[];
+        items: WordSearchCount[];
     }
 }
 
 export interface ProblemsReport extends Report {
     task_complexity_chart: {
-        items: { problem_link: string; all_attempts: number; successful_attempts: number; }[];
+        items: ProblemComplexity[];
     }
     task_summary_chart: {
-        items: { attempt_count: AttemptCount; percentage: number; }[]
+        items: ProblemSummary[]
     }
 }
 

@@ -1,12 +1,10 @@
 import './App.css'
 import CourseSideBar from './components/SideBar/CourseSideBar';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import CourseInfoPage, {CourseInfoPageProps} from './pages/CourseInfoPage/CourseInfoPage';
 import StudentsPage from './pages/StudentsPage/StudentsPage';
 import {MdOutlineAnalytics, MdOutlineForum} from 'react-icons/md';
 import * as React from 'react';
 import StudentPage from './pages/StudentPage';
-import {commonSectionProps, textbookSectionProps, videoSectionProps} from './pages/CourseInfoPage/CourseInfoPageData'
 import {IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline} from 'react-icons/io5';
 import {FiMousePointer} from 'react-icons/fi';
 import {RiTeamLine} from 'react-icons/ri';
@@ -17,12 +15,6 @@ import ForumSectionPage from './pages/ForumSectionPage'
 import ProblemSectionPage from './pages/ProblemSectionPage'
 import TextbookSectionPage from './pages/TextbookSectionPage'
 import CommonSectionPage from './pages/CommonSectionPage'
-
-const courseInfoPageProps: CourseInfoPageProps = {
-    commonSectionProps: commonSectionProps,
-    videoSectionProps: videoSectionProps,
-    documentSectionProps: textbookSectionProps
-}
 
 const menuItems = [
     {
@@ -68,7 +60,6 @@ export default function App() {
             <CourseSideBar menuItems={menuItems}>
                 <Routes>
                     {/*the following two should be out of sidebar*/}
-                    <Route path={'/'} element={<CourseInfoPage {...courseInfoPageProps}/>}/>
                     <Route path={'/courses'} element={<CoursesPage/>}/>
                     <Route path={'/courses/:courseId/common'} element={<CommonSectionPage/>}/>
                     <Route path={'/courses/:courseId/pages'} element={<PagesSectionPage/>}/>
