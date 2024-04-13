@@ -4,7 +4,6 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import StudentsPage from './pages/StudentsPage/StudentsPage';
 import {MdOutlineAnalytics, MdOutlineForum} from 'react-icons/md';
 import * as React from 'react';
-import StudentPage from './pages/StudentPage';
 import {IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline} from 'react-icons/io5';
 import {FiMousePointer} from 'react-icons/fi';
 import {RiTeamLine} from 'react-icons/ri';
@@ -68,7 +67,6 @@ export default function App() {
                     <Route path={'/courses/:courseId/problems'} element={<ProblemSectionPage/>}/>
                     <Route path={'/courses/:courseId/textbook'} element={<TextbookSectionPage/>}/>
                     <Route path={'/courses/:courseId/students'} element={<StudentsPage/>}/>
-                    <Route path={'/courses/:courseId/students/:username'} element={<StudentPage/>}/>
                 </Routes>
             </CourseSideBar>
         </BrowserRouter>
