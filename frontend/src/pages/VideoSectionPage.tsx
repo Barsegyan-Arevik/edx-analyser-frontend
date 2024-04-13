@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useEffect, useState } from 'react'
 import PageBase from '../components/PageBase/PageBase'
 import VideoSection from '../components/Sections/VideoSection/VideoSection'
-import { videoSectionProps } from './CourseInfoPage/CourseInfoPageData'
+import { videoSectionProps } from '../mockdata/CourseInfoPageData'
 import { useParams } from 'react-router-dom'
 import { ReportState, VideoReport } from '../models/report'
 import { BASE_URL } from '../config'
@@ -43,7 +43,7 @@ export default function VideoSectionPage() {
                         })
                     )}
                 />
-                : null
+                : 'The data is loading'
             }
         </PageBase>
     )

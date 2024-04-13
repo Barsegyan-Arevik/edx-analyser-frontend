@@ -19,7 +19,6 @@ export type TableData = {
 export type VideoSectionProps = {
     studentsVideoViews: TableData;
     dailyVideoAmount: Array<LineChartDate>;
-    headerText: string;
 }
 
 const baseSize: LineChartSize = {
@@ -49,7 +48,7 @@ export default function VideoSection(props: VideoSectionProps) {
 
     return (
         <div className={'video_interactions'}>
-            <SectionHeader text={props.headerText} />
+            <SectionHeader text='Просмотр видеоматериалов' />
             <div className={'video_interactions_container'}>
                 <div className={'item_video_1'}>
                     <ChartWrapper
