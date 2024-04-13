@@ -1,17 +1,14 @@
-import * as React from 'react';
-import {useEffect, useState} from 'react';
-import Paper from '@mui/material/Paper';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
-import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip';
-import {Box} from '@mui/material';
-import {getGreenColorScale} from "../../../utils/utils";
+import * as React from 'react'
+import { useState } from 'react'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import TableHead from '@mui/material/TableHead'
+import TablePagination from '@mui/material/TablePagination'
+import TableRow from '@mui/material/TableRow'
+import Tooltip from '@mui/material/Tooltip'
+import { calcColumnRange, getGreenColorScale } from '../../../utils/utils'
 
 export type RowData = {
     id: number;
@@ -22,7 +19,6 @@ export type RowData = {
 
 export type TableWithLinkProps = {
     data: string;
-    boxTitle: string;
     columnName: string;
     columnCount: string;
     additionalColumn?: string;
@@ -48,11 +44,6 @@ export default function TableWithLink(props: TableWithLinkProps) {
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(15);
-    const [searchTerm, setSearchTerm] = useState('');
-
-    useEffect(() => {
-        setPage(0); // Переход на первую страницу при изменении поискового запроса
-    }, [searchTerm]);
 
     const handleChangePage = (event: unknown, newPage: number) => {
         setPage(newPage);
@@ -64,48 +55,14 @@ export default function TableWithLink(props: TableWithLinkProps) {
     };
 
     const timeSecArray = rows.map(row => row.timeSec);
-    const minTime = Math.min(...timeSecArray);
-    const maxTime = Math.max(...timeSecArray);
-    const timeRange = maxTime - minTime;
-
-    const percentArray = rows.map(row => row.percent);
-    const minPercent = Math.min(...percentArray);
-    const maxPercent = Math.max(...percentArray);
-    const timeRangePercents = maxPercent - minPercent;
+    const timeRange = calcColumnRange(timeSecArray)
 
     return (
-        <Paper sx={{overflow: 'hidden', padding: '10px', width: '1300px'}}>
-            <Box
-                sx={{
-                    fontSize: 16,
-                    p: 1,
-                    color: '#405479',
-                    alignItems: 'center',
-                }}
-            >
-                {props.boxTitle}
-
-            </Box>
-
-            <TextField
-                size="small"
-                label={props.labelText}
-                variant="outlined"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                fullWidth
-                sx={{
-                    marginBottom: '10px',
-                    '&:hover': {
-                        borderColor: 'blue', // Цвет границы при наведении курсора
-                    },
-                }}
-            />
+        <div style={{overflow: 'hidden', padding: '10px'}}>
             <TableContainer sx={{height: 500}}>
                 <Table stickyHeader size="small" aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>ID</TableCell>
                             <TableCell>{props.columnName}</TableCell>
                             <TableCell>{props.columnCount}</TableCell>
                             {/*<TableCell>{props.additionalColumn}</TableCell>*/}
@@ -123,20 +80,19 @@ export default function TableWithLink(props: TableWithLinkProps) {
                                     onMouseEnter={() => setHoveredRowIndex(index)}
                                     onMouseLeave={() => setHoveredRowIndex(null)}
                                 >
-                                    <TableCell component="th">{row.id}</TableCell>
                                     <TableCell>
                                         <Tooltip title={row.pdfName} enterDelay={500}
-                                                 PopperProps={{
-                                                     style: {
-                                                         width: '500px', // Задайте желаемую ширину
-                                                     },
-                                                 }}>
+                                            PopperProps={{
+                                                style: {
+                                                    width: '500px', // Задайте желаемую ширину
+                                                },
+                                            }}>
                                             <div
                                                 style={{
                                                     overflow: 'hidden',
                                                     textOverflow: 'ellipsis',
                                                     whiteSpace: 'nowrap',
-                                                    maxWidth: '1000px'
+                                                    maxWidth: '700px'
                                                 }}
                                             >
                                                 {hoveredRowIndex === index ?
@@ -178,6 +134,6 @@ export default function TableWithLink(props: TableWithLinkProps) {
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
             />
-        </Paper>
+        </div>
     );
 }

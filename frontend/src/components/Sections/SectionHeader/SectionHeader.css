@@ -1,0 +1,12 @@
+.header {
+    font-size: 26px;
+    font-weight: 400;
+    font-family: "Arial", sans-serif;
+    grid-area: header;
+    height: 45px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    padding-left: 50px;
+    z-index: 100;
+}

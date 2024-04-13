@@ -9,7 +9,6 @@
 }
 
 main {
-    /*width: 100%;*/
     padding: 20px;
 }
 
@@ -45,15 +44,9 @@ main {
     width: 300px;
 }
 
-/*.link:hover{*/
-/*    background: #CED6F7;*/
-/*    !*color: #FFF;*!*/
-/*    transition: all 0.5s;*/
-/*}*/
-
 .active {
     background: #5471E7;
-    color: #FFF;
+    color: #FFFFFF;
 }
 
 .icon, .link_text {
@@ -66,7 +59,7 @@ main {
 
 .sidebar {
     box-shadow: 10px 0 20px rgba(55, 99, 221, 0.2);
-    background: #FFF;
+    background: #FFFFFF;
     color: #667B98;
     height: 100%;
     width: 300px;
@@ -93,16 +86,9 @@ main {
     width: 300px;
 }
 
-/*.submenu_link:hover{*/
-/*    background: #CED6F7;*/
-/*    !*color: #FFF;*!*/
-/*    transition: all 0.5s;*/
-/*}*/
-
 .submenu_link_active {
     background: #5471E7;
-    color: #FFF;
-
+    color: #FFFFFF;
 }
 
 .submenu_icon, .submenu_link_text {

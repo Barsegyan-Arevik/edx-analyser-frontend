@@ -1,0 +1,18 @@
+.document_interaction {
+    color: #405479;
+    font-size: 26px;
+    font-weight: 400;
+    font-family: "Arial", sans-serif;
+    grid-area: document_interaction;
+    z-index: 100;
+}
+
+.document_interaction_container {
+    display: flex;
+    justify-content: center; /* Для автоматического распределения между таблицами */
+    z-index: 100;
+}
+
+.item_doc_1, .item_doc_2 {
+    margin: 10px;
+}
