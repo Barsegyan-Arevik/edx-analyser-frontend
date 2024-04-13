@@ -1,5 +1,6 @@
 import DonutsChart, { DonutsChartData } from '../../Charts/DonutsChart'
 import * as React from 'react'
+import SectionHeader from '../SectionHeader/SectionHeader'
 
 export type ProblemsSectionProps = {
     problemsSummary: DonutsChartData[]
@@ -11,6 +12,7 @@ export default function ProblemsSection(
 ) {
     return (
         <div>
+            <SectionHeader text={'Решение задач'}/>
             <DonutsChart data={props.problemsSummary} />
         </div>
     )
