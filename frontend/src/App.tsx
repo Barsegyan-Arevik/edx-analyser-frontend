@@ -15,39 +15,41 @@ import ProblemSectionPage from './pages/ProblemSectionPage'
 import TextbookSectionPage from './pages/TextbookSectionPage'
 import CommonSectionPage from './pages/CommonSectionPage'
 
+const COURSE_ID = '111'
+
 const menuItems = [
     {
-        path: '/courses/:courseId/common',
+        path: `/courses/${COURSE_ID}/common`,
         name: 'Общая информация',
         icon: <MdOutlineAnalytics/>
     },
     {
-        path: '/courses/:courseId/pages',
+        path: `/courses/${COURSE_ID}/pages`,
         name: 'Популярность страниц',
         icon: <FiMousePointer/>
     },
     {
-        path: '/courses/:courseId/textbook',
+        path: `/courses/${COURSE_ID}/textbook`,
         name: 'Работа с учебником',
         icon: <IoBookOutline/>
     },
     {
-        path: '/courses/:courseId/video',
+        path: `/courses/${COURSE_ID}/video`,
         name: 'Просмотры видео',
         icon: <IoVideocamOutline/>
     },
     {
-        path: '/courses/:courseId/problems',
+        path: `/courses/${COURSE_ID}/problems`,
         name: 'Решение задач',
         icon: <IoExtensionPuzzleOutline/>
     },
     {
-        path: '/courses/:courseId/forum',
+        path: `/courses/${COURSE_ID}/forum`,
         name: 'Активность на форуме',
         icon: <MdOutlineForum/>
     },
     {
-        path: '/courses/:courseId/students',
+        path: `/courses/${COURSE_ID}/students`,
         name: 'Студенты',
         icon: <RiTeamLine/>,
     },
