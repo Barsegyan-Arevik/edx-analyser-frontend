@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useEffect, useState } from 'react'
 import PageBase from '../components/PageBase/PageBase'
 import CommonSection from '../components/Sections/CommonSection/CommonSection'
-import { activeNumberOfStudents, dailyVideoAmount, numberOfStudents } from '../mockdata/CourseInfoPageData'
+import { activeNumberOfStudents, numberOfStudents } from '../mockdata/CourseInfoPageData'
 import { CommonReport, ReportState } from '../models/report'
 import { useParams } from 'react-router-dom'
 import { BASE_URL } from '../config'
@@ -41,7 +41,11 @@ export default function CommonSectionPage() {
                     numberOfStudents={numberOfStudents}
                     activeNumberOfStudents = {activeNumberOfStudents}
                     sectionActivityChart={report.section_activity_chart.items}
-                    weeklyActivityChart={dailyVideoAmount}
+                    weeklyActivityChart={report.weekly_activity_chart.items.map(
+                        item => ({
+                            date: new Date(item.date),
+                            count: item.count
+                        }))}
                 /> : null
             }
         </PageBase>

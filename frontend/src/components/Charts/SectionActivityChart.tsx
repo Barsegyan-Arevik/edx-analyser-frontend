@@ -52,7 +52,7 @@ export default function SectionActivityChart(
             {props.items.map(item => (
                 <div key={item.section_type} style={{ display: 'flex', justifyContent: 'space-between', gap: '24px' }}>
                     <Typography variant="body2" sx={{ flexGrow: 1 }}>
-                        {`${item.students_percent}% студентов ${getDescriptionBySectionType(item.section_type)}`}
+                        {`${item.students_count}% студентов ${getDescriptionBySectionType(item.section_type)}`}
                     </Typography>
                     {getImageBySectionType(item.section_type, '#405479')}
                 </div>
