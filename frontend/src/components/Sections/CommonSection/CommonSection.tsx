@@ -6,17 +6,12 @@ import { SectionActivity } from '../../../models/common'
 import DatesLineChart, { LineChartDate, LineChartSize } from '../../Charts/LineChart/DatesLineChart'
 import SectionActivityChart from '../../Charts/SectionActivityChart'
 import ChartWrapper from '../../Charts/ChartWrapper'
-
-export type BoxInsideProps = {
-    value: string;
-    value_additional_text: string;
-    label: string;
-}
+import { getStudentEnding } from '../../../utils/utils'
 
 export type CommonSectionProps = {
     courseId: string;
-    numberOfStudents: BoxInsideProps;
-    activeNumberOfStudents: BoxInsideProps;
+    numberOfStudents: number;
+    numberOfActiveStudents: number;
     sectionActivityChart: Array<SectionActivity>;
     weeklyActivityChart: Array<LineChartDate>;
 }
@@ -38,12 +33,16 @@ export default function CommonSection(props: CommonSectionProps) {
                 <div className={'side-container'}>
                     <div className={'side-box-up'}>
                         <ValueBox
-                            {...props.numberOfStudents}
+                            value = {props.numberOfStudents}
+                            valueAdditionalText={getStudentEnding(props.numberOfStudents)}
+                            label='Всего на курсе'
                         />
                     </div>
                     <div className={'side-box-down'}>
                         <ValueBox
-                            {...props.activeNumberOfStudents}
+                            value = {props.numberOfActiveStudents}
+                            valueAdditionalText={getStudentEnding(props.numberOfActiveStudents)}
+                            label='Из них активных'
                         />
                     </div>
                 </div>

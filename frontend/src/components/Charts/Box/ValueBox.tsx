@@ -2,8 +2,8 @@ import * as React from 'react';
 import {Box} from '@mui/system';
 
 export type CustomBoxProps = {
-    value: string;
-    value_additional_text: string;
+    value: number;
+    valueAdditionalText: string;
     label: string;
 }
 
@@ -48,7 +48,7 @@ export default function ValueBox(props: CustomBoxProps) {
                         fontSize: 20,
                     }}
                 >
-                    {props.value_additional_text}
+                    {props.valueAdditionalText}
                 </Box>
             </Box>
         </Box>
