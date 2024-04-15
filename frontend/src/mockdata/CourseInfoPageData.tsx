@@ -1,33 +1,6 @@
-import {getStudentEnding, csvToPoints} from '../utils/utils';
-import {VideoSectionProps} from '../components/Sections/VideoSection/VideoSection';
+import { csvToPoints } from '../utils/utils'
+import { VideoSectionProps } from '../components/Sections/VideoSection/VideoSection'
 import { TableData, TextbookSectionProps } from '../components/Sections/TextbookSection/TextbookSection'
-
-////это данные CommonSection
-
-export const numberOfStudents = {
-    value: '864',
-    value_additional_text: getStudentEnding(parseInt('864', 10)),
-    label: 'Всего на курсе'
-}
-export const activeNumberOfStudents = {
-    value: '827',
-    value_additional_text: 'студентов',
-    label: 'Из них активных'
-}
-
-export const chartDonutProblems = [
-    {value: 70, label: '70% задач решены с \n первой попытки'},
-    {value: 16, label: '16% задач решены со \n второй попытки'},
-    {value: 14, label: '14% задач решены с \n третьей и более попыток'},
-]
-
-export const commonSectionProps = {
-    courseId: '123',
-    numberOfStudents: numberOfStudents,
-    activeNumberOfStudents: activeNumberOfStudents,
-};
-///здесь заканчиваются данные CommonSection
-
 
 ///это данные VideoSection
 const boxTitle = 'Общее время просмотра видео для каждого студента';
@@ -864,6 +837,10 @@ export const textbookSectionProps: TextbookSectionProps = {
     headerText: documentHeaderText
 }
 
-
+export const chartDonutProblems = [
+    {value: 70, label: '70% задач решены с \n первой попытки'},
+    {value: 16, label: '16% задач решены со \n второй попытки'},
+    {value: 14, label: '14% задач решены с \n третьей и более попыток'},
+]
 
 
