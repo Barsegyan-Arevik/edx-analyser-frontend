@@ -13,6 +13,6 @@ export enum SessionType {
 
 export interface SectionActivity {
     section_type: SectionType;
-    students_percent: number
+    students_count: number
 }
 

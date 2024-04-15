@@ -1,4 +1,4 @@
-import { SectionActivity, SessionType } from './common'
+import { SectionActivity } from './common'
 import { ProblemComplexity, ProblemSummary } from './problems'
 import { QuestionType } from './forum'
 import { TextbookViewsCount, WordSearchCount } from './textbook'
@@ -18,15 +18,14 @@ interface Report {
 }
 
 export interface CommonReport extends Report {
-    session_time_chart: {
-        items: { session_type: SessionType; average_time: number }[];
-    };
     section_activity_chart: {
         items: SectionActivity[];
     };
     weekly_activity_chart: {
-        items: { date: Date; value: number }[];
-    }
+        items: { date: Date; count: number }[];
+    };
+    students_count: number;
+    active_students_count: number;
 }
 
 export interface VideoReport extends Report {
