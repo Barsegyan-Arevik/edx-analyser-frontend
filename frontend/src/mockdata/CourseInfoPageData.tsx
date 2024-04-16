@@ -1,13 +1,10 @@
-import { csvToPoints } from '../utils/utils'
-import { VideoSectionProps } from '../components/Sections/VideoSection/VideoSection'
-import { TableData, TextbookSectionProps } from '../components/Sections/TextbookSection/TextbookSection'
+import { TableData } from '../components/Sections/TextbookSection/TextbookSection'
 
 ///это данные VideoSection
 const boxTitle = 'Общее время просмотра видео для каждого студента';
 const columnName = 'Студенты';
 const columnCount = 'Время (сек.)';
 const labelText = 'Поиск студента...';
-const videoHeaderText = 'Просмотр видеоматериалов'
 
 // CSV-строка с данными
 const csvData = `
@@ -126,66 +123,13 @@ holodnayaev,737.789907
 shchitovaaa,0.479819
 `;
 
-const lineChartData = `
-time,count
-2022-06-30,963
-2022-07-01,1347
-2022-07-02,1605
-2022-07-03,2573
-2022-07-04,1899
-2022-07-05,1612
-2022-07-06,1327
-2022-07-07,1797
-2022-07-08,666
-2022-07-09,1074
-2022-07-10,915
-2022-07-11,1745
-2022-07-12,1083
-2022-07-13,953
-2022-07-14,694
-2022-07-15,388
-2022-07-16,507
-2022-07-17,730
-2022-07-18,883
-2022-07-19,837
-2022-07-20,1047
-2022-07-21,1185
-2022-07-22,593
-2022-07-23,617
-2022-07-24,790
-2022-07-25,1215
-2022-07-26,1165
-2022-07-27,1324
-2022-07-28,1724
-2022-07-29,415
-2022-07-30,1001
-2022-07-31,897
-2022-08-01,1118
-2022-08-02,1434
-2022-08-03,1507
-2022-08-04,1037
-2022-08-05,824
-2022-08-06,543
-2022-08-07,739
-2022-09-10,34
-2022-09-11,378
-`;
-
-export const dailyVideoAmount = csvToPoints(lineChartData)
-
-const tableData = {
+export const studentsVideoViews = {
     boxTitle: boxTitle,
     columnName: columnName,
     columnCount: columnCount,
     labelText: labelText,
     data: csvData
 }
-
-
-export const videoSectionProps: VideoSectionProps = {
-    studentsVideoViews: tableData,
-    dailyVideoAmount: dailyVideoAmount,
-};
 ///здесь заканчиваются данные VideoSection
 
 
@@ -357,7 +301,6 @@ count_number,word
 1,de
 `;
 
-const documentHeaderText = 'Работа с учебником'
 const boxTitleScrolling = 'Количество уникальных просмотров pdf документов';
 const columnNameScrolling = 'pdf документ';
 const columnMedian = 'Медиана (мин.)'
@@ -827,14 +770,6 @@ const tableProblems = {
     columnCount: columnCountProblems,
     labelText: labelTextProblems,
     data: problems
-}
-
-
-export const textbookSectionProps: TextbookSectionProps = {
-    tableScrollingData: tableScrollingData,
-    // tableSearchedTermsData: tableSearchedTermsData,
-    tableSearchedTermsData: tablePages,
-    headerText: documentHeaderText
 }
 
 export const chartDonutProblems = [

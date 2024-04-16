@@ -1,5 +1,3 @@
-import {LineChartDate} from '../components/Charts/LineChart/DatesLineChart'
-
 export function getStudentEnding(amount: number) {
     const lastTwoDigits = amount % 100;
     const lastDigit = amount % 10;
@@ -13,24 +11,6 @@ export function getStudentEnding(amount: number) {
     } else {
         return 'студентов';
     }
-}
-
-export function csvToPoints(csvData: string): Array<LineChartDate> {
-    const csvRows = csvData.split('\n');
-
-    const points = []
-
-    csvRows.forEach(row => {
-        const [dateString, valueString] = row.split(',');
-        const date = new Date(dateString);
-        const value = parseInt(valueString, 10);
-
-        if (!isNaN(date.getTime()) && !isNaN(value)) {
-            points.push({date, value});
-        }
-    });
-
-    return points;
 }
 
 export function lerp(a: number, b: number, t: number) {

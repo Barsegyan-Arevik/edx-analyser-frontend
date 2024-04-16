@@ -2,18 +2,14 @@ import * as React from 'react'
 import ValueBox from '../../Charts/Box/ValueBox'
 import './CommonSection.css'
 import SectionHeader from '../SectionHeader/SectionHeader'
-import { SectionActivity } from '../../../models/common'
-import DatesLineChart, { LineChartDate, LineChartSize } from '../../Charts/LineChart/DatesLineChart'
+import DatesLineChart, { LineChartSize } from '../../Charts/LineChart/DatesLineChart'
 import SectionActivityChart from '../../Charts/SectionActivityChart'
 import ChartWrapper from '../../Charts/ChartWrapper'
 import { getStudentEnding } from '../../../utils/utils'
+import { CommonReport } from '../../../models/report'
 
 export type CommonSectionProps = {
-    courseId: string;
-    numberOfStudents: number;
-    numberOfActiveStudents: number;
-    sectionActivityChart: Array<SectionActivity>;
-    weeklyActivityChart: Array<LineChartDate>;
+    report: CommonReport;
 }
 
 const baseSize: LineChartSize = {
@@ -23,8 +19,16 @@ const baseSize: LineChartSize = {
 
 
 export default function CommonSection(props: CommonSectionProps) {
-
-    const headerText = `Аналитика по курсу "${props.courseId}"`
+    const courseId = props.report.course_id
+    const headerText = `Аналитика по курсу "${courseId}"`
+    const numberOfStudents = props.report.students_count
+    const numberOfActiveStudents = props.report.active_students_count
+    const sectionActivityChart = props.report.section_activity_chart.items
+    const weeklyActivityChart = props.report.weekly_activity_chart.items.map(
+        item => ({
+            date: new Date(item.date),
+            count: item.count
+        }))
 
     return (
         <div className={'top_analytics'}>
@@ -33,27 +37,27 @@ export default function CommonSection(props: CommonSectionProps) {
                 <div className={'side-container'}>
                     <div className={'side-box-up'}>
                         <ValueBox
-                            value = {props.numberOfStudents}
-                            valueAdditionalText={getStudentEnding(props.numberOfStudents)}
-                            label='Всего на курсе'
+                            value={numberOfStudents}
+                            valueAdditionalText={getStudentEnding(numberOfStudents)}
+                            label="Всего на курсе"
                         />
                     </div>
                     <div className={'side-box-down'}>
                         <ValueBox
-                            value = {props.numberOfActiveStudents}
-                            valueAdditionalText={getStudentEnding(props.numberOfActiveStudents)}
-                            label='Из них активных'
+                            value={numberOfActiveStudents}
+                            valueAdditionalText={getStudentEnding(numberOfActiveStudents)}
+                            label="Из них активных"
                         />
                     </div>
                 </div>
-                <SectionActivityChart items={props.sectionActivityChart} />
+                <SectionActivityChart items={sectionActivityChart} />
             </div>
             <ChartWrapper
                 chartTitle={
                     'Активность на курсе, по неделям'
                 }
                 chart={
-                    <DatesLineChart points={props.weeklyActivityChart} size={baseSize} />
+                    <DatesLineChart points={weeklyActivityChart} size={baseSize} />
                 }
                 additionalInfo={'Сколько человек посещало курс'}
             />

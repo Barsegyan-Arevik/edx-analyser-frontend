@@ -1,5 +1,6 @@
 import * as React from 'react'
 import './TextbookSection.css'
+import { TextbookReport } from '../../../models/report'
 
 export type TableData = {
     columnName: string;
@@ -10,16 +11,14 @@ export type TableData = {
 }
 
 export type TextbookSectionProps = {
-    tableScrollingData: TableData;
-    tableSearchedTermsData: TableData;
-    headerText: string;
-    // !!!graphData?  
+    report: TextbookReport
 }
 
 export default function TextbookSection(props: TextbookSectionProps) {
 
     return (
         <div className={'document_interaction'}>
+            {props.report.course_id}
         </div>
     )
 }

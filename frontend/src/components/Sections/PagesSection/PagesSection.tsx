@@ -2,11 +2,11 @@ import SectionHeader from '../SectionHeader/SectionHeader'
 import ChartWrapper from '../../Charts/ChartWrapper'
 import TableWithLink from '../../Charts/Table/TableWithLink'
 import * as React from 'react'
-import { TableData } from '../TextbookSection/TextbookSection'
+import { PagesReport } from '../../../models/report'
+import { tablePages } from '../../../mockdata/CourseInfoPageData'
 
 export type PagesSectionProps = {
-    headerText: string;
-    tableSearchedTermsData: TableData
+    report: PagesReport
 }
 
 
@@ -15,14 +15,14 @@ export default function PagesSection(
 ) {
     return (
         <div>
-            <SectionHeader text={props.headerText} style={{ marginTop: '20px' }} />
+            <SectionHeader text='Взаимодействие со страницами курса' style={{ marginTop: '20px' }} />
             <div className="document_interaction_container">
                 <div className="item_doc_2">
                     <ChartWrapper
                         chartTitle={'Популярность страниц курса'}
                         chart={
                             <TableWithLink
-                                {...props.tableSearchedTermsData}
+                                {...tablePages}
                             />
                         }
                     />
