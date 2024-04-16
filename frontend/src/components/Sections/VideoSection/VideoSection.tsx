@@ -1,24 +1,17 @@
 import * as React from 'react'
-import { useState } from 'react'
 import './VideoSection.css'
 import SectionHeader from '../SectionHeader/SectionHeader'
 import TableHeatMap from '../../Charts/Table/TableHeatMap'
 import TableHeatMapInsideWindow from '../../Charts/Table/TableHeatMapInsideModalWindow'
-import DatesLineChart, { LineChartDate, LineChartSize } from '../../Charts/LineChart/DatesLineChart'
+import DatesLineChart, { LineChartSize } from '../../Charts/LineChart/DatesLineChart'
 import ChartWrapper from '../../Charts/ChartWrapper'
 import { Box } from '@mui/material'
-
-export type TableData = {
-    boxTitle: string;
-    columnName: string;
-    columnCount: string;
-    labelText: string;
-    data: string;
-}
+import { VideoReport } from '../../../models/report'
+import { useState } from 'react'
+import { studentsVideoViews } from '../../../mockdata/CourseInfoPageData'
 
 export type VideoSectionProps = {
-    studentsVideoViews: TableData;
-    dailyVideoAmount: Array<LineChartDate>;
+    report: VideoReport
 }
 
 const baseSize: LineChartSize = {
@@ -34,7 +27,8 @@ const modalSize: LineChartSize = {
 
 export default function VideoSection(props: VideoSectionProps) {
 
-    const initialRowsData = props.studentsVideoViews.data
+    // todo: replace by report.video_interaction_chart
+    const initialRowsData = studentsVideoViews.data
         .trim()
         .split('\n')
         .map((row, index) => {
@@ -45,15 +39,22 @@ export default function VideoSection(props: VideoSectionProps) {
         .map((data, index) => ({ ...data, id: index + 1 })) // Добавление идентификатора
     const [rows, setRows] = useState(initialRowsData)
 
+    const dailyVideoAmount = props.report.video_play_count_chart.items.map(
+        item => ({
+            date: new Date(item.date),
+            count: item.count
+        })
+    )
+
 
     return (
         <div className={'video_interactions'}>
-            <SectionHeader text='Просмотр видеоматериалов' />
+            <SectionHeader text="Просмотр видеоматериалов" />
             <div className={'video_interactions_container'}>
                 <div className={'item_video_1'}>
                     <ChartWrapper
                         chartTitle={'Количество воспроизведений видеоматериалов, распределённая по дням'}
-                        chart={<DatesLineChart points={props.dailyVideoAmount} size={baseSize} />}
+                        chart={<DatesLineChart points={dailyVideoAmount} size={baseSize} />}
                         popupChart={<Box
                             sx={{
                                 position: 'absolute',
@@ -66,25 +67,25 @@ export default function VideoSection(props: VideoSectionProps) {
                                 borderRadius: 2
                             }}
                         >
-                            <DatesLineChart points={props.dailyVideoAmount} size={modalSize} />
+                            <DatesLineChart points={dailyVideoAmount} size={modalSize} />
                         </Box>}
-                        additionalInfo='Какое-нибудь длинное описание, зачем нужен этот график'
+                        additionalInfo="Какое-нибудь длинное описание, зачем нужен этот график"
                     />
                 </div>
                 <div className={'item_video_2'}>
                     <ChartWrapper
-                        chartTitle={props.studentsVideoViews.boxTitle}
+                        chartTitle={studentsVideoViews.boxTitle}
                         chart={
                             <TableHeatMap
                                 rows={rows}
-                                {...props.studentsVideoViews}
+                                {...studentsVideoViews}
                             />}
                         popupChart={
                             <TableHeatMapInsideWindow
                                 rows={rows}
-                                {...props.studentsVideoViews} />
+                                {...studentsVideoViews} />
                         }
-                        additionalInfo={props.studentsVideoViews.labelText}
+                        additionalInfo={studentsVideoViews.labelText}
                     />
                 </div>
             </div>

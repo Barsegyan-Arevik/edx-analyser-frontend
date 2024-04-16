@@ -36,15 +36,7 @@ export default function CommonSectionPage() {
         <PageBase>
             {report != null && report.report_state == ReportState.DONE ?
                 <CommonSection
-                    courseId={report.course_id}
-                    numberOfStudents={report.students_count}
-                    numberOfActiveStudents= {report.active_students_count}
-                    sectionActivityChart={report.section_activity_chart.items}
-                    weeklyActivityChart={report.weekly_activity_chart.items.map(
-                        item => ({
-                            date: new Date(item.date),
-                            count: item.count
-                        }))}
+                    report={report}
                 /> : null
             }
         </PageBase>

@@ -2,7 +2,6 @@ import * as React from 'react'
 import { useEffect, useState } from 'react'
 import PageBase from '../components/PageBase/PageBase'
 import VideoSection from '../components/Sections/VideoSection/VideoSection'
-import { videoSectionProps } from '../mockdata/CourseInfoPageData'
 import { useParams } from 'react-router-dom'
 import { ReportState, VideoReport } from '../models/report'
 import { BASE_URL } from '../config'
@@ -35,15 +34,8 @@ export default function VideoSectionPage() {
         <PageBase>
             {report != null && report.report_state == ReportState.DONE ?
                 <VideoSection
-                    {...videoSectionProps}
-                    dailyVideoAmount={report.video_play_count_chart.items.map(
-                        item => ({
-                            date: new Date(item.date),
-                            count: item.count
-                        })
-                    )}
-                />
-                : 'The data is loading'
+                    report={report}
+                /> : null
             }
         </PageBase>
     )
