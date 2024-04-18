@@ -1,0 +1,4 @@
+.problem_charts {
+    display: flex;
+    justifyContent: 'space-between'
+}
