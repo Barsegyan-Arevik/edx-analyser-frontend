@@ -1,48 +1,14 @@
-/*.common-section-container {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*}*/
-
-/*.header-container {*/
-/*    align-self: flex-start; !* Заголовок слева *!*/
-/*}*/
-
-/*.content-container {*/
-/*    display: flex;*/
-/*    justify-content: center; !* Основной контент по центру *!*/
-/*    align-items: center;*/
-/*    margin-top: 100px;*/
-/*    margin-bottom: 50px;*/
-/*}*/
-
-
 .custom_container {
-    /*min-width: 1000px;*/
-    /*display: grid;*/
-    /*grid-template-columns: 20vw 50vw;*/
-    /*grid-template-rows: 25vh 55vh;*/
-    /*row-gap: 20px;*/
-    /*column-gap: 20px;*/
     display: flex;
-    margin: 10px;
     justify-content: center;
 }
-
 
 .custom_container > * {
     margin: 0.8rem; /* Отступ между элементами */
 }
 
 .boxes {
-    /*background-color: #4ac1f7;*/
-    /*grid-row: 1 / 2;*/
-    /*grid-column: 1 / 2;*/
     text-align: center;
-    /*width: 14rem;*/
-    /*height: 10rem;*/
-    /*margin-bottom: 5rem;*/
 }
 
 .upper-box {
@@ -53,65 +19,6 @@
 
 }
 
-.item2 {
-    /*background-color: #4cae4c;*/
-    /*height: 14rem;*/
+.activity_section {
+    width: 35rem;
 }
-
-.item3 {
-    /*grid-row: 2 / 2;*/
-    /*grid-column: 1 / 3;*/
-    width: 30rem;
-    background-color: #1A01CC;
-}
-
-.top_analytics {
-    color: #405479;
-    font-size: 26px;
-    font-weight: 700;
-    font-family: "Arial", sans-serif;
-    grid-area: top_analytics;
-    border-color: #405479;
-    z-index: 100;
-    height: 90%;
-    justify-content: center;
-}
-
-.top_analytics > * {
-    justify-content: center;
-    margin-right: 20px; /* Отступ между элементами */
-}
-
-/*.main_content {*/
-/*    justify-content: center;*/
-/*    align-items: flex-start;*/
-/*    display: flex;*/
-/*    margin-top: 100px;*/
-/*    margin-bottom: 50px;*/
-/*}*/
-
-/*.main_content > * {*/
-/*    margin-right: 20px; !* Отступ между элементами *!*/
-/*}*/
-
-/*.container {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
-
-/*.side-container {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    justify-content: space-between;*/
-/*    margin-left: 0px;*/
-/*}*/
-
-/*.side-box-up {*/
-/*    width: 220px;*/
-/*    margin-bottom: 16px;*/
-/*}*/
-
-/*.side-box-down {*/
-/*    width: 220px;*/
-/*}*/
