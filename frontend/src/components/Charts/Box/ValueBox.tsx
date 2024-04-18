@@ -26,7 +26,7 @@ export default function ValueBox(props: CustomBoxProps) {
         >
             <Box
                 sx={{
-                    fontSize: 20,
+                    fontSize: '2em',
                     fontWeight: 'normal',
                 }}
             >
