@@ -75,14 +75,15 @@ export default function DonutsChart(props: DonutsChartProps) {
                             legend: {
                                 labelStyle: {
                                     fontSize: 20,
-                                    fill: '#667B98',
+                                    fill: '#405479',
                                     height: 20
                                 },
                                 itemMarkWidth: 10,
                                 itemMarkHeight: 37,
                             },
                         }}
-
+                        maxWidth={580}
+                        minWidth={500}
                         width={579}
                         height={292}
                     />

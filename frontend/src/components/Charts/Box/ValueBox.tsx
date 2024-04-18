@@ -14,15 +14,18 @@ export default function ValueBox(props: CustomBoxProps) {
                 bgcolor: '#fff',
                 borderColor: '#F5F5F5',
                 color: '#405479',
-                p: 2,
                 borderRadius: 1,
                 textAlign: 'left',
                 fontWeight: 'normal',
+                width: '16rem',
+                height: '5rem',
+                paddingLeft: '1.5rem',
+                paddingTop: '0.8rem',
+                paddingBottom: '0.8rem'
             }}
         >
             <Box
                 sx={{
-                    textAlign: 'left',
                     fontSize: 20,
                     fontWeight: 'normal',
                 }}
@@ -31,7 +34,6 @@ export default function ValueBox(props: CustomBoxProps) {
             </Box>
             <Box
                 sx={{
-                    textAlign: 'left',
                     color: '#405479',
                     fontSize: 36,
                     fontWeight: 'medium'

@@ -1,6 +1,6 @@
 * {
-    margin: 0;
-    padding: 0;
+    /*margin: 0;*/
+    /*padding: 0;*/
     text-decoration: none;
 }
 
@@ -9,92 +9,10 @@
 }
 
 main {
-    padding: 20px;
-}
-
-
-.activeMenu {
-    background-color: #F0F3FB; /* Цвет фона при активном состоянии */
-}
-
-
-.top_section {
-    display: flex;
-    align-items: center;
-    padding: 20px 15px;
-}
-
-.logo {
-    font-size: 30px;
-
-}
-
-.bars {
-    display: flex;
-    font-size: 20px;
-    margin-left: 30px;
-}
-
-.link {
-    display: flex;
-    color: #667B98;
-    padding: 10px 15px;
-    gap: 20px;
-    transition: all 0.5s;
-    width: 300px;
-}
-
-.active {
-    background: #5471E7;
-    color: #FFFFFF;
-}
-
-.icon, .link_text {
-    font-size: 25px;
+    /*padding: 20px;*/
 }
 
 .app {
     text-align: center;
 }
 
-.sidebar {
-    box-shadow: 10px 0 20px rgba(55, 99, 221, 0.2);
-    background: #FFFFFF;
-    color: #667B98;
-    height: 100%;
-    width: 300px;
-    position: fixed;
-    z-index: 100;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    padding-top: 5px;
-    transition: all 0.5s ease;
-}
-
-.submenu {
-    color: #667B98;
-}
-
-
-.submenu_link {
-    display: flex;
-    color: #667B98;
-    padding: 7px 15px;
-    gap: 20px;
-    transition: all 0.5s;
-    width: 300px;
-}
-
-.submenu_link_active {
-    background: #5471E7;
-    color: #FFFFFF;
-}
-
-.submenu_icon, .submenu_link_text {
-    font-size: 20px;
-}
-
-.link:not(.active):hover, .submenu_link:not(.submenu_link_active):hover {
-    background: #CED6F7; /* Цвет фона при наведении только для неактивных ссылок */
-}

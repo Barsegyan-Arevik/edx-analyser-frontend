@@ -9,4 +9,11 @@
     margin-bottom: 15px;
     padding-left: 50px;
     z-index: 100;
+    color: #405479;
+    padding-top: 30px;
+    /*text-align: left;*/
+}
+
+.header > * {
+    text-align: left;
 }

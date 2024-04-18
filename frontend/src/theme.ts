@@ -3,13 +3,14 @@ import { createTheme } from '@mui/material/styles'
 const theme = createTheme({
     palette: {
         text: {
-            primary: '#667B98',
-            secondary: '#667B98',
+            primary: '#405479',
+            // secondary: '#667B98',
+            secondary: '#405479',
         }
     },
     typography: {
         fontFamily: 'Roboto, sans-serif',
-        fontSize: 14,
+        fontSize: 16,
         h1: {
             fontSize: '2.5rem',
             fontWeight: 400,
