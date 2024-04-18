@@ -28,9 +28,6 @@ export default function DatesLineChart(props: DatesLineChartExtendedProps) {
     };
 
     const filteredDates = dates.filter(date => date >= dateRange[0] && date <= dateRange[1]);
-    console.log('values')
-    console.log(dates)
-
     const filteredValues = values.slice(dates.indexOf(filteredDates[0]), dates.indexOf(filteredDates[filteredDates.length - 1]) + 1);
 
     const formatDateLabel = (value) => {
@@ -41,14 +38,12 @@ export default function DatesLineChart(props: DatesLineChartExtendedProps) {
         return `${year}-${month}-${day}`;
     };
 
-    console.log('values')
-    console.log(filteredValues)
-    console.log('values')
-    console.log('dates')
-    console.log(filteredDates)
-    console.log('dates')
     return (
-        <Box>
+        <Box
+            sx={{
+                width: '${props.size.width}'
+            }}
+        >
             <LineChart
                 xAxis={[{
                     data: filteredDates,
