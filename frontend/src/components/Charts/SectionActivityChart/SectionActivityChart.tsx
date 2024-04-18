@@ -1,9 +1,9 @@
-import { Box, Typography } from '@mui/material'
+import {Box} from '@mui/material'
 import * as React from 'react'
-import { SectionActivity, SectionType } from '../../models/common'
-import { MdOutlineForum } from 'react-icons/md'
-import { IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline } from 'react-icons/io5'
-// import './SectionActivityChart.css'
+import {SectionActivity, SectionType} from '../../../models/common'
+import {MdOutlineForum} from 'react-icons/md'
+import {IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline} from 'react-icons/io5'
+
 
 type SectionActivityChartProps = {
     items: Array<SectionActivity>
@@ -42,47 +42,50 @@ export default function SectionActivityChart(
     console.log(props.items)
     return (
         <div style={{width: '35rem'}}>
-        <Box
-            sx={{
-                padding: '0.9rem',
-                bgcolor: 'background.paper',
-                borderRadius: 1,
-                // width: '35rem',
-                height: '12.4rem',
-                whiteSpace: 'nowrap',
-            }}
-        >
             <Box
                 sx={{
-                    fontSize: '2em',
-                    marginBottom: '0.7em',
-                    color: '#405479'
+                    padding: '0.9rem',
+                    bgcolor: 'background.paper',
+                    borderRadius: 1,
+                    // width: '35rem',
+                    height: '12.4rem',
+                    whiteSpace: 'nowrap',
                 }}
             >
-                Активность на секциях курса
-            </Box>
-            {props.items.map(item => (
-                <Box key={item.section_type}
-                     sx={{
-                         display: 'flex',
-                         justifyContent: 'space-between',
-                         color: '#405479',
-                         marginBottom: '1em'
+                <Box
+                    sx={{
+                        fontSize: '2em',
+                        marginBottom: '0.7em',
+                        color: '#405479'
                     }}
                 >
-                    <Box
-                        sx={{
-                            fontSize: '1.5em'
-                        }}
-                    >
-                        <span style={{ fontWeight: 'bold', fontSize: '1.4em' }}>{item.students_count}%</span> студентов {getDescriptionBySectionType(item.section_type)}
-
-                    </Box>
-
-                    {getImageBySectionType(item.section_type, '#405479', '3em')}
+                    Активность на секциях курса
                 </Box>
-            ))}
-        </Box>
+                {props.items.map(item => (
+                    <Box key={item.section_type}
+                         sx={{
+                             display: 'flex',
+                             justifyContent: 'space-between',
+                             color: '#405479',
+                             marginBottom: '1em'
+                         }}
+                    >
+                        <Box
+                            sx={{
+                                fontSize: '1.5em'
+                            }}
+                        >
+                            <span style={{
+                                fontWeight: 'bold',
+                                fontSize: '1.4em'
+                            }}>{item.students_count}%</span> студентов {getDescriptionBySectionType(item.section_type)}
+
+                        </Box>
+
+                        {getImageBySectionType(item.section_type, '#405479', '3em')}
+                    </Box>
+                ))}
+            </Box>
         </div>
     )
 }
