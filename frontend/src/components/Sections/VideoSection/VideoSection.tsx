@@ -1,14 +1,13 @@
 import * as React from 'react'
+import {useState} from 'react'
 import './VideoSection.css'
 import SectionHeader from '../SectionHeader/SectionHeader'
-import TableHeatMap from '../../Charts/Table/TableHeatMap'
-import TableHeatMapInsideWindow from '../../Charts/Table/TableHeatMapInsideModalWindow'
-import DatesLineChart, { LineChartSize } from '../../Charts/LineChart/DatesLineChart'
-import ChartWrapper from '../../Charts/ChartWrapper'
-import { Box } from '@mui/material'
-import { VideoReport } from '../../../models/report'
-import { useState } from 'react'
-import { studentsVideoViews } from '../../../mockdata/CourseInfoPageData'
+import DatesLineChart, {LineChartSize} from '../../Charts/LineChart/DatesLineChart'
+import ChartWrapper from '../../Charts/ChartWrapper/ChartWrapper'
+import {Box} from '@mui/material'
+import {VideoReport} from '../../../models/report'
+import {studentsVideoViews} from '../../../mockdata/CourseInfoPageData'
+import TableThreeColumns, {RowData} from '../../Charts/Table/TableThreeColumns';
 
 export type VideoSectionProps = {
     report: VideoReport
@@ -24,6 +23,22 @@ const modalSize: LineChartSize = {
     height: 400
 }
 
+const convertToRowData = (item: {
+    video_link: string;
+    views_count: number;
+    unique_students_count: number
+}): RowData => {
+    return {
+        value: item.video_link,
+        count: item.views_count,
+        uniqueViews: item.unique_students_count
+    };
+};
+
+const convertPagesReportToRowDataArray = (videoInteractionReport: VideoReport): RowData[] => {
+    return videoInteractionReport.video_interaction_chart.items.map(convertToRowData);
+};
+
 
 export default function VideoSection(props: VideoSectionProps) {
 
@@ -33,10 +48,10 @@ export default function VideoSection(props: VideoSectionProps) {
         .split('\n')
         .map((row, index) => {
             const [user, time] = row.split(',')
-            return { user, timeSec: Math.round(parseFloat(time)) }
+            return {user, timeSec: Math.round(parseFloat(time))}
         })
         .sort((a, b) => b.timeSec - a.timeSec) // Сортировка по убыванию времени
-        .map((data, index) => ({ ...data, id: index + 1 })) // Добавление идентификатора
+        .map((data, index) => ({...data, id: index + 1})) // Добавление идентификатора
     const [rows, setRows] = useState(initialRowsData)
 
     const dailyVideoAmount = props.report.video_play_count_chart.items.map(
@@ -46,15 +61,21 @@ export default function VideoSection(props: VideoSectionProps) {
         })
     )
 
+    const boxTitle = 'Популярность видеоматериалов';
+    const columnName = 'Ссылка';
+    const columnCount = 'Количество поисков';
+    const columnUniqueViews = 'Уникальные просмотры'
+    const labelText = 'Поиск видео...';
+
 
     return (
         <div className={'video_interactions'}>
-            <SectionHeader text="Просмотр видеоматериалов" />
+            <SectionHeader text="Просмотр видеоматериалов"/>
             <div className={'video_interactions_container'}>
                 <div className={'item_video_1'}>
                     <ChartWrapper
                         chartTitle={'Количество воспроизведений видеоматериалов, распределённая по дням'}
-                        chart={<DatesLineChart points={dailyVideoAmount} size={baseSize} />}
+                        chart={<DatesLineChart points={dailyVideoAmount} size={baseSize}/>}
                         popupChart={<Box
                             sx={{
                                 position: 'absolute',
@@ -67,24 +88,22 @@ export default function VideoSection(props: VideoSectionProps) {
                                 borderRadius: 2
                             }}
                         >
-                            <DatesLineChart points={dailyVideoAmount} size={modalSize} />
+                            <DatesLineChart points={dailyVideoAmount} size={modalSize}/>
                         </Box>}
                         additionalInfo="Какое-нибудь длинное описание, зачем нужен этот график"
                     />
                 </div>
                 <div className={'item_video_2'}>
                     <ChartWrapper
-                        chartTitle={studentsVideoViews.boxTitle}
+                        chartTitle={boxTitle}
                         chart={
-                            <TableHeatMap
-                                rows={rows}
-                                {...studentsVideoViews}
+                            <TableThreeColumns
+                                rows={{items: convertPagesReportToRowDataArray(props.report)}}
+                                columnName={columnName}
+                                columnCount={columnCount}
+                                columnUniqueViews={columnUniqueViews}
+                                labelText={labelText}
                             />}
-                        popupChart={
-                            <TableHeatMapInsideWindow
-                                rows={rows}
-                                {...studentsVideoViews} />
-                        }
                         additionalInfo={studentsVideoViews.labelText}
                     />
                 </div>
