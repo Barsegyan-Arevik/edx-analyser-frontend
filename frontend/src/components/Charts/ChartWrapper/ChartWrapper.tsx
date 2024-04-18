@@ -1,11 +1,10 @@
 import * as React from 'react'
 import { useState } from 'react'
 import Paper from '@mui/material/Paper'
-import { Box, Button } from '@mui/material'
+import { Box, Button, Tooltip } from '@mui/material'
 import { SlMagnifier } from 'react-icons/sl'
 import { FiInfo } from 'react-icons/fi'
-import ModalWindow from './ModalWindow'
-import InfoPopup from './InfoPopup'
+import ModalWindow from '../ModalWindow'
 import './ChartWrapper.css'
 
 type ChartWrapperProps = {
@@ -26,15 +25,6 @@ export default function ChartWrapper(props: ChartWrapperProps) {
         setModalWindowOpen(false)
     }
 
-    const [infoPopupOpen, setInfoPopupOpen] = useState(false)
-    const handleOpenInfoPopup = () => {
-        setInfoPopupOpen(true)
-    }
-
-    const handleCloseInfoPopup = () => {
-        setInfoPopupOpen(false)
-    }
-
     return (
         <div className="chart-wrapper">
             <Paper>
@@ -42,11 +32,12 @@ export default function ChartWrapper(props: ChartWrapperProps) {
                     sx={{
                         display: 'flex',
                         justifyContent: 'space-between',
-                        fontSize: 16,
                         color: '#405479',
-                        paddingLeft: 2,
-                        paddingTop: 1,
-                        paddingRight: 1
+                        paddingLeft: '1.5rem',
+                        paddingTop: '0.8rem',
+                        paddingRight: 1,
+                        fontSize: '2em',
+
                     }}
                 >
                     {props.chartTitle}
@@ -57,9 +48,11 @@ export default function ChartWrapper(props: ChartWrapperProps) {
                             </Button> : null
                         }
                         {props.additionalInfo ?
-                            <Button onClick={handleOpenInfoPopup}>
-                                <FiInfo />
-                            </Button> : null
+                            <Tooltip title={props.additionalInfo}>
+                                <Button>
+                                    <FiInfo />
+                                </Button>
+                            </Tooltip> : null
                         }
                     </div>
                 </Box>
@@ -67,7 +60,6 @@ export default function ChartWrapper(props: ChartWrapperProps) {
                 <ModalWindow open={modalWindowOpen} handleClose={handleCloseModalWindow}>
                     {props.popupChart}
                 </ModalWindow>
-                <InfoPopup open={infoPopupOpen} handleClose={handleCloseInfoPopup} info={props.additionalInfo} />
             </Paper>
         </div>
     )
