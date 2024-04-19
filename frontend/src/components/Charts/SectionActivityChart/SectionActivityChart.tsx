@@ -7,6 +7,7 @@ import {IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline} from 'react-
 
 type SectionActivityChartProps = {
     items: Array<SectionActivity>
+    numberOfStudents: number
 }
 
 function getImageBySectionType(sectionType: SectionType, color: string, size: string): React.JSX.Element {
@@ -78,7 +79,7 @@ export default function SectionActivityChart(
                             <span style={{
                                 fontWeight: 'bold',
                                 fontSize: '1.4em'
-                            }}>{item.students_count}%</span> студентов {getDescriptionBySectionType(item.section_type)}
+                            }}>{Math.round((item.students_count / props.numberOfStudents) * 100)}%</span> студентов {getDescriptionBySectionType(item.section_type)}
 
                         </Box>
 
