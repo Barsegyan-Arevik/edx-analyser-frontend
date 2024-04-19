@@ -18,7 +18,7 @@ code {
 }
 
 /* Медиа-запрос для экранов шириной меньше 1000px */
-@media (max-width: 1000px) {
+@media (max-width: 1500px) {
     body {
         overflow-x: auto;
     }

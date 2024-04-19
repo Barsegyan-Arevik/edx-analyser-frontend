@@ -9,9 +9,10 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
+import { Grid } from '@mui/material';
 import './TableHeatMap.css';
 import { getGreenColorScale } from '../../../utils/utils';
-import {ChartSize} from '../../../utils/utils';
+import { ChartSize } from '../../../utils/utils';
 
 export interface RowData {
     value: string;
@@ -65,65 +66,71 @@ export default function TableWithLinkAndSearchBar(props: TableWithLinkAndSearchB
     const timeRange = maxTime - minTime;
 
     return (
-        <div style={{ overflow: 'hidden', padding: '10px', width: 'fit-content' }}>
-            <TextField
-                size="small"
-                label={props.labelText}
-                variant="outlined"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                fullWidth
-                sx={{
-                    marginBottom: '10px',
-                    '&:hover': {
-                        borderColor: 'blue', // Цвет границы при наведении курсора
-                    },
-                }} // Добавлено смещение для выравнивания с кнопкой модального окна
-            />
-            <TableContainer sx={{ height: props.size.height, width: props.size.width}}>
-                <Table stickyHeader size="small" aria-label="sticky table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>{props.columnName}</TableCell>
-                            <TableCell>{props.columnCount}</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                        {filteredRows
-                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((row, index) => (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                    <TableCell>
-                                        {row.value.length > 50 ? (
-                                            <Tooltip title={row.value} placement="top">
-                                                <span>{row.value.slice(0, 50)}...</span>
-                                            </Tooltip>
-                                        ) : (
-                                            row.value
-                                        )}
-                                    </TableCell>
-                                    <TableCell
-                                        style={{
-                                            backgroundColor: row.count ? getGreenColorScale(timeRange, minTime, row.count) : 'white',
-                                            padding: '8px'
-                                        }}
-                                    >
-                                        {row.count}
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={filteredRows.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onPageChange={handleChangePage}
-                onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-        </div>
+        <Grid container spacing={2}>
+            <Grid item xs={12}>
+                <TextField
+                    size="small"
+                    label={props.labelText}
+                    variant="outlined"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    fullWidth
+                    sx={{
+                        marginBottom: '10px',
+                        '&:hover': {
+                            borderColor: 'blue', // Цвет границы при наведении курсора
+                        },
+                    }} // Добавлено смещение для выравнивания с кнопкой модального окна
+                />
+            </Grid>
+            <Grid item xs={12}>
+                <TableContainer sx={{ height: props.size.height }}>
+                    <Table stickyHeader size="small" aria-label="sticky table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>{props.columnName}</TableCell>
+                                <TableCell>{props.columnCount}</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                            {filteredRows
+                                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                .map((row, index) => (
+                                    <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                                        <TableCell>
+                                            {row.value.length > 50 ? (
+                                                <Tooltip title={row.value} placement="top">
+                                                    <span>{row.value.slice(0, 50)}...</span>
+                                                </Tooltip>
+                                            ) : (
+                                                row.value
+                                            )}
+                                        </TableCell>
+                                        <TableCell
+                                            style={{
+                                                backgroundColor: row.count ? getGreenColorScale(timeRange, minTime, row.count) : 'white',
+                                                padding: '8px'
+                                            }}
+                                        >
+                                            {row.count}
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+            </Grid>
+            <Grid item xs={12}>
+                <TablePagination
+                    rowsPerPageOptions={[10, 25, 100]}
+                    component="div"
+                    count={filteredRows.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+            </Grid>
+        </Grid>
     );
 }
