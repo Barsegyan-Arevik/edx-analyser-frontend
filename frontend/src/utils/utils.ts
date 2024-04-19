@@ -1,3 +1,8 @@
+export type ChartSize = {
+    width: string;
+    height: string;
+};
+
 export function getStudentEnding(amount: number) {
     const lastTwoDigits = amount % 100;
     const lastDigit = amount % 10;
