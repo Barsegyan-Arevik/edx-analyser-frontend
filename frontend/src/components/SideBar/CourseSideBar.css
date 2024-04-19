@@ -1,18 +1,6 @@
 .activeMenu {
-    background-color: #F0F3FB; /* Цвет фона при активном состоянии */
+    background-color: #F0F3FB;
 }
-
-
-/*.logo {*/
-/*    !*font-size: 3rem;*!*/
-/*    !*font-size: 10%;*!*/
-/*}*/
-
-/*.bars {*/
-/*    display: flex;*/
-/*    font-size: 2rem;*/
-/*    margin-left: 3rem;*/
-/*}*/
 
 .link {
     display: flex;
@@ -24,6 +12,25 @@
     width: 100%
 }
 
+.home-icon-close {
+    /*font-size: 2.5rem;*/
+    padding-left: 1rem;
+    color: #405479;
+    font-size: 1.4rem;
+}
+
+.home-icon-open {
+    color: #405479;
+    font-size: 1.4rem;
+    margin-left: 1rem;
+}
+
+.home-text {
+    font-size: 1.6em;
+    margin-left: 2rem;
+    color: #405479;
+}
+
 .active {
     background: #5471E7;
     color: #FFFFFF;
@@ -32,7 +39,6 @@
 .icon, .link_text {
     font-size: 2.5rem;
 }
-
 
 .sidebar {
     box-shadow: 1rem 0 2rem rgba(55, 99, 221, 0.2);
@@ -50,34 +56,12 @@
     transition: all 0.3s ease;
 }
 
-.submenu {
-    color: #405479;
-}
-
-.submenu_link {
-    display: flex;
-    color: #405479;
-    /*padding: 0.7rem 1.5rem;*/
-    justify-content: center;
-    gap: 2rem;
-    transition: all 0.3s;
-}
-
 .top_section {
     display: flex;
     /*align-items: center;*/
     padding: 2rem 1rem;
 }
 
-.submenu_link_active {
-    background: #5471E7;
-    color: #FFFFFF;
-}
-
-.submenu_icon, .submenu_link_text {
-    font-size: 4rem;
-}
-
-.link:not(.active):hover, .submenu_link:not(.submenu_link_active):hover {
-    background: #CED6F7; /* Цвет фона при наведении только для неактивных ссылок */
+.link:not(.active):hover {
+    background: #CED6F7;
 }
