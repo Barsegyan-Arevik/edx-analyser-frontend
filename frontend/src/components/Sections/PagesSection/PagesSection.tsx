@@ -1,17 +1,14 @@
 import SectionHeader from '../SectionHeader/SectionHeader'
 import ChartWrapper from '../../Charts/ChartWrapper/ChartWrapper'
-import TableWithLink from '../../Charts/Table/TableWithLink'
 import * as React from 'react'
-import { PagesReport } from '../../../models/report'
-import { tablePages } from '../../../mockdata/CourseInfoPageData'
+import {PagesReport} from '../../../models/report'
 import TableWithLinkAndSearchBar, {RowData} from '../../Charts/Table/TableWithLinkAndSearchBar';
 import TableWithLinkAndSearchBarInsideWindow from '../../Charts/Table/TableWithLinkAndSearchBarInsideWindow';
-
+import {ChartSize} from '../../../utils/utils';
 
 export type PagesSectionProps = {
     report: PagesReport
 }
-
 
 const convertToRowData = (item: { page_link: string; visits_count: number; }): RowData => {
     return {
@@ -20,7 +17,16 @@ const convertToRowData = (item: { page_link: string; visits_count: number; }): R
     };
 };
 
-// Преобразование массива items из PagesReport в массив RowData
+const baseTableSize: ChartSize = {
+    width: '50rem',
+    height: '30rem'
+}
+
+const modalTableSize: ChartSize = {
+    width: '50rem',
+    height: '25rem'
+}
+
 const convertPagesReportToRowDataArray = (pagesReport: PagesReport): RowData[] => {
     return pagesReport.pages_popularity_chart.items.map(convertToRowData);
 };
@@ -35,7 +41,7 @@ export default function PagesSection(
 
     return (
         <div>
-            <SectionHeader text='Взаимодействие со страницами курса' style={{ marginTop: '20px' }} />
+            <SectionHeader text="Взаимодействие со страницами курса" style={{marginTop: '20px'}}/>
             <div className="document_interaction_container">
                 <div className="item_doc_2">
                     <ChartWrapper
@@ -46,6 +52,7 @@ export default function PagesSection(
                                 columnName={columnNamePages}
                                 columnCount={columnCountPages}
                                 labelText={labelTextPages}
+                                size={baseTableSize}
                             />}
                         popupChart={
                             <TableWithLinkAndSearchBarInsideWindow
@@ -54,6 +61,8 @@ export default function PagesSection(
                                 columnName={columnNamePages}
                                 columnCount={columnCountPages}
                                 labelText={labelTextPages}
+                                baseTableSize={baseTableSize}
+                                modalTableSize={modalTableSize}
                             />
                         }
                         additionalInfo={''}
