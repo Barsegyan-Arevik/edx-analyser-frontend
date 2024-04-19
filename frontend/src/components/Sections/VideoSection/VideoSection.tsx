@@ -1,26 +1,51 @@
 import * as React from 'react'
-import {useState} from 'react'
 import './VideoSection.css'
 import SectionHeader from '../SectionHeader/SectionHeader'
-import DatesLineChart, {LineChartSize} from '../../Charts/LineChart/DatesLineChart'
+import DatesLineChart from '../../Charts/LineChart/DatesLineChart'
 import ChartWrapper from '../../Charts/ChartWrapper/ChartWrapper'
 import {Box} from '@mui/material'
 import {VideoReport} from '../../../models/report'
-import {studentsVideoViews} from '../../../mockdata/CourseInfoPageData'
 import TableThreeColumns, {RowData} from '../../Charts/Table/TableThreeColumns';
+import {ChartSize} from '../../../utils/utils';
 
 export type VideoSectionProps = {
     report: VideoReport
 }
 
-const baseSize: LineChartSize = {
-    width: 750,
-    height: 470
+const baseTableSize: ChartSize = {
+    width: '40rem',
+    height: '30rem'
 }
 
-const modalSize: LineChartSize = {
-    width: 1150,
-    height: 400
+const baseDatesLineChartBoxSize: ChartSize = {
+    width: '45rem',
+    height: '34rem'
+}
+
+const baseDatesLineChartSize: ChartSize = {
+    width: '45rem',
+    height: '20rem'
+}
+
+const baseDatesLineChartSliderSize: ChartSize = {
+    width: '40rem',
+    height: '20rem'
+}
+
+
+const modaDatesLineChartBoxSize: ChartSize = {
+    width: '60rem',
+    height: '25rem'
+}
+
+const modalDatesLineChartSize: ChartSize = {
+    width: '60rem',
+    height: '20rem'
+}
+
+const modalDatesLineChartSliderSize: ChartSize = {
+    width: '55rem',
+    height: '20rem'
 }
 
 const convertToRowData = (item: {
@@ -41,18 +66,6 @@ const convertPagesReportToRowDataArray = (videoInteractionReport: VideoReport): 
 
 
 export default function VideoSection(props: VideoSectionProps) {
-
-    // todo: replace by report.video_interaction_chart
-    const initialRowsData = studentsVideoViews.data
-        .trim()
-        .split('\n')
-        .map((row, index) => {
-            const [user, time] = row.split(',')
-            return {user, timeSec: Math.round(parseFloat(time))}
-        })
-        .sort((a, b) => b.timeSec - a.timeSec) // Сортировка по убыванию времени
-        .map((data, index) => ({...data, id: index + 1})) // Добавление идентификатора
-    const [rows, setRows] = useState(initialRowsData)
 
     const dailyVideoAmount = props.report.video_play_count_chart.items.map(
         item => ({
@@ -75,7 +88,12 @@ export default function VideoSection(props: VideoSectionProps) {
                 <div className={'item_video_1'}>
                     <ChartWrapper
                         chartTitle={'Количество воспроизведений видеоматериалов, распределённая по дням'}
-                        chart={<DatesLineChart points={dailyVideoAmount} size={baseSize}/>}
+                        chart={<DatesLineChart
+                            points={dailyVideoAmount}
+                            boxSize={baseDatesLineChartBoxSize}
+                            lineChartSize={baseDatesLineChartSize}
+                            sliderSize={baseDatesLineChartSliderSize}
+                        />}
                         popupChart={<Box
                             sx={{
                                 position: 'absolute',
@@ -88,7 +106,12 @@ export default function VideoSection(props: VideoSectionProps) {
                                 borderRadius: 2
                             }}
                         >
-                            <DatesLineChart points={dailyVideoAmount} size={modalSize}/>
+                            <DatesLineChart
+                                points={dailyVideoAmount}
+                                boxSize={modaDatesLineChartBoxSize}
+                                lineChartSize={modalDatesLineChartSize}
+                                sliderSize={modalDatesLineChartSliderSize}
+                            />
                         </Box>}
                         additionalInfo="Какое-нибудь длинное описание, зачем нужен этот график"
                     />
@@ -103,8 +126,8 @@ export default function VideoSection(props: VideoSectionProps) {
                                 columnCount={columnCount}
                                 columnUniqueViews={columnUniqueViews}
                                 labelText={labelText}
+                                size={baseTableSize}
                             />}
-                        additionalInfo={studentsVideoViews.labelText}
                     />
                 </div>
             </div>
