@@ -12,38 +12,26 @@ import { MdOutlineAnalytics, MdOutlineForum } from 'react-icons/md';
 import { FiMousePointer } from 'react-icons/fi';
 import { IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline } from 'react-icons/io5';
 import { RiTeamLine } from 'react-icons/ri';
+import WelcomePage from './pages/WelcomePage/WelcomePage';
+import { HiOutlineHome } from 'react-icons/hi2';
+
 
 const courses = [
     {
         id: 'DATANTECH2035',
-        name: 'Курс 1',
+        name: 'DATANTECH2035',
     },
     {
         id: 'DATSTBASE',
-        name: 'Курс 2',
+        name: 'DATSTBASE',
     },
 ];
-
-const WelcomePage = () => {
-    return (
-        <div>
-            <h1>Доступные курсы</h1>
-            <ul>
-                {courses.map(course => (
-                    <li key={course.id}>
-                        <Link to={`/courses/${course.id}/common`}>{course.name}</Link>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-};
 
 const menuItems = [
     {
         path: '/',
         name: 'Домой',
-        icon: <FiMousePointer />,
+        icon: <HiOutlineHome />,
     },
     ...courses.map(course => ({
         path: `/courses/${course.id}/common`,
@@ -81,18 +69,12 @@ const menuItems = [
         icon: <RiTeamLine/>
     })),
 ];
-//     },
-//     {
-//         path: `/courses/${COURSE_ID}/students`,
-//         name: 'Студенты',
-//         icon: <RiTeamLine/>,
-//     },
 
 const App = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<WelcomePage />} />
+                <Route path="/" element={<WelcomePage courses={courses} />} />
                 <Route
                     path="/courses/:courseId/*"
                     element={<CourseRoutes />}
