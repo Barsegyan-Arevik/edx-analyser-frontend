@@ -2,19 +2,30 @@ import * as React from 'react'
 import ValueBox from '../../Charts/Box/ValueBox'
 import './CommonSection.css'
 import SectionHeader from '../SectionHeader/SectionHeader'
-import DatesLineChart, { LineChartSize } from '../../Charts/LineChart/DatesLineChart'
+import DatesLineChart from '../../Charts/LineChart/DatesLineChart'
 import SectionActivityChart from '../../Charts/SectionActivityChart/SectionActivityChart'
 import ChartWrapper from '../../Charts/ChartWrapper/ChartWrapper'
 import { getStudentEnding } from '../../../utils/utils'
 import { CommonReport } from '../../../models/report'
+import {ChartSize} from '../../../utils/utils';
 
 export type CommonSectionProps = {
     report: CommonReport;
 }
 
-const baseSize: LineChartSize = {
-    width: 870,
-    height: 350
+const baseLineChartBoxSize: ChartSize = {
+    width: '50rem',
+    height: '19rem'
+}
+
+const baseLineChartSize: ChartSize = {
+    width: baseLineChartBoxSize.width,
+    height: '14rem'
+}
+
+const baseLineChartSliderSize: ChartSize = {
+    width: '47rem',
+    height: baseLineChartBoxSize.height
 }
 
 
@@ -54,7 +65,7 @@ export default function CommonSection(props: CommonSectionProps) {
                         </div>
                     </div>
                     <div className={'activity_section'}>
-                        <SectionActivityChart items={sectionActivityChart} />
+                        <SectionActivityChart items={sectionActivityChart} numberOfStudents={numberOfStudents}/>
                     </div>
                 </div>
                 <ChartWrapper
@@ -62,7 +73,12 @@ export default function CommonSection(props: CommonSectionProps) {
                         'Активность на курсе, по неделям'
                     }
                     chart={
-                        <DatesLineChart points={weeklyActivityChart} size={baseSize} />
+                        <DatesLineChart
+                            points={weeklyActivityChart}
+                            boxSize={baseLineChartBoxSize}
+                            lineChartSize={baseLineChartSize}
+                            sliderSize={baseLineChartSliderSize}
+                        />
                     }
                     additionalInfo={'Сколько человек посещало курс'}
                 />
