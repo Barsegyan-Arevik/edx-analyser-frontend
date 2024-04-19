@@ -1,4 +1,9 @@
-.problem_charts {
+.problem-charts {
     display: flex;
-    justifyContent: 'space-between'
+    justify-content: center;
 }
+
+.problem-charts > * {
+    margin: 1rem;
+}
+
