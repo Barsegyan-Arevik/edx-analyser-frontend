@@ -4,7 +4,7 @@ import { Box } from '@mui/material';
 import './TableHeatMap.css';
 import AggregateMeasureBox from '../Box/AggregateMeasureBox';
 import TableWithLinkAndSearchBar from './TableWithLinkAndSearchBar';
-
+import {ChartSize} from '../../../utils/utils';
 
 export interface RowData {
     value: string;
@@ -21,6 +21,8 @@ export type TableWithLinkAndSearchBarInsideWindowProps = {
     columnName: string;
     columnCount: string;
     labelText: string;
+    baseTableSize: ChartSize;
+    modalTableSize: ChartSize;
 }
 
 const generateUniqueId = (): number => {
@@ -87,7 +89,13 @@ export default function TableWithLinkAndSearchBarInsideWindow(props: TableWithLi
                             p: 2
                         }}
                     >
-                        <TableWithLinkAndSearchBar rows={props.rows} {...props} />
+                        <TableWithLinkAndSearchBar
+                            rows={props.rows}
+                            columnName={props.columnName}
+                            columnCount={props.columnCount}
+                            labelText={props.labelText}
+                            size={props.baseTableSize}
+                        />
                     </Box>
                     <Box
                         sx={{
