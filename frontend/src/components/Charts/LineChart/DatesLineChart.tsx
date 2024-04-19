@@ -1,12 +1,10 @@
 import * as React from 'react';
 import {useState} from 'react';
-import {Box, Slider} from '@mui/material';
+import {Slider} from '@mui/material';
 import {LineChart} from '@mui/x-charts/LineChart';
+import {ChartSize} from '../../../utils/utils';
+import {Box} from '@mui/material'
 
-export type LineChartSize = {
-    width: number;
-    height: number;
-};
 
 export interface LineChartDate {
     date: Date;
@@ -15,7 +13,9 @@ export interface LineChartDate {
 
 export type DatesLineChartExtendedProps = {
     points: Array<LineChartDate>;
-    size: LineChartSize;
+    boxSize: ChartSize;
+    lineChartSize: ChartSize;
+    sliderSize: ChartSize;
 }
 
 export default function DatesLineChart(props: DatesLineChartExtendedProps) {
@@ -41,7 +41,11 @@ export default function DatesLineChart(props: DatesLineChartExtendedProps) {
     return (
         <Box
             sx={{
-                width: '${props.size.width}'
+                bgcolor: 'background.paper',
+                p: 4,
+                borderRadius: 2,
+                width: props.boxSize.width,
+                height: props.boxSize.height
             }}
         >
             <LineChart
@@ -61,10 +65,14 @@ export default function DatesLineChart(props: DatesLineChartExtendedProps) {
                         color: '#02CEA9',
                     },
                 ]}
-                width={props.size.width}
-                height={props.size.height}
+                sx={{
+                    height: props.lineChartSize.height,
+                    width: props.lineChartSize.width,
+                }}
             />
-            <Box sx={{ml: 3, width: props.size.width - 50}}>
+            <Box
+                sx={{marginLeft: '10px', width: props.sliderSize.width }}
+            >
                 <Slider
                     value={dateRange.map(date => date.getTime())}
                     onChange={handleDateRangeChange}
