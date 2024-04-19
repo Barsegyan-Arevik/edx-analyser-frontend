@@ -11,6 +11,7 @@ import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
 import './TableHeatMap.css';
 import { getGreenColorScale } from '../../../utils/utils';
+import {ChartSize} from '../../../utils/utils';
 
 export interface RowData {
     value: string;
@@ -28,6 +29,7 @@ export type TableThreeColumnsProps = {
     columnCount: string;
     columnUniqueViews: string;
     labelText: string;
+    size: ChartSize;
 }
 
 export default function TableThreeColumns(props: TableThreeColumnsProps) {
@@ -36,6 +38,8 @@ export default function TableThreeColumns(props: TableThreeColumnsProps) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [searchTerm, setSearchTerm] = useState('');
+    const [sortColumn, setSortColumn] = useState('');
+    const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
 
     useEffect(() => {
         setPage(0); // Переход на первую страницу при изменении поискового запроса
@@ -50,22 +54,41 @@ export default function TableThreeColumns(props: TableThreeColumnsProps) {
         setPage(0);
     };
 
-    const filteredRows = rows.items.filter(row =>
+    const handleSort = (column: string) => {
+        if (sortColumn === column) {
+            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortColumn(column);
+            setSortDirection('asc');
+        }
+    };
+
+    const sortedRows = rows.items.sort((a, b) => {
+        const aValue = a[sortColumn];
+        const bValue = b[sortColumn];
+        if (sortDirection === 'asc') {
+            return aValue > bValue ? 1 : -1;
+        } else {
+            return aValue < bValue ? 1 : -1;
+        }
+    });
+
+    const filteredRows = sortedRows.filter(row =>
         row.value.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const timeSecArray = rows.items.map(row => row.count);
+    const timeSecArray = sortedRows.map(row => row.count);
     const minTime = Math.min(...timeSecArray);
     const maxTime = Math.max(...timeSecArray);
     const timeRange = maxTime - minTime;
 
-    const uniqueViewsArray = rows.items.map(row => row.uniqueViews);
+    const uniqueViewsArray = sortedRows.map(row => row.uniqueViews);
     const minUniqueViews = Math.min(...uniqueViewsArray);
     const maxUniqueViews = Math.max(...uniqueViewsArray);
     const uniqueViewsRange = maxUniqueViews - minUniqueViews;
 
     return (
-        <div style={{ overflow: 'hidden', padding: '10px' }}>
+        <div style={{ padding: '10px'}}>
             <TextField
                 size="small"
                 label={props.labelText}
@@ -80,13 +103,19 @@ export default function TableThreeColumns(props: TableThreeColumnsProps) {
                     },
                 }}
             />
-            <TableContainer sx={{ height: 400 }}>
+            <TableContainer sx={{ width: props.size.width, height: props.size.height  }}>
                 <Table stickyHeader size="small" aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            <TableCell>{columnName}</TableCell>
-                            <TableCell>{columnCount}</TableCell>
-                            <TableCell>{columnUniqueViews}</TableCell>
+                            <TableCell onClick={() => handleSort('value')}>
+                                {columnName} {sortColumn === 'value' && (sortDirection === 'asc' ? '▲' : '▼')}
+                            </TableCell>
+                            <TableCell onClick={() => handleSort('count')}>
+                                {columnCount} {sortColumn === 'count' && (sortDirection === 'asc' ? '▲' : '▼')}
+                            </TableCell>
+                            <TableCell onClick={() => handleSort('uniqueViews')}>
+                                {columnUniqueViews} {sortColumn === 'uniqueViews' && (sortDirection === 'asc' ? '▲' : '▼')}
+                            </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
