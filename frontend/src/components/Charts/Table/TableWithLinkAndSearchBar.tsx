@@ -8,9 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
-import Tooltip from '@mui/material/Tooltip'; // Импортируем Tooltip из Material-UI
+import Tooltip from '@mui/material/Tooltip';
 import './TableHeatMap.css';
 import { getGreenColorScale } from '../../../utils/utils';
+import {ChartSize} from '../../../utils/utils';
 
 export interface RowData {
     value: string;
@@ -26,6 +27,7 @@ export type TableWithLinkAndSearchBarProps = {
     columnName: string;
     columnCount: string;
     labelText: string;
+    size: ChartSize;
 }
 
 export default function TableWithLinkAndSearchBar(props: TableWithLinkAndSearchBarProps) {
@@ -63,7 +65,7 @@ export default function TableWithLinkAndSearchBar(props: TableWithLinkAndSearchB
     const timeRange = maxTime - minTime;
 
     return (
-        <div style={{ overflow: 'hidden', padding: '10px' }}>
+        <div style={{ overflow: 'hidden', padding: '10px', width: 'fit-content' }}>
             <TextField
                 size="small"
                 label={props.labelText}
@@ -78,7 +80,7 @@ export default function TableWithLinkAndSearchBar(props: TableWithLinkAndSearchB
                     },
                 }} // Добавлено смещение для выравнивания с кнопкой модального окна
             />
-            <TableContainer sx={{ height: 400 }}>
+            <TableContainer sx={{ height: props.size.height, width: props.size.width}}>
                 <Table stickyHeader size="small" aria-label="sticky table">
                     <TableHead>
                         <TableRow>
