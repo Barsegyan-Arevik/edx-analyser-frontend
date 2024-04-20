@@ -37,7 +37,8 @@ code {
 
 /* Цвет скролла */
 ::-webkit-scrollbar-thumb {
-    background: #405479;
+    /*background: #405479;*/
+    background: lightgrey;
 }
 
 /* При наведении курсора на скролл */
