@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,10 +9,9 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
-import { Grid } from '@mui/material';
+import {Grid} from '@mui/material';
 import './TableHeatMap.css';
-import { getGreenColorScale } from '../../../utils/utils';
-import { ChartSize } from '../../../utils/utils';
+import {ChartSize, getGreenColorScale} from '../../../utils/utils';
 
 export interface RowData {
     value: string;
@@ -31,7 +30,7 @@ export type TableWithLinkAndSearchBarProps = {
     size: ChartSize;
 }
 
-export default function TableWithLinkAndSearchBar(props: TableWithLinkAndSearchBarProps) {
+const TableWithLinkAndSearchBar: React.FC<TableWithLinkAndSearchBarProps> = (props) => {
     const rows = props.rows.items
         .sort((a, b) => b.count - a.count)
         .map((data, index) => ({
@@ -56,48 +55,56 @@ export default function TableWithLinkAndSearchBar(props: TableWithLinkAndSearchB
         setPage(0);
     };
 
-    const filteredRows = rows.filter(row =>
+    const filteredRows = rows.filter((row) =>
         row.value.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const timeSecArray = rows.map(row => row.count);
+    const timeSecArray = rows.map((row) => row.count);
     const minTime = Math.min(...timeSecArray);
     const maxTime = Math.max(...timeSecArray);
     const timeRange = maxTime - minTime;
 
     return (
-        <Grid container spacing={2}>
-            <Grid item xs={12}>
+        <Grid container spacing={2} justifyContent="center">
+            <Grid item xs={11.5}>
                 <TextField
-                    size="small"
+                    size='small'
                     label={props.labelText}
                     variant="outlined"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     fullWidth
                     sx={{
-                        marginBottom: '10px',
+                        marginBottom: '5px',
+                        marginTop: '5px',
                         '&:hover': {
                             borderColor: 'blue', // Цвет границы при наведении курсора
                         },
-                    }} // Добавлено смещение для выравнивания с кнопкой модального окна
+                        '& .MuiOutlinedInput-input': {
+                            padding: '5px 5px', // Изменение отступов внутри поля ввода
+                            height: '25px', // Изменение высоты поля ввода
+                        },
+                        '& .MuiInputLabel-root': {
+                            fontSize: '0.85rem', // Уменьшаем размер метки
+                        },
+                    }}
                 />
             </Grid>
-            <Grid item xs={12}>
-                <TableContainer sx={{ height: props.size.height }}>
+            <Grid item xs={11} style={{height: '55vh'}}>
+                <TableContainer sx={{height: '100%'}}>
                     <Table stickyHeader size="small" aria-label="sticky table">
                         <TableHead>
                             <TableRow>
-                                <TableCell>{props.columnName}</TableCell>
-                                <TableCell>{props.columnCount}</TableCell>
+                                <TableCell style={{width: '70%'}}>{props.columnName}</TableCell>
+                                <TableCell style={{width: '30%'}}>{props.columnCount}</TableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                        <TableBody sx={{'&:last-child td, &:last-child th': {border: 0}}}>
                             {filteredRows
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                        <TableCell>
+                                        <TableCell style={{ width: '70%' }}>
                                             {row.value.length > 50 ? (
                                                 <Tooltip title={row.value} placement="top">
                                                     <span>{row.value.slice(0, 50)}...</span>
@@ -108,8 +115,11 @@ export default function TableWithLinkAndSearchBar(props: TableWithLinkAndSearchB
                                         </TableCell>
                                         <TableCell
                                             style={{
-                                                backgroundColor: row.count ? getGreenColorScale(timeRange, minTime, row.count) : 'white',
-                                                padding: '8px'
+                                                backgroundColor: row.count
+                                                    ? getGreenColorScale(timeRange, minTime, row.count)
+                                                    : 'white',
+                                                padding: '8px',
+                                                width: '30%'
                                             }}
                                         >
                                             {row.count}
@@ -120,7 +130,7 @@ export default function TableWithLinkAndSearchBar(props: TableWithLinkAndSearchB
                     </Table>
                 </TableContainer>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={11}>
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 100]}
                     component="div"
@@ -133,4 +143,6 @@ export default function TableWithLinkAndSearchBar(props: TableWithLinkAndSearchB
             </Grid>
         </Grid>
     );
-}
+};
+
+export default TableWithLinkAndSearchBar;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,10 +9,9 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import Tooltip from '@mui/material/Tooltip';
-import { Grid } from '@mui/material';
+import {Grid} from '@mui/material';
 import './TableHeatMap.css';
-import { getGreenColorScale } from '../../../utils/utils';
-import { ChartSize } from '../../../utils/utils';
+import {ChartSize, getGreenColorScale} from '../../../utils/utils';
 
 export interface RowData {
     value: string;
@@ -34,7 +33,7 @@ export type TableThreeColumnsProps = {
 }
 
 export default function TableThreeColumns(props: TableThreeColumnsProps) {
-    const { rows, columnName, columnCount, columnUniqueViews } = props;
+    const {rows, columnName, columnCount, columnUniqueViews} = props;
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -89,8 +88,8 @@ export default function TableThreeColumns(props: TableThreeColumnsProps) {
     const uniqueViewsRange = maxUniqueViews - minUniqueViews;
 
     return (
-        <Grid container spacing={2}>
-            <Grid item xs={12}>
+        <Grid container spacing={2} justifyContent="center">
+            <Grid item xs={11.5}>
                 <TextField
                     size="small"
                     label={props.labelText}
@@ -99,35 +98,43 @@ export default function TableThreeColumns(props: TableThreeColumnsProps) {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     fullWidth
                     sx={{
-                        marginBottom: '10px',
+                        marginBottom: '5px',
+                        marginTop: '5px',
                         '&:hover': {
                             borderColor: 'blue', // Цвет границы при наведении курсора
+                        },
+                        '& .MuiOutlinedInput-input': {
+                            padding: '5px 5px', // Изменение отступов внутри поля ввода
+                            height: '25px', // Изменение высоты поля ввода
+                        },
+                        '& .MuiInputLabel-root': {
+                            fontSize: '0.85rem', // Уменьшаем размер метки
                         },
                     }}
                 />
             </Grid>
-            <Grid item xs={12}>
-                <TableContainer sx={{ width: '100%' }}>
+            <Grid item xs={11} style={{height: '55vh'}}>
+                <TableContainer sx={{height: '100%'}}>
                     <Table stickyHeader size="small" aria-label="sticky table">
                         <TableHead>
                             <TableRow>
-                                <TableCell onClick={() => handleSort('value')}>
+                                <TableCell onClick={() => handleSort('value')} style={{width: '60%'}}>
                                     {columnName} {sortColumn === 'value' && (sortDirection === 'asc' ? '▲' : '▼')}
                                 </TableCell>
-                                <TableCell onClick={() => handleSort('count')}>
+                                <TableCell onClick={() => handleSort('count')} style={{width: '20%'}}>
                                     {columnCount} {sortColumn === 'count' && (sortDirection === 'asc' ? '▲' : '▼')}
                                 </TableCell>
-                                <TableCell onClick={() => handleSort('uniqueViews')}>
+                                <TableCell onClick={() => handleSort('uniqueViews')} style={{width: '20%'}}>
                                     {columnUniqueViews} {sortColumn === 'uniqueViews' && (sortDirection === 'asc' ? '▲' : '▼')}
                                 </TableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                        <TableBody sx={{'&:last-child td, &:last-child th': {border: 0}}}>
                             {filteredRows
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                        <TableCell>
+                                        <TableCell style={{width: '60%'}}>
                                             {row.value.length > 50 ? (
                                                 <Tooltip title={row.value} placement="top">
                                                     <span>{row.value.slice(0, 50)}...</span>
@@ -139,7 +146,8 @@ export default function TableThreeColumns(props: TableThreeColumnsProps) {
                                         <TableCell
                                             style={{
                                                 backgroundColor: row.count ? getGreenColorScale(timeRange, minTime, row.count) : 'white',
-                                                padding: '8px'
+                                                padding: '8px',
+                                                width: '20%'
                                             }}
                                         >
                                             {row.count}
@@ -147,7 +155,8 @@ export default function TableThreeColumns(props: TableThreeColumnsProps) {
                                         <TableCell
                                             style={{
                                                 backgroundColor: row.uniqueViews ? getGreenColorScale(uniqueViewsRange, minUniqueViews, row.uniqueViews) : 'white',
-                                                padding: '8px'
+                                                padding: '8px',
+                                                width: '20%'
                                             }}
                                         >
                                             {row.uniqueViews}
@@ -158,7 +167,7 @@ export default function TableThreeColumns(props: TableThreeColumnsProps) {
                     </Table>
                 </TableContainer>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={11}>
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 100]}
                     component="div"

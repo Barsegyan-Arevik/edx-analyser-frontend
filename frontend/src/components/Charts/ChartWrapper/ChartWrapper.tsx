@@ -26,8 +26,8 @@ export default function ChartWrapper(props: ChartWrapperProps) {
     }
 
     return (
-        <div className="chart-wrapper">
-            <Paper>
+        <div>
+            <Paper style={{ minWidth: '400px'}}>
                 <Box
                     sx={{
                         display: 'flex',
@@ -35,8 +35,9 @@ export default function ChartWrapper(props: ChartWrapperProps) {
                         color: '#405479',
                         paddingLeft: '1.5rem',
                         paddingTop: '0.8rem',
+                        paddingBottom: '0.5rem',
                         paddingRight: 1,
-                        fontSize: '2em',
+                        fontSize: '1.7em',
 
                     }}
                 >
