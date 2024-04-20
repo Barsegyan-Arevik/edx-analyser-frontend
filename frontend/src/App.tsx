@@ -1,31 +1,20 @@
-import * as React from 'react';
-import { BrowserRouter, Route, Routes, Link, useParams } from 'react-router-dom';
-import CourseSideBar from './components/SideBar/CourseSideBar';
-import CommonSectionPage from './pages/CommonSectionPage';
-import PagesSectionPage from './pages/PagesSectionPage/PagesSectionPage';
-import VideoSectionPage from './pages/VideoSectionPage';
-import ForumSectionPage from './pages/ForumSectionPage';
-import ProblemSectionPage from './pages/ProblemSectionPage';
-import TextbookSectionPage from './pages/TextbookSectionPage';
-import StudentsPage from './pages/StudentsPage/StudentsPage';
-import { MdOutlineAnalytics, MdOutlineForum } from 'react-icons/md';
-import { FiMousePointer } from 'react-icons/fi';
-import { IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline } from 'react-icons/io5';
-import { RiTeamLine } from 'react-icons/ri';
-import WelcomePage from './pages/WelcomePage/WelcomePage';
-import { HiOutlineHome } from 'react-icons/hi2';
-
-
-const courses = [
-    {
-        id: 'DATANTECH2035',
-        name: 'DATANTECH2035',
-    },
-    {
-        id: 'DATSTBASE',
-        name: 'DATSTBASE',
-    },
-];
+import * as React from 'react'
+import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom'
+import CourseSideBar from './components/SideBar/CourseSideBar'
+import CommonSectionPage from './pages/CommonSectionPage'
+import PagesSectionPage from './pages/PagesSectionPage/PagesSectionPage'
+import VideoSectionPage from './pages/VideoSectionPage'
+import ForumSectionPage from './pages/ForumSectionPage'
+import ProblemSectionPage from './pages/ProblemSectionPage'
+import TextbookSectionPage from './pages/TextbookSectionPage'
+import StudentsPage from './pages/StudentsPage/StudentsPage'
+import { MdOutlineAnalytics, MdOutlineForum } from 'react-icons/md'
+import { FiMousePointer } from 'react-icons/fi'
+import { IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline } from 'react-icons/io5'
+import { RiTeamLine } from 'react-icons/ri'
+import WelcomePage from './pages/WelcomePage/WelcomePage'
+import { HiOutlineHome } from 'react-icons/hi2'
+import { Course } from './models/course'
 
 const menuItems = [
     {
@@ -33,48 +22,48 @@ const menuItems = [
         name: 'Домой',
         icon: <HiOutlineHome />,
     },
-    ...courses.map(course => ({
-        path: `/courses/${course.id}/common`,
+    {
+        path: 'common',
         name: 'Общая информация',
         icon: <MdOutlineAnalytics />
-    })),
-    ...courses.map(course => ({
-        path: `/courses/${course.id}/pages`,
+    },
+    {
+        path: 'pages',
         name: 'Популярность страниц',
         icon: <FiMousePointer/>
-    })),
-    ...courses.map(course => ({
-        path: `/courses/${course.id}/textbook`,
+    },
+    {
+        path: 'textbook',
         name: 'Работа с учебником',
         icon: <IoBookOutline/>
-    })),
-    ...courses.map(course => ({
-        path: `/courses/${course.id}/video`,
+    },
+    {
+        path: 'video',
         name: 'Просмотры видео',
-        icon: <IoVideocamOutline/>
-    })),
-    ...courses.map(course => ({
-        path: `/courses/${course.id}/problems`,
+        icon: <IoVideocamOutline />
+    },
+    {
+        path: 'problems',
         name: 'Решение задач',
         icon: <IoExtensionPuzzleOutline/>
-    })),
-    ...courses.map(course => ({
-        path: `/courses/${course.id}/forum`,
+    },
+    {
+        path: 'forum',
         name: 'Активность на форуме',
         icon: <MdOutlineForum/>
-    })),
-    ...courses.map(course => ({
-        path: `/courses/${course.id}/students`,
+    },
+    {
+        path: 'students',
         name: 'Студенты',
         icon: <RiTeamLine/>
-    })),
+    },
 ];
 
 const App = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<WelcomePage courses={courses} />} />
+                <Route path="/" element={<WelcomePage/>} />
                 <Route
                     path="/courses/:courseId/*"
                     element={<CourseRoutes />}
