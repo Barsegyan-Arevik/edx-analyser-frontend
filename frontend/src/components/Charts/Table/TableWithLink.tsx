@@ -1,51 +1,51 @@
-import * as React from 'react'
-import { useState } from 'react'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TablePagination from '@mui/material/TablePagination'
-import TableRow from '@mui/material/TableRow'
-import Tooltip from '@mui/material/Tooltip'
-import { getGreenColorScale } from '../../../utils/utils'
+import * as React from 'react';
+import {useState} from 'react';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TablePagination from '@mui/material/TablePagination';
+import TableRow from '@mui/material/TableRow';
+import Tooltip from '@mui/material/Tooltip';
+import {getGreenColorScale} from '../../../utils/utils';
+import {minTime} from 'date-fns/constants';
 
-export function calcColumnRange(column: Array<number>) {
-    const minTime = Math.min(...column);
-    const maxTime = Math.max(...column);
-    return  maxTime - minTime;
+interface PageData {
+    page_link: string;
+    visits_count: number;
 }
 
-export type RowData = {
-    id: number;
-    user: string;
-    timeSec: string;
-    percent?: number;
+interface PagesPopularityChart {
+    items: PageData[]
 }
 
-export type TableWithLinkProps = {
-    data: string;
+
+interface TableWithLinkProps {
+    data: PagesPopularityChart;
     columnName: string;
     columnCount: string;
     additionalColumn?: string;
     labelText: string;
 }
 
+export function calcColumnRange(column: number[]): number {
+    const minTime = Math.min(...column);
+    const maxTime = Math.max(...column);
+    return maxTime - minTime;
+}
+
 export default function TableWithLink(props: TableWithLinkProps) {
     const [hoveredRowIndex, setHoveredRowIndex] = useState<number | null>(null);
 
-    const rows = props.data
-        .trim()
-        .split('\n')
-        .slice(1) // Пропустить первую строку (заголовки столбцов)
-        .map((row, index) => {
-            const [pdfName, scrollingAmount, percent] = row.split(',');
-            return {pdfName, timeSec: parseInt(scrollingAmount, 10), percent: parseInt(percent, 10)};
-        })
-        .sort((a, b) => b.timeSec - a.timeSec) // Сортировка по убыванию
+    const {items} = props.data;
+
+    const rows = items
+        .sort((a, b) => b.visits_count - a.visits_count)
         .map((data, index) => ({
-            ...data,
-            id: index + 1
+            id: index + 1,
+            pdfName: data.page_link,
+            timeSec: data.visits_count,
         }));
 
     const [page, setPage] = useState(0);
@@ -61,7 +61,7 @@ export default function TableWithLink(props: TableWithLinkProps) {
     };
 
     const timeSecArray = rows.map(row => row.timeSec);
-    const timeRange = calcColumnRange(timeSecArray)
+    const timeRange = calcColumnRange(timeSecArray);
 
     return (
         <div style={{overflow: 'hidden', padding: '10px'}}>
@@ -87,45 +87,66 @@ export default function TableWithLink(props: TableWithLinkProps) {
                                     onMouseLeave={() => setHoveredRowIndex(null)}
                                 >
                                     <TableCell>
-                                        <Tooltip title={row.pdfName} enterDelay={500}
+                                        <Tooltip
+                                            title={row.pdfName}
+                                            enterDelay={500}
                                             PopperProps={{
                                                 style: {
                                                     width: '500px', // Задайте желаемую ширину
                                                 },
-                                            }}>
+                                            }}
+                                        >
                                             <div
                                                 style={{
                                                     overflow: 'hidden',
                                                     textOverflow: 'ellipsis',
                                                     whiteSpace: 'nowrap',
-                                                    maxWidth: '700px'
+                                                    maxWidth: '700px',
                                                 }}
                                             >
-                                                {hoveredRowIndex === index ?
-                                                    <a href={row.pdfName} style={{
-                                                        color: '#405479',
-                                                        textDecoration: 'underline'
-                                                    }}>{row.pdfName}</a> : (row.pdfName.length > 150 ?
-                                                        <a href={row.pdfName} style={{
+                                                {hoveredRowIndex === index ? (
+                                                    <a
+                                                        href={row.pdfName}
+                                                        style={{
                                                             color: '#405479',
-                                                            textDecoration: 'underline'
-                                                        }}> {row.pdfName.slice(0, 150) + '...'}</a> :
-                                                        <a href={row.pdfName} style={{
+                                                            textDecoration: 'underline',
+                                                        }}
+                                                    >
+                                                        {row.pdfName}
+                                                    </a>
+                                                ) : row.pdfName.length > 150 ? (
+                                                    <a
+                                                        href={row.pdfName}
+                                                        style={{
                                                             color: '#405479',
-                                                            textDecoration: 'underline'
-                                                        }}>{row.pdfName}</a>)}
+                                                            textDecoration: 'underline',
+                                                        }}
+                                                    >
+                                                        {' '}
+                                                        {row.pdfName.slice(0, 150) + '...'}
+                                                    </a>
+                                                ) : (
+                                                    <a
+                                                        href={row.pdfName}
+                                                        style={{
+                                                            color: '#405479',
+                                                            textDecoration: 'underline',
+                                                        }}
+                                                    >
+                                                        {row.pdfName}
+                                                    </a>
+                                                )}
                                             </div>
                                         </Tooltip>
                                     </TableCell>
                                     <TableCell
                                         style={{
-                                            backgroundColor: row.timeSec ? getGreenColorScale(timeRange, row.timeSec) : 'white',
-                                            padding: '8px'
+                                            backgroundColor: row.timeSec ? getGreenColorScale(timeRange, minTime, row.timeSec) : 'white',
+                                            padding: '8px',
                                         }}
                                     >
                                         {row.timeSec}
                                     </TableCell>
-
                                 </TableRow>
                             ))}
                     </TableBody>

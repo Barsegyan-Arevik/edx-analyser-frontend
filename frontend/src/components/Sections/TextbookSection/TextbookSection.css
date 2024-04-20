@@ -1,18 +1,23 @@
-.document_interaction {
-    color: #405479;
-    font-size: 26px;
-    font-weight: 400;
-    font-family: "Arial", sans-serif;
-    grid-area: document_interaction;
-    z-index: 100;
-}
+/*.textbook-charts {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*}*/
 
-.document_interaction_container {
-    display: flex;
-    justify-content: center; /* Для автоматического распределения между таблицами */
-    z-index: 100;
-}
+/*.textbook-charts > * {*/
+/*    margin: 1rem;*/
+/*}*/
 
-.item_doc_1, .item_doc_2 {
-    margin: 10px;
-}
+/*.textbook-charts {*/
+/*    display: grid;*/
+/*    grid-template-columns: 850px auto;*/
+/*    !*grid-template-rows: auto;*!*/
+/*    gap: 20px;*/
+/*}*/
+
+/*.table-left {*/
+/*    grid-column: 1 / 2;*/
+/*}*/
+
+/*.table-right {*/
+/*    grid-column: 2 / 3;*/
+/*}*/

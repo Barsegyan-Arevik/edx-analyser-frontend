@@ -66,6 +66,6 @@ export interface ForumReport extends Report {
         items: {
             author: string; title: string; body: string; likes_count: number;
             comments_count: number; question_type: QuestionType;
-        }
+        }[]
     }
 }

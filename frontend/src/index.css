@@ -1,5 +1,7 @@
+/* Общие стили */
 body {
     margin: 0;
+    font-size: 62.5%;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,10 +9,39 @@ body {
     -moz-osx-font-smoothing: grayscale;
     background-color: #F0F3FB;
     z-index: -1000;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Исключение overflow-x: auto; из общих стилей */
 }
 
 code {
     font-family: "source-code-pro", "Menlo", "Monaco", "Consolas", 'Courier New',
     monospace;
+}
+
+/* Медиа-запрос для экранов шириной меньше 1000px */
+@media (max-width: 1500px) {
+    body {
+        overflow-x: auto;
+    }
+}
+
+/* Стили для скролла */
+::-webkit-scrollbar {
+    width: 5px; /* Ширина скролла */
+    height: 5px;
+}
+
+/* Цвет фона скролла */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Цвет скролла */
+::-webkit-scrollbar-thumb {
+    /*background: #405479;*/
+    background: lightgrey;
+}
+
+/* При наведении курсора на скролл */
+::-webkit-scrollbar-thumb:hover {
+    background: #405479;
 }

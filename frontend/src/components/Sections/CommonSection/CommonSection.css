@@ -1,48 +1,24 @@
-.top_analytics {
-    color: #405479;
-    font-size: 26px;
-    font-weight: 700;
-    font-family: "Arial", sans-serif;
-    grid-area: top_analytics;
-    border-color: #667B98;
-    z-index: 100;
-    height: 90%;
-}
-
-.top_analytics > * {
-    margin-right: 20px; /* Отступ между элементами */
-}
-
-.main_content {
-    justify-content: center;
-    align-items: flex-start;
-    display: flex;
-    margin-top: 100px;
-    margin-bottom: 50px;
-}
-
-.main_content > * {
-    margin-right: 20px; /* Отступ между элементами */
-}
-
-.container {
+.custom_container {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
-.side-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 0px;
+.custom_container > * {
+    margin: 0.8rem;
 }
 
-.side-box-up {
-    width: 220px;
-    margin-bottom: 16px;
+.boxes {
+    text-align: center;
 }
 
-.side-box-down {
-    width: 220px;
+.upper-box {
+    margin-bottom: 1rem;
+}
+
+.lower-box {
+
+}
+
+.activity_section {
+    width: 35rem;
 }

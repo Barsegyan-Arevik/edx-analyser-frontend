@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ForumReport, ReportState } from '../models/report'
 import { BASE_URL } from '../config'
-import ForumSection from '../components/Sections/ForumSection'
+import ForumSection from '../components/Sections/ForumSection/ForumSection'
 
 
 export default function ForumSectionPage() {

@@ -1,7 +1,7 @@
 export enum SectionType {
-    TEXTBOOK = 'pdf',
+    TEXTBOOK = 'textbook',
     VIDEO = 'video',
-    PROBLEMS = 'tasks',
+    PROBLEMS = 'problem',
     FORUM = 'forum'
 }
 

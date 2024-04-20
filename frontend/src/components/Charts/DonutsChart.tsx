@@ -1,9 +1,9 @@
-import {PieChart} from '@mui/x-charts'
 import * as React from 'react';
 import {useEffect, useState} from 'react';
-import {ShimmerThumbnail} from 'react-shimmer-effects'
-import Box from '@mui/system/Box';
-
+import {ShimmerThumbnail} from 'react-shimmer-effects';
+import {PieChart} from '@mui/x-charts';
+import './DonutsChart.css'
+import {ChartSize} from '../../utils/utils';
 
 export type DonutsChartData = {
     value: number;
@@ -11,11 +11,27 @@ export type DonutsChartData = {
 }
 
 export type DonutsChartProps = {
-    data: DonutsChartData[]
+    data: DonutsChartData[];
+    size: ChartSize;
+}
+
+function getLabelText(label: string): string {
+    switch (label) {
+    case 'first':
+        return 'задач решены с первой попытки';
+    case 'second':
+        return 'задач решены со второй попытки';
+    case 'more':
+        return 'задач решены с третьей и более попыток';
+    default:
+        throw new Error('Неверная метка: ' + label);
+    }
 }
 
 export default function DonutsChart(props: DonutsChartProps) {
+
     const [loading, setLoading] = useState(true);
+    const [transformedData, setTransformedData] = useState<DonutsChartData[]>([]);
 
     useEffect(() => {
         // Имитация задержки загрузки данных
@@ -23,70 +39,62 @@ export default function DonutsChart(props: DonutsChartProps) {
             setLoading(false);
         }, 1000);
 
+        // Преобразование меток при загрузке данных
+        const transformed = props.data.map(item => ({
+            ...item,
+            label: `${item.value}% ${getLabelText(item.label)}`,
+        }));
+        setTransformedData(transformed);
+
         // Очистка таймера при размонтировании компонента
         return () => clearTimeout(timer);
-    }, []);
+    }, [props.data]);
 
     return (
-        <div style={{position: 'relative'}}>
+        <div>
             {loading ? (
                 <ShimmerThumbnail width={579} height={292}/>
             ) : (
-                <Box
-                    sx={{
-                        bgcolor: '#fff',
-                        // boxShadow: '0 4px 6px rgba(50, 50, 93, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08)',
-                        borderRadius: 1,
-                        // p: 2,
-                        paper: '#fff',
-                        // width: 579,
-                        // maxHeight: 292,
-                        border: 1,
-                        borderColor: '#F5F5F5',
-                        color: '#405479',
-                        fontSize: 15,
-                        textAlign: 'center',
-                        fontWeight: 'normal',
-                    }}
-                >
-                    <PieChart
-                        // colors={['#5471E7', '#02CEA9', '#FEF045']}
-                        // CHANGING
-                        colors={['#02CEA9', '#FEF045', '#F06C79']}
-                        series={[
-                            {
-                                data: props.data,
-                                innerRadius: 70,
-                                outerRadius: 120,
-                                paddingAngle: 1,
-                                cornerRadius: 3,
-                                startAngle: -180,
-                                // //CHANGING
-                                //   startAngle: -90,
-                                endAngle: 180,
-                                // // CHANGING
-                                // endAngle: 90,
-                                cx: 135,
-                                cy: 130,
-                            },
-                        ]}
-
-                        slotProps={{
-                            legend: {
-                                labelStyle: {
-                                    fontSize: 20,
-                                    fill: '#667B98',
-                                    height: 20
+                <div style={{padding: '10px', width: props.size.width, height: props.size.height}}>
+                    <div style={{textAlign: 'left'}}>
+                        <div style={{display: 'flex'}}>
+                            <div className={'label-vertical-line'} style={{backgroundColor: '#02CEA9'}}></div>
+                            <div
+                                className={'label-text'}>{props.data[0].value}% {getLabelText(props.data[0].label)}</div>
+                        </div>
+                        <div style={{display: 'flex'}}>
+                            <div className={'label-vertical-line'} style={{backgroundColor: '#FEF045'}}></div>
+                            <div
+                                className={'label-text'}>{props.data[1].value}% {getLabelText(props.data[1].label)}</div>
+                        </div>
+                        <div style={{display: 'flex'}}>
+                            <div className={'label-vertical-line'} style={{backgroundColor: '#F06C79'}}></div>
+                            <div
+                                className={'label-text'}>{props.data[2].value}% {getLabelText(props.data[2].label)}</div>
+                        </div>
+                    </div>
+                    <div style={{width: props.size.width, height: '20rem'}}>
+                        <PieChart
+                            colors={['#02CEA9', '#FEF045', '#F06C79']}
+                            slotProps={{
+                                legend: {hidden: true},
+                            }}
+                            series={[
+                                {
+                                    data: transformedData,
+                                    innerRadius: 70,
+                                    outerRadius: 120,
+                                    paddingAngle: 1,
+                                    cornerRadius: 3,
+                                    startAngle: -90,
+                                    endAngle: 90,
+                                    cx: 150,
                                 },
-                                itemMarkWidth: 10,
-                                itemMarkHeight: 37,
-                            },
-                        }}
+                            ]}
+                        />
+                    </div>
 
-                        width={579}
-                        height={292}
-                    />
-                </Box>
+                </div>
             )}
         </div>
     );

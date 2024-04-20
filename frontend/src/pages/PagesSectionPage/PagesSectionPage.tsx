@@ -1,16 +1,14 @@
 import * as React from 'react';
+import {useEffect, useState} from 'react';
 import PageBase from '../../components/PageBase/PageBase';
 import './PagesSectionPage.css'
 import PagesSection from '../../components/Sections/PagesSection/PagesSection'
-import { tablePages } from '../../mockdata/CourseInfoPageData'
-import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import { CommonReport, PagesReport, ReportState } from '../../models/report'
-import { BASE_URL } from '../../config'
-import CommonSection from '../../components/Sections/CommonSection/CommonSection'
+import {useParams} from 'react-router-dom'
+import {PagesReport, ReportState} from '../../models/report'
+import {BASE_URL} from '../../config'
 
 export default function PagesSectionPage() {
-    const { courseId } = useParams()
+    const {courseId} = useParams()
 
     const [report, setReport] = useState<PagesReport | null>(null)
     const [loading, setLoading] = useState<boolean>(true)

@@ -1,76 +1,105 @@
-import './App.css'
-import CourseSideBar from './components/SideBar/CourseSideBar';
-import {BrowserRouter, Route, Routes} from 'react-router-dom'
-import StudentsPage from './pages/StudentsPage/StudentsPage';
-import {MdOutlineAnalytics, MdOutlineForum} from 'react-icons/md';
 import * as React from 'react';
-import {IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline} from 'react-icons/io5';
-import {FiMousePointer} from 'react-icons/fi';
-import {RiTeamLine} from 'react-icons/ri';
+import { BrowserRouter, Route, Routes, Link, useParams } from 'react-router-dom';
+import CourseSideBar from './components/SideBar/CourseSideBar';
+import CommonSectionPage from './pages/CommonSectionPage';
 import PagesSectionPage from './pages/PagesSectionPage/PagesSectionPage';
-import CoursesPage from './pages/CoursesPage/CoursesPage'
-import VideoSectionPage from './pages/VideoSectionPage'
-import ForumSectionPage from './pages/ForumSectionPage'
-import ProblemSectionPage from './pages/ProblemSectionPage'
-import TextbookSectionPage from './pages/TextbookSectionPage'
-import CommonSectionPage from './pages/CommonSectionPage'
+import VideoSectionPage from './pages/VideoSectionPage';
+import ForumSectionPage from './pages/ForumSectionPage';
+import ProblemSectionPage from './pages/ProblemSectionPage';
+import TextbookSectionPage from './pages/TextbookSectionPage';
+import StudentsPage from './pages/StudentsPage/StudentsPage';
+import { MdOutlineAnalytics, MdOutlineForum } from 'react-icons/md';
+import { FiMousePointer } from 'react-icons/fi';
+import { IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline } from 'react-icons/io5';
+import { RiTeamLine } from 'react-icons/ri';
+import WelcomePage from './pages/WelcomePage/WelcomePage';
+import { HiOutlineHome } from 'react-icons/hi2';
 
-const COURSE_ID = '111'
+
+const courses = [
+    {
+        id: 'DATANTECH2035',
+        name: 'DATANTECH2035',
+    },
+    {
+        id: 'DATSTBASE',
+        name: 'DATSTBASE',
+    },
+];
 
 const menuItems = [
     {
-        path: `/courses/${COURSE_ID}/common`,
-        name: 'Общая информация',
-        icon: <MdOutlineAnalytics/>
+        path: '/',
+        name: 'Домой',
+        icon: <HiOutlineHome />,
     },
-    {
-        path: `/courses/${COURSE_ID}/pages`,
+    ...courses.map(course => ({
+        path: `/courses/${course.id}/common`,
+        name: 'Общая информация',
+        icon: <MdOutlineAnalytics />
+    })),
+    ...courses.map(course => ({
+        path: `/courses/${course.id}/pages`,
         name: 'Популярность страниц',
         icon: <FiMousePointer/>
-    },
-    {
-        path: `/courses/${COURSE_ID}/textbook`,
+    })),
+    ...courses.map(course => ({
+        path: `/courses/${course.id}/textbook`,
         name: 'Работа с учебником',
         icon: <IoBookOutline/>
-    },
-    {
-        path: `/courses/${COURSE_ID}/video`,
+    })),
+    ...courses.map(course => ({
+        path: `/courses/${course.id}/video`,
         name: 'Просмотры видео',
         icon: <IoVideocamOutline/>
-    },
-    {
-        path: `/courses/${COURSE_ID}/problems`,
+    })),
+    ...courses.map(course => ({
+        path: `/courses/${course.id}/problems`,
         name: 'Решение задач',
         icon: <IoExtensionPuzzleOutline/>
-    },
-    {
-        path: `/courses/${COURSE_ID}/forum`,
+    })),
+    ...courses.map(course => ({
+        path: `/courses/${course.id}/forum`,
         name: 'Активность на форуме',
         icon: <MdOutlineForum/>
-    },
-    {
-        path: `/courses/${COURSE_ID}/students`,
+    })),
+    ...courses.map(course => ({
+        path: `/courses/${course.id}/students`,
         name: 'Студенты',
-        icon: <RiTeamLine/>,
-    },
-]
+        icon: <RiTeamLine/>
+    })),
+];
 
-export default function App() {
+const App = () => {
     return (
         <BrowserRouter>
-            <CourseSideBar menuItems={menuItems}>
-                <Routes>
-                    {/*the following two should be out of sidebar*/}
-                    <Route path={'/courses'} element={<CoursesPage/>}/>
-                    <Route path={'/courses/:courseId/common'} element={<CommonSectionPage/>}/>
-                    <Route path={'/courses/:courseId/pages'} element={<PagesSectionPage/>}/>
-                    <Route path={'/courses/:courseId/video'} element={<VideoSectionPage/>}/>
-                    <Route path={'/courses/:courseId/forum'} element={<ForumSectionPage/>}/>
-                    <Route path={'/courses/:courseId/problems'} element={<ProblemSectionPage/>}/>
-                    <Route path={'/courses/:courseId/textbook'} element={<TextbookSectionPage/>}/>
-                    <Route path={'/courses/:courseId/students'} element={<StudentsPage/>}/>
-                </Routes>
-            </CourseSideBar>
+            <Routes>
+                <Route path="/" element={<WelcomePage courses={courses} />} />
+                <Route
+                    path="/courses/:courseId/*"
+                    element={<CourseRoutes />}
+                />
+            </Routes>
         </BrowserRouter>
     );
-}
+};
+
+const CourseRoutes = () => {
+    const { courseId } = useParams();
+
+    return (
+        <CourseSideBar menuItems={menuItems} currentCourseId={courseId}>
+            <Routes>
+                <Route path="common" element={<CommonSectionPage />} />
+                <Route path="pages" element={<PagesSectionPage />} />
+                <Route path="video" element={<VideoSectionPage />} />
+                <Route path="forum" element={<ForumSectionPage />} />
+                <Route path="problems" element={<ProblemSectionPage />} />
+                <Route path="textbook" element={<TextbookSectionPage />} />
+                <Route path="students" element={<StudentsPage />} />
+            </Routes>
+        </CourseSideBar>
+    );
+};
+
+export default App;
