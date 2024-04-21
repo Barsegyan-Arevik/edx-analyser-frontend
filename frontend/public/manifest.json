@@ -1,6 +1,6 @@
 {
-  "short_name": "Edx Analyzer",
-  "name": "Edx Analyzer",
+  "short_name": "Edx Analyser",
+  "name": "Edx Analyser",
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#022240",
