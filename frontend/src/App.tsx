@@ -1,12 +1,6 @@
 import * as React from 'react'
 import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom'
 import CourseSideBar from './components/SideBar/CourseSideBar'
-import CommonSectionPage from './pages/CommonSectionPage'
-import PagesSectionPage from './pages/PagesSectionPage/PagesSectionPage'
-import VideoSectionPage from './pages/VideoSectionPage'
-import ForumSectionPage from './pages/ForumSectionPage'
-import ProblemSectionPage from './pages/ProblemSectionPage'
-import TextbookSectionPage from './pages/TextbookSectionPage'
 import StudentsPage from './pages/StudentsPage/StudentsPage'
 import { MdOutlineAnalytics, MdOutlineForum } from 'react-icons/md'
 import { FiMousePointer } from 'react-icons/fi'
@@ -14,6 +8,14 @@ import { IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline } from 'reac
 import { RiTeamLine } from 'react-icons/ri'
 import WelcomePage from './pages/WelcomePage/WelcomePage'
 import { HiOutlineHome } from 'react-icons/hi2'
+import {
+    CommonReportPage,
+    ForumReportPage,
+    PagesReportPage,
+    ProblemsReportPage,
+    TextbookReportPage,
+    VideoReportPage
+} from './pages/withReportSection'
 
 const menuItems = [
     {
@@ -78,12 +80,12 @@ const CourseRoutes = () => {
     return (
         <CourseSideBar menuItems={menuItems} currentCourseId={courseId}>
             <Routes>
-                <Route path="common" element={<CommonSectionPage />} />
-                <Route path="pages" element={<PagesSectionPage />} />
-                <Route path="video" element={<VideoSectionPage />} />
-                <Route path="forum" element={<ForumSectionPage />} />
-                <Route path="problems" element={<ProblemSectionPage />} />
-                <Route path="textbook" element={<TextbookSectionPage />} />
+                <Route path="common" element={<CommonReportPage />} />
+                <Route path="pages" element={<PagesReportPage />} />
+                <Route path="video" element={<VideoReportPage />} />
+                <Route path="forum" element={<ForumReportPage />} />
+                <Route path="problems" element={<ProblemsReportPage />} />
+                <Route path="textbook" element={<TextbookReportPage />} />
                 <Route path="students" element={<StudentsPage />} />
             </Routes>
         </CourseSideBar>

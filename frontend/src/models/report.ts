@@ -10,7 +10,7 @@ export enum ReportState {
     FAILED = 'failed',
 }
 
-interface Report {
+export interface Report {
     course_id: string;
     last_time_accessed: Date;
     last_time_updated: Date;
