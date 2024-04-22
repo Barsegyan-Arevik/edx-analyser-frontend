@@ -1,5 +1,6 @@
 import * as React from 'react';
-import './SectionHeader.css'
+import './SectionHeader.css';
+import {Grid, Box} from '@mui/material'
 
 export type HeaderProps = {
     text: string;
@@ -8,8 +9,10 @@ export type HeaderProps = {
 
 export default function SectionHeader(props: HeaderProps) {
     return (
-        <div className={'header'} style={props.style}>
-            {props.text}
-        </div>
+        <Box style={{fontSize: '2.5em', paddingTop: '40px', paddingLeft: '50px', paddingBottom: '20px', color: '#405479'}}>
+            <Grid>
+                {props.text}
+            </Grid>
+        </Box>
     );
 }

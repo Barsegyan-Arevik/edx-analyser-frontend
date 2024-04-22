@@ -1,10 +1,8 @@
 import * as React from 'react';
-import {useState} from 'react';
-import {Slider} from '@mui/material';
-import {LineChart} from '@mui/x-charts/LineChart';
-import {ChartSize} from '../../../utils/utils';
-import {Box} from '@mui/material'
-
+import { useState } from 'react';
+import { Slider, Box, Grid } from '@mui/material';
+import { LineChart } from '@mui/x-charts/LineChart';
+import { ChartSize } from '../../../utils/utils';
 
 export interface LineChartDate {
     date: Date;
@@ -17,6 +15,7 @@ export type DatesLineChartExtendedProps = {
     lineChartSize: ChartSize;
     sliderSize: ChartSize;
 }
+
 
 export default function DatesLineChart(props: DatesLineChartExtendedProps) {
     const dates = props.points.map(v => v.date)
@@ -39,54 +38,51 @@ export default function DatesLineChart(props: DatesLineChartExtendedProps) {
     };
 
     return (
-        <Box
-            sx={{
-                bgcolor: 'background.paper',
-                p: 4,
-                borderRadius: 2,
-                width: props.boxSize.width,
-                height: props.boxSize.height
-            }}
-        >
-            <LineChart
-                xAxis={[{
-                    data: filteredDates,
-                    scaleType: 'time',
-                    valueFormatter: (date) => {
-                        const year = date.getFullYear().toString();
-                        const month = (date.getMonth() + 1).toString().padStart(2, '0');
-                        const day = date.getDate().toString().padStart(2, '0');
-                        return `${year}-${month}-${day}`;
-                    },
-                }]}
-                series={[
-                    {
-                        data: filteredValues,
-                        color: '#02CEA9',
-                    },
-                ]}
-                sx={{
-                    height: props.lineChartSize.height,
-                    width: props.lineChartSize.width,
-                }}
-            />
-            <Box
-                sx={{marginLeft: '10px', width: props.sliderSize.width }}
-            >
-                <Slider
-                    value={dateRange.map(date => date.getTime())}
-                    onChange={handleDateRangeChange}
-                    valueLabelDisplay="auto"
-                    min={dates[0].getTime()}
-                    max={dates[dates.length - 1].getTime()}
-                    getAriaValueText={formatDateLabel}
-                    valueLabelFormat={formatDateLabel}
-                    size="small"
-                    sx={{
-                        color: '#02CEA9',
-                    }}
+        <Grid container spacing={2} justifyContent="center">
+            <Grid item xs={12} md={12} height={'55vh'}>
+                <LineChart
+                    xAxis={[{
+                        data: filteredDates,
+                        scaleType: 'time',
+                        valueFormatter: (date) => {
+                            const year = date.getFullYear().toString();
+                            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                            const day = date.getDate().toString().padStart(2, '0');
+                            return `${year}-${month}-${day}`;
+                        },
+                    }]}
+                    series={[
+                        {
+                            data: filteredValues,
+                            color: '#02CEA9',
+                        },
+                    ]}
                 />
-            </Box>
-        </Box>
+            </Grid>
+            <Grid item xs={12} md={12}>
+                <Box
+                    sx={{
+                        bgcolor: 'background.paper',
+                        p: 4,
+                        borderRadius: 2,
+                    }}
+                >
+                    <Slider
+                        value={dateRange.map(date => date.getTime())}
+                        onChange={handleDateRangeChange}
+                        valueLabelDisplay="auto"
+                        min={dates[0].getTime()}
+                        max={dates[dates.length - 1].getTime()}
+                        getAriaValueText={formatDateLabel}
+                        valueLabelFormat={formatDateLabel}
+                        size="small"
+                        sx={{
+                            color: '#02CEA9',
+                            width: '100%',
+                        }}
+                    />
+                </Box>
+            </Grid>
+        </Grid>
     );
 }

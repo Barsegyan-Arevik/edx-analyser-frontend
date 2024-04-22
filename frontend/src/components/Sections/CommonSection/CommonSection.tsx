@@ -1,13 +1,12 @@
 import * as React from 'react'
 import ValueBox from '../../Charts/Box/ValueBox'
-import './CommonSection.css'
 import SectionHeader from '../SectionHeader/SectionHeader'
 import DatesLineChart from '../../Charts/LineChart/DatesLineChart'
 import SectionActivityChart from '../../Charts/SectionActivityChart/SectionActivityChart'
 import ChartWrapper from '../../Charts/ChartWrapper/ChartWrapper'
-import { getStudentEnding } from '../../../utils/utils'
-import { CommonReport } from '../../../models/report'
-import {ChartSize} from '../../../utils/utils';
+import {ChartSize, getStudentEnding} from '../../../utils/utils'
+import {CommonReport} from '../../../models/report'
+import {Grid} from '@mui/material';
 
 export type CommonSectionProps = {
     report: CommonReport;
@@ -43,46 +42,48 @@ export default function CommonSection(props: CommonSectionProps) {
 
     return (
         <div>
-            <div>
-                <SectionHeader text={headerText} style={{ paddingTop: '30px' }} />
-            </div>
-            <div>
-                <div className={'custom_container'}>
-                    <div className={'boxes'}>
-                        <div className={'upper-box'}>
-                            <ValueBox
-                                value = {numberOfStudents}
-                                valueAdditionalText={getStudentEnding(numberOfStudents)}
-                                label='Всего на курсе'
-                            />
-                        </div>
-                        <div className={'lower-box'}>
-                            <ValueBox
-                                value = {numberOfActiveStudents}
-                                valueAdditionalText={getStudentEnding(numberOfActiveStudents)}
-                                label='Из них активных'
-                            />
-                        </div>
-                    </div>
-                    <div className={'activity_section'}>
+            <Grid container spacing={2}>
+                <Grid xs={12} md={12}>
+                    <SectionHeader text={headerText} style={{paddingTop: '30px'}}/>
+                </Grid>
+                <Grid container spacing={2} justifyContent={'center'} direction={'row'}>
+                    <Grid item xs={12} md={3.5}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} md={12}>
+                                <ValueBox
+                                    value={numberOfStudents}
+                                    valueAdditionalText={getStudentEnding(numberOfStudents)}
+                                    label="Всего на курсе"
+                                />
+                            </Grid>
+                            <Grid item xs={12} md={12}>
+                                <ValueBox
+                                    value={numberOfActiveStudents}
+                                    valueAdditionalText={getStudentEnding(numberOfActiveStudents)}
+                                    label="Из них активных"
+                                />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item xs={12} md={6.5}>
                         <SectionActivityChart items={sectionActivityChart} numberOfStudents={numberOfStudents}/>
-                    </div>
-                </div>
-                <ChartWrapper
-                    chartTitle={
-                        'Активность на курсе, по неделям'
-                    }
-                    chart={
-                        <DatesLineChart
-                            points={weeklyActivityChart}
-                            boxSize={baseLineChartBoxSize}
-                            lineChartSize={baseLineChartSize}
-                            sliderSize={baseLineChartSliderSize}
+                    </Grid>
+                    <Grid item xs={12} md={10}>
+                        <ChartWrapper
+                            chartTitle={'Активность на курсе, по неделям'}
+                            chart={
+                                <DatesLineChart
+                                    points={weeklyActivityChart}
+                                    boxSize={baseLineChartBoxSize}
+                                    lineChartSize={baseLineChartSize}
+                                    sliderSize={baseLineChartSliderSize}
+                                />
+                            }
+                            additionalInfo={'Сколько человек посещало курс'}
                         />
-                    }
-                    additionalInfo={'Сколько человек посещало курс'}
-                />
-            </div>
+                    </Grid>
+                </Grid>
+            </Grid>
         </div>
     )
 }
