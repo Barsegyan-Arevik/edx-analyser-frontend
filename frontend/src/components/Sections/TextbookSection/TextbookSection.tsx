@@ -70,6 +70,7 @@ const TextbookSection: React.FC<TextbookSectionProps> = (props) => {
                                 size={baseTableSizeTextbookViewsChart}
                             />
                         }
+                        // additionalInfo={'Какой-то текст здесь'}
                     />
                 </Grid>
                 <Grid item xs={12} md={4}>
@@ -84,17 +85,17 @@ const TextbookSection: React.FC<TextbookSectionProps> = (props) => {
                                 size={baseTableSizeSearchedTerms}
                             />
                         }
-                        popupChart={
-                            <TableWithLinkAndSearchBarInsideWindow
-                                boxTitle={boxTitleSearchedTerms}
-                                rows={{items: transformedData}}
-                                columnName={columnNameSearchedTerms}
-                                columnCount={columnCountSearchedTerms}
-                                labelText={labelTextSearchedTerms}
-                                baseTableSize={baseTableSizeSearchedTerms}
-                                modalTableSize={modalTableSizeSearchedTerms}
-                            />
-                        }
+                        // popupChart={
+                        //     <TableWithLinkAndSearchBarInsideWindow
+                        //         boxTitle={boxTitleSearchedTerms}
+                        //         rows={{items: transformedData}}
+                        //         columnName={columnNameSearchedTerms}
+                        //         columnCount={columnCountSearchedTerms}
+                        //         labelText={labelTextSearchedTerms}
+                        //         baseTableSize={baseTableSizeSearchedTerms}
+                        //         modalTableSize={modalTableSizeSearchedTerms}
+                        //     />
+                        // }
                         additionalInfo={''}
                     />
                 </Grid>

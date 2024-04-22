@@ -8,13 +8,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-import {Box} from '@mui/material';
+import {Box, Grid} from '@mui/material';
 import {PiStudentBold} from 'react-icons/pi';
 import {getBlueColorScale} from '../../../utils/utils';
-import { CompletionStatus, StudentData } from '../../../models/students'
+import {CompletionStatus, StudentData} from '../../../models/students';
 
 export function getColumnRange(columnName: string, rows) {
-    const columnArray = rows.map(row => row[columnName]);
+    const columnArray = rows.map((row) => row[columnName]);
 
     const minVal = Math.min(...columnArray);
     const maxVal = Math.max(...columnArray);
@@ -37,15 +37,15 @@ export function getColorByCompletionStatus(status: CompletionStatus) {
 export type StudentsCommonTableProps = {
     students: Array<StudentData>;
     boxTitle: string;
-    username: string,
-    completionStatus: string,
-    daysOnline: string,
-    timeOnCourse: string,
-    videoWatching: string,
-    textbookScrolling: string,
-    promblemsSolving: string,
-    forumActivity: string,
-}
+    username: string;
+    completionStatus: string;
+    daysOnline: string;
+    timeOnCourse: string;
+    videoWatching: string;
+    textbookScrolling: string;
+    promblemsSolving: string;
+    forumActivity: string;
+};
 
 export default function StudentsCommonTable(props: StudentsCommonTableProps) {
     const [page, setPage] = useState(0);
@@ -72,10 +72,10 @@ export default function StudentsCommonTable(props: StudentsCommonTableProps) {
     const problemsSolving = getColumnRange('problemsSolved', props.students);
     const forumActivity = getColumnRange('forumActivity', props.students);
 
-    const cellStyle = {fontSize: '16px', color: '#405479'}
+    const cellStyle = {fontSize: '16px', color: '#405479'};
 
     return (
-        <Paper sx={{overflow: 'hidden', padding: '10px', width: '88%'}}>
+        <Paper >
             <Box
                 sx={{
                     fontSize: 16,
@@ -83,95 +83,111 @@ export default function StudentsCommonTable(props: StudentsCommonTableProps) {
                     color: '#405479',
                     alignItems: 'center',
                 }}
-            >
-
-            </Box>
+            ></Box>
             <TableContainer>
-                <Table stickyHeader size="small" aria-label="sticky table" sx={{borderSpacing: '8px 0', borderCollapse: 'separate', color: '#405479'}}>
-                    <TableHead style={{color: '#405479'}}>
-                        <TableRow>
-                            <TableCell style={cellStyle}>{props.username}</TableCell>
-                            <TableCell style={cellStyle}>{props.daysOnline}</TableCell>
-                            <TableCell style={cellStyle}>{props.timeOnCourse}</TableCell>
-                            <TableCell style={cellStyle}>{props.videoWatching}</TableCell>
-                            <TableCell style={cellStyle} sx={{marginRight: '8px'}}>{props.textbookScrolling}</TableCell>
-                            <TableCell style={cellStyle}>{props.promblemsSolving}</TableCell>
-                            <TableCell style={cellStyle}>{props.forumActivity}</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody sx={{'&:last-child td, &:last-child th': {border: 0}}}>
-                        {props.students
-                            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                            .map((studentData, index) => (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={studentData.id}>
-                                    <TableCell
-                                        style={{fontSize: '16px', color: '#405479'}}
-                                    >
-                                        <PiStudentBold size={24} color={getColorByCompletionStatus(studentData.completionStatus)}/>
-                                        {studentData.username}
-                                    </TableCell>
-
-                                    <TableCell
-                                        style={{
-                                            fontSize: '16px', color: '#405479',
-                                            backgroundColor: studentData.daysOnline ? getBlueColorScale(daysOnlineRange.range, daysOnlineRange.minVal, studentData.daysOnline) : 'white'
-                                        }}
-                                    >
-                                        {studentData.daysOnline}
-                                    </TableCell>
-
-                                    <TableCell
-                                        style={{
-                                            fontSize: '16px',
-                                            color: '#405479',
-                                            backgroundColor: studentData.timeOnCourse ? getBlueColorScale(timeOnCourseRange.range, timeOnCourseRange.minVal, studentData.timeOnCourse) : 'white'
-                                        }}
-                                    >
-                                        {studentData.timeOnCourse}
-                                    </TableCell>
-
-                                    <TableCell
-                                        style={{
-                                            fontSize: '16px', color: '#405479',
-                                            backgroundColor: studentData.videoWatching ? getBlueColorScale(videoWatching.range, videoWatching.minVal, studentData.videoWatching) : 'white',
-                                            padding: '8px',
-                                        }}
-                                    >
-                                        {studentData.videoWatching}
-                                    </TableCell>
-
-                                    <TableCell
-                                        style={{
-                                            fontSize: '16px', color: '#405479',
-                                            backgroundColor: studentData.textbookScrolling ? getBlueColorScale(textbookScrolling.range, textbookScrolling.minVal, studentData.textbookScrolling) : 'white',
-                                            padding: '8px'
-                                        }}
-                                    >
-                                        {studentData.textbookScrolling}
-                                    </TableCell>
-                                    <TableCell
-                                        style={{
-                                            fontSize: '16px', color: '#405479',
-                                            backgroundColor: studentData.problemsSolved ? getBlueColorScale(problemsSolving.range, problemsSolving.minVal, studentData.problemsSolved) : 'white',
-                                            padding: '8px'
-                                        }}
-                                    >
-                                        {studentData.problemsSolved}
-                                    </TableCell>
-                                    <TableCell
-                                        style={{
-                                            fontSize: '16px', color: '#405479',
-                                            backgroundColor: studentData.forumActivity ? getBlueColorScale(forumActivity.range, forumActivity.minVal, studentData.forumActivity) : 'white',
-                                            padding: '8px'
-                                        }}
-                                    >
-                                        {studentData.forumActivity}
-                                    </TableCell>
+                <Grid container>
+                    <Grid item xs={12}>
+                        <Table stickyHeader size="small" aria-label="sticky table"
+                               sx={{borderSpacing: '8px 0', borderCollapse: 'separate', color: '#405479'}}>
+                            <TableHead style={{color: '#405479'}}>
+                                <TableRow>
+                                    <TableCell style={cellStyle}>{props.username}</TableCell>
+                                    <TableCell style={cellStyle}>{props.daysOnline}</TableCell>
+                                    <TableCell style={cellStyle}>{props.timeOnCourse}</TableCell>
+                                    <TableCell style={cellStyle}>{props.videoWatching}</TableCell>
+                                    <TableCell style={cellStyle}>{props.textbookScrolling}</TableCell>
+                                    <TableCell style={cellStyle}>{props.promblemsSolving}</TableCell>
+                                    <TableCell style={cellStyle}>{props.forumActivity}</TableCell>
                                 </TableRow>
-                            ))}
-                    </TableBody>
-                </Table>
+                            </TableHead>
+                            <TableBody sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+                                {props.students.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((studentData, index) => (
+                                    <TableRow hover role="checkbox" tabIndex={-1} key={studentData.id}>
+                                        <TableCell style={{fontSize: '16px', color: '#405479'}}>
+                                            <PiStudentBold size={24}
+                                                           color={getColorByCompletionStatus(studentData.completionStatus)}/>
+                                            {studentData.username}
+                                        </TableCell>
+
+                                        <TableCell
+                                            style={{
+                                                fontSize: '16px',
+                                                color: '#405479',
+                                                backgroundColor: studentData.daysOnline
+                                                    ? getBlueColorScale(daysOnlineRange.range, daysOnlineRange.minVal, studentData.daysOnline)
+                                                    : 'white',
+                                            }}
+                                        >
+                                            {studentData.daysOnline}
+                                        </TableCell>
+
+                                        <TableCell
+                                            style={{
+                                                fontSize: '16px',
+                                                color: '#405479',
+                                                backgroundColor: studentData.timeOnCourse
+                                                    ? getBlueColorScale(timeOnCourseRange.range, timeOnCourseRange.minVal, studentData.timeOnCourse)
+                                                    : 'white',
+                                            }}
+                                        >
+                                            {studentData.timeOnCourse}
+                                        </TableCell>
+
+                                        <TableCell
+                                            style={{
+                                                fontSize: '16px',
+                                                color: '#405479',
+                                                backgroundColor: studentData.videoWatching
+                                                    ? getBlueColorScale(videoWatching.range, videoWatching.minVal, studentData.videoWatching)
+                                                    : 'white',
+                                            }}
+                                        >
+                                            {studentData.videoWatching}
+                                        </TableCell>
+
+                                        <TableCell
+                                            style={{
+                                                fontSize: '16px',
+                                                color: '#405479',
+                                                backgroundColor: studentData.textbookScrolling
+                                                    ? getBlueColorScale(textbookScrolling.range, textbookScrolling.minVal, studentData.textbookScrolling)
+                                                    : 'white',
+                                            }}
+                                        >
+                                            {studentData.textbookScrolling}
+                                        </TableCell>
+
+                                        <TableCell
+                                            style={{
+                                                fontSize: '16px',
+                                                color: '#405479',
+                                                backgroundColor: studentData.problemsSolved
+                                                    ? getBlueColorScale(problemsSolving.range, problemsSolving.minVal, studentData.problemsSolved)
+                                                    : 'white',
+                                            }}
+                                        >
+                                            {studentData.problemsSolved}
+                                        </TableCell>
+
+                                        <TableCell
+                                            style={{
+                                                fontSize: '16px',
+                                                color: '#405479',
+                                                backgroundColor: studentData.forumActivity
+                                                    ? getBlueColorScale(forumActivity.range, forumActivity.minVal, studentData.forumActivity)
+                                                    : 'white',
+                                            }}
+                                        >
+                                            {studentData.forumActivity}
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </Grid>
+                </Grid>
             </TableContainer>
+
             <TablePagination
                 rowsPerPageOptions={[10, 50, 100]}
                 component="div"

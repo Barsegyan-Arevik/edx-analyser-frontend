@@ -1,9 +1,8 @@
-import {Box} from '@mui/material'
+import {Box, Grid} from '@mui/material'
 import * as React from 'react'
 import {SectionActivity, SectionType} from '../../../models/common'
 import {MdOutlineForum} from 'react-icons/md'
 import {IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline} from 'react-icons/io5'
-
 
 type SectionActivityChartProps = {
     items: Array<SectionActivity>
@@ -36,57 +35,68 @@ function getDescriptionBySectionType(sectionType: SectionType): string {
     }
 }
 
-
 export default function SectionActivityChart(
     props: SectionActivityChartProps
 ) {
     console.log(props.items)
     return (
-        <div style={{width: '35rem'}}>
-            <Box
-                sx={{
-                    padding: '0.9rem',
-                    bgcolor: 'background.paper',
-                    borderRadius: 1,
-                    // width: '35rem',
-                    height: '12.4rem',
-                    whiteSpace: 'nowrap',
-                }}
-            >
+        <Box style={{width: '100%'}}>
+            <Grid item spacing={1}>
                 <Box
                     sx={{
-                        fontSize: '2em',
-                        marginBottom: '0.7em',
-                        color: '#405479'
+                        padding: '0.9rem',
+                        bgcolor: 'background.paper',
+                        borderRadius: 1,
+                        whiteSpace: 'nowrap',
                     }}
                 >
-                    Активность на секциях курса
-                </Box>
-                {props.items.map(item => (
-                    <Box key={item.section_type}
-                         sx={{
-                             display: 'flex',
-                             justifyContent: 'space-between',
-                             color: '#405479',
-                             marginBottom: '1em'
-                         }}
+                    <Box
+                        sx={{
+                            fontSize: '2em',
+                            marginBottom: '0.7em',
+                            color: '#405479'
+                        }}
                     >
-                        <Box
-                            sx={{
-                                fontSize: '1.5em'
-                            }}
-                        >
-                            <span style={{
-                                fontWeight: 'bold',
-                                fontSize: '1.4em'
-                            }}>{Math.round((item.students_count / props.numberOfStudents) * 100)}%</span> студентов {getDescriptionBySectionType(item.section_type)}
-
-                        </Box>
-
-                        {getImageBySectionType(item.section_type, '#405479', '3em')}
+                        Активность на секциях курса
                     </Box>
-                ))}
-            </Box>
-        </div>
+                    {props.items.map(item => (
+                        <Grid container key={item.section_type} alignItems="center" spacing={2}
+                              justifyContent={'space-between'}>
+                            <Grid item xs={10}>
+                                <Box
+                                    sx={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        color: '#405479',
+                                        marginBottom: '1em'
+                                    }}
+                                >
+                                    <Box
+                                        sx={{
+                                            fontSize: '1.5em',
+                                            display: 'flex',
+                                            justifyContent: 'space-between'
+                                        }}
+                                    >
+                                    <span style={{
+                                        fontWeight: 'bold',
+                                        fontSize: '1.3em'
+                                    }}>{Math.round((item.students_count / props.numberOfStudents) * 100)}%
+                                    </span>
+                                        <div style={{width: '4px'}}></div>
+                                        <span
+                                            style={{fontSize: '1.1em'}}>студентов {getDescriptionBySectionType(item.section_type)}</span>
+
+                                    </Box>
+                                </Box>
+                            </Grid>
+                            <Grid item xs={1}>
+                                {getImageBySectionType(item.section_type, '#405479', '3em')}
+                            </Grid>
+                        </Grid>
+                    ))}
+                </Box>
+            </Grid>
+        </Box>
     )
 }

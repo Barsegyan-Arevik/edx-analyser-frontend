@@ -52,7 +52,7 @@ export default function TableWithLinkAndSearchBarInsideWindow(props: TableWithLi
     }, [timeSecArray]);
 
     return (
-        <div className={'modal-window-content'}>
+        <div>
             <Box
                 sx={{
                     position: 'absolute',
