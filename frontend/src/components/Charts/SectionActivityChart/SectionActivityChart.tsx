@@ -1,4 +1,4 @@
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, Paper } from '@mui/material'
 import * as React from 'react'
 import { SectionActivity, SectionType } from '../../../models/common'
 import { MdOutlineForum } from 'react-icons/md'
@@ -40,7 +40,7 @@ export default function SectionActivityChart(
 ) {
     console.log(props.items)
     return (
-        <Box style={{ width: '100%' }}>
+        <Paper style={{ width: '100%' }}>
             <Grid item spacing={1}>
                 <Box
                     sx={{
@@ -97,6 +97,6 @@ export default function SectionActivityChart(
                     ))}
                 </Box>
             </Grid>
-        </Box>
+        </Paper>
     )
 }

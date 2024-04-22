@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Box, Grid } from '@mui/material'
+import { Box, Grid, Paper } from '@mui/material'
 
 export type CustomBoxProps = {
     value: number;
@@ -9,7 +9,7 @@ export type CustomBoxProps = {
 
 export default function ValueBox(props: CustomBoxProps) {
     return (
-        <Box
+        <Paper
             sx={{
                 bgcolor: '#fff',
                 borderColor: '#F5F5F5',
@@ -54,6 +54,6 @@ export default function ValueBox(props: CustomBoxProps) {
                     </Box>
                 </Grid>
             </Grid>
-        </Box>
+        </Paper>
     )
 }
