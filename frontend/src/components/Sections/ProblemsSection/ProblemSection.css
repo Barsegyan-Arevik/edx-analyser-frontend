@@ -1,9 +1,0 @@
-.problem-charts {
-    display: flex;
-    justify-content: center;
-}
-
-.problem-charts > * {
-    margin: 1rem;
-}
-

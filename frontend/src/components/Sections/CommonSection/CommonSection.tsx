@@ -4,9 +4,9 @@ import SectionHeader from '../SectionHeader/SectionHeader'
 import DatesLineChart from '../../Charts/LineChart/DatesLineChart'
 import SectionActivityChart from '../../Charts/SectionActivityChart/SectionActivityChart'
 import ChartWrapper from '../../Charts/ChartWrapper/ChartWrapper'
-import {ChartSize, getStudentEnding} from '../../../utils/utils'
-import {CommonReport} from '../../../models/report'
-import {Grid} from '@mui/material';
+import { ChartSize, getStudentEnding } from '../../../utils/utils'
+import { CommonReport } from '../../../models/report'
+import { Grid } from '@mui/material'
 
 export type CommonSectionProps = {
     report: CommonReport;
@@ -44,7 +44,7 @@ export default function CommonSection(props: CommonSectionProps) {
         <div>
             <Grid container spacing={2}>
                 <Grid xs={12} md={12}>
-                    <SectionHeader text={headerText} style={{paddingTop: '30px'}}/>
+                    <SectionHeader text={headerText} style={{ paddingTop: '30px' }} />
                 </Grid>
                 <Grid container spacing={2} justifyContent={'center'} direction={'row'}>
                     <Grid item xs={12} md={3.5}>
@@ -66,7 +66,7 @@ export default function CommonSection(props: CommonSectionProps) {
                         </Grid>
                     </Grid>
                     <Grid item xs={12} md={6.5}>
-                        <SectionActivityChart items={sectionActivityChart} numberOfStudents={numberOfStudents}/>
+                        <SectionActivityChart items={sectionActivityChart} numberOfStudents={numberOfStudents} />
                     </Grid>
                     <Grid item xs={12} md={10}>
                         <ChartWrapper
@@ -79,7 +79,6 @@ export default function CommonSection(props: CommonSectionProps) {
                                     sliderSize={baseLineChartSliderSize}
                                 />
                             }
-                            additionalInfo={'Сколько человек посещало курс'}
                         />
                     </Grid>
                 </Grid>

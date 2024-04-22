@@ -1,7 +1,7 @@
 import * as React from 'react'
 import SectionHeader from '../SectionHeader/SectionHeader'
-import ForumActivityChart from '../../Charts/ForumActivityChart/ForumActivityChart';
-import {ForumReport} from '../../../models/report';
+import ForumActivityChart from '../../Charts/ForumActivityChart/ForumActivityChart'
+import { ForumReport } from '../../../models/report'
 
 
 export type ForumSectionProps = {
@@ -11,8 +11,8 @@ export type ForumSectionProps = {
 export default function ForumSection(props: ForumSectionProps) {
     return (
         <div>
-            <SectionHeader text={'Активность на форуме'}/>
-            <ForumActivityChart chart={props.report.forum_question_chart.items} />
+            <SectionHeader text="Активность на форуме" />
+            <ForumActivityChart questions={props.report.forum_question_chart.items} />
         </div>
     )
 }

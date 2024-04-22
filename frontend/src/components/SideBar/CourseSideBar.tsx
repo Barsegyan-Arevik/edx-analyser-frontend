@@ -51,7 +51,8 @@ export default function CourseSideBar(props: CourseSideBarProps) {
                             .join(' ')
                     } onClick={goToTop} style={{ lineHeight: '1.2', padding: '0.8em 1.6em' }}>
                         <div className={'icon'} style={{ fontSize: '1.4rem' }}>{item.icon}</div>
-                        <div style={{ display: isOpen ? 'block' : 'none', fontSize: '1.6em' }} className={'link_text'}>{item.name}</div>
+                        <div style={{ display: isOpen ? 'block' : 'none', fontSize: '1.6em' }}
+                             className={'link_text'}>{item.name}</div>
                     </NavLink>
                 ))}
             </div>

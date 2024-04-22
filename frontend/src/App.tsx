@@ -14,13 +14,12 @@ import { IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline } from 'reac
 import { RiTeamLine } from 'react-icons/ri'
 import WelcomePage from './pages/WelcomePage/WelcomePage'
 import { HiOutlineHome } from 'react-icons/hi2'
-import { Course } from './models/course'
 
 const menuItems = [
     {
         path: '/',
-        name: 'Домой',
-        icon: <HiOutlineHome />,
+        name: 'Доступные курсы',
+        icon: <HiOutlineHome />
     },
     {
         path: 'common',
@@ -30,12 +29,12 @@ const menuItems = [
     {
         path: 'pages',
         name: 'Популярность страниц',
-        icon: <FiMousePointer/>
+        icon: <FiMousePointer />
     },
     {
         path: 'textbook',
         name: 'Работа с учебником',
-        icon: <IoBookOutline/>
+        icon: <IoBookOutline />
     },
     {
         path: 'video',
@@ -45,36 +44,36 @@ const menuItems = [
     {
         path: 'problems',
         name: 'Решение задач',
-        icon: <IoExtensionPuzzleOutline/>
+        icon: <IoExtensionPuzzleOutline />
     },
     {
         path: 'forum',
         name: 'Активность на форуме',
-        icon: <MdOutlineForum/>
+        icon: <MdOutlineForum />
     },
     {
         path: 'students',
         name: 'Студенты',
-        icon: <RiTeamLine/>
-    },
-];
+        icon: <RiTeamLine />
+    }
+]
 
 const App = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<WelcomePage/>} />
+                <Route path="/" element={<WelcomePage />} />
                 <Route
                     path="/courses/:courseId/*"
                     element={<CourseRoutes />}
                 />
             </Routes>
         </BrowserRouter>
-    );
-};
+    )
+}
 
 const CourseRoutes = () => {
-    const { courseId } = useParams();
+    const { courseId } = useParams()
 
     return (
         <CourseSideBar menuItems={menuItems} currentCourseId={courseId}>
@@ -88,7 +87,7 @@ const CourseRoutes = () => {
                 <Route path="students" element={<StudentsPage />} />
             </Routes>
         </CourseSideBar>
-    );
-};
+    )
+}
 
-export default App;
+export default App

@@ -5,13 +5,13 @@ import { NavLink } from 'react-router-dom'
 import { Card, CardContent, CardMedia, ListItem, Typography } from '@mui/material'
 
 export default function CourseCard({ course }: { course: Course }) {
-    const [imageLoaded, setImageLoaded] = useState(false);
+    const [imageLoaded, setImageLoaded] = useState(false)
 
     useEffect(() => {
-        const image = new Image();
-        image.onload = () => setImageLoaded(true);
-        image.src = course.image_url;
-    }, [course.image_url]);
+        const image = new Image()
+        image.onload = () => setImageLoaded(true)
+        image.src = course.image_url
+    }, [course.image_url])
 
     return (
         <NavLink to={`/courses/${course.course_id}/common`} style={{ textDecoration: 'none' }}>
@@ -24,7 +24,7 @@ export default function CourseCard({ course }: { course: Course }) {
                                 height="4em"
                                 src={course.image_url}
                                 alt={course.name}
-                                style={{ width: 70, height: 70, borderRadius: '50%', objectFit: 'contain'}}
+                                style={{ width: 70, height: 70, borderRadius: '50%', objectFit: 'contain' }}
                             />
                         ) : (
                             <div style={{ width: 70, height: 70, backgroundColor: '#ADD8E6', borderRadius: '50%' }} />
@@ -38,5 +38,5 @@ export default function CourseCard({ course }: { course: Course }) {
                 </Card>
             </ListItem>
         </NavLink>
-    );
+    )
 }

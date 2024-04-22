@@ -1,10 +1,8 @@
-import * as React from 'react';
-import { useMemo } from 'react';
-import { Box } from '@mui/material';
-import './TableHeatMap.css';
-import AggregateMeasureBox from '../Box/AggregateMeasureBox';
-import TableWithLinkAndSearchBar from './TableWithLinkAndSearchBar';
-import {ChartSize} from '../../../utils/utils';
+import * as React from 'react'
+import { Box } from '@mui/material'
+import TableWithLinkAndSearchBar from './TableWithLinkAndSearchBar'
+import { ChartSize } from '../../../utils/utils'
+import { AggregateBoxes } from './AggregateBoxes'
 
 export interface RowData {
     value: string;
@@ -25,32 +23,7 @@ export type TableWithLinkAndSearchBarInsideWindowProps = {
     modalTableSize: ChartSize;
 }
 
-const generateUniqueId = (): number => {
-    return Math.floor(Math.random() * Date.now());
-};
-
 export default function TableWithLinkAndSearchBarInsideWindow(props: TableWithLinkAndSearchBarInsideWindowProps) {
-
-    // Generate unique ids for rows without id
-    const rowsWithIds = useMemo(() => {
-        return props.rows.items.map(row => ({
-            ...row,
-            id: generateUniqueId()
-        }));
-    }, [props.rows]);
-
-    // Calculate statistics
-    const timeSecArray = rowsWithIds.map(row => row.count);
-    const minTime = useMemo(() => Math.min(...timeSecArray), [timeSecArray]);
-    const maxTime = useMemo(() => Math.max(...timeSecArray), [timeSecArray]);
-    const meanTime = useMemo(() => Math.round(timeSecArray.reduce((acc, val) => acc + val, 0) / timeSecArray.length), [timeSecArray]);
-    const medianTime = useMemo(() => {
-        const sortedArray = [...timeSecArray].sort((a, b) => a - b);
-        return timeSecArray.length % 2 === 0
-            ? Math.round((sortedArray[sortedArray.length / 2 - 1] + sortedArray[sortedArray.length / 2]) / 2)
-            : Math.round(sortedArray[(sortedArray.length - 1) / 2]);
-    }, [timeSecArray]);
-
     return (
         <div>
             <Box
@@ -97,34 +70,13 @@ export default function TableWithLinkAndSearchBarInsideWindow(props: TableWithLi
                             size={props.baseTableSize}
                         />
                     </Box>
-                    <Box
-                        sx={{
-                            borderRadius: 2,
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'flex-start',
-                            marginLeft: '20px',
-                            justifyContent: 'space-between'
-                        }}
-                    >
-                        <div className={'one-box'}>
-                            <AggregateMeasureBox measure={'Минимум'} value={minTime} />
-                        </div>
-
-                        <div className={'one-box'}>
-                            <AggregateMeasureBox measure={'Maксимум'} value={maxTime} />
-                        </div>
-
-                        <div className={'one-box'}>
-                            <AggregateMeasureBox measure={'Среднее значение'} value={meanTime} />
-                        </div>
-
-                        <div className={'one-box'}>
-                            <AggregateMeasureBox measure={'Медиана'} value={medianTime} />
-                        </div>
-                    </Box>
+                    {
+                        props.rows.items.length > 0 ?
+                            <AggregateBoxes numbersArray={props.rows.items.map(row => row.count)} />
+                            : null
+                    }
                 </Box>
             </Box>
         </div>
-    );
+    )
 }

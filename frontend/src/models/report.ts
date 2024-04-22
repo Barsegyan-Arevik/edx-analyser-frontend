@@ -1,6 +1,6 @@
 import { SectionActivity } from './common'
 import { ProblemComplexity, ProblemSummary } from './problems'
-import { QuestionType } from './forum'
+import { ForumQuestion } from './forum'
 import { TextbookViewsCount, WordSearchCount } from './textbook'
 
 
@@ -63,9 +63,6 @@ export interface PagesReport extends Report {
 
 export interface ForumReport extends Report {
     forum_question_chart: {
-        items: {
-            author: string; title: string; body: string; likes_count: number;
-            comments_count: number; question_type: QuestionType;
-        }[]
+        items: ForumQuestion[]
     }
 }

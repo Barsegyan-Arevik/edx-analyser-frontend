@@ -1,11 +1,11 @@
-import * as React from 'react';
-import SectionHeader from '../SectionHeader/SectionHeader';
-import DatesLineChart from '../../Charts/LineChart/DatesLineChart';
-import ChartWrapper from '../../Charts/ChartWrapper/ChartWrapper';
-import { Box, Grid } from '@mui/material';
-import { VideoReport } from '../../../models/report';
-import TableThreeColumns, { RowData } from '../../Charts/Table/TableThreeColumns';
-import { ChartSize } from '../../../utils/utils';
+import * as React from 'react'
+import SectionHeader from '../SectionHeader/SectionHeader'
+import DatesLineChart from '../../Charts/LineChart/DatesLineChart'
+import ChartWrapper from '../../Charts/ChartWrapper/ChartWrapper'
+import { Box, Grid } from '@mui/material'
+import { VideoReport } from '../../../models/report'
+import CourseElementInteractionTable, { RowData } from '../../Charts/Table/CourseElementInteractionTable'
+import { ChartSize } from '../../../utils/utils'
 
 export type VideoSectionProps = {
     report: VideoReport;
@@ -13,38 +13,38 @@ export type VideoSectionProps = {
 
 const baseTableSize: ChartSize = {
     width: '40rem',
-    height: '30rem',
-};
+    height: '30rem'
+}
 
 const baseDatesLineChartBoxSize: ChartSize = {
     width: '45rem',
-    height: '34rem',
-};
+    height: '34rem'
+}
 
 const baseDatesLineChartSize: ChartSize = {
     width: '45rem',
-    height: '20rem',
-};
+    height: '20rem'
+}
 
 const baseDatesLineChartSliderSize: ChartSize = {
     width: '40rem',
-    height: '20rem',
-};
+    height: '20rem'
+}
 
 const modaDatesLineChartBoxSize: ChartSize = {
     width: '60rem',
-    height: '25rem',
-};
+    height: '25rem'
+}
 
 const modalDatesLineChartSize: ChartSize = {
     width: '60rem',
-    height: '20rem',
-};
+    height: '20rem'
+}
 
 const modalDatesLineChartSliderSize: ChartSize = {
     width: '55rem',
-    height: '20rem',
-};
+    height: '20rem'
+}
 
 const convertToRowData = (item: {
     video_link: string;
@@ -54,25 +54,19 @@ const convertToRowData = (item: {
     return {
         value: item.video_link,
         count: item.views_count,
-        uniqueViews: item.unique_students_count,
-    };
-};
+        uniqueViews: item.unique_students_count
+    }
+}
 
 const convertPagesReportToRowDataArray = (videoInteractionReport: VideoReport): RowData[] => {
-    return videoInteractionReport.video_interaction_chart.items.map(convertToRowData);
-};
+    return videoInteractionReport.video_interaction_chart.items.map(convertToRowData)
+}
 
 export default function VideoSection(props: VideoSectionProps) {
     const dailyVideoAmount = props.report.video_play_count_chart.items.map(item => ({
         date: new Date(item.date),
-        count: item.count,
-    }));
-
-    const boxTitle = 'Популярность видеоматериалов';
-    const columnName = 'Ссылка';
-    const columnCount = 'Количество поисков';
-    const columnUniqueViews = 'Уникальные просмотры';
-    const labelText = 'Поиск видео...';
+        count: item.count
+    }))
 
     return (
         <div>
@@ -81,7 +75,7 @@ export default function VideoSection(props: VideoSectionProps) {
                 <Grid item xs={12} md={6}>
                     <div className={'item_video_1'}>
                         <ChartWrapper
-                            chartTitle={'Количество воспроизведений видеоматериалов, распределённая по дням'}
+                            chartTitle={'Количество воспроизведений видеоматериалов, по дням'}
                             chart={
                                 <DatesLineChart
                                     points={dailyVideoAmount}
@@ -100,7 +94,7 @@ export default function VideoSection(props: VideoSectionProps) {
                                         bgcolor: 'background.paper',
                                         boxShadow: 24,
                                         p: 4,
-                                        borderRadius: 2,
+                                        borderRadius: 2
                                     }}
                                 >
                                     <DatesLineChart
@@ -111,21 +105,20 @@ export default function VideoSection(props: VideoSectionProps) {
                                     />
                                 </Box>
                             }
-                            additionalInfo="Какое-нибудь длинное описание, зачем нужен этот график"
                         />
                     </div>
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <div className={'item_video_2'}>
                         <ChartWrapper
-                            chartTitle={boxTitle}
+                            chartTitle="Популярность видеоматериалов"
                             chart={
-                                <TableThreeColumns
+                                <CourseElementInteractionTable
                                     rows={{ items: convertPagesReportToRowDataArray(props.report) }}
-                                    columnName={columnName}
-                                    columnCount={columnCount}
-                                    columnUniqueViews={columnUniqueViews}
-                                    labelText={labelText}
+                                    columnName="Ссылка на видео"
+                                    columnCount="Просмотры"
+                                    columnUniqueViews="Уникальные просмотры"
+                                    labelText="Поиск видео..."
                                     size={baseTableSize}
                                 />
                             }
@@ -134,5 +127,5 @@ export default function VideoSection(props: VideoSectionProps) {
                 </Grid>
             </Grid>
         </div>
-    );
+    )
 }

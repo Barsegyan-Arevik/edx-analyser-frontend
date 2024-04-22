@@ -5,7 +5,6 @@ import { Box, Button, Tooltip } from '@mui/material'
 import { SlMagnifier } from 'react-icons/sl'
 import { FiInfo } from 'react-icons/fi'
 import ModalWindow from '../ModalWindow'
-import './ChartWrapper.css'
 
 type ChartWrapperProps = {
     chartTitle: string,
@@ -27,7 +26,7 @@ export default function ChartWrapper(props: ChartWrapperProps) {
 
     return (
         <div>
-            <Paper style={{ minWidth: '400px'}}>
+            <Paper style={{ minWidth: '400px' }}>
                 <Box
                     sx={{
                         display: 'flex',
@@ -37,7 +36,7 @@ export default function ChartWrapper(props: ChartWrapperProps) {
                         paddingTop: '0.8rem',
                         paddingBottom: '0.5rem',
                         paddingRight: 1,
-                        fontSize: '1.7em',
+                        fontSize: '1.7em'
 
                     }}
                 >
