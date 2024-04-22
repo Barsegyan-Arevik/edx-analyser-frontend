@@ -1,12 +1,12 @@
 import * as React from 'react'
 import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom'
 import CourseSideBar from './components/SideBar/CourseSideBar'
-import StudentsPage from './pages/StudentsPage/StudentsPage'
+import StudentsPage from './pages/StudentsPage'
 import { MdOutlineAnalytics, MdOutlineForum } from 'react-icons/md'
 import { FiMousePointer } from 'react-icons/fi'
 import { IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline } from 'react-icons/io5'
 import { RiTeamLine } from 'react-icons/ri'
-import WelcomePage from './pages/WelcomePage/WelcomePage'
+import WelcomePage from './pages/WelcomePage'
 import { HiOutlineHome } from 'react-icons/hi2'
 import {
     CommonReportPage,
