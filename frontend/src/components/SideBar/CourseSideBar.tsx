@@ -16,10 +16,24 @@ type CourseSideBarProps = {
     currentCourseId: string;
 };
 
-
 export default function CourseSideBar(props: CourseSideBarProps) {
     const [isOpen, setIsOpen] = useState(false)
-    const toggle = () => setIsOpen(!isOpen)
+    const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null)
+
+    const handleMouseEnter = () => {
+        const timeout = setTimeout(() => {
+            setIsOpen(true)
+        }, 100)
+        setTimeoutId(timeout)
+    }
+
+    const handleMouseLeave = () => {
+        if (timeoutId !== null) {
+            clearTimeout(timeoutId)
+            setTimeoutId(null)
+        }
+        setIsOpen(false)
+    }
 
     const goToTop = () => {
         window.location.href = '#top'
@@ -27,17 +41,23 @@ export default function CourseSideBar(props: CourseSideBarProps) {
 
     return (
         <div className={'container'}>
-            <div style={{ width: isOpen ? '17rem' : '3.5rem' }} className={'sidebar'}>
+            <div
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                style={{ width: isOpen ? '17rem' : '3.5rem' }}
+                className={'sidebar'}
+            >
                 <div className={'top_section'}>
                     <div
                         style={{
                             display: isOpen ? 'block' : 'none',
                             fontSize: '2.3em',
+                            lineHeight: '1em',
                             fontWeight: 'bold'
-                        }}>EdxAnalyzer
+                        }}>{isOpen? 'EdxAnalyzer': '⠀'}
                     </div>
                     <div style={{ marginLeft: isOpen ? '4rem' : '0em', fontSize: '2em' }}>
-                        <BsLayoutSidebarInsetReverse onClick={toggle} />
+                        <BsLayoutSidebarInsetReverse />
                     </div>
                 </div>
 
@@ -51,7 +71,7 @@ export default function CourseSideBar(props: CourseSideBarProps) {
                             .join(' ')
                     } onClick={goToTop} style={{ lineHeight: '1.2', padding: '0.8em 1.6em' }}>
                         <div className={'icon'} style={{ fontSize: '1.4rem' }}>{item.icon}</div>
-                        <div style={{ display: isOpen ? 'block' : 'none', fontSize: '1.6em' }}
+                        <div style={{ display: isOpen ? 'block' : 'block', fontSize: '1.6em' }}
                              className={'link_text'}>{item.name}</div>
                     </NavLink>
                 ))}

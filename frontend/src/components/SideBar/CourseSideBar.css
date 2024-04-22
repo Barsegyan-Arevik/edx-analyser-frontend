@@ -9,7 +9,17 @@
     gap: 2rem;
     transition: all 0.3s;
     /*width: 300px;*/
-    width: 100%
+    width: 100%;
+}
+
+.link_text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 1.6em; /* Adjust as needed */
+    line-height: 1.6em; /* Match with max-height */
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
 
 .home-icon-close {
@@ -53,7 +63,7 @@
     left: 0;
     overflow: hidden;
     /*padding-top: 0.5rem;*/
-    transition: all 0.3s ease;
+    transition: width 0.3s ease;
 }
 
 .top_section {
