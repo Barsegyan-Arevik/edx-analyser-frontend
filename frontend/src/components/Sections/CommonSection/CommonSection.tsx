@@ -17,17 +17,6 @@ const baseLineChartBoxSize: ChartSize = {
     height: '19rem'
 }
 
-const baseLineChartSize: ChartSize = {
-    width: baseLineChartBoxSize.width,
-    height: '14rem'
-}
-
-const baseLineChartSliderSize: ChartSize = {
-    width: '47rem',
-    height: baseLineChartBoxSize.height
-}
-
-
 export default function CommonSection(props: CommonSectionProps) {
     const numberOfStudents = props.report.students_count
     const numberOfActiveStudents = props.report.active_students_count
@@ -42,7 +31,7 @@ export default function CommonSection(props: CommonSectionProps) {
         <div>
             <Grid container spacing={2}>
                 <Grid xs={12} md={12}>
-                    <SectionHeader text='Аналитика по курсу' style={{ paddingTop: '30px' }} />
+                    <SectionHeader text="Аналитика по курсу" style={{ paddingTop: '30px' }} />
                 </Grid>
                 <Grid container spacing={2} justifyContent={'center'} direction={'row'}>
                     <Grid item xs={12} md={3.5}>
@@ -73,8 +62,14 @@ export default function CommonSection(props: CommonSectionProps) {
                                 <DatesLineChart
                                     points={weeklyActivityChart}
                                     boxSize={baseLineChartBoxSize}
-                                    lineChartSize={baseLineChartSize}
-                                    sliderSize={baseLineChartSliderSize}
+                                    lineChartSize={{
+                                        width: baseLineChartBoxSize.width,
+                                        height: '14rem'
+                                    }}
+                                    sliderSize={{
+                                        width: '47rem',
+                                        height: baseLineChartBoxSize.height
+                                    }}
                                 />
                             }
                         />
