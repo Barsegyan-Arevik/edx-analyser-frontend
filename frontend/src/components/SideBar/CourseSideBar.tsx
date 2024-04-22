@@ -57,7 +57,7 @@ export default function CourseSideBar(props: CourseSideBarProps) {
                         }}>{isOpen? 'EdxAnalyzer': '⠀'}
                     </div>
                     <div style={{ marginLeft: isOpen ? '4rem' : '0em', fontSize: '2em' }}>
-                        <BsLayoutSidebarInsetReverse />
+                        <BsLayoutSidebarInsetReverse onClick={() => setIsOpen(!isOpen)}/>
                     </div>
                 </div>
 

@@ -29,8 +29,6 @@ const baseLineChartSliderSize: ChartSize = {
 
 
 export default function CommonSection(props: CommonSectionProps) {
-    const courseId = props.report.course_id
-    const headerText = `Аналитика по курсу "${courseId}"`
     const numberOfStudents = props.report.students_count
     const numberOfActiveStudents = props.report.active_students_count
     const sectionActivityChart = props.report.section_activity_chart.items
@@ -44,7 +42,7 @@ export default function CommonSection(props: CommonSectionProps) {
         <div>
             <Grid container spacing={2}>
                 <Grid xs={12} md={12}>
-                    <SectionHeader text={headerText} style={{ paddingTop: '30px' }} />
+                    <SectionHeader text='Аналитика по курсу' style={{ paddingTop: '30px' }} />
                 </Grid>
                 <Grid container spacing={2} justifyContent={'center'} direction={'row'}>
                     <Grid item xs={12} md={3.5}>
