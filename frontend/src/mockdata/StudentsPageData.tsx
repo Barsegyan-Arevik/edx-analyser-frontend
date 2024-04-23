@@ -94,7 +94,6 @@ const students: Array<StudentData> = studentsRowData
     .slice(1) // Пропускаем строку с заголовками
     .map((row, index) => {
         const [username, completionStatus, daysOnline, timeOnCourse, videoWatching, textbookScrolling, problemsSolving, forumActivity] = row.split(',')
-        console.log(completionStatus)
         return {
             id: index + 1,
             username: username,

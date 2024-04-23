@@ -30,7 +30,7 @@ export default function DonutsChart(props: DonutsChartProps) {
                 </Grid>
             ))}
             <Grid item xs={12} md={12} justifyContent={'center'} style={{ textAlign: 'center' }}>
-                <div style={{ width: props.size.width, height: '20rem' }}>
+                <div style={{ width: props.size.width, height: '16rem' }}>
                     <PieChart
                         colors={['#02CEA9', '#FEF045', '#F06C79']}
                         slotProps={{

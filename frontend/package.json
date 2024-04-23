@@ -58,6 +58,7 @@
     "eslint-plugin-react": "^7.34.1",
     "flow-bin": "^0.205.0",
     "stylelint": "^16.3.1",
-    "stylelint-order": "^6.0.4"
+    "stylelint-order": "^6.0.4",
+    "typescript": "^5.4.5"
   }
 }
