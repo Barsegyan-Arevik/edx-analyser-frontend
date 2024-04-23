@@ -1,5 +1,5 @@
-import {StudentData, CompletionStatus} from '../models/students';
-import {StudentsCommonTableProps} from '../components/Charts/Table/StudentsCommonTable'
+import { CompletionStatus, StudentData } from '../models/students'
+import { StudentsCommonTableProps } from '../components/Charts/Table/StudentsCommonTable'
 
 const studentsRowData = `
 username,completion_status,days_online,time_on_course,video_watching,text_book_scrolling,promblems_solving,forum_activity
@@ -93,8 +93,7 @@ const students: Array<StudentData> = studentsRowData
     .split('\n')
     .slice(1) // Пропускаем строку с заголовками
     .map((row, index) => {
-        const [username, completionStatus, daysOnline, timeOnCourse, videoWatching, textbookScrolling, problemsSolving, forumActivity] = row.split(',');
-        console.log(completionStatus)
+        const [username, completionStatus, daysOnline, timeOnCourse, videoWatching, textbookScrolling, problemsSolving, forumActivity] = row.split(',')
         return {
             id: index + 1,
             username: username,
@@ -105,18 +104,18 @@ const students: Array<StudentData> = studentsRowData
             textbookScrolling: parseInt(textbookScrolling, 10),
             problemsSolved: parseInt(problemsSolving, 10),
             forumActivity: parseInt(forumActivity, 10)
-        };
-    });
+        }
+    })
 
-const boxTitleStudents = 'Студенты курса "Название курса"';
-const username = 'Имя пользователя';
-const completionStatus = 'Степень завершённости';
-const daysOnline = 'Дни активности';
-const timeOnCourse = 'Часы на курсе';
-const videoWatching = 'Просмотры видео';
-const textbookScrolling = 'Главы учебника';
-const promblemsSolving = 'Решённые задачи';
-const forumActivity = 'Вопросы на форуме';
+const boxTitleStudents = 'Студенты курса "Название курса"'
+const username = 'Имя пользователя'
+const completionStatus = 'Степень завершённости'
+const daysOnline = 'Дни активности'
+const timeOnCourse = 'Часы на курсе'
+const videoWatching = 'Просмотры видео'
+const textbookScrolling = 'Главы учебника'
+const promblemsSolving = 'Решённые задачи'
+const forumActivity = 'Вопросы на форуме'
 
 export const studentSearchPageProps: StudentsCommonTableProps = {
     boxTitle: boxTitleStudents,
@@ -129,4 +128,4 @@ export const studentSearchPageProps: StudentsCommonTableProps = {
     promblemsSolving: promblemsSolving,
     forumActivity: forumActivity,
     students: students
-};
+}

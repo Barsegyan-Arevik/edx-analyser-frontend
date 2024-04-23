@@ -1,8 +1,8 @@
-import {Box, Grid} from '@mui/material'
+import { Box, Grid, Paper } from '@mui/material'
 import * as React from 'react'
-import {SectionActivity, SectionType} from '../../../models/common'
-import {MdOutlineForum} from 'react-icons/md'
-import {IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline} from 'react-icons/io5'
+import { SectionActivity, SectionType } from '../../../models/common'
+import { MdOutlineForum } from 'react-icons/md'
+import { IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline } from 'react-icons/io5'
 
 type SectionActivityChartProps = {
     items: Array<SectionActivity>
@@ -12,13 +12,13 @@ type SectionActivityChartProps = {
 function getImageBySectionType(sectionType: SectionType, color: string, size: string): React.JSX.Element {
     switch (sectionType) {
     case SectionType.TEXTBOOK:
-        return <IoBookOutline color={color} fontSize={size}/>
+        return <IoBookOutline color={color} fontSize={size} />
     case SectionType.VIDEO:
-        return <IoVideocamOutline color={color} fontSize={size}/>
+        return <IoVideocamOutline color={color} fontSize={size} />
     case SectionType.PROBLEMS:
-        return <IoExtensionPuzzleOutline color={color} fontSize={size}/>
+        return <IoExtensionPuzzleOutline color={color} fontSize={size} />
     case SectionType.FORUM:
-        return <MdOutlineForum color={color} fontSize={size}/>
+        return <MdOutlineForum color={color} fontSize={size} />
     }
 }
 
@@ -40,14 +40,14 @@ export default function SectionActivityChart(
 ) {
     console.log(props.items)
     return (
-        <Box style={{width: '100%'}}>
+        <Paper style={{ width: '100%' }}>
             <Grid item spacing={1}>
                 <Box
                     sx={{
                         padding: '0.9rem',
                         bgcolor: 'background.paper',
                         borderRadius: 1,
-                        whiteSpace: 'nowrap',
+                        whiteSpace: 'nowrap'
                     }}
                 >
                     <Box
@@ -83,9 +83,9 @@ export default function SectionActivityChart(
                                         fontSize: '1.3em'
                                     }}>{Math.round((item.students_count / props.numberOfStudents) * 100)}%
                                     </span>
-                                        <div style={{width: '4px'}}></div>
+                                        <div style={{ width: '4px' }}></div>
                                         <span
-                                            style={{fontSize: '1.1em'}}>студентов {getDescriptionBySectionType(item.section_type)}</span>
+                                            style={{ fontSize: '1.1em' }}>студентов {getDescriptionBySectionType(item.section_type)}</span>
 
                                     </Box>
                                 </Box>
@@ -97,6 +97,6 @@ export default function SectionActivityChart(
                     ))}
                 </Box>
             </Grid>
-        </Box>
+        </Paper>
     )
 }

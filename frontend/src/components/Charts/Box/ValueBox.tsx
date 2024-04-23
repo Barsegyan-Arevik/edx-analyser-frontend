@@ -1,5 +1,5 @@
-import * as React from 'react';
-import { Box, Grid } from '@mui/material';
+import * as React from 'react'
+import { Box, Grid, Paper } from '@mui/material'
 
 export type CustomBoxProps = {
     value: number;
@@ -9,7 +9,7 @@ export type CustomBoxProps = {
 
 export default function ValueBox(props: CustomBoxProps) {
     return (
-        <Box
+        <Paper
             sx={{
                 bgcolor: '#fff',
                 borderColor: '#F5F5F5',
@@ -17,10 +17,7 @@ export default function ValueBox(props: CustomBoxProps) {
                 borderRadius: 1,
                 textAlign: 'left',
                 fontWeight: 'normal',
-                padding: '0.55rem 1.5rem',
-                // width: '30vw',
-                // minWidth: '200px',
-                // width: '16rem',
+                padding: '0.55rem 1.5rem'
             }}
         >
             <Grid container alignItems="center" spacing={1}>
@@ -28,7 +25,7 @@ export default function ValueBox(props: CustomBoxProps) {
                     <Box
                         sx={{
                             fontSize: '2em',
-                            fontWeight: 'normal',
+                            fontWeight: 'normal'
                         }}
                     >
                         {props.label}
@@ -49,7 +46,7 @@ export default function ValueBox(props: CustomBoxProps) {
                                 display: 'inline',
                                 fontWeight: 'normal',
                                 mx: 0.5,
-                                fontSize: 20,
+                                fontSize: 20
                             }}
                         >
                             {props.valueAdditionalText}
@@ -57,6 +54,6 @@ export default function ValueBox(props: CustomBoxProps) {
                     </Box>
                 </Grid>
             </Grid>
-        </Box>
-    );
+        </Paper>
+    )
 }

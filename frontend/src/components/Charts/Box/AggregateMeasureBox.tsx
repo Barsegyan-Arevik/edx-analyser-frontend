@@ -23,7 +23,7 @@ export default function AggregateMeasureBox(props: AggregateMeasureBoxProps) {
             <Box
                 sx={{
                     textAlign: 'left',
-                    fontSize: 32,
+                    fontSize: 32
                 }}
             >
                 {props.value}
@@ -33,11 +33,11 @@ export default function AggregateMeasureBox(props: AggregateMeasureBoxProps) {
                 sx={{
                     textAlign: 'left',
                     fontSize: 20,
-                    fontWeight: 'normal',
+                    fontWeight: 'normal'
                 }}
             >
                 {props.measure}
             </Box>
         </Box>
-    );
+    )
 }

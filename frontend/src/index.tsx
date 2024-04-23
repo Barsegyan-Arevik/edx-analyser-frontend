@@ -4,10 +4,14 @@ import App from './App'
 import * as React from 'react'
 import theme from './theme'
 import { ThemeProvider } from '@mui/material'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
+const queryClient = new QueryClient()
 root.render(
-    <ThemeProvider theme={theme}>
-        <App />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={theme}>
+            <App />
+        </ThemeProvider>
+    </QueryClientProvider>
 )
