@@ -1,26 +1,20 @@
 import * as React from 'react'
-import { useEffect, useState } from 'react'
 import SectionHeader from '../components/Sections/SectionHeader'
 import { Grid, List } from '@mui/material'
-import { Course } from '../models/course'
 import { BASE_URL } from '../config'
 import CourseCard from '../components/CourseCard'
+import { useQuery } from 'react-query'
 
 export default function WelcomePage() {
-    const [courses, setCourses] = useState<Array<Course>>([])
+    const { data: courses, isLoading, isError } = useQuery('courses', async () => {
+        const response = await fetch(`${BASE_URL}/courses`);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    });
 
-    useEffect(() => {
-        fetch(`${BASE_URL}/courses`)
-            .then(response => response.json())
-            .then(data => {
-                setCourses(data)
-            })
-            .catch(error => {
-                console.error('Error fetching courses:', error)
-            })
-    }, [])
-
-    return (
+    return ( !isLoading && !isError &&
         <Grid container paddingLeft='30px' paddingTop = '30px' direction={'column'}>
             <SectionHeader text="Доступные курсы" />
             <List className="courses">
@@ -29,5 +23,5 @@ export default function WelcomePage() {
                 ))}
             </List>
         </Grid>
-    )
+    );
 }
