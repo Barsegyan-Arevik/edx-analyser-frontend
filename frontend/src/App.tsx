@@ -16,6 +16,7 @@ import {
     TextbookReportPage,
     VideoReportPage
 } from './pages/withReportSection'
+import NotFoundPage from './pages/NotFoundPage'
 
 const menuItems = [
     {
@@ -69,6 +70,7 @@ const App = () => {
                     path="/courses/:courseId/*"
                     element={<CourseRoutes />}
                 />
+                <Route path="*" element={<NotFoundPage/>}/>
             </Routes>
         </BrowserRouter>
     )
