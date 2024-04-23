@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import PageBase from '../components/PageBase/PageBase'
 import { Report, ReportState } from '../models/report'
@@ -10,9 +10,10 @@ import TextbookSection from '../components/Sections/TextbookSection'
 import ProblemsSection from '../components/Sections/ProblemsSection'
 import PagesSection from '../components/Sections/PagesSection'
 import ForumSection from '../components/Sections/ForumSection'
-import { Grid } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import SectionHeader from '../components/Sections/SectionHeader'
 import LastUpdateStatus from '../components/Charts/LastUpdateStatus'
+import { useQuery } from 'react-query'
 
 interface ReportPageProps<T extends Report> {
     report: T;
@@ -41,33 +42,36 @@ function getHeaderTextByReportType(reportType: string): string {
 function withReportSection<T extends Report>(SectionComponent: React.ComponentType<ReportPageProps<T>>, reportType: string) {
     return function ReportPage() {
         const { courseId } = useParams()
-        const [report, setReport] = useState<T | null>(null)
-        const [isLoading, setIsLoading] = useState<boolean>(true)
-        const [error, setError] = useState<Error | null>(null)
 
-        const fetchData = async (forceUpdate: boolean) => {
-            try {
-                let url = `${BASE_URL}/courses/${courseId}/${reportType}`
-                if (forceUpdate) {
-                    url += '?forceUpdate=true'
-                }
-                const response = await fetch(url)
+        const { data: report, isLoading, isError, error, refetch } = useQuery<T, Error>(
+            ['report', courseId, reportType],
+            async () => {
+                const response = await fetch(`${BASE_URL}/courses/${courseId}/${reportType}`)
                 if (!response.ok) {
                     throw new Error('Error fetching data')
                 }
-                const report = await response.json()
-                setReport(report)
-                setIsLoading(false)
-            } catch (error) {
-                console.error('Error fetching data:', error)
-                setError(error)
-                setIsLoading(false)
+                return response.json()
+            },
+            {
+                staleTime: 0
             }
-        }
+        )
 
         useEffect(() => {
-            fetchData(false).then()
-        }, [courseId, reportType])
+            let interval: NodeJS.Timeout | null = null
+
+            if (!isError && report && report.report_state === ReportState.IN_PROGRESS) {
+                interval = setInterval(() => {
+                    refetch()
+                }, 5000)
+            }
+
+            return () => {
+                if (interval) {
+                    clearInterval(interval)
+                }
+            }
+        }, [report, isError, refetch])
 
         return (
             <PageBase>
@@ -79,21 +83,22 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
                     <Grid item>
                         {
                             isLoading ?
-                                (<div>
+                                (<Typography color={'#405479'} variant="body2">
                                     Данные загружаются...
-                                </div>) : error ?
-                                    (<div>Ошибка при загрузке данных: {error.message}</div>) :
+                                </Typography>) :
+                                isError ?
+                                    (<Typography color={'#405479'} variant="body2">Ошибка при загрузке данных: {error.message}</Typography>) :
                                     (<LastUpdateStatus
                                         lastTimeUpdated={new Date(report.last_time_updated)}
                                         onUpdateClick={() => {
-                                            fetchData(true).then()
+                                            // fetchData(true).then()
                                         }}
                                     />)
                         }
 
                     </Grid>
                 </Grid>
-                {!isLoading && !error && report != null && report.report_state === ReportState.DONE && (
+                {!isLoading && !isError && report != null && report.report_state === ReportState.DONE && (
                     <SectionComponent report={report} />
                 )}
             </PageBase>
