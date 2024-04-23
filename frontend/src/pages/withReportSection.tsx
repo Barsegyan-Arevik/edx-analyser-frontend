@@ -42,44 +42,58 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
     return function ReportPage() {
         const { courseId } = useParams()
         const [report, setReport] = useState<T | null>(null)
-        const [isLoading, setIsLoading] = useState(true)
+        const [isLoading, setIsLoading] = useState<boolean>(true)
+        const [error, setError] = useState<Error | null>(null)
+
+        const fetchData = async (forceUpdate: boolean) => {
+            try {
+                let url = `${BASE_URL}/courses/${courseId}/${reportType}`
+                if (forceUpdate) {
+                    url += '?forceUpdate=true'
+                }
+                const response = await fetch(url)
+                if (!response.ok) {
+                    throw new Error('Error fetching data')
+                }
+                const report = await response.json()
+                setReport(report)
+                setIsLoading(false)
+            } catch (error) {
+                console.error('Error fetching data:', error)
+                setError(error)
+                setIsLoading(false)
+            }
+        }
 
         useEffect(() => {
-            const fetchData = async () => {
-                try {
-                    const response = await fetch(`${BASE_URL}/courses/${courseId}/${reportType}`)
-                    const jsonData = await response.json()
-                    setReport(jsonData)
-                    setIsLoading(false)
-                } catch (error) {
-                    console.error('Error fetching data:', error)
-                }
-            }
-
-            fetchData().then()
+            fetchData(false).then()
         }, [courseId, reportType])
 
         return (
             <PageBase>
-                <Grid container justifyContent={'space-between'} direction={'row'} paddingTop='30px' paddingLeft='30px' paddingBottom='20px'>
+                <Grid container justifyContent={'space-between'} direction={'row'} paddingTop="30px" paddingLeft="30px"
+                      paddingBottom="20px">
                     <Grid item>
                         <SectionHeader text={getHeaderTextByReportType(reportType)} />
                     </Grid>
                     <Grid item>
                         {
                             isLoading ?
-                                <div>
+                                (<div>
                                     Данные загружаются...
-                                </div> :
-                                <LastUpdateStatus
-                                    lastTimeUpdated={new Date(report.last_time_updated)}
-                                    onUpdateClick={() => {'todo: force update'}}
-                                />
+                                </div>) : error ?
+                                    (<div>Ошибка при загрузке данных: {error.message}</div>) :
+                                    (<LastUpdateStatus
+                                        lastTimeUpdated={new Date(report.last_time_updated)}
+                                        onUpdateClick={() => {
+                                            fetchData(true).then()
+                                        }}
+                                    />)
                         }
 
                     </Grid>
                 </Grid>
-                {!isLoading && report != null && report.report_state === ReportState.DONE && (
+                {!isLoading && !error && report != null && report.report_state === ReportState.DONE && (
                     <SectionComponent report={report} />
                 )}
             </PageBase>
