@@ -12,3 +12,4 @@
    npm install
    npm start
    ```
+[Бэкенд приложения](https://github.com/rakhmukova/log-analyzer-backend)
