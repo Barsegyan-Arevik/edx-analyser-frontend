@@ -40,7 +40,7 @@ export default function CourseElementInteractionTable(props: TableThreeColumnsPr
         setPage(0)
     }, [searchTerm])
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage)
     }
 

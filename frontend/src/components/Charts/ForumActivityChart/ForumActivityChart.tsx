@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {Box, Divider, Grid, ListItem, Paper, Typography} from '@mui/material';
-import './ForumActivityChart.css';
 import {CiUser} from 'react-icons/ci';
 import {SlLike} from 'react-icons/sl';
 import {GoCommentDiscussion} from 'react-icons/go';
