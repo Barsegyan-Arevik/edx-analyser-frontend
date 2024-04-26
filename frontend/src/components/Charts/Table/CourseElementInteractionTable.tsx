@@ -18,12 +18,8 @@ export interface RowData {
     uniqueViews: number;
 }
 
-interface Chart {
-    items: RowData[];
-}
-
 export type TableThreeColumnsProps = {
-    rows: Chart;
+    rows: RowData[];
     columnName: string;
     columnCount: string;
     columnUniqueViews: string;
@@ -41,7 +37,7 @@ export default function CourseElementInteractionTable(props: TableThreeColumnsPr
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
 
     useEffect(() => {
-        setPage(0) // Переход на первую страницу при изменении поискового запроса
+        setPage(0)
     }, [searchTerm])
 
     const handleChangePage = (event: unknown, newPage: number) => {
@@ -62,7 +58,7 @@ export default function CourseElementInteractionTable(props: TableThreeColumnsPr
         }
     }
 
-    const sortedRows = rows.items.sort((a, b) => {
+    const sortedRows = rows.sort((a, b) => {
         const aValue = a[sortColumn]
         const bValue = b[sortColumn]
         if (sortDirection === 'asc') {

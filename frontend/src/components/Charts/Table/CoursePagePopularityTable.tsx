@@ -17,20 +17,16 @@ export interface RowData {
     count: number;
 }
 
-interface Chart {
-    items: RowData[];
-}
-
-export type TableWithLinkAndSearchBarProps = {
-    rows: Chart;
+export type CoursePagePopularityTableProps = {
+    rows: RowData[];
     columnName: string;
     columnCount: string;
     labelText: string;
-    size: ChartSize;
+    tableSize: ChartSize;
 }
 
-const TableWithLinkAndSearchBar: React.FC<TableWithLinkAndSearchBarProps> = (props) => {
-    const rows = props.rows.items
+const CoursePagePopularityTable: React.FC<CoursePagePopularityTableProps> = (props) => {
+    const rows = props.rows
         .sort((a, b) => b.count - a.count)
         .map((data, index) => ({
             id: index + 1,
@@ -42,10 +38,10 @@ const TableWithLinkAndSearchBar: React.FC<TableWithLinkAndSearchBarProps> = (pro
     const [searchTerm, setSearchTerm] = useState('')
 
     useEffect(() => {
-        setPage(0) // Переход на первую страницу при изменении поискового запроса
+        setPage(0)
     }, [searchTerm])
 
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_: unknown, newPage: number) => {
         setPage(newPage)
     }
 
@@ -121,4 +117,4 @@ const TableWithLinkAndSearchBar: React.FC<TableWithLinkAndSearchBarProps> = (pro
     )
 }
 
-export default TableWithLinkAndSearchBar
+export default CoursePagePopularityTable

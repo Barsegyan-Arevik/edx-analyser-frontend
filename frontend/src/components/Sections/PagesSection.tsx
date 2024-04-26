@@ -1,8 +1,8 @@
 import ChartWrapper from '../Charts/ChartWrapper/ChartWrapper'
 import * as React from 'react'
 import { PagesReport } from '../../models/report'
-import TableWithLinkAndSearchBar, { RowData } from '../Charts/Table/TableWithLinkAndSearchBar'
-import TableWithLinkAndSearchBarInsideWindow from '../Charts/Table/TableWithLinkAndSearchBarInsideWindow'
+import CoursePagePopularityTable, { RowData } from '../Charts/Table/CoursePagePopularityTable'
+import CoursePagePopularityTableWithStatistics from '../Charts/Table/CoursePagePopularityTableWithStatistics'
 import { ChartSize } from '../../utils/utils'
 
 export type PagesSectionProps = {
@@ -19,11 +19,6 @@ const convertToRowData = (item: { page_link: string; visits_count: number; }): R
 const baseTableSize: ChartSize = {
     width: '50rem',
     height: '30rem'
-}
-
-const modalTableSize: ChartSize = {
-    width: '50rem',
-    height: '25rem'
 }
 
 const convertPagesReportToRowDataArray = (pagesReport: PagesReport): RowData[] => {
@@ -44,22 +39,21 @@ export default function PagesSection(
                 <ChartWrapper
                     chartTitle={boxTitlePages}
                     chart={
-                        <TableWithLinkAndSearchBar
-                            rows={{ items: convertPagesReportToRowDataArray(props.report) }}
+                        <CoursePagePopularityTable
+                            rows={convertPagesReportToRowDataArray(props.report)}
                             columnName={columnNamePages}
                             columnCount={columnCountPages}
                             labelText={labelTextPages}
-                            size={baseTableSize}
+                            tableSize={baseTableSize}
                         />}
                     popupChart={
-                        <TableWithLinkAndSearchBarInsideWindow
+                        <CoursePagePopularityTableWithStatistics
                             boxTitle={boxTitlePages}
-                            rows={{ items: convertPagesReportToRowDataArray(props.report) }}
+                            rows={convertPagesReportToRowDataArray(props.report)}
                             columnName={columnNamePages}
                             columnCount={columnCountPages}
                             labelText={labelTextPages}
-                            baseTableSize={baseTableSize}
-                            modalTableSize={modalTableSize}
+                            tableSize={baseTableSize}
                         />
                     }
                     additionalInfo={''}

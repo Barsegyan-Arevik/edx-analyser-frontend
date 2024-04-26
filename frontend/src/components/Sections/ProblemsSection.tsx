@@ -2,9 +2,9 @@ import DonutsChart from '../Charts/DonutsChart'
 import * as React from 'react'
 import { ProblemsReport } from '../../models/report'
 import ChartWrapper from '../Charts/ChartWrapper/ChartWrapper'
-import TableWithLinkAndSearchBar, { RowData } from '../Charts/Table/TableWithLinkAndSearchBar'
+import CoursePagePopularityTable, { RowData } from '../Charts/Table/CoursePagePopularityTable'
 import { ProblemComplexity } from '../../models/problems'
-import TableWithLinkAndSearchBarInsideWindow from '../Charts/Table/TableWithLinkAndSearchBarInsideWindow'
+import CoursePagePopularityTableWithStatistics from '../Charts/Table/CoursePagePopularityTableWithStatistics'
 import { ChartSize, getLabelByAttemptCount } from '../../utils/utils'
 import { Grid } from '@mui/material'
 
@@ -52,22 +52,22 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
                 <ChartWrapper
                     chartTitle={boxTitleProblems}
                     chart={
-                        <TableWithLinkAndSearchBar
-                            rows={{ items: transformedData }}
+                        <CoursePagePopularityTable
+                            rows={transformedData}
                             columnName={columnNameProblems}
                             columnCount={columnCountProblems}
                             labelText={labelTextProblems}
-                            size={baseTableSize}
+                            tableSize={baseTableSize}
                         />
                     }
                     popupChart={
-                        <TableWithLinkAndSearchBarInsideWindow
+                        <CoursePagePopularityTableWithStatistics
                             boxTitle={boxTitleProblems}
-                            rows={{ items: transformedData }}
+                            rows={transformedData}
                             columnName={columnNameProblems}
                             columnCount={columnCountProblems}
                             labelText={labelTextProblems}
-                            baseTableSize={baseTableSize}
+                            tableSize={baseTableSize}
                             modalTableSize={modalTableSize}
                         />
                     }

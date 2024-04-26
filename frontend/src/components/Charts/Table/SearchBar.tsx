@@ -23,14 +23,14 @@ export default function SearchBar(props: SearchBarProps) {
                     marginBottom: '5px',
                     marginTop: '5px',
                     '&:hover': {
-                        borderColor: 'blue' // Цвет границы при наведении курсора
+                        borderColor: 'blue'
                     },
                     '& .MuiOutlinedInput-input': {
-                        padding: '5px 5px', // Изменение отступов внутри поля ввода
-                        height: '25px' // Изменение высоты поля ввода
+                        padding: '5px 5px',
+                        height: '25px'
                     },
                     '& .MuiInputLabel-root': {
-                        fontSize: '0.85rem' // Уменьшаем размер метки
+                        fontSize: '0.85rem'
                     }
                 }}
             />

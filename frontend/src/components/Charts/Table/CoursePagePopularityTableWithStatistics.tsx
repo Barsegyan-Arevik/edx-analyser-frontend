@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Box } from '@mui/material'
-import TableWithLinkAndSearchBar from './TableWithLinkAndSearchBar'
+import CoursePagePopularityTable from './CoursePagePopularityTable'
 import { ChartSize } from '../../../utils/utils'
 import { AggregateBoxes } from './AggregateBoxes'
 
@@ -9,21 +9,16 @@ export interface RowData {
     count: number;
 }
 
-interface Chart {
-    items: RowData[];
-}
-
 export type TableWithLinkAndSearchBarInsideWindowProps = {
-    rows: Chart;
+    rows: RowData[];
     boxTitle: string;
     columnName: string;
     columnCount: string;
     labelText: string;
-    baseTableSize: ChartSize;
-    modalTableSize: ChartSize;
+    tableSize: ChartSize;
 }
 
-export default function TableWithLinkAndSearchBarInsideWindow(props: TableWithLinkAndSearchBarInsideWindowProps) {
+export default function CoursePagePopularityTableWithStatistics(props: TableWithLinkAndSearchBarInsideWindowProps) {
     return (
         <div>
             <Box
@@ -62,17 +57,17 @@ export default function TableWithLinkAndSearchBarInsideWindow(props: TableWithLi
                             p: 2
                         }}
                     >
-                        <TableWithLinkAndSearchBar
+                        <CoursePagePopularityTable
                             rows={props.rows}
                             columnName={props.columnName}
                             columnCount={props.columnCount}
                             labelText={props.labelText}
-                            size={props.baseTableSize}
+                            tableSize={props.tableSize}
                         />
                     </Box>
                     {
-                        props.rows.items.length > 0 ?
-                            <AggregateBoxes numbersArray={props.rows.items.map(row => row.count)} />
+                        props.rows.length > 0 ?
+                            <AggregateBoxes numbersArray={props.rows.map(row => row.count)} />
                             : null
                     }
                 </Box>

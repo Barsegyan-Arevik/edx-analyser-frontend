@@ -1,19 +1,14 @@
 import * as React from 'react'
 import DatesLineChart from '../Charts/LineChart/DatesLineChart'
 import ChartWrapper from '../Charts/ChartWrapper/ChartWrapper'
-import { Box, Grid } from '@mui/material'
-import { VideoReport } from '../../models/report'
-import CourseElementInteractionTable, { RowData } from '../Charts/Table/CourseElementInteractionTable'
-import { ChartSize } from '../../utils/utils'
+import {Box, Grid} from '@mui/material'
+import {VideoReport} from '../../models/report'
+import CourseElementInteractionTable, {RowData} from '../Charts/Table/CourseElementInteractionTable'
+import {ChartSize} from '../../utils/utils'
 
 export type VideoSectionProps = {
     report: VideoReport;
 };
-
-const baseTableSize: ChartSize = {
-    width: '40rem',
-    height: '30rem'
-}
 
 const baseDatesLineChartBoxSize: ChartSize = {
     width: '45rem',
@@ -111,12 +106,15 @@ export default function VideoSection(props: VideoSectionProps) {
                         chartTitle="Популярность видеоматериалов"
                         chart={
                             <CourseElementInteractionTable
-                                rows={{ items: convertPagesReportToRowDataArray(props.report) }}
+                                rows={convertPagesReportToRowDataArray(props.report)}
                                 columnName="Ссылка на видео"
                                 columnCount="Просмотры"
                                 columnUniqueViews="Уникальные просмотры"
                                 labelText="Поиск видео..."
-                                size={baseTableSize}
+                                size={{
+                                    width: '40rem',
+                                    height: '30rem'
+                                }}
                             />
                         }
                     />
