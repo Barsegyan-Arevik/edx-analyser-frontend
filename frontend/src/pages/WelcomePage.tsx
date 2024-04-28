@@ -4,6 +4,7 @@ import { Grid, List } from '@mui/material'
 import { BASE_URL } from '../config'
 import CourseCard from '../components/CourseCard'
 import { useQuery } from 'react-query'
+import FileUploadForm from '../components/FileUploadForm'
 
 export default function WelcomePage() {
     const { data: courses, isLoading, isError } = useQuery('courses', async () => {
@@ -22,6 +23,7 @@ export default function WelcomePage() {
                     <CourseCard key={course.course_id} course={course} />
                 ))}
             </List>
+            <FileUploadForm/>
         </Grid>
     );
 }
