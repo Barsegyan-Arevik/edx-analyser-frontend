@@ -1,7 +1,7 @@
 import DonutsChart from '../Charts/DonutsChart'
 import * as React from 'react'
 import { ProblemsReport } from '../../models/report'
-import ChartWrapper from '../Charts/ChartWrapper/ChartWrapper'
+import ChartWrapper from '../Charts/ChartWrapper'
 import CoursePagePopularityTable, { RowData } from '../Charts/Table/CoursePagePopularityTable'
 import { ProblemComplexity } from '../../models/problems'
 import CoursePagePopularityTableWithStatistics from '../Charts/Table/CoursePagePopularityTableWithStatistics'
@@ -15,11 +15,6 @@ export type ProblemsSectionProps = {
 const baseTableSize: ChartSize = {
     width: '50rem',
     height: '30rem'
-}
-
-const modalTableSize: ChartSize = {
-    width: '50rem',
-    height: '25rem'
 }
 
 const donutsChartSize: ChartSize = {
@@ -68,7 +63,6 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
                             columnCount={columnCountProblems}
                             labelText={labelTextProblems}
                             tableSize={baseTableSize}
-                            modalTableSize={modalTableSize}
                         />
                     }
                     additionalInfo={''}

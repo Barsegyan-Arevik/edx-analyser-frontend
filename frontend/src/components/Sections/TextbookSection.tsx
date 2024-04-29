@@ -1,6 +1,6 @@
 import * as React from 'react'
 import Grid from '@mui/material/Grid'
-import ChartWrapper from '../Charts/ChartWrapper/ChartWrapper'
+import ChartWrapper from '../Charts/ChartWrapper'
 import CourseElementInteractionTable from '../Charts/Table/CourseElementInteractionTable'
 import CoursePagePopularityTable, {RowData} from '../Charts/Table/CoursePagePopularityTable'
 import {TextbookReport} from '../../models/report'

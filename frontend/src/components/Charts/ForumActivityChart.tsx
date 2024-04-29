@@ -3,7 +3,7 @@ import {Box, Divider, Grid, ListItem, Paper, Typography} from '@mui/material';
 import {CiUser} from 'react-icons/ci';
 import {SlLike} from 'react-icons/sl';
 import {GoCommentDiscussion} from 'react-icons/go';
-import {ForumQuestion, QuestionType} from '../../../models/forum';
+import {ForumQuestion, QuestionType} from '../../models/forum';
 
 interface ActivitySectionProps {
     forumQuestion: ForumQuestion;

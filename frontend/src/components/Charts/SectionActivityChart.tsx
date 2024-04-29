@@ -1,6 +1,6 @@
 import { Box, Grid, Paper } from '@mui/material'
 import * as React from 'react'
-import { SectionActivity, SectionType } from '../../../models/common'
+import { SectionActivity, SectionType } from '../../models/common'
 import { MdOutlineForum } from 'react-icons/md'
 import { IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline } from 'react-icons/io5'
 

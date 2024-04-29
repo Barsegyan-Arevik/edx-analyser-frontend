@@ -12,7 +12,7 @@ import PagesSection from '../components/Sections/PagesSection'
 import ForumSection from '../components/Sections/ForumSection'
 import { Grid, Typography } from '@mui/material'
 import SectionHeader from '../components/Sections/SectionHeader'
-import LastUpdateStatus from '../components/Charts/LastUpdateStatus'
+import LastUpdateStatus from '../components/LastUpdateStatus'
 import { useQuery } from 'react-query'
 
 interface ReportPageProps<T extends Report> {

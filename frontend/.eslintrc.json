@@ -29,9 +29,5 @@
       "error",
       "single"
     ]
-    //        "semi": [
-    //            "warn",
-    //            "always"
-    //        ]
   }
 }

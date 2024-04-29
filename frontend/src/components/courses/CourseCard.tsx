@@ -1,4 +1,4 @@
-import { Course } from '../models/course'
+import { Course } from '../../models/course'
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
