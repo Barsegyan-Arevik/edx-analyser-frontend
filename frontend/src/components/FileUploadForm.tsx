@@ -1,7 +1,8 @@
-import * as React from 'react'
-import { useState } from 'react';
+import * as React from 'react';
+import {useState} from 'react';
 import axios from 'axios';
-import {BASE_URL} from '../config'
+import {BASE_URL} from '../config';
+import {Button, Grid, Typography} from '@mui/material'
 
 const FileUploadForm = () => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -24,10 +25,38 @@ const FileUploadForm = () => {
     };
 
     return (
-        <div>
-            <input type="file" onChange={handleFileChange} />
-            <button onClick={handleUpload}>Upload</button>
-        </div>
+        <Grid container spacing={2} alignItems="center">
+            <Grid item>
+                <input
+                    accept=".zip"
+                    style={{display: 'none'}}
+                    id="file-upload"
+                    type="file"
+                    onChange={handleFileChange}
+                />
+                <label htmlFor="file-upload">
+                    <Button
+                        variant="outlined"
+                        component="span"
+                    >
+                        Выберите архив
+                    </Button>
+                </label>
+            </Grid>
+            <Grid item>
+                {selectedFile && <Typography>{selectedFile.name}</Typography>}
+            </Grid>
+            <Grid item>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleUpload}
+                    disabled={!selectedFile}
+                >
+                    Загрузка
+                </Button>
+            </Grid>
+        </Grid>
     );
 };
 
