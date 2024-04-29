@@ -1,6 +1,6 @@
 import * as React from 'react'
-import DatesLineChart from '../Charts/LineChart/DatesLineChart'
-import ChartWrapper from '../Charts/ChartWrapper/ChartWrapper'
+import DatesLineChart from '../Charts/DatesLineChart'
+import ChartWrapper from '../Charts/ChartWrapper'
 import {Box, Grid} from '@mui/material'
 import {VideoReport} from '../../models/report'
 import CourseElementInteractionTable, {RowData} from '../Charts/Table/CourseElementInteractionTable'

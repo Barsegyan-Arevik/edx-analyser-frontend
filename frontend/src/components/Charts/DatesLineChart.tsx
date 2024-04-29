@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { Box, Grid, Slider } from '@mui/material'
 import { LineChart } from '@mui/x-charts/LineChart'
-import { ChartSize } from '../../../utils/utils'
+import { ChartSize } from '../../utils/utils'
 
 export interface LineChartDate {
     date: Date;

@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { PieChart } from '@mui/x-charts'
-import { Grid } from '@mui/material'
-import { ChartSize } from '../../utils/utils'
+import {PieChart} from '@mui/x-charts'
+import {Grid} from '@mui/material'
+import {ChartSize} from '../../utils/utils'
 import './DonutsChart.css'
 
 export type DonutsChartData = {
@@ -22,19 +22,19 @@ export default function DonutsChart(props: DonutsChartProps) {
                     <div className={'label-vertical-line'} style={{
                         backgroundColor: index === 0 ? '#02CEA9' : index === 1 ? '#FEF045' : '#F06C79',
                         marginLeft: '15px'
-                    }} />
+                    }}/>
                     <div style={{
                         fontSize: '20px',
                         marginTop: '10px'
                     }}>{item.label}</div>
                 </Grid>
             ))}
-            <Grid item xs={12} md={12} justifyContent={'center'} style={{ textAlign: 'center' }}>
-                <div style={{ width: props.size.width, height: '16rem' }}>
+            <Grid item xs={12} md={12} justifyContent={'center'} style={{textAlign: 'center'}}>
+                <div style={{width: props.size.width, height: '16rem'}}>
                     <PieChart
                         colors={['#02CEA9', '#FEF045', '#F06C79']}
                         slotProps={{
-                            legend: { hidden: true }
+                            legend: {hidden: true}
                         }}
                         series={[
                             {

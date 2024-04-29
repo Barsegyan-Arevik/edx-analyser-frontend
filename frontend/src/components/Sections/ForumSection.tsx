@@ -1,5 +1,5 @@
 import * as React from 'react'
-import ForumActivityChart from '../Charts/ForumActivityChart/ForumActivityChart'
+import ForumActivityChart from '../Charts/ForumActivityChart'
 import { ForumReport } from '../../models/report'
 
 

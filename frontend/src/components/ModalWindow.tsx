@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Modal, Paper } from '@mui/material'
+import {Modal, Paper} from '@mui/material'
 
 type ModalWindowProps = {
     open: boolean;
@@ -10,11 +10,10 @@ type ModalWindowProps = {
 export default function ModalWindow(props: ModalWindowProps) {
 
     return (
-        <Paper sx={{ overflow: 'hidden' }}>
+        <Paper sx={{overflow: 'hidden'}}>
             <Modal
                 aria-labelledby="modal-title"
                 aria-describedby="modal-description"
-                //   className={classes.modal}
                 open={props.open}
                 onClose={props.handleClose}
                 closeAfterTransition

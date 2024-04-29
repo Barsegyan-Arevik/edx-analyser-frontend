@@ -1,4 +1,4 @@
-import ChartWrapper from '../Charts/ChartWrapper/ChartWrapper'
+import ChartWrapper from '../Charts/ChartWrapper'
 import * as React from 'react'
 import { PagesReport } from '../../models/report'
 import CoursePagePopularityTable, { RowData } from '../Charts/Table/CoursePagePopularityTable'
