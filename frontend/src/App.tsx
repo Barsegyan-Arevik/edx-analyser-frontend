@@ -17,6 +17,7 @@ import {
     VideoReportPage
 } from './pages/withReportSection'
 import NotFoundPage from './pages/NotFoundPage'
+import LoginPage from './pages/LoginPage'
 
 const menuItems = [
     {
@@ -66,6 +67,7 @@ const App = () => {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<WelcomePage />} />
+                <Route path="/login" element={<LoginPage/>} />
                 <Route
                     path="/courses/:courseId/*"
                     element={<CourseRoutes />}
