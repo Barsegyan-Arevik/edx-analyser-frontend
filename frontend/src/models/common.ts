@@ -2,7 +2,9 @@ export enum SectionType {
     TEXTBOOK = 'textbook',
     VIDEO = 'video',
     PROBLEMS = 'problem',
-    FORUM = 'forum'
+    FORUM = 'forum',
+    PAGES = 'pages',
+    COMMON = 'common'
 }
 
 export interface SectionActivity {

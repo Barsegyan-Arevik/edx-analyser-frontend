@@ -1,52 +1,68 @@
 import * as React from 'react'
-import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import {useEffect} from 'react'
+import {useParams} from 'react-router-dom'
 import PageBase from '../components/PageBase/PageBase'
-import { Report, ReportState } from '../models/report'
-import { BASE_URL } from '../config'
+import {Report, ReportState} from '../models/report'
+import {BASE_URL} from '../config'
 import CommonSection from '../components/Sections/CommonSection'
 import VideoSection from '../components/Sections/VideoSection'
 import TextbookSection from '../components/Sections/TextbookSection'
 import ProblemsSection from '../components/Sections/ProblemsSection'
 import PagesSection from '../components/Sections/PagesSection'
 import ForumSection from '../components/Sections/ForumSection'
-import { Grid, Typography } from '@mui/material'
+import {Grid, Typography} from '@mui/material'
 import SectionHeader from '../components/Sections/SectionHeader'
 import LastUpdateStatus from '../components/LastUpdateStatus'
-import { useQuery } from 'react-query'
+import {useQuery} from 'react-query'
+import {SectionType} from '../models/common'
 
 interface ReportPageProps<T extends Report> {
     report: T;
 }
 
-function getHeaderTextByReportType(reportType: string): string {
-    switch (reportType) {
-    case 'common':
-        return 'Аналитика по курсу'
-    case 'video':
-        return 'Просмотр видеоматериалов'
-    case 'textbook':
-        return 'Работа с учебником'
-    case 'problems':
-        return 'Решение задач'
-    case 'pages':
+function getHeaderTextByReportType(sectionType: SectionType): string {
+    switch (sectionType) {
+    case SectionType.PAGES:
         return 'Взаимодействие со страницами курса'
-    case 'forum':
+    case SectionType.COMMON:
+        return 'Аналитика по курсу'
+    case SectionType.FORUM:
         return 'Активность на форуме'
-    default:
-        return 'Unknown Report'
+    case SectionType.PROBLEMS:
+        return 'Решение задач'
+    case SectionType.TEXTBOOK:
+        return 'Работа с учебником'
+    case SectionType.VIDEO:
+        return 'Просмотр видеоматериалов'
+    }
+}
+
+function getUrlBySectionType(sectionType: SectionType): string {
+    switch (sectionType) {
+    case SectionType.PAGES:
+        return 'pages'
+    case SectionType.COMMON:
+        return 'common'
+    case SectionType.FORUM:
+        return 'forum'
+    case SectionType.PROBLEMS:
+        return 'problems'
+    case SectionType.TEXTBOOK:
+        return 'textbook'
+    case SectionType.VIDEO:
+        return 'video'
     }
 }
 
 
-function withReportSection<T extends Report>(SectionComponent: React.ComponentType<ReportPageProps<T>>, reportType: string) {
+function withReportSection<T extends Report>(SectionComponent: React.ComponentType<ReportPageProps<T>>, sectionType: SectionType) {
     return function ReportPage() {
-        const { courseId } = useParams()
+        const {courseId} = useParams()
 
-        const { data: report, isLoading, isError, error, refetch } = useQuery<T, Error>(
-            ['report', courseId, reportType],
+        const {data: report, isLoading, isError, error, refetch} = useQuery<T, Error>(
+            ['report', courseId, sectionType],
             async () => {
-                const response = await fetch(`${BASE_URL}/courses/${courseId}/${reportType}`)
+                const response = await fetch(`${BASE_URL}/courses/${courseId}/${getUrlBySectionType(sectionType)}`)
                 if (!response.ok) {
                     throw new Error('Error fetching data')
                 }
@@ -78,7 +94,7 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
                 <Grid container justifyContent={'space-between'} direction={'row'} paddingTop="30px" paddingLeft="30px"
                       paddingBottom="20px">
                     <Grid item>
-                        <SectionHeader text={getHeaderTextByReportType(reportType)} />
+                        <SectionHeader text={getHeaderTextByReportType(sectionType)}/>
                     </Grid>
                     <Grid item>
                         {
@@ -87,7 +103,8 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
                                     Данные загружаются...
                                 </Typography>) :
                                 isError ?
-                                    (<Typography color={'#405479'} variant="body2">Ошибка при загрузке данных: {error.message}</Typography>) :
+                                    (<Typography color={'#405479'} variant="body2">Ошибка при загрузке
+                                        данных: {error.message}</Typography>) :
                                     (<LastUpdateStatus
                                         lastTimeUpdated={new Date(report.last_time_updated)}
                                         onUpdateClick={() => {
@@ -99,16 +116,16 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
                     </Grid>
                 </Grid>
                 {!isLoading && !isError && report != null && report.report_state === ReportState.DONE && (
-                    <SectionComponent report={report} />
+                    <SectionComponent report={report}/>
                 )}
             </PageBase>
         )
     }
 }
 
-export const CommonReportPage = withReportSection(CommonSection, 'common')
-export const VideoReportPage = withReportSection(VideoSection, 'video')
-export const TextbookReportPage = withReportSection(TextbookSection, 'textbook')
-export const ProblemsReportPage = withReportSection(ProblemsSection, 'problems')
-export const PagesReportPage = withReportSection(PagesSection, 'pages')
-export const ForumReportPage = withReportSection(ForumSection, 'forum')
+export const CommonReportPage = withReportSection(CommonSection, SectionType.COMMON)
+export const VideoReportPage = withReportSection(VideoSection, SectionType.VIDEO)
+export const TextbookReportPage = withReportSection(TextbookSection, SectionType.TEXTBOOK)
+export const ProblemsReportPage = withReportSection(ProblemsSection, SectionType.PROBLEMS)
+export const PagesReportPage = withReportSection(PagesSection, SectionType.PAGES)
+export const ForumReportPage = withReportSection(ForumSection, SectionType.FORUM)
