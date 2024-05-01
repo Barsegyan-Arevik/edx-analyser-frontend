@@ -1,6 +1,6 @@
 import * as React from 'react'
 import {PieChart} from '@mui/x-charts'
-import {Grid} from '@mui/material'
+import {Grid, Typography} from '@mui/material'
 import {ChartSize} from '../../utils/utils'
 import './DonutsChart.css'
 
@@ -23,10 +23,9 @@ export default function DonutsChart(props: DonutsChartProps) {
                         backgroundColor: index === 0 ? '#02CEA9' : index === 1 ? '#FEF045' : '#F06C79',
                         marginLeft: '15px'
                     }}/>
-                    <div style={{
-                        fontSize: '20px',
+                    <Typography variant="body1" style={{
                         marginTop: '10px'
-                    }}>{item.label}</div>
+                    }}>{item.label}</Typography>
                 </Grid>
             ))}
             <Grid item xs={12} md={12} justifyContent={'center'} style={{textAlign: 'center'}}>
