@@ -15,6 +15,7 @@ import SectionHeader from '../components/Sections/SectionHeader'
 import LastUpdateStatus from '../components/LastUpdateStatus'
 import {useQuery} from 'react-query'
 import {SectionType} from '../models/common'
+import LoadingSectionSkeleton from '../components/LoadingSectionSkeleton'
 
 interface ReportPageProps<T extends Report> {
     report: T;
@@ -98,7 +99,7 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
                     </Grid>
                     <Grid item>
                         {
-                            isLoading ?
+                            isLoading || report == null || report.report_state === ReportState.IN_PROGRESS ?
                                 (<Typography color={'#405479'} variant="body2">
                                     Данные загружаются...
                                 </Typography>) :
@@ -115,9 +116,15 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
 
                     </Grid>
                 </Grid>
-                {!isLoading && !isError && report != null && report.report_state === ReportState.DONE && (
-                    <SectionComponent report={report}/>
-                )}
+                {
+                    isLoading || report == null || report.report_state === ReportState.IN_PROGRESS ? (
+                        <LoadingSectionSkeleton/>
+                    ): isError? (
+                        null
+                    ): (
+                        <SectionComponent report={report}/>
+                    )
+                }
             </PageBase>
         )
     }
