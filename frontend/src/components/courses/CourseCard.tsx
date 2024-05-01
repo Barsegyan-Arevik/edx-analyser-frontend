@@ -16,7 +16,7 @@ export default function CourseCard({ course }: { course: Course }) {
     return (
         <NavLink to={`/courses/${course.course_id}/common`} style={{ textDecoration: 'none' }}>
             <ListItem>
-                <Card style={{ display: 'flex', alignItems: 'center', width: '80em', paddingLeft: '1em' }}>
+                <Card style={{ display: 'flex', alignItems: 'center', width: '60em', paddingLeft: '1em' }}>
                     <div style={{ flex: '0 0 auto', marginRight: '16px' }}>
                         {imageLoaded ? (
                             <CardMedia
@@ -24,14 +24,14 @@ export default function CourseCard({ course }: { course: Course }) {
                                 height="4em"
                                 src={course.image_url}
                                 alt={course.name}
-                                style={{ width: 70, height: 70, borderRadius: '50%', objectFit: 'contain' }}
+                                style={{ width: 60, height: 60, borderRadius: '50%', objectFit: 'contain' }}
                             />
                         ) : (
-                            <div style={{ width: 70, height: 70, backgroundColor: '#ADD8E6', borderRadius: '50%' }} />
+                            <div style={{ width: 60, height: 60, backgroundColor: '#ADD8E6', borderRadius: '50%' }} />
                         )}
                     </div>
                     <CardContent style={{ flex: '1 1 auto' }}>
-                        <Typography gutterBottom variant="h6" component="div">
+                        <Typography gutterBottom variant="body1" component="div" noWrap style={{ maxWidth: 'calc(100% - 70px)', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                             {course.name}
                         </Typography>
                     </CardContent>
