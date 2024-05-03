@@ -1,6 +1,5 @@
-import {Skeleton} from '@mui/lab'
 import * as React from 'react'
-import {ListItem} from '@mui/material'
+import {ListItem, Skeleton} from '@mui/material'
 
 export const CourseSkeleton = () => {
     return (
