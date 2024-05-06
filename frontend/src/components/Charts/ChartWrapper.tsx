@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { useState } from 'react'
+import {useState} from 'react'
 import Paper from '@mui/material/Paper'
-import { Box, Button, Tooltip } from '@mui/material'
-import { SlMagnifier } from 'react-icons/sl'
-import { FiInfo } from 'react-icons/fi'
+import {Box, Button, Tooltip} from '@mui/material'
+import {SlMagnifier} from 'react-icons/sl'
+import {FiInfo} from 'react-icons/fi'
 import ModalWindow from '../ModalWindow'
 
 type ChartWrapperProps = {
@@ -26,7 +26,7 @@ export default function ChartWrapper(props: ChartWrapperProps) {
 
     return (
         <div>
-            <Paper style={{ minWidth: '400px' }}>
+            <Paper style={{minWidth: '400px'}}>
                 <Box
                     sx={{
                         display: 'flex',
@@ -37,20 +37,19 @@ export default function ChartWrapper(props: ChartWrapperProps) {
                         paddingBottom: '0.5rem',
                         paddingRight: 1,
                         fontSize: '1.7em'
-
                     }}
                 >
                     {props.chartTitle}
                     <div>
                         {props.popupChart ?
                             <Button onClick={handleOpenModalWindow}>
-                                <SlMagnifier />
+                                <SlMagnifier/>
                             </Button> : null
                         }
                         {props.additionalInfo ?
                             <Tooltip title={props.additionalInfo}>
                                 <Button>
-                                    <FiInfo />
+                                    <FiInfo/>
                                 </Button>
                             </Tooltip> : null
                         }
