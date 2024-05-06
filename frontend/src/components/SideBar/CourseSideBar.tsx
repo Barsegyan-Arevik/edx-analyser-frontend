@@ -75,6 +75,12 @@ export default function CourseSideBar(props: CourseSideBarProps) {
                              className={'link_text'}>{item.name}</div>
                     </NavLink>
                 ))}
+                {isOpen && (
+                <img
+                    src={require('../../images/undraw_screen_time_vkev.png')}
+                    style={{width: '270px', height: '240px', verticalAlign: 'bottom', transition: 'opacity 0.5s ease'}}
+                />
+            )}
             </div>
             <main>{props.children}</main>
         </div>
