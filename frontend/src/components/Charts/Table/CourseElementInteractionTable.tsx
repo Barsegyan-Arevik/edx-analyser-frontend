@@ -83,10 +83,10 @@ export default function CourseElementInteractionTable(props: TableThreeColumnsPr
     const uniqueViewsRange = maxUniqueViews - minUniqueViews
 
     return (
-        <Grid container spacing={2} justifyContent="center">
+        <Grid container justifyContent="center" style={{height: props.size.height}}>
             <SearchBar labelText={props.labelText} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            <Grid item xs={11} style={{ height: '55vh' }}>
-                <TableContainer sx={{ height: '100%' }}>
+            <Grid item xs={11}>
+                <TableContainer sx={{ height: props.size.width }}>
                     <Table stickyHeader size="small" aria-label="sticky table">
                         <TableHead>
                             <TableRow>
@@ -107,9 +107,9 @@ export default function CourseElementInteractionTable(props: TableThreeColumnsPr
                                 .map((row, index) => (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={index}>
                                         <TableCell style={{ width: '60%' }}>
-                                            {row.value.length > 50 ? (
+                                            {row.value.length > 43 ? (
                                                 <Tooltip title={row.value} placement="top">
-                                                    <span>{row.value.slice(0, 50)}...</span>
+                                                    <span>{row.value.slice(0, 43)}...</span>
                                                 </Tooltip>
                                             ) : (
                                                 row.value
