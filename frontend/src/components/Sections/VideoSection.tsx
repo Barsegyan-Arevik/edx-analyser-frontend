@@ -12,12 +12,12 @@ export type VideoSectionProps = {
 
 const baseDatesLineChartBoxSize: ChartSize = {
     width: '45rem',
-    height: '34rem'
+    height: '73vh'
 }
 
 const baseDatesLineChartSize: ChartSize = {
     width: '45rem',
-    height: '20rem'
+    height: '60vh'
 }
 
 const baseDatesLineChartSliderSize: ChartSize = {
@@ -100,7 +100,7 @@ export default function VideoSection(props: VideoSectionProps) {
                     />
                 </div>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5}>
                 <div className={'item_video_2'}>
                     <ChartWrapper
                         chartTitle="Популярность видеоматериалов"
@@ -112,11 +112,12 @@ export default function VideoSection(props: VideoSectionProps) {
                                 columnUniqueViews="Уникальные просмотры"
                                 labelText="Поиск видео..."
                                 size={{
-                                    width: '40rem',
-                                    height: '30rem'
+                                    width: '55vh',
+                                    height: '73vh'
                                 }}
                             />
                         }
+                        additionalInfo={'some text here'}
                     />
                 </div>
             </Grid>

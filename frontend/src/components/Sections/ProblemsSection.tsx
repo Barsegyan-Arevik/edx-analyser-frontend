@@ -13,13 +13,13 @@ export type ProblemsSectionProps = {
 };
 
 const baseTableSize: ChartSize = {
-    width: '50rem',
-    height: '30rem'
+    width: '55vh',
+    height: '73vh'
 }
 
 const donutsChartSize: ChartSize = {
-    width: '20rem',
-    height: '37rem'
+    width: '55vh',
+    height: '76vh'
 }
 
 function transformData(data: ProblemComplexity[]): RowData[] {
@@ -43,7 +43,7 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
 
     return (
         <Grid container spacing={2} justifyContent="center">
-            <Grid item xs={12} md={7}>
+            <Grid item xs={12} md={6}>
                 <ChartWrapper
                     chartTitle={boxTitleProblems}
                     chart={
@@ -53,6 +53,7 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
                             columnCount={columnCountProblems}
                             labelText={labelTextProblems}
                             tableSize={baseTableSize}
+                            isLink={true}
                         />
                     }
                     popupChart={
@@ -68,7 +69,7 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
                     additionalInfo={''}
                 />
             </Grid>
-            <Grid item xs={8} md={4}>
+            <Grid item xs={12} md={3}>
                 <ChartWrapper
                     chartTitle="Выводы по задачам"
                     chart={

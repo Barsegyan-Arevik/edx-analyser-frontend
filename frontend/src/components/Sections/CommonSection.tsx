@@ -53,11 +53,11 @@ export default function CommonSection(props: CommonSectionProps) {
                                 points={weeklyActivityChart}
                                 boxSize={{
                                     width: '50rem',
-                                    height: '19rem'
+                                    height: '55vh'
                                 }}
                                 lineChartSize={{
                                     width: '50rem',
-                                    height: '14rem'
+                                    height: '45vh'
                                 }}
                                 sliderSize={{
                                     width: '47rem',
