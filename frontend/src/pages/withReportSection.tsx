@@ -89,7 +89,6 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
                 }
             }
         }, [report, isError, refetch])
-
         return (
             <PageBase>
                 <Grid container justifyContent={'space-between'} direction={'row'} paddingTop="30px" paddingLeft="30px"
