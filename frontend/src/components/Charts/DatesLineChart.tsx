@@ -38,8 +38,8 @@ export default function DatesLineChart(props: DatesLineChartExtendedProps) {
     }
 
     return (
-        <Grid container spacing={2} justifyContent="center">
-            <Grid item xs={12} md={12} height={'55vh'}>
+        <Grid container justifyContent="center" style={{height: props.boxSize.height}}>
+            <Grid item xs={12} md={12} height={props.lineChartSize.height}>
                 <LineChart
                     xAxis={[{
                         data: filteredDates,
@@ -63,7 +63,8 @@ export default function DatesLineChart(props: DatesLineChartExtendedProps) {
                 <Box
                     sx={{
                         bgcolor: 'background.paper',
-                        p: 4,
+                        paddingLeft: 3,
+                        paddingRight: 3,
                         borderRadius: 2
                     }}
                 >
