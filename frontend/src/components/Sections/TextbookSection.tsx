@@ -25,8 +25,8 @@ const TextbookSection: React.FC<TextbookSectionProps> = (props) => {
     )
 
     return (
-        <Grid container spacing={2} direction="row" justifyContent="center" margin={2}>
-            <Grid item xs={12} md={7}>
+        <Grid container spacing={2} direction="row" justifyContent="center">
+            <Grid item xs={12} md={6}>
                 <ChartWrapper
                     chartTitle="Взаимодействие с учебником"
                     chart={
@@ -37,8 +37,8 @@ const TextbookSection: React.FC<TextbookSectionProps> = (props) => {
                             columnUniqueViews="Уникальные просмотры"
                             labelText="Поиск главы..."
                             size={{
-                                width: '50rem',
-                                height: '30rem'
+                                width: '55vh',
+                                height: '73vh'
                             }}
                         />
                     }
@@ -55,9 +55,10 @@ const TextbookSection: React.FC<TextbookSectionProps> = (props) => {
                             columnCount="Количество поисков"
                             labelText="Поиск слова..."
                             tableSize={{
-                                width: '30rem',
-                                height: '30rem'
+                                width: '55vh',
+                                height: '73vh'
                             }}
+                            isLink={false}
                         />
                     }
                     // popupChart={
@@ -71,6 +72,7 @@ const TextbookSection: React.FC<TextbookSectionProps> = (props) => {
                     //         modalTableSize={modalTableSizeSearchedTerms}
                     //     />
                     // }
+                    additionalInfo={'Какой-то текст здесь'}
                 />
             </Grid>
         </Grid>
