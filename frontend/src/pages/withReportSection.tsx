@@ -16,6 +16,7 @@ import LastUpdateStatus from '../components/LastUpdateStatus'
 import {useQuery} from 'react-query'
 import {SectionType} from '../models/common'
 import LoadingSectionSkeleton from '../components/LoadingSectionSkeleton'
+import {axiosApiInstance} from '../interceptors'
 
 interface ReportPageProps<T extends Report> {
     report: T;
@@ -63,11 +64,8 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
         const {data: report, isLoading, isError, error, refetch} = useQuery<T, Error>(
             ['report', courseId, sectionType],
             async () => {
-                const response = await fetch(`${BASE_URL}/courses/${courseId}/${getUrlBySectionType(sectionType)}`)
-                if (!response.ok) {
-                    throw new Error('Error fetching data')
-                }
-                return response.json()
+                const response = await axiosApiInstance.get(`${BASE_URL}/courses/${courseId}/${getUrlBySectionType(sectionType)}`)
+                return response.data
             },
             {
                 staleTime: 0
