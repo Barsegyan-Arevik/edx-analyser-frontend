@@ -35,8 +35,8 @@ export default function DonutsChart(props: DonutsChartProps) {
                     </Typography>
                 </Grid>
             ))}
-            <Grid item xs={12} md={12} justifyContent={'center'} alignItems={'center'} style={{textAlign: 'center'}}>
-                <div style={{height: '16rem', justifyContent: 'center'}}>
+            <Grid item xs={12} md={12} justifyContent={'center'} style={{textAlign: 'center'}}>
+                <div style={{height: '14rem', justifyContent: 'center'}}>
                     <PieChart
                         colors={['#02CEA9', '#FEF045', '#F06C79']}
                         slotProps={{
@@ -45,12 +45,12 @@ export default function DonutsChart(props: DonutsChartProps) {
                         series={[
                             {
                                 data: props.data,
-                                innerRadius: 70,
-                                outerRadius: 120,
+                                innerRadius: 50,
+                                outerRadius: 90,
                                 paddingAngle: 1,
                                 cornerRadius: 3,
-                                startAngle: -90,
-                                endAngle: 90,
+                                startAngle: 0,
+                                endAngle: 360,
                             }
                         ]}
                     />
