@@ -14,6 +14,7 @@ export type DatesLineChartExtendedProps = {
     boxSize: ChartSize;
     lineChartSize: ChartSize;
     sliderSize: ChartSize;
+    label: string;
 }
 
 
@@ -54,7 +55,8 @@ export default function DatesLineChart(props: DatesLineChartExtendedProps) {
                     series={[
                         {
                             data: filteredValues,
-                            color: '#02CEA9'
+                            color: '#02CEA9',
+                            label: props.label
                         }
                     ]}
                 />

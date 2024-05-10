@@ -74,6 +74,7 @@ export default function VideoSection(props: VideoSectionProps) {
                                 boxSize={baseDatesLineChartBoxSize}
                                 lineChartSize={baseDatesLineChartSize}
                                 sliderSize={baseDatesLineChartSliderSize}
+                                label={'Количество воспроизведений'}
                             />
                         }
                         popupChart={
@@ -94,6 +95,7 @@ export default function VideoSection(props: VideoSectionProps) {
                                     boxSize={modaDatesLineChartBoxSize}
                                     lineChartSize={modalDatesLineChartSize}
                                     sliderSize={modalDatesLineChartSliderSize}
+                                    label={'Количество воспроизведений'}
                                 />
                             </Box>
                         }

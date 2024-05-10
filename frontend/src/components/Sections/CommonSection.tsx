@@ -63,6 +63,7 @@ export default function CommonSection(props: CommonSectionProps) {
                                     width: '47rem',
                                     height: '19rem'
                                 }}
+                                label={'Количество уникальных слушателей'}
                             />
                         }
                     />
