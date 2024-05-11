@@ -86,7 +86,7 @@ export default function StudentsCommonTable(props: StudentsCommonTableProps) {
                                         <TableCell
                                             style={{
                                                 fontSize: '16px',
-                                                color: '#405479',
+                                                color: '#000000',
                                                 backgroundColor: getBlueColorScale(daysRange.range, daysRange.minVal, student.total_days)
                                             }}
                                         >
@@ -96,7 +96,7 @@ export default function StudentsCommonTable(props: StudentsCommonTableProps) {
                                         <TableCell
                                             style={{
                                                 fontSize: '16px',
-                                                color: '#405479',
+                                                color: '#000000',
                                                 backgroundColor: getBlueColorScale(hoursRange.range, hoursRange.minVal, student.total_hours)
                                             }}
                                         >
@@ -106,7 +106,7 @@ export default function StudentsCommonTable(props: StudentsCommonTableProps) {
                                         <TableCell
                                             style={{
                                                 fontSize: '16px',
-                                                color: '#405479',
+                                                color: '#000000',
                                                 backgroundColor: getBlueColorScale(videoWatching.range, videoWatching.minVal, student.video_views)
                                             }}
                                         >
@@ -116,7 +116,7 @@ export default function StudentsCommonTable(props: StudentsCommonTableProps) {
                                         <TableCell
                                             style={{
                                                 fontSize: '16px',
-                                                color: '#405479',
+                                                color: '#000000',
                                                 backgroundColor: getBlueColorScale(textbookScrolling.range, textbookScrolling.minVal, student.textbook_views)
                                             }}
                                         >
@@ -126,7 +126,7 @@ export default function StudentsCommonTable(props: StudentsCommonTableProps) {
                                         <TableCell
                                             style={{
                                                 fontSize: '16px',
-                                                color: '#405479',
+                                                color: '#000000',
                                                 backgroundColor: getBlueColorScale(problemsSolving.range, problemsSolving.minVal, student.solved_tasks)
                                             }}
                                         >
