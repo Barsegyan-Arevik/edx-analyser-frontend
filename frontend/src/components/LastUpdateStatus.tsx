@@ -12,9 +12,9 @@ export default function LastUpdateStatus(props: UpdateStatusProps) {
         <div>
             <Typography color={'#405479'} display="inline" variant="body2"> Последнее
                 обновление: {props.lastTimeUpdated.toLocaleString()} </Typography>
-            <IconButton style={{width: '30px', height: '30px'}} onClick={props.onUpdateClick}>
-                <FaArrowRotateLeft color={'#5471E7'}/>
-            </IconButton>
+            {/*<IconButton style={{width: '30px', height: '30px'}} onClick={props.onUpdateClick}>*/}
+            {/*    <FaArrowRotateLeft color={'#5471E7'}/>*/}
+            {/*</IconButton>*/}
         </div>
     )
 }

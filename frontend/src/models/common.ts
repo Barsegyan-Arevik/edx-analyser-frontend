@@ -4,7 +4,8 @@ export enum SectionType {
     PROBLEMS = 'problem',
     FORUM = 'forum',
     PAGES = 'pages',
-    COMMON = 'common'
+    COMMON = 'common',
+    STUDENTS = 'students'
 }
 
 export interface SectionActivity {
