@@ -47,12 +47,21 @@ export function getGreenColorScale(range: number, minValue: number, value: numbe
     return `rgb(${color.join(',')})`
 }
 
+function hexToRgb(hex) {
+    const bigint = parseInt(hex, 16)
+    const r = (bigint >> 16) & 255
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+
+    return [r, g, b]
+}
+
 export function getBlueColorScale(timeRange: number, minValue: number, value: number) {
     value = value - minValue
     const ratio = value / (timeRange) // Max population value
 
     //     const purpleColor = [163, 213, 255]
-    const purpleColor = [255,127,80]
+    const purpleColor = [84, 113, 231]
     const mediumBlueColor = [204, 232, 255]
     const paleBlueColor = [217, 240, 255]
 
