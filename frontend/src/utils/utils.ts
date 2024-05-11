@@ -52,7 +52,7 @@ export function getBlueColorScale(timeRange: number, minValue: number, value: nu
     const ratio = value / (timeRange) // Max population value
 
     //     const purpleColor = [163, 213, 255]
-    const purpleColor = [255, 50, 50]
+    const purpleColor = [255,127,80]
     const mediumBlueColor = [204, 232, 255]
     const paleBlueColor = [217, 240, 255]
 
