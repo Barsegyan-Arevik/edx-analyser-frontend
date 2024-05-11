@@ -25,21 +25,13 @@ export function lerp(a: number, b: number, t: number) {
 }
 
 export function getGreenColorScale(range: number, minValue: number, value: number) {
-    // const ratio = value / range; // Max population value
-    // const brightestColor = [2, 206, 169];
-    // const mediumColor = [147, 225, 217]
-    // const paleColor = [221, 255, 247];
-    // const color = brightestColor.map((channel, index) =>
-    //     Math.round(lerp(paleColor[index], channel, ratio))
-    // );
-    // return `rgb(${color.join(',')})`;
-    //
+
     value = value - minValue
     const ratio = value / (range) // Max population value
 
-    const purpleColor = [2, 206, 169]
-    const mediumBlueColor = [131, 197, 190]
-    const paleBlueColor = [237, 246, 249]
+    const purpleColor = [46, 196, 180]
+    const mediumBlueColor = [203, 243, 240]
+    const paleBlueColor = [255, 255, 255]
 
     let color: number[]
 

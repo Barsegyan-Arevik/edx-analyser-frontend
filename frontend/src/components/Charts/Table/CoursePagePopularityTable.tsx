@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -8,8 +8,8 @@ import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
 import Tooltip from '@mui/material/Tooltip'
-import { Grid } from '@mui/material'
-import { ChartSize, getGreenColorScale } from '../../../utils/utils'
+import {Grid} from '@mui/material'
+import {ChartSize, getGreenColorScale} from '../../../utils/utils'
 import SearchBar from './SearchBar'
 
 export interface RowData {
@@ -23,6 +23,7 @@ export type CoursePagePopularityTableProps = {
     columnCount: string;
     labelText: string;
     tableSize: ChartSize;
+    isLink: boolean;
 }
 
 const CoursePagePopularityTable: React.FC<CoursePagePopularityTableProps> = (props) => {
@@ -58,31 +59,43 @@ const CoursePagePopularityTable: React.FC<CoursePagePopularityTableProps> = (pro
     const minTime = Math.min(...timeSecArray)
     const maxTime = Math.max(...timeSecArray)
     const timeRange = maxTime - minTime
-
+    const renderCellValue = (value: string) => {
+        if (props.isLink) {
+            return <a style={{color: '#405479'}} href={value}>{value}</a>;
+        } else {
+            return value;
+        }
+    }
     return (
-        <Grid container spacing={2} justifyContent="center">
-            <SearchBar labelText={props.labelText} searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-            <Grid item xs={11} style={{ height: '55vh' }}>
-                <TableContainer sx={{ height: '100%' }}>
+        <Grid container justifyContent="center" style={{height: props.tableSize.height}}>
+            <SearchBar labelText={props.labelText} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
+            <Grid item xs={11}>
+                <TableContainer style={{height: props.tableSize.width}}>
                     <Table stickyHeader size="small" aria-label="sticky table">
                         <TableHead>
                             <TableRow>
-                                <TableCell style={{ width: '70%' }}>{props.columnName}</TableCell>
-                                <TableCell style={{ width: '30%' }}>{props.columnCount}</TableCell>
+                                <TableCell style={{width: '70%'}}>{props.columnName}</TableCell>
+                                <TableCell style={{width: '30%'}}>{props.columnCount}</TableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                        <TableBody sx={{'&:last-child td, &:last-child th': {border: 0}}}>
                             {filteredRows
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                        <TableCell style={{ width: '70%' }}>
+                                        <TableCell style={{width: '70%'}}>
                                             {row.value.length > 50 ? (
-                                                <Tooltip title={row.value} placement="top">
-                                                    <span>{row.value.slice(0, 50)}...</span>
-                                                </Tooltip>
+                                                props.isLink ? (
+                                                    <Tooltip title={row.value} placement="top">
+                                                        <a style={{color: '#405479'}} href={row.value}>{row.value.slice(0, 50)}...</a>
+                                                    </Tooltip>
+                                                ) : (
+                                                    <Tooltip title={row.value} placement="top">
+                                                        <span>{row.value.slice(0, 50)}...</span>
+                                                    </Tooltip>
+                                                )
                                             ) : (
-                                                row.value
+                                                renderCellValue(row.value)
                                             )}
                                         </TableCell>
                                         <TableCell

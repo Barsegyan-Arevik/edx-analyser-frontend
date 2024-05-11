@@ -87,12 +87,12 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
                 }
             }
         }, [report, isError, refetch])
-
         return (
             <PageBase>
                 <Grid container justifyContent={'space-between'} direction={'row'} paddingTop="30px" paddingLeft="30px"
                       paddingBottom="20px">
                     <Grid item>
+                        {/*{sectionType === SectionType.COMMON ? <SectionHeader text={getHeaderTextByReportType(sectionType) + ' ' + report.course_id}/> : <SectionHeader text={getHeaderTextByReportType(sectionType)}/>}*/}
                         <SectionHeader text={getHeaderTextByReportType(sectionType)}/>
                     </Grid>
                     <Grid item>
@@ -117,9 +117,9 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
                 {
                     isLoading || report == null || report.report_state === ReportState.IN_PROGRESS ? (
                         <LoadingSectionSkeleton/>
-                    ): isError? (
+                    ) : isError ? (
                         null
-                    ): (
+                    ) : (
                         <SectionComponent report={report}/>
                     )
                 }

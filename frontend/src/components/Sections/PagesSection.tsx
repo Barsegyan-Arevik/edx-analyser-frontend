@@ -4,6 +4,7 @@ import { PagesReport } from '../../models/report'
 import CoursePagePopularityTable, { RowData } from '../Charts/Table/CoursePagePopularityTable'
 import CoursePagePopularityTableWithStatistics from '../Charts/Table/CoursePagePopularityTableWithStatistics'
 import { ChartSize } from '../../utils/utils'
+import {Grid} from '@mui/material';
 
 export type PagesSectionProps = {
     report: PagesReport
@@ -17,8 +18,8 @@ const convertToRowData = (item: { page_link: string; visits_count: number; }): R
 }
 
 const baseTableSize: ChartSize = {
-    width: '50rem',
-    height: '30rem'
+    width: '55vh',
+    height: '73vh'
 }
 
 const convertPagesReportToRowDataArray = (pagesReport: PagesReport): RowData[] => {
@@ -34,8 +35,8 @@ export default function PagesSection(
     const labelTextPages = 'Поиск ссылки...'
 
     return (
-        <div className="document_interaction_container">
-            <div className="item_doc_2">
+        <Grid container direction="row" justifyContent="center">
+            <Grid item xs={12} md={9}>
                 <ChartWrapper
                     chartTitle={boxTitlePages}
                     chart={
@@ -45,6 +46,7 @@ export default function PagesSection(
                             columnCount={columnCountPages}
                             labelText={labelTextPages}
                             tableSize={baseTableSize}
+                            isLink={true}
                         />}
                     popupChart={
                         <CoursePagePopularityTableWithStatistics
@@ -58,7 +60,7 @@ export default function PagesSection(
                     }
                     additionalInfo={''}
                 />
-            </div>
-        </div>
+            </Grid>
+        </Grid>
     )
 }

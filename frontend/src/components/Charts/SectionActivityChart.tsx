@@ -40,7 +40,7 @@ export default function SectionActivityChart(
 ) {
     console.log(props.items)
     return (
-        <Paper style={{ width: '100%' }}>
+        <Paper style={{ width: '100%', height: '100%' }}>
             <Grid item spacing={1}>
                 <Box
                     sx={{

@@ -16,20 +16,27 @@ export type DonutsChartProps = {
 
 export default function DonutsChart(props: DonutsChartProps) {
     return (
-        <Grid container spacing={2} justifyContent="center">
+        <Grid container justifyContent="center" style={{height: props.size.height}}>
             {props.data.map((item, index) => (
                 <Grid item xs={12} key={index} display={'flex'}>
-                    <div className={'label-vertical-line'} style={{
-                        backgroundColor: index === 0 ? '#02CEA9' : index === 1 ? '#FEF045' : '#F06C79',
-                        marginLeft: '15px'
-                    }}/>
-                    <Typography variant="body1" style={{
-                        marginTop: '10px'
-                    }}>{item.label}</Typography>
+                    <div className={'label-vertical-line'}
+                         style={{
+                             backgroundColor: index === 0 ? '#02CEA9' : index === 1 ? '#FEF045' : '#F06C79',
+                             marginLeft: '25px'
+                         }}
+                    />
+                    <Typography
+                        variant="body1"
+                        style={{
+                            marginTop: '20px'
+                        }}
+                    >
+                        {item.label}
+                    </Typography>
                 </Grid>
             ))}
             <Grid item xs={12} md={12} justifyContent={'center'} style={{textAlign: 'center'}}>
-                <div style={{width: props.size.width, height: '16rem'}}>
+                <div style={{height: '14rem', justifyContent: 'center'}}>
                     <PieChart
                         colors={['#02CEA9', '#FEF045', '#F06C79']}
                         slotProps={{
@@ -38,13 +45,12 @@ export default function DonutsChart(props: DonutsChartProps) {
                         series={[
                             {
                                 data: props.data,
-                                innerRadius: 70,
-                                outerRadius: 120,
+                                innerRadius: 50,
+                                outerRadius: 90,
                                 paddingAngle: 1,
                                 cornerRadius: 3,
-                                startAngle: -90,
-                                endAngle: 90,
-                                cx: 150
+                                startAngle: 0,
+                                endAngle: 360,
                             }
                         ]}
                     />

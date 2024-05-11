@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { Box } from '@mui/system'
+import * as React from 'react';
+import {Box} from '@mui/material';
 
 export type AggregateMeasureBoxProps = {
     measure: string;
@@ -27,7 +27,6 @@ export default function AggregateMeasureBox(props: AggregateMeasureBoxProps) {
                 }}
             >
                 {props.value}
-
             </Box>
             <Box
                 sx={{
@@ -39,5 +38,5 @@ export default function AggregateMeasureBox(props: AggregateMeasureBoxProps) {
                 {props.measure}
             </Box>
         </Box>
-    )
+    );
 }

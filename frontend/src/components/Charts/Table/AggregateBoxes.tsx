@@ -1,13 +1,12 @@
 import AggregateMeasureBox from '../Box/AggregateMeasureBox'
-import { Box } from '@mui/material'
+import { Grid } from '@mui/material'
 import * as React from 'react'
 import { useMemo } from 'react'
-import './AggregateBoxes.css'
+// import './AggregateBoxes.css'
 
 type AggregateBoxesProps = {
     numbersArray: Array<number>
 }
-
 
 export function AggregateBoxes(props: AggregateBoxesProps) {
     const minTime = useMemo(() => Math.min(...props.numbersArray), [props.numbersArray])
@@ -21,31 +20,19 @@ export function AggregateBoxes(props: AggregateBoxesProps) {
     }, [props.numbersArray])
 
     return (
-        <Box
-            sx={{
-                borderRadius: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                marginLeft: '20px',
-                justifyContent: 'space-between'
-            }}
-        >
-            <div className={'one-box'}>
+        <Grid container spacing={2} direction={'column'} justifyContent={'space-between'}>
+            <Grid item xs={12} md={3}>
                 <AggregateMeasureBox measure={'Минимум'} value={minTime} />
-            </div>
-
-            <div className={'one-box'}>
-                <AggregateMeasureBox measure={'Maксимум'} value={maxTime} />
-            </div>
-
-            <div className={'one-box'}>
+            </Grid>
+            <Grid item xs={12} md={3}>
+                <AggregateMeasureBox measure={'Максимум'} value={maxTime} />
+            </Grid>
+            <Grid item xs={12} md={3}>
                 <AggregateMeasureBox measure={'Среднее значение'} value={meanTime} />
-            </div>
-
-            <div className={'one-box'}>
+            </Grid>
+            <Grid item xs={12} md={3}>
                 <AggregateMeasureBox measure={'Медиана'} value={medianTime} />
-            </div>
-        </Box>
+            </Grid>
+        </Grid>
     )
 }

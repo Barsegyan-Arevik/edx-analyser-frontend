@@ -12,12 +12,12 @@ export type VideoSectionProps = {
 
 const baseDatesLineChartBoxSize: ChartSize = {
     width: '45rem',
-    height: '34rem'
+    height: '73vh'
 }
 
 const baseDatesLineChartSize: ChartSize = {
     width: '45rem',
-    height: '20rem'
+    height: '60vh'
 }
 
 const baseDatesLineChartSliderSize: ChartSize = {
@@ -76,31 +76,32 @@ export default function VideoSection(props: VideoSectionProps) {
                                 sliderSize={baseDatesLineChartSliderSize}
                             />
                         }
-                        popupChart={
-                            <Box
-                                sx={{
-                                    position: 'absolute',
-                                    top: '50%',
-                                    left: '50%',
-                                    transform: 'translate(-50%, -50%)',
-                                    bgcolor: 'background.paper',
-                                    boxShadow: 24,
-                                    p: 4,
-                                    borderRadius: 2
-                                }}
-                            >
-                                <DatesLineChart
-                                    points={dailyVideoAmount}
-                                    boxSize={modaDatesLineChartBoxSize}
-                                    lineChartSize={modalDatesLineChartSize}
-                                    sliderSize={modalDatesLineChartSliderSize}
-                                />
-                            </Box>
-                        }
+                        // popupChart={
+                        //     <Box
+                        //         sx={{
+                        //             position: 'absolute',
+                        //             top: '50%',
+                        //             left: '50%',
+                        //             transform: 'translate(-50%, -50%)',
+                        //             bgcolor: 'background.paper',
+                        //             boxShadow: 24,
+                        //             p: 4,
+                        //             borderRadius: 2
+                        //         }}
+                        //     >
+                        //         <DatesLineChart
+                        //             points={dailyVideoAmount}
+                        //             boxSize={modaDatesLineChartBoxSize}
+                        //             lineChartSize={modalDatesLineChartSize}
+                        //             sliderSize={modalDatesLineChartSliderSize}
+                        //             label={'Количество воспроизведений'}
+                        //         />
+                        //     </Box>
+                        // }
                     />
                 </div>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={5}>
                 <div className={'item_video_2'}>
                     <ChartWrapper
                         chartTitle="Популярность видеоматериалов"
@@ -112,8 +113,8 @@ export default function VideoSection(props: VideoSectionProps) {
                                 columnUniqueViews="Уникальные просмотры"
                                 labelText="Поиск видео..."
                                 size={{
-                                    width: '40rem',
-                                    height: '30rem'
+                                    width: '55vh',
+                                    height: '73vh'
                                 }}
                             />
                         }
