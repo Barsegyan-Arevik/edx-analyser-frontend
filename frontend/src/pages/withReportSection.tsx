@@ -69,7 +69,7 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
         const {data: report, isLoading, isError, error, refetch} = useQuery<T, Error>(
             ['report', courseId, sectionType],
             async () => {
-                const response = await axiosApiInstance.get(`${BASE_URL}/courses/${courseId}/${getUrlBySectionType(sectionType)}?force-update=true`)
+                const response = await axiosApiInstance.get(`${BASE_URL}/courses/${courseId}/${getUrlBySectionType(sectionType)}`)
                 return response.data
             },
             {
