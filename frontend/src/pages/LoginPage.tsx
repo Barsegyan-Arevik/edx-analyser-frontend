@@ -14,8 +14,6 @@ function LoginForm() {
             const response = await axiosApiInstance.post(`${BASE_URL}profile/auth`, {username, password});
             const accessToken = response.data.access
             const refreshToken = response.data.refresh
-            console.log(accessToken)
-            console.log(refreshToken)
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
             window.location.href = '/'
@@ -25,7 +23,7 @@ function LoginForm() {
     };
 
     return (
-        <Grid container justifyContent="center" alignItems="center" style={{ minHeight: '100vh' }}>
+        <Grid container justifyContent="center" alignItems="center" style={{minHeight: '100vh'}}>
             <Grid item xs={12} md={6}>
                 <Paper elevation={3} style={{padding: '16px'}}>
                     <Typography variant="h6" gutterBottom>

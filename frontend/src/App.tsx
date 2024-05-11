@@ -6,7 +6,7 @@ import { MdOutlineAnalytics, MdOutlineForum } from 'react-icons/md'
 import { FiMousePointer } from 'react-icons/fi'
 import { IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline } from 'react-icons/io5'
 import { RiTeamLine } from 'react-icons/ri'
-import WelcomePage from './pages/WelcomePage'
+import CoursesPage from './pages/CoursesPage'
 import { HiOutlineHome } from 'react-icons/hi2'
 import {
     CommonReportPage,
@@ -66,7 +66,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<WelcomePage />} />
+                <Route path="/" element={<CoursesPage />} />
                 <Route path="/login" element={<LoginPage/>} />
                 <Route
                     path="/courses/:courseId/*"

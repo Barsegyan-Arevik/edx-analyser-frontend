@@ -102,7 +102,7 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
                     </Grid>
                     <Grid item>
                         {
-                            isLoading || report == null || report.report_state === ReportState.IN_PROGRESS ?
+                            isLoading || report == null || report.report_state == ReportState.IN_PROGRESS ?
                                 (<Typography color={'#405479'} variant="body2">
                                     Данные загружаются...
                                 </Typography>) :
@@ -120,11 +120,9 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
                     </Grid>
                 </Grid>
                 {
-                    isLoading || report == null || report.report_state === ReportState.IN_PROGRESS ? (
+                    isLoading || report == null || report.report_state == ReportState.IN_PROGRESS ? (
                         <LoadingSectionSkeleton/>
-                    ) : isError ? (
-                        null
-                    ) : (
+                    ) : isError ? null : (
                         <SectionComponent report={report}/>
                     )
                 }

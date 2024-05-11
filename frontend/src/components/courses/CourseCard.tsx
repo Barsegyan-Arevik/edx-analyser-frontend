@@ -16,7 +16,7 @@ export default function CourseCard({ course }: { course: Course }) {
     return (
         <NavLink to={`/courses/${course.course_id}/common`} style={{ textDecoration: 'none' }}>
             <ListItem>
-                <Card style={{ display: 'flex', alignItems: 'center', width: '60em', paddingLeft: '1em' }}>
+                <Card style={{ display: 'flex', alignItems: 'center', width: '80em', paddingLeft: '1em' }}>
                     <div style={{ flex: '0 0 auto', marginRight: '16px' }}>
                         {imageLoaded ? (
                             <CardMedia

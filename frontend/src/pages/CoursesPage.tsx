@@ -10,7 +10,7 @@ import {CourseSkeleton} from '../components/courses/CourseSkeleton'
 import {Course} from '../models/course'
 import {axiosApiInstance} from '../interceptors'
 
-export default function WelcomePage() {
+export default function CoursesPage() {
     const fetchCourses = async () => {
         try {
             const response = await axiosApiInstance.get(`${BASE_URL}courses/`);
@@ -50,21 +50,21 @@ export default function WelcomePage() {
                                     course={course}/>)
                             )}
             </List>
-            <Fab
-                onClick={handleOpenForm}
-                color="primary"
-                aria-label="add"
-                sx={{
-                    position: 'fixed',
-                    bottom: '5vh',
-                    right: '5vh',
-                }}
-            >
-                <FaPlus size={24} lightingColor={'#405479'}/>
-            </Fab>
-            {isFormOpen ? (
-                <CreateCourseForm open={isFormOpen} onClose={handleCloseForm}/>
-            ) : null}
+            {/*<Fab*/}
+            {/*    onClick={handleOpenForm}*/}
+            {/*    color="primary"*/}
+            {/*    aria-label="add"*/}
+            {/*    sx={{*/}
+            {/*        position: 'fixed',*/}
+            {/*        bottom: '5vh',*/}
+            {/*        right: '5vh',*/}
+            {/*    }}*/}
+            {/*>*/}
+            {/*    <FaPlus size={24} lightingColor={'#405479'}/>*/}
+            {/*</Fab>*/}
+            {/*{isFormOpen ? (*/}
+            {/*    <CreateCourseForm open={isFormOpen} onClose={handleCloseForm}/>*/}
+            {/*) : null}*/}
         </Grid>
     );
 }
