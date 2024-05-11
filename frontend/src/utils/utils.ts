@@ -51,7 +51,8 @@ export function getBlueColorScale(timeRange: number, minValue: number, value: nu
     value = value - minValue
     const ratio = value / (timeRange) // Max population value
 
-    const purpleColor = [163, 213, 255]
+    //     const purpleColor = [163, 213, 255]
+    const purpleColor = [255, 50, 50]
     const mediumBlueColor = [204, 232, 255]
     const paleBlueColor = [217, 240, 255]
 
@@ -78,8 +79,4 @@ export function getLabelByAttemptCount(attemptCount: AttemptCount): string {
     case AttemptCount.MORE_ATTEMPTS:
         return 'задач решены с третьей и более попыток'
     }
-}
-
-export const generateUniqueId = (): number => {
-    return Math.floor(Math.random() * Date.now())
 }
