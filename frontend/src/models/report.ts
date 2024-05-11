@@ -2,6 +2,7 @@ import { SectionActivity } from './common'
 import { ProblemComplexity, ProblemSummary } from './problems'
 import { ForumQuestion } from './forum'
 import { TextbookViewsCount, WordSearchCount } from './textbook'
+import {Student} from './students'
 
 
 export enum ReportState {
@@ -64,5 +65,11 @@ export interface PagesReport extends Report {
 export interface ForumReport extends Report {
     forum_question_chart: {
         items: ForumQuestion[]
+    }
+}
+
+export interface StudentsReport extends Report {
+    students_chart: {
+        items: Student[]
     }
 }

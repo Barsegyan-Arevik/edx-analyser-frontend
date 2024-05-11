@@ -17,6 +17,7 @@ import {useQuery} from 'react-query'
 import {SectionType} from '../models/common'
 import LoadingSectionSkeleton from '../components/LoadingSectionSkeleton'
 import {axiosApiInstance} from '../interceptors'
+import StudentsSection from '../components/Sections/StudentsSection'
 
 interface ReportPageProps<T extends Report> {
     report: T;
@@ -36,6 +37,8 @@ function getHeaderTextByReportType(sectionType: SectionType): string {
         return 'Работа с учебником'
     case SectionType.VIDEO:
         return 'Просмотр видеоматериалов'
+    case SectionType.STUDENTS:
+        return 'Студенты'
     }
 }
 
@@ -53,6 +56,8 @@ function getUrlBySectionType(sectionType: SectionType): string {
         return 'textbook'
     case SectionType.VIDEO:
         return 'video'
+    case SectionType.STUDENTS:
+        return 'students'
     }
 }
 
@@ -64,7 +69,7 @@ function withReportSection<T extends Report>(SectionComponent: React.ComponentTy
         const {data: report, isLoading, isError, error, refetch} = useQuery<T, Error>(
             ['report', courseId, sectionType],
             async () => {
-                const response = await axiosApiInstance.get(`${BASE_URL}/courses/${courseId}/${getUrlBySectionType(sectionType)}`)
+                const response = await axiosApiInstance.get(`${BASE_URL}/courses/${courseId}/${getUrlBySectionType(sectionType)}?force-update=true`)
                 return response.data
             },
             {
@@ -134,3 +139,5 @@ export const TextbookReportPage = withReportSection(TextbookSection, SectionType
 export const ProblemsReportPage = withReportSection(ProblemsSection, SectionType.PROBLEMS)
 export const PagesReportPage = withReportSection(PagesSection, SectionType.PAGES)
 export const ForumReportPage = withReportSection(ForumSection, SectionType.FORUM)
+
+export const StudentsReportPage = withReportSection(StudentsSection, SectionType.STUDENTS)

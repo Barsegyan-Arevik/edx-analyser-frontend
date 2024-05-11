@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom'
 import CourseSideBar from './components/SideBar/CourseSideBar'
-import StudentsPage from './pages/StudentsPage'
+import StudentsSection from './components/Sections/StudentsSection'
 import { MdOutlineAnalytics, MdOutlineForum } from 'react-icons/md'
 import { FiMousePointer } from 'react-icons/fi'
 import { IoBookOutline, IoExtensionPuzzleOutline, IoVideocamOutline } from 'react-icons/io5'
@@ -12,7 +12,7 @@ import {
     CommonReportPage,
     ForumReportPage,
     PagesReportPage,
-    ProblemsReportPage,
+    ProblemsReportPage, StudentsReportPage,
     TextbookReportPage,
     VideoReportPage
 } from './pages/withReportSection'
@@ -90,7 +90,7 @@ const CourseRoutes = () => {
                 <Route path="forum" element={<ForumReportPage />} />
                 <Route path="problems" element={<ProblemsReportPage />} />
                 <Route path="textbook" element={<TextbookReportPage />} />
-                <Route path="students" element={<StudentsPage />} />
+                <Route path="students" element={<StudentsReportPage />} />
             </Routes>
         </CourseSideBar>
     )

@@ -28,6 +28,9 @@ axiosApiInstance.interceptors.response.use(
             localStorage.clear()
             window.location.href = '/login'
         }
+        else if (error.response && error.response.status === 404) {
+            window.location.href = '*'
+        }
         return Promise.reject(error);
     }
 );
