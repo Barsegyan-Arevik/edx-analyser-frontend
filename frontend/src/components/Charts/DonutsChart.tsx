@@ -16,7 +16,7 @@ export type DonutsChartProps = {
 
 export default function DonutsChart(props: DonutsChartProps) {
     return (
-        <Grid container justifyContent="center" spacing={2} style={{height: props.size.height}}>
+        <Grid container justifyContent="center" style={{height: props.size.height}}>
             {props.data.map((item, index) => (
                 <Grid item xs={12} key={index} display={'flex'}>
                     <div className={'label-vertical-line'}

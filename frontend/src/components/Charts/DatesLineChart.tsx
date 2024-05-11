@@ -14,7 +14,7 @@ export type DatesLineChartExtendedProps = {
     boxSize: ChartSize;
     lineChartSize: ChartSize;
     sliderSize: ChartSize;
-    label: string;
+    label?: string;
 }
 
 

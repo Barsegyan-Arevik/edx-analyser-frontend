@@ -42,7 +42,6 @@ const TextbookSection: React.FC<TextbookSectionProps> = (props) => {
                             }}
                         />
                     }
-                    additionalInfo={'Какой-то текст здесь'}
                 />
             </Grid>
             <Grid item xs={12} md={4}>
@@ -72,7 +71,6 @@ const TextbookSection: React.FC<TextbookSectionProps> = (props) => {
                     //         modalTableSize={modalTableSizeSearchedTerms}
                     //     />
                     // }
-                    additionalInfo={'Какой-то текст здесь'}
                 />
             </Grid>
         </Grid>
