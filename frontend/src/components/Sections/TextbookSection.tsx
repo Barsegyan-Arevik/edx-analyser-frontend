@@ -26,7 +26,7 @@ const TextbookSection: React.FC<TextbookSectionProps> = (props) => {
 
     return (
         <Grid container spacing={2} direction="row" justifyContent="center">
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={7}>
                 <ChartWrapper
                     chartTitle="Взаимодействие с учебником"
                     chart={

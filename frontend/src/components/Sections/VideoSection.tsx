@@ -1,10 +1,10 @@
 import * as React from 'react'
 import DatesLineChart from '../Charts/DatesLineChart'
 import ChartWrapper from '../Charts/ChartWrapper'
-import {Box, Grid} from '@mui/material'
+import {Grid} from '@mui/material'
 import {VideoReport} from '../../models/report'
-import CourseElementInteractionTable, {RowData} from '../Charts/Table/CourseElementInteractionTable'
 import {ChartSize} from '../../utils/utils'
+import VideoPopularityTable, {VideoPopularity} from '../Charts/Table/VideoPopularityTable'
 
 export type VideoSectionProps = {
     report: VideoReport;
@@ -25,34 +25,21 @@ const baseDatesLineChartSliderSize: ChartSize = {
     height: '20rem'
 }
 
-const modaDatesLineChartBoxSize: ChartSize = {
-    width: '60rem',
-    height: '25rem'
-}
-
-const modalDatesLineChartSize: ChartSize = {
-    width: '60rem',
-    height: '20rem'
-}
-
-const modalDatesLineChartSliderSize: ChartSize = {
-    width: '55rem',
-    height: '20rem'
-}
-
 const convertToRowData = (item: {
     video_link: string;
     views_count: number;
     unique_students_count: number;
-}): RowData => {
+    popular_fragments: string;
+}): VideoPopularity => {
     return {
         value: item.video_link,
         count: item.views_count,
-        uniqueViews: item.unique_students_count
+        uniqueViews: item.unique_students_count,
+        fragments: item.popular_fragments
     }
 }
 
-const convertPagesReportToRowDataArray = (videoInteractionReport: VideoReport): RowData[] => {
+const convertPagesReportToRowDataArray = (videoInteractionReport: VideoReport): VideoPopularity[] => {
     return videoInteractionReport.video_interaction_chart.items.map(convertToRowData)
 }
 
@@ -64,7 +51,7 @@ export default function VideoSection(props: VideoSectionProps) {
 
     return (
         <Grid container spacing={2} justifyContent="center">
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={10}>
                 <div className={'item_video_1'}>
                     <ChartWrapper
                         chartTitle={'Количество воспроизведений видеоматериалов, по дням'}
@@ -76,37 +63,15 @@ export default function VideoSection(props: VideoSectionProps) {
                                 sliderSize={baseDatesLineChartSliderSize}
                             />
                         }
-                        // popupChart={
-                        //     <Box
-                        //         sx={{
-                        //             position: 'absolute',
-                        //             top: '50%',
-                        //             left: '50%',
-                        //             transform: 'translate(-50%, -50%)',
-                        //             bgcolor: 'background.paper',
-                        //             boxShadow: 24,
-                        //             p: 4,
-                        //             borderRadius: 2
-                        //         }}
-                        //     >
-                        //         <DatesLineChart
-                        //             points={dailyVideoAmount}
-                        //             boxSize={modaDatesLineChartBoxSize}
-                        //             lineChartSize={modalDatesLineChartSize}
-                        //             sliderSize={modalDatesLineChartSliderSize}
-                        //             label={'Количество воспроизведений'}
-                        //         />
-                        //     </Box>
-                        // }
                     />
                 </div>
             </Grid>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} md={10}>
                 <div className={'item_video_2'}>
                     <ChartWrapper
                         chartTitle="Популярность видеоматериалов"
                         chart={
-                            <CourseElementInteractionTable
+                            <VideoPopularityTable
                                 rows={convertPagesReportToRowDataArray(props.report)}
                                 columnName="Ссылка на видео"
                                 columnCount="Просмотры"
