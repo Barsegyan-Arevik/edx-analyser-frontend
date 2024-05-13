@@ -25,7 +25,8 @@ const donutsChartSize: ChartSize = {
 function transformData(data: ProblemComplexity[]): RowData[] {
     return data.map(problem => ({
         value: problem.problem_link,
-        count: Math.round((problem.successful_attempts / problem.all_attempts) * 100)
+        count: Math.round((problem.successful_attempts / problem.all_attempts) * 100),
+        additional_value: problem.question
     }))
 }
 
@@ -43,7 +44,7 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
 
     return (
         <Grid container spacing={2} justifyContent="center">
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={7}>
                 <ChartWrapper
                     chartTitle={boxTitleProblems}
                     chart={
@@ -51,6 +52,7 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
                             rows={transformedData}
                             columnName={columnNameProblems}
                             columnCount={columnCountProblems}
+                            columnQuestion={'Вопрос'}
                             labelText={labelTextProblems}
                             tableSize={baseTableSize}
                             isLink={true}
