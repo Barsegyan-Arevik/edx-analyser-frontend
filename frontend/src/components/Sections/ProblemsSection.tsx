@@ -68,7 +68,6 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
                             tableSize={baseTableSize}
                         />
                     }
-                    additionalInfo={''}
                 />
             </Grid>
             <Grid item xs={12} md={3}>

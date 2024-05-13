@@ -58,7 +58,6 @@ export default function PagesSection(
                             tableSize={baseTableSize}
                         />
                     }
-                    additionalInfo={''}
                 />
             </Grid>
         </Grid>
