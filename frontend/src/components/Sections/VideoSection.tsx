@@ -52,39 +52,35 @@ export default function VideoSection(props: VideoSectionProps) {
     return (
         <Grid container spacing={2} justifyContent="center">
             <Grid item xs={12} md={10}>
-                <div className={'item_video_1'}>
-                    <ChartWrapper
-                        chartTitle={'Количество воспроизведений видеоматериалов, по дням'}
-                        chart={
-                            <DatesLineChart
-                                points={dailyVideoAmount}
-                                boxSize={baseDatesLineChartBoxSize}
-                                lineChartSize={baseDatesLineChartSize}
-                                sliderSize={baseDatesLineChartSliderSize}
-                            />
-                        }
-                    />
-                </div>
+                <ChartWrapper
+                    chartTitle="Популярность видеоматериалов"
+                    chart={
+                        <VideoPopularityTable
+                            rows={convertPagesReportToRowDataArray(props.report)}
+                            columnName="Ссылка на видео"
+                            columnCount="Просмотры"
+                            columnUniqueViews="Уникальные просмотры"
+                            labelText="Поиск видео..."
+                            size={{
+                                width: '55vh',
+                                height: '73vh'
+                            }}
+                        />
+                    }
+                />
             </Grid>
             <Grid item xs={12} md={10}>
-                <div className={'item_video_2'}>
-                    <ChartWrapper
-                        chartTitle="Популярность видеоматериалов"
-                        chart={
-                            <VideoPopularityTable
-                                rows={convertPagesReportToRowDataArray(props.report)}
-                                columnName="Ссылка на видео"
-                                columnCount="Просмотры"
-                                columnUniqueViews="Уникальные просмотры"
-                                labelText="Поиск видео..."
-                                size={{
-                                    width: '55vh',
-                                    height: '73vh'
-                                }}
-                            />
-                        }
-                    />
-                </div>
+                <ChartWrapper
+                    chartTitle={'Количество воспроизведений видеоматериалов, по дням'}
+                    chart={
+                        <DatesLineChart
+                            points={dailyVideoAmount}
+                            boxSize={baseDatesLineChartBoxSize}
+                            lineChartSize={baseDatesLineChartSize}
+                            sliderSize={baseDatesLineChartSliderSize}
+                        />
+                    }
+                />
             </Grid>
         </Grid>
     )
