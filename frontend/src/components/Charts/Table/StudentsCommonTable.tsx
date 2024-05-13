@@ -68,7 +68,7 @@ export default function StudentsCommonTable(props: StudentsCommonTableProps) {
                 <Grid container>
                     <Grid item xs={12}>
                         <Table stickyHeader size="small" aria-label="sticky table"
-                               sx={{borderSpacing: '8px 0', borderCollapse: 'separate', color: '#405479'}}>
+                               sx={{borderSpacing: '1px 0', borderCollapse: 'separate', color: '#405479'}}>
                             <TableHead style={{color: '#405479'}}>
                                 <TableRow>
                                     {props.columnNames.map(name => (
