@@ -8,6 +8,7 @@ export interface ProblemComplexity {
     problem_link: string;
     all_attempts: number;
     successful_attempts: number;
+    question: string;
 }
 
 export interface ProblemSummary {

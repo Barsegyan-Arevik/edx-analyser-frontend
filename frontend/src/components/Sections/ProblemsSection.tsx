@@ -7,6 +7,7 @@ import { ProblemComplexity } from '../../models/problems'
 import CoursePagePopularityTableWithStatistics from '../Charts/Table/CoursePagePopularityTableWithStatistics'
 import { ChartSize, getLabelByAttemptCount } from '../../utils/utils'
 import { Grid } from '@mui/material'
+import ProblemInteractionTable from '../Charts/Table/ProblemsInteractionTable';
 
 export type ProblemsSectionProps = {
     report: ProblemsReport;
@@ -19,13 +20,14 @@ const baseTableSize: ChartSize = {
 
 const donutsChartSize: ChartSize = {
     width: '55vh',
-    height: '76vh'
+    height: '17rem'
 }
 
 function transformData(data: ProblemComplexity[]): RowData[] {
     return data.map(problem => ({
         value: problem.problem_link,
-        count: Math.round((problem.successful_attempts / problem.all_attempts) * 100)
+        count: Math.round((problem.successful_attempts / problem.all_attempts) * 100),
+        additional_value: problem.question
     }))
 }
 
@@ -43,14 +45,15 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
 
     return (
         <Grid container spacing={2} justifyContent="center">
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={9}>
                 <ChartWrapper
                     chartTitle={boxTitleProblems}
                     chart={
-                        <CoursePagePopularityTable
+                        <ProblemInteractionTable
                             rows={transformedData}
                             columnName={columnNameProblems}
                             columnCount={columnCountProblems}
+                            columnQuestion={'Вопрос'}
                             labelText={labelTextProblems}
                             tableSize={baseTableSize}
                             isLink={true}
@@ -66,10 +69,9 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
                             tableSize={baseTableSize}
                         />
                     }
-                    additionalInfo={''}
                 />
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={9}>
                 <ChartWrapper
                     chartTitle="Выводы по задачам"
                     chart={

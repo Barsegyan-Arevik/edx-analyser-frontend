@@ -47,7 +47,7 @@ export default function CoursePagePopularityTableWithStatistics(props: TableWith
             >
                 {props.boxTitle}
             </Box>
-            <Grid container justifyContent={'center '} spacing={2}>
+            <Grid container justifyContent={'center'} spacing={2}>
                 <Grid item xs={12} md={8}>
                     <Box
                         sx={{
