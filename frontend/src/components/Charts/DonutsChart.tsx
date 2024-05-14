@@ -3,6 +3,7 @@ import {PieChart} from '@mui/x-charts'
 import {Grid, Typography} from '@mui/material'
 import {ChartSize} from '../../utils/utils'
 import './DonutsChart.css'
+import {Box} from '@mui/material'
 
 export type DonutsChartData = {
     value: number;
@@ -17,8 +18,10 @@ export type DonutsChartProps = {
 export default function DonutsChart(props: DonutsChartProps) {
     return (
         <Grid container justifyContent="center" style={{height: props.size.height}}>
+            <Grid item xs={12} md={6}>
             {props.data.map((item, index) => (
-                <Grid item xs={12} key={index} display={'flex'}>
+                <Box key={index} display={'flex'}>
+
                     <div className={'label-vertical-line'}
                          style={{
                              backgroundColor: index === 0 ? '#02CEA9' : index === 1 ? '#FEF045' : '#F06C79',
@@ -33,9 +36,10 @@ export default function DonutsChart(props: DonutsChartProps) {
                     >
                         {item.label}
                     </Typography>
-                </Grid>
+                    </Box>
             ))}
-            <Grid item xs={12} md={12} justifyContent={'center'} style={{textAlign: 'center'}}>
+            </Grid>
+            <Grid item xs={12} md={3} justifyContent={'center'} style={{textAlign: 'center'}}>
                 <div style={{height: '14rem', justifyContent: 'center'}}>
                     <PieChart
                         colors={['#02CEA9', '#FEF045', '#F06C79']}

@@ -19,7 +19,7 @@ const baseTableSize: ChartSize = {
 
 const donutsChartSize: ChartSize = {
     width: '55vh',
-    height: '76vh'
+    height: '17rem'
 }
 
 function transformData(data: ProblemComplexity[]): RowData[] {
@@ -44,7 +44,7 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
 
     return (
         <Grid container spacing={2} justifyContent="center">
-            <Grid item xs={12} md={7}>
+            <Grid item xs={12} md={9}>
                 <ChartWrapper
                     chartTitle={boxTitleProblems}
                     chart={
@@ -70,7 +70,7 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
                     }
                 />
             </Grid>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={9}>
                 <ChartWrapper
                     chartTitle="Выводы по задачам"
                     chart={

@@ -82,7 +82,7 @@ const CoursePagePopularityTable: React.FC<CoursePagePopularityTableProps> = (pro
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                        <TableCell style={{width: '70%'}}>
+                                        <TableCell style={{width: '30%'}}>
                                             {row.value.length > 50 ? (
                                                 props.isLink ? (
                                                     <Tooltip title={row.value} placement="top">
@@ -105,9 +105,21 @@ const CoursePagePopularityTable: React.FC<CoursePagePopularityTableProps> = (pro
                                                     width: '30%'
                                                 }}
                                             >
-                                                {row.additional_value}
+                                                {row.additional_value.length > 50 ? (
+                                                    <Tooltip title={row.additional_value} placement="top">
+                                                        <span>{row.additional_value.slice(0, 50)}...</span>
+                                                    </Tooltip>
+                                                ) : (
+                                                    <Tooltip title={row.additional_value} placement="top">
+                                                        <span>{row.additional_value}</span>
+                                                    </Tooltip>
+                                                )}
                                             </TableCell>
-                                        ) : null}
+                                        ) : (
+                                            renderCellValue(row.additional_value)
+                                        )}
+
+
                                         <TableCell
                                             style={{
                                                 backgroundColor: row.count
