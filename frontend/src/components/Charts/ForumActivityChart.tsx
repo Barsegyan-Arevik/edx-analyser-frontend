@@ -87,8 +87,10 @@ type ForumActivityChartProps = {
 export default function ForumActivityChart(props: ForumActivityChartProps) {
     const threads = props.questions.filter(item => item.question_type === QuestionType.THREAD);
     const responses = props.questions.filter(item => item.question_type === QuestionType.RESPONSE);
-    const backgroundColors = ['#ccdbfd', '#cbf3f0', '#faf3dd'];
-    const dividerColors = ['#3C74F6', '#51cdc4', '#ffedb2'];
+    // const backgroundColors = ['#ccdbfd', '#cbf3f0', '#faf3dd'];
+    const backgroundColors = ['#d7e3fc', '#e2eafc', '#edf2fb'];
+    // const dividerColors = ['#3C74F6', '#51cdc4', '#ffedb2'];
+    const dividerColors = ['#3C74F6', '#3C74F6', '#3C74F6'];
     return (
         <Grid container spacing={3} paddingBottom={'1em'}>
             {threads.length > 0 && (
