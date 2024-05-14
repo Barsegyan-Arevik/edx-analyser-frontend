@@ -15,25 +15,22 @@ import SearchBar from './SearchBar'
 export interface RowData {
     value: string;
     count: number;
+    additional_value?: string;
 }
 
 export type CoursePagePopularityTableProps = {
     rows: RowData[];
     columnName: string;
     columnCount: string;
+    columnQuestion?: string;
     labelText: string;
     tableSize: ChartSize;
     isLink: boolean;
 }
 
-const CoursePagePopularityTable: React.FC<CoursePagePopularityTableProps> = (props) => {
+const ProblemInteractionTable: React.FC<CoursePagePopularityTableProps> = (props) => {
     const rows = props.rows
         .sort((a, b) => b.count - a.count)
-        .map((data, index) => ({
-            id: index + 1,
-            value: data.value,
-            count: data.count
-        }))
     const [page, setPage] = useState(0)
     const [rowsPerPage, setRowsPerPage] = useState(10)
     const [searchTerm, setSearchTerm] = useState('')
@@ -75,6 +72,8 @@ const CoursePagePopularityTable: React.FC<CoursePagePopularityTableProps> = (pro
                         <TableHead>
                             <TableRow>
                                 <TableCell style={{width: '70%'}}>{props.columnName}</TableCell>
+                                {props.columnQuestion ? (
+                                    <TableCell style={{width: '30%'}}>{props.columnQuestion}</TableCell>) : null}
                                 <TableCell style={{width: '30%'}}>{props.columnCount}</TableCell>
                             </TableRow>
                         </TableHead>
@@ -83,11 +82,12 @@ const CoursePagePopularityTable: React.FC<CoursePagePopularityTableProps> = (pro
                                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                 .map((row, index) => (
                                     <TableRow hover role="checkbox" tabIndex={-1} key={index}>
-                                        <TableCell style={{width: '70%'}}>
+                                        <TableCell style={{width: '30%'}}>
                                             {row.value.length > 50 ? (
                                                 props.isLink ? (
                                                     <Tooltip title={row.value} placement="top">
-                                                        <a style={{color: '#405479'}} href={row.value}>{row.value.slice(0, 50)}...</a>
+                                                        <a style={{color: '#405479'}}
+                                                           href={row.value}>{row.value.slice(0, 50)}...</a>
                                                     </Tooltip>
                                                 ) : (
                                                     <Tooltip title={row.value} placement="top">
@@ -98,6 +98,28 @@ const CoursePagePopularityTable: React.FC<CoursePagePopularityTableProps> = (pro
                                                 renderCellValue(row.value)
                                             )}
                                         </TableCell>
+                                        {props.columnQuestion ? (
+                                            <TableCell
+                                                style={{
+                                                    padding: '8px',
+                                                    width: '30%'
+                                                }}
+                                            >
+                                                {row.additional_value.length > 50 ? (
+                                                    <Tooltip title={row.additional_value} placement="top">
+                                                        <span>{row.additional_value.slice(0, 50)}...</span>
+                                                    </Tooltip>
+                                                ) : (
+                                                    <Tooltip title={row.additional_value} placement="top">
+                                                        <span>{row.additional_value}</span>
+                                                    </Tooltip>
+                                                )}
+                                            </TableCell>
+                                        ) : (
+                                            renderCellValue(row.additional_value)
+                                        )}
+
+
                                         <TableCell
                                             style={{
                                                 backgroundColor: row.count
@@ -130,4 +152,4 @@ const CoursePagePopularityTable: React.FC<CoursePagePopularityTableProps> = (pro
     )
 }
 
-export default CoursePagePopularityTable
+export default ProblemInteractionTable;
