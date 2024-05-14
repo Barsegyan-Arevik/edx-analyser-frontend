@@ -100,7 +100,7 @@ export default function StudentsCommonTable(props: StudentsCommonTableProps) {
                                                 backgroundColor: getBlueColorScale(hoursRange.range, hoursRange.minVal, student.total_hours)
                                             }}
                                         >
-                                            {student.total_hours}
+                                            {Math.ceil((student.total_hours) / 3600)}
                                         </TableCell>
 
                                         <TableCell
