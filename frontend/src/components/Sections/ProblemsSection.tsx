@@ -7,6 +7,7 @@ import { ProblemComplexity } from '../../models/problems'
 import CoursePagePopularityTableWithStatistics from '../Charts/Table/CoursePagePopularityTableWithStatistics'
 import { ChartSize, getLabelByAttemptCount } from '../../utils/utils'
 import { Grid } from '@mui/material'
+import ProblemInteractionTable from '../Charts/Table/ProblemsInteractionTable';
 
 export type ProblemsSectionProps = {
     report: ProblemsReport;
@@ -48,7 +49,7 @@ export default function ProblemsSection(props: ProblemsSectionProps) {
                 <ChartWrapper
                     chartTitle={boxTitleProblems}
                     chart={
-                        <CoursePagePopularityTable
+                        <ProblemInteractionTable
                             rows={transformedData}
                             columnName={columnNameProblems}
                             columnCount={columnCountProblems}
