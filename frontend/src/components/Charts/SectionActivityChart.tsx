@@ -40,8 +40,8 @@ export default function SectionActivityChart(
 ) {
     console.log(props.items)
     return (
-        <Paper style={{ width: '100%', height: '100%' }}>
-            <Grid item spacing={1}>
+        <Paper style={{ width: '100%', height: '100%', minWidth: '450px'}}>
+            <Grid item spacing={1} justifyContent={'space-between'}>
                 <Box
                     sx={{
                         padding: '0.9rem',
@@ -62,7 +62,7 @@ export default function SectionActivityChart(
                     {props.items.map(item => (
                         <Grid container key={item.section_type} alignItems="center" spacing={2}
                               justifyContent={'space-between'}>
-                            <Grid item xs={10}>
+                            <Grid item xs={10} >
                                 <Box
                                     sx={{
                                         display: 'flex',
