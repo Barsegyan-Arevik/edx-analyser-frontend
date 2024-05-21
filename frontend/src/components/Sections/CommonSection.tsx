@@ -6,6 +6,7 @@ import ChartWrapper from '../Charts/ChartWrapper'
 import { getStudentEnding } from '../../utils/utils'
 import { CommonReport } from '../../models/report'
 import { Grid } from '@mui/material'
+import { Box } from '@mui/material'
 
 export type CommonSectionProps = {
     report: CommonReport;
@@ -27,18 +28,22 @@ export default function CommonSection(props: CommonSectionProps) {
                 <Grid item xs={12} md={3.5}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={12}>
-                            <ValueBox
-                                value={numberOfStudents}
-                                valueAdditionalText={getStudentEnding(numberOfStudents)}
-                                label="Всего на курсе"
-                            />
+                            <Box sx={{minWidth: { xs: 200}}}>
+                                <ValueBox
+                                    value={numberOfStudents}
+                                    valueAdditionalText={getStudentEnding(numberOfStudents)}
+                                    label="Всего на курсе"
+                                />
+                            </Box>
                         </Grid>
                         <Grid item xs={12} md={12}>
-                            <ValueBox
-                                value={numberOfActiveStudents}
-                                valueAdditionalText={getStudentEnding(numberOfActiveStudents)}
-                                label="Из них активных"
-                            />
+                            <Box sx={{ minWidth: { xs: 200} }}>
+                                <ValueBox
+                                    value={numberOfActiveStudents}
+                                    valueAdditionalText={getStudentEnding(numberOfActiveStudents)}
+                                    label="Из них активных"
+                                />
+                            </Box>    
                         </Grid>
                     </Grid>
                 </Grid>
