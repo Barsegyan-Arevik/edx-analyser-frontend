@@ -37,7 +37,7 @@ export default function CommonSection(props: CommonSectionProps) {
                             </Box>
                         </Grid>
                         <Grid item xs={12} md={12}>
-                            <Box sx={{minWidth: { xs: 200}}}>
+                            <Box sx={{ minWidth: { xs: 200} }}>
                                 <ValueBox
                                     value={numberOfActiveStudents}
                                     valueAdditionalText={getStudentEnding(numberOfActiveStudents)}
