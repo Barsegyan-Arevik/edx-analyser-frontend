@@ -28,7 +28,7 @@ export default function CommonSection(props: CommonSectionProps) {
                 <Grid item xs={12} md={3.5}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={12}>
-                            <Box sx={{minWidth: { xs: 450}}}>
+                            <Box sx={{minWidth: { xs: 200}}}>
                                 <ValueBox
                                     value={numberOfStudents}
                                     valueAdditionalText={getStudentEnding(numberOfStudents)}
@@ -37,7 +37,7 @@ export default function CommonSection(props: CommonSectionProps) {
                             </Box>
                         </Grid>
                         <Grid item xs={12} md={12}>
-                            <Box sx={{minWidth: { xs: 450}}}>
+                            <Box sx={{minWidth: { xs: 200}}}>
                                 <ValueBox
                                     value={numberOfActiveStudents}
                                     valueAdditionalText={getStudentEnding(numberOfActiveStudents)}
