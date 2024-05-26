@@ -1,14 +1,13 @@
 import * as React from 'react'
 import SectionHeader from '../components/Sections/SectionHeader'
-import {Fab, Grid, List, Typography} from '@mui/material'
+import {Grid, List, Typography} from '@mui/material'
 import {BASE_URL} from '../config'
 import CourseCard from '../components/courses/CourseCard'
 import {useQuery} from 'react-query'
-import CreateCourseForm from '../components/courses/CreateCourseForm'
-import {FaPlus} from 'react-icons/fa6'
 import {CourseSkeleton} from '../components/courses/CourseSkeleton'
 import {Course} from '../models/course'
 import {axiosApiInstance} from '../interceptors'
+import CreateCourseButton from '../components/courses/CreateCourseButton'
 
 export default function CoursesPage() {
     const fetchCourses = async () => {
@@ -24,13 +23,7 @@ export default function CoursesPage() {
 
     const [isFormOpen, setIsFormOpen] = React.useState(false);
 
-    const handleOpenForm = () => {
-        setIsFormOpen(true);
-    };
-
-    const handleCloseForm = () => {
-        setIsFormOpen(false);
-    };
+    const showCreateCourseButton = true
 
     return (
         <Grid container paddingLeft="30px" paddingTop="30px" direction={'column'}>
@@ -50,21 +43,10 @@ export default function CoursesPage() {
                                     course={course}/>)
                             )}
             </List>
-            {/*<Fab*/}
-            {/*    onClick={handleOpenForm}*/}
-            {/*    color="primary"*/}
-            {/*    aria-label="add"*/}
-            {/*    sx={{*/}
-            {/*        position: 'fixed',*/}
-            {/*        bottom: '5vh',*/}
-            {/*        right: '5vh',*/}
-            {/*    }}*/}
-            {/*>*/}
-            {/*    <FaPlus size={24} lightingColor={'#405479'}/>*/}
-            {/*</Fab>*/}
-            {/*{isFormOpen ? (*/}
-            {/*    <CreateCourseForm open={isFormOpen} onClose={handleCloseForm}/>*/}
-            {/*) : null}*/}
+            {showCreateCourseButton ?
+                (
+                    <CreateCourseButton isFormOpen={isFormOpen} setIsFormOpen={setIsFormOpen}/>
+                ) : null}
         </Grid>
     );
 }
