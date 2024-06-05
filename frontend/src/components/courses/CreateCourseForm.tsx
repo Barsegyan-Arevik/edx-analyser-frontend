@@ -4,7 +4,7 @@ import {Button, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLa
 import FileUploadForm from './FileUploadForm';
 import TextField from '@mui/material/TextField';
 import {BASE_URL} from '../../config';
-import axios from 'axios';
+import {axiosApiInstance} from '../../interceptors'
 
 type CreateCourseFormProps = {
     open: boolean;
@@ -17,11 +17,13 @@ export default function CreateCourseForm(props: CreateCourseFormProps) {
     const [name, setName] = useState('')
 
     const handleUpload = () => {
-        const formData = new FormData();
-        formData.append('archive', selectedFile);
+        const data = new FormData();
+        data.append('archive', selectedFile)
+        data.append('courseName', name)
+        data.append('isPublic', JSON.stringify(isPublic))
 
-        axios
-            .post(`${BASE_URL}upload/`, formData)
+        axiosApiInstance
+            .post(`${BASE_URL}courses/upload/`, data)
             .then((response) => {
                 console.log(response.data);
             })
